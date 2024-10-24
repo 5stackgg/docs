@@ -21,7 +21,8 @@ export default defineConfig({
           { text: 'Install', link: '/install', items: [
             { text: 'Requirements', link: '/requirements' },
             { text: 'Configuration Options', link: '/configuration-options' },
-            { text: 'Updating', link: '/updating' }
+            { text: 'Updating', link: '/updating' },
+            { text: 'Nginx Configuration', link: '/nginx' }
           ]}
         ]
       },
