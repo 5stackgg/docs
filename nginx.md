@@ -5,3 +5,16 @@ If you need to host the panel on a system that already uses ports 80 and 443, yo
 The YAML file is located in the `base/nginx/service.yaml` directory.
 
 You can update the ports in the `targetPort` section as shown below:
+
+```
+  - appProtocol: http
+    name: http
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - appProtocol: https
+    name: https
+    port: 443
+    protocol: TCP
+    targetPort: https
+```
