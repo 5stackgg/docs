@@ -40,7 +40,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/5stackgg/docs' }
+      { icon: 'github', link: 'https://github.com/5stackgg/docs/' }
     ],
   }
 })
