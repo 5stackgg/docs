@@ -40,6 +40,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
+      { icon: 'discord', link: 'https://5stack.gg/discord-invite' },
       { icon: 'github', link: 'https://github.com/5stackgg/docs/' }
     ],
   }
