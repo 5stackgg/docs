@@ -39,6 +39,22 @@ export default defineConfig({
       
     ],
 
+    search: {
+      provider: 'local'
+    },
+
+    lastUpdated: {
+      text: 'Updated at',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    },
+
+    editLink: {
+      pattern: 'https://github.com/5stackgg/docs/edit/main/:path'
+    },
+
     socialLinks: [
       { icon: 'discord', link: 'https://5stack.gg/discord-invite' },
       { icon: 'github', link: 'https://github.com/5stackgg/docs/' }

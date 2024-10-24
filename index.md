@@ -31,3 +31,29 @@ features:
     details: Create regions for matchmaking, including LAN support
   - title: Storage Solutions
     details: Store demos and backup rounds locally or externally
+
+
+---
+
+<script setup>
+import { VPTeamMembers } from 'vitepress/theme'
+
+const members = [
+  {
+    avatar: 'https://www.github.com/5stackgg.png',
+    name: 'LukePOLO',
+    sponsor: 'https://github.com/sponsors/lukepolo',
+    links: [
+      { icon: 'github', link: 'https://github.com/lukepolo' },
+    ]
+  }
+]
+</script>
+
+<div style="text-align: center; margin-top: 2rem;">
+  <div>
+    The development of 5Stack is being built by a Solo developer, for fun!
+  </div>
+
+  <VPTeamMembers :members="members" />
+</div>
