@@ -40,7 +40,7 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: 'https://www.github.com/5stackgg.png',
+    avatar: 'https://avatars.githubusercontent.com/u/2066668?s=160&v=4',
     name: 'LukePOLO',
     sponsor: 'https://github.com/sponsors/lukepolo',
     links: [
