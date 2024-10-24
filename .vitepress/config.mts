@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "5Stack",
+  base: 'https://docs.5stack.gg/',
   description: "A Counter-Strike Panel for Managing Servers, Matches, and Tournaments",
   appearance: 'dark',
   themeConfig: {
