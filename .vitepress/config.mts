@@ -23,17 +23,17 @@ export default defineConfig({
             text: "Install",
             link: "/install",
             items: [
+              { text: "What is Installed?", link: "/install/what-is-installed" },
               { text: "Requirements", link: "/install/requirements" },
               {
                 text: "Configuration Options",
                 link: "/install/command-line-arguments",
               },
-              { text: "Updating", link: "/install/updating" },
               { text: "Nginx Configuration", link: "/install/nginx" },
               { text: "Tailscale Integration", link: "/install/tailscale" },
-              { text: "Whats Installed?", link: "/install/what-is-installed" },
             ],
           },
+          { text: "Updating", link: "/install/updating" },
         ],
       },
       {
