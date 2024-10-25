@@ -1,5 +1,5 @@
 ::: danger
-Please ensure you have met the [Requirements](/requirements) before you begin installing the 5Stack Panel.
+Please ensure you have met the [Requirements](/install/requirements) before you begin installing the 5Stack Panel.
 :::
 
 # Installation
@@ -27,5 +27,5 @@ We are actively working on improving the installation process. For now, it's cru
 After the first install you should run the `./update.sh` script
 
 ::: info
-Additional options can be passed to modify how the panel operates. For more details, please refer to the [Configuration Options](/configuration-options) page.
+Additional arguments can be passed to modify how the panel operates. For more details, please refer to the [Command Line Arguments](/install/command-line-arguments) page.
 :::

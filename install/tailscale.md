@@ -1,6 +1,6 @@
 # Tailscale Integration
 
-Tailscale is utilized for managing game server nodes in 5Stack. It provides a secure and reliable connection to facilitate on-demand servers for matches.
+Tailscale is utilized for managing game server nodes in 5Stack. It provides a secure and reliable connection to facilitate on-demand servers for matches. The installation script will automatically install Tailscale and prompt for the required API keys.
 
 ## Tailscale Access Control Lists (ACLs)
 

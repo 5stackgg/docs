@@ -24,12 +24,8 @@
 - Map Support
   - Active Duty Maps
   - Workshop Maps
-- Backup and Recovery
-  - Round Backup System
-    - S3-compatible API for Download and Upload
-    - Automatic Restoration after Server Crashes
 - Demo Management
-  - S3-compatible API for Storage and Retrieval
+- Round Backups
 - Comprehensive Player Statistics
   - Damage
   - Kills, Deaths, and Assists

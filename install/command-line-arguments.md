@@ -1,4 +1,4 @@
-# Configuration Options
+# Command Line Arguments
 
 While running the installation or update script, you can pass the following options to the script to configure the installation.
 

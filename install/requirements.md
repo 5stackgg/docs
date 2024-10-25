@@ -4,6 +4,6 @@ The 5Stack Panel operates on [K3s](https://docs.k3s.io/installation/requirements
 
 Before proceeding, please ensure that you meet all the requirements for K3s installation.
 
-## Tailscale
+## Port 80 and 443
 
-[Tailscale](https://tailscale.com/) is utilized for managing game server nodes. It ensures a secure connection to facilitate on-demand servers for matches.
+The 5Stack Panel requires port 80 and 443 to be open and accessible, if that is not possible you can modify the [Nginx configuration](/install/nginx) to use different ports.
