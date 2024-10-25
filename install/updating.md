@@ -2,6 +2,8 @@
 
 5Stack can be primarily updated through the UI at the top of the application.
 
+![Update Notice](./update-notice.png)
+
 ::: warning
 Occasionally, you may need to update the 5Stack Panel to the latest version. Currently, this process requires manual intervention:
 
