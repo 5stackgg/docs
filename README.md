@@ -1,0 +1,1 @@
+# Report Features or Bugs on [GitHub](https://github.com/5stackgg/5stack-panel/issues)
