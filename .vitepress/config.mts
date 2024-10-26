@@ -37,6 +37,10 @@ export default defineConfig({
         ],
       },
       {
+        text: "Dedicated Servers",
+        link: "/dedicated-servers",
+      },
+      {
         text: "Discord Bot",
         link: "/discord-bot",
       },
