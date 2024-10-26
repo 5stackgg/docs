@@ -13,6 +13,10 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Getting Started", link: "/getting-started" },
+      {
+        text: 'Report an Issue',
+        link: 'https://github.com/5stackgg/5stack-panel/issues/new'
+      },
     ],
 
     sidebar: [
@@ -68,7 +72,7 @@ export default defineConfig({
 
     socialLinks: [
       { icon: "discord", link: "https://5stack.gg/discord-invite" },
-      { icon: "github", link: "https://github.com/5stackgg/docs/" },
+      { icon: "github", link: "https://github.com/5stackgg/5stack-panel/" },
     ],
   },
 });
