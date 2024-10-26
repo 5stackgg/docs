@@ -41,16 +41,21 @@ export default defineConfig({
         ],
       },
       {
-        text: "Dedicated Servers",
-        link: "/dedicated-servers",
+        text: "Servers",
+        items: [
+          {
+            text: "Dedicated Servers",
+            link: "/dedicated-servers",
+          },
+          {
+            text: "Game Server Nodes",
+            link: "/game-server-nodes",
+          },
+        ],
       },
       {
         text: "Discord Bot",
         link: "/discord-bot",
-      },
-      {
-        text: "Game Server Nodes",
-        link: "/game-server-nodes",
       },
     ],
 
