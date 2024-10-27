@@ -23,7 +23,18 @@ You will need to set up additional environment variables located in the `INSTALL
 ## Api Config
 Located in `INSTALL_DIR/base/properties/api.env`, update the domains and ensure your DNS points to the 5Stack Panel.
 
-Additionally, there are Tailscale environment variables that need to be set. The .env file should contain links directing you to where you can obtain these variables.
+`WEB_DOMAIN`
+`WS_DOMAIN`
+`API_DOMAIN`
+`DEMOS_DOMAIN`
+`MAIL_FROM`
+
+:::info
+Any level of subdomain can be used.
+:::
+
+### Typesense Host 
+Located in `INSTALL_DIR/base/properties/typesense.env`, update the domain for the host. Ensure that your DNS is configured to point this domain to the 5Stack Panel.
 
 ## S3 Setup
 5Stack includes a built-in S3-compatible object storage system.
@@ -41,3 +52,12 @@ Log in using the credentials found in `INSTALL_DIR/base/secrets/minio-secrets.en
 
 ## Steam Api Key Secret
 Located in `INSTALL_DIR/base/secrets/steam-secrets.env`, update the `STEAM_WEB_API_KEY`. You can obtain this key from the [Steam Developer Portal](https://steamcommunity.com/dev/apikey).
+
+## Tailscale Setup
+
+Located in `INSTALL_DIR/base/properties/api-env.env`, there are four (4) environment variables that must be updated:
+
+`TAILSCALE_NODE_IP`: This can be found in the Tailscale dashboard. It is the IP address of the node you are installing on.
+`TAILSCALE_NET_NAME`: This can be found at [https://login.tailscale.com/admin/dns](https://login.tailscale.com/admin/dns).
+`TAILSCALE_CLIENT_ID`: You need to generate a new Tailscale client ID and secret from the [Tailscale Admin Console](https://login.tailscale.com/admin/settings/oauth). Ensure you grant read/write permissions to the devices scope.
+`TAILSCALE_SECRET_ID`: When generating the client, you will also receive the secret. This should be placed in `INSTALL_DIR/base/properties/tailscale.env`.
