@@ -60,4 +60,4 @@ Located in `INSTALL_DIR/base/properties/api-env.env`, there are four (4) environ
 `TAILSCALE_NODE_IP`: This can be found in the Tailscale dashboard. It is the IP address of the node you are installing on.
 `TAILSCALE_NET_NAME`: This can be found at [https://login.tailscale.com/admin/dns](https://login.tailscale.com/admin/dns).
 `TAILSCALE_CLIENT_ID`: You need to generate a new Tailscale client ID and secret from the [Tailscale Admin Console](https://login.tailscale.com/admin/settings/oauth). Ensure you grant read/write permissions to the devices scope.
-`TAILSCALE_SECRET_ID`: When generating the client, you will also receive the secret. This should be placed in `INSTALL_DIR/base/properties/tailscale.env`.
+`TAILSCALE_SECRET_ID`: When generating the client, you will also receive the secret. This should be placed in `INSTALL_DIR/base/secrets/tailscale.env`.
