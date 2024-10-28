@@ -42,14 +42,15 @@ export default defineConfig({
       },
       {
         text: "Servers",
+        link: "/servers",
         items: [
           {
-            text: "Dedicated Servers",
-            link: "/dedicated-servers",
+            text: "Game Server Nodes",
+            link: "/servers/game-server-nodes",
           },
           {
-            text: "Game Server Nodes",
-            link: "/game-server-nodes",
+            text: "Dedicated Servers",
+            link: "/servers/dedicated-servers",
           },
         ],
       },

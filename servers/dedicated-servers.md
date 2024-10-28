@@ -1,10 +1,14 @@
 # Dedicated Servers
 
-You can host your own dedicated servers on 5Stack using one of two methods:
+## Using the Plugin
 
-1. Utilize the 5Stack Game Server Container
-2. Set up your own Dedicated Server and manually install the required plugins
+Download the latest release of the 5Stack Game Server Plugin from the [Releases Page](https://github.com/5stackgg/game-server/releases).
 
+Next, follow the instructions for setting up [CounterStrikeSharp](https://docs.cssharp.dev/docs/guides/getting-started.html) to install the plugin on your dedicated server.
+
+### Plugin Configuration
+
+The plugin configuration will be located in `<server_path>/game/csgo/addons/counterstrikesharp/configs`.
 
 ## Using the Container
 
@@ -31,6 +35,11 @@ services:
       - TV_PORT=27020
       - EXTRA_GAME_PARAMS=-maxplayers 13
       - ALLOW_BOTS=true
+      - WS_DOMAIN=wss://ws.5stack.gg
+      - API_DOMAIN=https://api.5stack.gg
+      - DEMOS_DOMAIN=https://demos.5stack.gg
+      - SERVER_ID=<your-server-id>
+      - SERVER_API_PASSWORD=<your-server-api-password>
     ports:
       - "27015:27015/tcp"
       - "27015:27015/udp"
@@ -47,10 +56,3 @@ services:
 ```
 
 After a Counter-Strike update, you will need to run `docker-compose run --rm update-server` to download and install the latest version of the game.
-
-
-## Using the Plugin
-
-Download the latest release of the 5Stack Game Server Plugin from the [Releases Page](https://github.com/5stackgg/game-server/releases).
-
-Next, follow the instructions for setting up [CounterStrikeSharp](https://docs.cssharp.dev/docs/guides/getting-started.html) to install the plugin on your dedicated server.
