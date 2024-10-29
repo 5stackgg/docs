@@ -5,5 +5,5 @@ The cookie domain is the domain that the cookies will be set to. This is used to
 This can be changed by setting the `AUTH_COOKIE_DOMAIN` environment variable which you can set in the `<INSTALL_DIR>/base/properties/api-config.env` file.
 
 ::: warning
-The cookie domain should have a `.` infront to allow the other subdomains to be used (e.g. `api.5stack.gg`).
+The cookie domain should have a `.` infront to allow the other subdomains to be used (e.g. `.api.5stack.gg`).
 :::
