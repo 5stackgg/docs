@@ -18,8 +18,6 @@ In the file `INSTALL_DIR/base/secrets/discord-secrets.env`, you need to update t
 
 ## OAuth Setup
 
-Navigate to `https://discord.com/developers/applications/${Application ID}/oauth2` and update the Redirect URL to your `WEB_DOMAIN` URL, which can be found in:
-
-`INSTALL_DIR/base/properties/api.env`.
+Navigate to `https://discord.com/developers/applications/${Application ID}/oauth2` and update the Redirect URL to your `WEB_DOMAIN` URL, which can be found in `INSTALL_DIR/base/properties/api-config.env`.
 
 In the file `INSTALL_DIR/base/secrets/discord-secrets.env`, you need to update both the `DISCORD_CLIENT_ID` and `DISCORD_CLIENT_SECRET`.

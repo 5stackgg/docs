@@ -33,8 +33,8 @@ export default defineConfig({
                 text: "Configuration Options",
                 link: "/install/command-line-arguments",
               },
+              { text: "Cookie Domain", link: "/install/cookie-domain" },
               { text: "Nginx Configuration", link: "/install/nginx" },
-              { text: "Tailscale Integration", link: "/install/tailscale" },
             ],
           },
           { text: "Updating", link: "/install/updating" },
@@ -45,13 +45,16 @@ export default defineConfig({
         link: "/servers",
         items: [
           {
-            text: "Game Server Nodes",
-            link: "/servers/game-server-nodes",
-          },
-          {
             text: "Dedicated Servers",
             link: "/servers/dedicated-servers",
           },
+          {
+            text: "Game Server Nodes",
+            link: "/servers/game-server-nodes",
+            items: [
+              { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
+            ]
+          }
         ],
       },
       {
