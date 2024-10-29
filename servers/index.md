@@ -3,7 +3,7 @@
 
 # What is a Game Server Node
 
-A [5Stack Game Server Node](/servers/game-server-nodes) is a Kubernetes cluster that automatically creates Counter-Strike servers on demand. Here are the advantages of running a game server node:
+A [5Stack Game Server Node](./game-server-nodes/index) is a Kubernetes cluster that automatically creates Counter-Strike servers on demand. Here are the advantages of running a game server node:
 
 * Automatic Counter-Strike Updates
 * Zero Plugin Configuration 
