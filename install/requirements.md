@@ -12,12 +12,17 @@ The following subdomains are required:
 - `api.yourdomain.com`
 - `ws.yourdomain.com`
 - `demos.yourdomain.com`
+- `search.yourdomain.com`
 - `console.yourdomain.com`
+
+:::info
+You can use deeply nested domains like `api.deep.yourdomain.com`
+:::
 
 # Server with Available Ports 80 and 443
 
 The 5Stack Panel requires port 80 and 443 to be open and accessible, if that is not possible you can modify the [Nginx configuration](/install/nginx) to use different ports.
 
 :::info
-It is recommended to use a Linux-based server such as [Ubuntu](https://ubuntu.com/download/server).
+We recommend using a Linux-based server such as [Ubuntu](https://ubuntu.com/download/server).
 :::
