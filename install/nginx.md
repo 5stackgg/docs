@@ -1,4 +1,3 @@
 # Nginx Configuration
 
-If you need to host the panel on a system that already uses ports 80 and 443, you can modify the Nginx Config in `<install-dir>/base/properties/nginx-config.env`.
-
+If ports 80 and 443 are already in use on your system, you can modify the Nginx configuration by editing `<install-dir>/base/properties/nginx-config.env`.
