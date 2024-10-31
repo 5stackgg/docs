@@ -1,4 +1,4 @@
-# Updating 5Stack
+# Updating the 5Stack Panel
 
 
 Occasionally, you may need to update the 5Stack Panel to the latest version. Currently, this process requires manual intervention:
