@@ -13,3 +13,5 @@ Please ensure you have met the [Requirements](/install/requirements) before you 
 ## Running the Installation Script
 
 Inside the 5Stack-Panel directory, run the installation script `./install.sh`.
+
+After installing, you can make changes to the configuration files in the `base/properties` or `base/secrets` directories. If modified, you will need to update 5Stack. See the [Updating Guide](/install/updating) for instructions.
