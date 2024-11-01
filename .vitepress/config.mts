@@ -6,6 +6,7 @@ export default defineConfig({
   description:
     "A Counter-Strike Panel for Managing Servers, Matches, and Tournaments",
   appearance: "dark",
+  cleanUrls: true,
   themeConfig: {
     logo: "/5stack-logo.png",
 
