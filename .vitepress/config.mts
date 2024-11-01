@@ -15,7 +15,7 @@ export default defineConfig({
       { text: "Getting Started", link: "/getting-started" },
       {
         text: 'Report an Issue',
-        link: 'https://github.com/5stackgg/5stack-panel/issues/new'
+        link: 'https://github.com/5stackgg/5stack-panel/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+'
       },
     ],
 
@@ -38,6 +38,7 @@ export default defineConfig({
             ],
           },
           { text: "Updating", link: "/install/updating" },
+          { text: "Debugging", link: "/install/debugging" },
         ],
       },
       {
