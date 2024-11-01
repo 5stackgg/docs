@@ -11,7 +11,14 @@ It will automatically generate the required Tailscale ACLs and other configurati
 
 A game node server should be a clean linux server that is capable of running Counter-Strike. Once the node is created it will automatically install Counter-Strike and be available to create on demand servers.
 
-## Running the Setup Script
+## Panel Upgrade
+
+::: warning
+This should be ran after the base installation of the panel.
+:::
 
 Inside the 5Stack-Panel directory, run the setup script `./game-node-server-setup.sh`, which will guide you through the setup process.
 
+::: danger
+This is for upgrading the panel itself, not for setting up game node servers. Game node servers should be created through the panel interface.
+:::
