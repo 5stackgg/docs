@@ -29,3 +29,7 @@ When using Tailscale across multiple networks, it's recommended to set up an Acc
 	],
 }
 ```
+
+::: warning
+If you use a tag, make sure to assign the tag to the machine in the Tailscale dashboard.
+:::
