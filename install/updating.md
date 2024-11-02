@@ -4,7 +4,11 @@ Occasionally, you may need to update the 5Stack Panel to the latest version. Cur
 
 1. Navigate to the installation directory.
 2. Run `git pull` to fetch the latest updates.
-3. Execute `./update.sh` to apply any configuration changes.
+3. Execute
+
+```bash
+./update.sh
+```
 
 # Updating 5Stack Components
 
