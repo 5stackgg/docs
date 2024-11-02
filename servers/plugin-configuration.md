@@ -2,7 +2,6 @@
 
 The plugin configuration will be located in `<server_path>/game/csgo/addons/counterstrikesharp/configs`.
 
-
 ## Match Configuration Files
 
 Once the plugin has been added, it will download the following configuration files and store them in the cfg directory at `<game-directory>/csgo/cfg`:

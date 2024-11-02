@@ -1,10 +1,9 @@
 # Dedicated Servers
 
-You can setup dedicated servers in two different ways: 
+You can setup dedicated servers in two different ways:
 
 1. Using the plugin which will require manual upload of the plugin and configuration of the game server. [Learn more about using the plugin](#using-the-plugin)
 2. Using the container which will require a Docker installation and a Docker Compose file. [Learn more about using game server container](#using-the-container)
-
 
 ## Using the Plugin
 

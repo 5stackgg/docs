@@ -39,7 +39,9 @@ export default defineConfig({
             ],
           },
           { text: "Updating", link: "/install/updating" },
-          { text: "Debugging", link: "/install/debugging" },
+          { text: "Debugging", link: "/debugging", items: [
+            { text: "Invalid SSL", link: "/debugging/invalid-ssl" },
+          ] },
         ],
       },
       {
