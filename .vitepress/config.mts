@@ -49,6 +49,12 @@ export default defineConfig({
           {
             text: "Dedicated Servers",
             link: "/servers/dedicated-servers",
+            items: [
+              {
+                text: "Plugin Configuration", 
+                link: "/servers/plugin-configuration",
+              },
+            ]
           },
           {
             text: "Game Server Nodes",

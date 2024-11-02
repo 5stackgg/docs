@@ -1,14 +1,16 @@
 # Dedicated Servers
 
+You can setup dedicated servers in two different ways: 
+
+1. Using the plugin which will require manual upload of the plugin and configuration of the game server. [Learn more about using the plugin](#using-the-plugin)
+2. Using the container which will require a Docker installation and a Docker Compose file. [Learn more about using game server container](#using-the-container)
+
+
 ## Using the Plugin
 
 Download the latest release of the 5Stack Game Server Plugin from the [Releases Page](https://github.com/5stackgg/game-server/releases).
 
 Next, follow the instructions for setting up [CounterStrikeSharp](https://docs.cssharp.dev/docs/guides/getting-started.html) to install the plugin on your dedicated server.
-
-### Plugin Configuration
-
-The plugin configuration will be located in `<server_path>/game/csgo/addons/counterstrikesharp/configs`.
 
 ## Using the Container
 
@@ -56,16 +58,3 @@ services:
 ```
 
 After a Counter-Strike update, you will need to run `docker-compose run --rm update-server` to download and install the latest version of the game.
-
-## Match Configuration Files
-
-Once the plugin has been added, it will download the following configuration files and store them in the cfg directory at `<game-directory>/csgo/cfg`:
-
-- 5stack.base.cfg
-- 5stack.warmup.cfg
-- 5stack.knife.cfg
-- 5stack.live.cfg
-
-The base config is always executed first, followed by either the warmup, knife, or live config depending on the current phase of the match.
-
-These configs can be modified to suit your needs.
