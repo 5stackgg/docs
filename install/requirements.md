@@ -5,9 +5,9 @@ The 5Stack Panel runs on [K3s](https://docs.k3s.io/installation/requirements), a
 
 # Server Requirements
 
-## Memory `4 GB`
+## Memory `3 GB`
 
-While the 5Stack Panel is not a resource intensive application, we recommend a minimum of **`4 GB`** of Memory.
+While the 5Stack Panel is not a resource intensive application, we recommend a minimum of **`3 GB`** of Memory.
 
 ## Available Ports `80` and `443`
 
