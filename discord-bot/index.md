@@ -37,3 +37,7 @@ First, you need to create a new application in the [Discord Developer Portal](ht
 
 See [Update Guide](/install/updating) for instructions on updating the panel.
 
+6. Invite the Bot to your Server    
+
+The Discord Bot can only be invited to a server by an administrator, and it can be accessed at the `WEB_DOMAIN` URL: `https://<WEB_DOMAIN>/discord-bot`.
+
