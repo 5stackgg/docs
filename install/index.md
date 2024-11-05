@@ -1,6 +1,6 @@
 # Installation
 
-The [5Stack-Panel](https://github.com/5stackgg/5stack-panel) repostiory includes scirpts to help facilityte the installation process.
+The [5Stack-Panel](https://github.com/5stackgg/5stack-panel) repository includes scripts to help facilitate the installation process.
 
 ```bash
 git clone https://github.com/5stackgg/5stack-panel
