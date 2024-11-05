@@ -62,6 +62,7 @@ export default defineConfig({
             text: "Game Server Nodes",
             link: "/servers/game-server-nodes",
             items: [
+              { text: "Custom Plugins", link: "/servers/game-server-nodes/custom-plugins" },
               { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
             ]
           }
@@ -71,6 +72,10 @@ export default defineConfig({
         text: "Discord Bot",
         link: "/discord-bot",
       },
+      {
+        text: "Custom K8s",
+        link: "/custom-k8s",
+      }
     ],
 
     search: {
