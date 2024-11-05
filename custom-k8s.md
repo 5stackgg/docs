@@ -43,6 +43,8 @@ spec:
         - name: mysql
           image: mysql:8.0
           env:
+            - name: MYSQL_DATABASE
+              value: ranks
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -119,3 +121,7 @@ Once you have created the files, you can apply the changes using the following c
 ```bash
 ./custom.sh mysql
 ```
+
+::: info
+To allow the plugin to connect to the database, use the service name `mysql`.
+:::

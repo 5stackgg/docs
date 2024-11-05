@@ -2,7 +2,6 @@
 
 The 5Stack Panel runs on [K3s](https://docs.k3s.io/installation/requirements), a lightweight Kubernetes distribution. Please ensure that your system meets all the requirements for K3s installation, as well as the following additional requirements specific to the 5Stack Panel.
 
-
 # Server Requirements
 
 ## Memory `3 GB`
