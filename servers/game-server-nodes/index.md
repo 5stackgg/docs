@@ -1,9 +1,5 @@
 # Game Server Nodes
 
-::: danger
-Game server nodes are not supported on Windows.
-:::
-
 The 5Stack Panel can manage multiple game server nodes, providing a secure, dynamic, and scalable infrastructure for hosting Counter-Strike servers. To secure the game server nodes, Tailscale is used, you can read more about Tailscale in the [Tailscale Integration](/servers/game-server-nodes/tailscale) section.
 
 The idea behind a game server node is to allow for ease of setup and management of game servers. In game server nodes section you can create a new node.
