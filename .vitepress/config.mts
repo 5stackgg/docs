@@ -39,9 +39,14 @@ export default defineConfig({
             ],
           },
           { text: "Updating", link: "/install/updating" },
-          { text: "Debugging", link: "/debugging", items: [
-            { text: "Invalid SSL", link: "/debugging/invalid-ssl" },
-          ] },
+          { 
+            text: "Debugging", 
+            link: "/debugging", 
+            items: [
+              { text: "Invalid SSL", link: "/debugging/invalid-ssl" },
+            ]
+          },
+          { text: "Uninstall", link: "/uninstall" },
         ],
       },
       {
@@ -75,7 +80,7 @@ export default defineConfig({
       {
         text: "Custom K8s",
         link: "/custom-k8s",
-      }
+      },
     ],
 
     search: {
