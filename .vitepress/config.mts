@@ -24,12 +24,12 @@ export default defineConfig({
       {
         text: "Getting Started",
         items: [
+          { text: "Requirements", link: "/install/requirements" },
+          { text: "What is Installed?", link: "/install/what-is-installed" },
           {
             text: "Install",
             link: "/install",
             items: [
-              { text: "What is Installed?", link: "/install/what-is-installed" },
-              { text: "Requirements", link: "/install/requirements" },
               {
                 text: "Configuration Options",
                 link: "/install/command-line-arguments",

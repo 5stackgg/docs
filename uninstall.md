@@ -9,5 +9,5 @@ To uninstall the 5Stack Panel, you can run
 Then you will want to remove all files associated with 5Stack Panel under `/opt/5stack`
 
 ```bash
-sudo rm -rf /opt/5stack
+rm -rf /opt/5stack
 ```
