@@ -7,6 +7,17 @@ export default defineConfig({
     "A Counter-Strike Panel for Managing Servers, Matches, and Tournaments",
   appearance: "dark",
   cleanUrls: true,
+
+  head: [
+    ['link', { rel: 'icon', href: '/5stack-logo-mini.png' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:locale', content: 'en' }],
+    ['meta', { property: 'og:title', content: '5Stack | Counter-Strike Management System' }],
+    ['meta', { property: 'og:site_name', content: '5Stack' }],
+    ['meta', { property: 'og:image', content: 'https://docs.5stack.gg/5stack-logo.png' }],
+    ['meta', { property: 'og:url', content: 'https://docs.5stack.gg//' }],
+  ],  
+
   themeConfig: {
     logo: "/5stack-logo.png",
 

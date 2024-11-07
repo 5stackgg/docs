@@ -4,11 +4,11 @@ layout: home
 
 hero:
   name: "5Stack"
-  text: Counter-Strike Panel
+  text: Counter-Strike Management System
   image:
     src: 5stack-logo.png
     alt: 5Stack Logo
-  tagline: A System for Managing Servers, Matches, and Tournaments
+  tagline: A Comprehensive Panel for Managing Servers, Matches, and Tournaments
   actions:
     - theme: brand
       text: Getting Started
