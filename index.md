@@ -15,23 +15,30 @@ hero:
       link: /getting-started
 
 features:
-  - title: Just Play
-    details: Set up competitive matches on active duty or workshop maps, or join regional matchmaking
+  - title: Quick Play
+    details: Set up competitive matches on official or workshop maps, or join regional matchmaking
   - title: Tournaments (WIP)
-    details: Manage open or private tournaments with a multi-stage bracket system
-  - title: Discord Bot
-    details: Fully integrated Discord bot for setting up custom matches
+    details: Organize open or private tournaments with multi-stage bracket systems
+  - title: Discord Integration
+    details: Seamlessly set up custom matches through our Discord bot
   - title: Feature Rich
-    details: Includes map veto, ready system, knife round, tech pauses, best-of series, and more
+    details: Enjoy map veto, ready system, knife rounds, tech pauses, best-of series, and more
+  - title: Team Management
+    details: Create and manage your teams
   - title: Comprehensive Stats
-    details: View detailed statistics for matches, players, teams, and tournaments
-  - title: Flexible Server Options
-    details: Manage game node servers or create dedicated servers on demand
-  - title: Server Regions
-    details: Create regions for matchmaking, including LAN support
-  - title: Storage Solutions
-    details: Store demos and backup rounds locally or externally
-
+    details: Track detailed statistics for matches, players, teams, and tournaments
+  - title: Demo & Backup System
+    details: Store match demos and backup rounds locally or externally via S3 API
+  - title: Player Sanctions
+    details: Manage player behavior with ban, mute, gag, or silence
+  - title: Flexible Server Management
+    details: Controls game servers on-demand or create dedicated instances
+  - title: RCON Access
+    details: Manage your servers remotely through RCON console
+  - title: Regional Servers
+    details: Configure multiple regions with LAN support
+  - title: Server Monitoring
+    details: Monitor server performance metrics and access detailed logs
 
 ---
 
@@ -52,7 +59,7 @@ const members = [
 
 <div style="text-align: center; margin-top: 2rem;">
   <div>
-    The development of 5Stack is being built by a Solo developer, for fun!
+    5Stack is being developed by a solo developer, for fun!
   </div>
 
   <VPTeamMembers :members="members" />
