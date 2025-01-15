@@ -50,15 +50,16 @@ export default defineConfig({
             ],
           },
           { text: "Updating", link: "/install/updating" },
-          { 
-            text: "Debugging", 
-            link: "/debugging", 
-            items: [
-              { text: "Invalid SSL", link: "/debugging/invalid-ssl" },
-            ]
-          },
           { text: "Uninstall", link: "/uninstall" },
         ],
+      },
+      { 
+        text: "Common Issues", 
+        link: "/common-issues", 
+        items: [
+          { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
+          { text: "Services Won't Update", link: "/common-issues/services-wont-update" },
+        ]
       },
       {
         text: "Servers",
