@@ -6,24 +6,25 @@
 
 - Server Management
   - On-Demand and Dedicated Servers
-- Match Types
-  - Custom Matches
-    - Competitive: Current Active Duty Map Pool
-    - Wingman: All Available Wingman Maps and Workshop Maps
-  - Regional Matchmaking
-- Match Configuration
-  - Best-of-X Series
-  - Ready-Up System
-  - Captain System
-  - Automatic Team Assignment with Non-Registered Player Removal
-  - Knife Round
-  - Map Veto System
-  - Tactical Timeout System
-  - Technical Pauses (Player and Admin Permissions)
-  - Overtime
-- Map Support
-  - Active Duty Maps
-  - Workshop Maps
+  - Live Logging
+  - CPU / Memory Graphs
+  - Flexible Server Management
+- Team Management
+- Friends & Team Management
+- Matchmaking
+  - Duel: 1 vs 1
+  - Wingman: 2 vs 2
+  - Competitive: 5 vs 5
+- Custom Map Pools
+- Best-of-X Series
+- Ready-Up System
+- Captain System
+- Automatic Team Assignment / Whitelist
+- Knife Round
+- Map Veto System
+- Tactical Timeout System
+- Technical Pauses (Player and Admin Permissions)
+- Overtime System
 - Demo Management
 - Round Backups
 - Comprehensive Player Statistics
@@ -38,3 +39,6 @@
   - Captain System Integration
   - Live Match Status and Scoring
   - Automatic Voice Channel and Thread Management
+- Regional Servers
+- RCON Access
+- Server Monitoring

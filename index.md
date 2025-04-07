@@ -17,28 +17,28 @@ hero:
 features:
   - title: Quick Play
     details: Set up competitive matches on official or workshop maps, or join regional matchmaking
-  - title: Tournaments (WIP)
-    details: Organize open or private tournaments with multi-stage bracket systems
-  - title: Discord Integration
-    details: Seamlessly set up custom matches through our Discord bot
-  - title: Feature Rich
-    details: Enjoy map veto, ready system, knife rounds, tech pauses, best-of series, and more
-  - title: Team Management
-    details: Create and manage your teams
   - title: Comprehensive Stats
     details: Track detailed statistics for matches, players, teams, and tournaments
-  - title: Demo & Backup System
-    details: Store match demos and backup rounds locally or externally via S3 API
+  - title: Social Connectivity
+    details: Create and manage your teams and friends list, and communicate with players both inside and outside the server
+  - title: Tournaments (ALPHA)
+    details: Organize open or private tournaments with multi-stage bracket systems
+  - title: Custom Match Options
+    details: Enjoy map veto, ready-up system, knife rounds, technical pauses, best-of series, and more
   - title: Player Sanctions
-    details: Manage player behavior with ban, mute, gag, or silence
+    details: Manage player behavior with bans, mutes, gags, or silences
+  - title: Demo & Backup System
+    details: Store match demos and backup rounds locally or externally via the S3 API
   - title: Flexible Server Management
-    details: Controls game servers on-demand or create dedicated instances
-  - title: RCON Access
-    details: Manage your servers remotely through RCON console
+    details: Automatically provision on-demand servers or manually configure dedicated instances
   - title: Regional Servers
     details: Configure multiple regions with LAN support
+  - title: RCON Access
+    details: Manage your servers remotely through the RCON console
   - title: Server Monitoring
     details: Monitor server performance metrics and access detailed logs
+  - title: Discord Integration
+    details: Seamlessly set up custom matches through our Discord bot
 
 ---
 
