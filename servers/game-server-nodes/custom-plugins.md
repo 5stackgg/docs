@@ -4,7 +4,7 @@
 After locating the directory, create a new folder for your plugin. All files within this folder will be automatically loaded into the `<install-dir>/game/csgo` directory.
 
 ::: warning
-Each Game Server Node must have its own dedicated folder for storing plugins.
+Game Node servers do not share files, so you will need to duplicate files across multiple game server nodes.
 :::
 
 Example:
