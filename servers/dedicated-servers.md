@@ -11,6 +11,10 @@ Download the latest release of the 5Stack Game Server Plugin from the [Releases 
 
 Next, follow the instructions for setting up [CounterStrikeSharp](https://docs.cssharp.dev/docs/guides/getting-started.html) to install the plugin on your dedicated server.
 
+::: warning
+The server must be started with `-usercon`, and `-ip 0.0.0.0` to allow remote rcon
+:::
+
 ## Using the Container
 
 Here's an example Docker Compose file for running a Counter-Strike dedicated server:
