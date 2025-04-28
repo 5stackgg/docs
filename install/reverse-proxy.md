@@ -1,7 +1,7 @@
 # Reverse Proxy
 
 This guide covers setting up a reverse proxy using Nginx to securely expose your services while handling SSL termination.
-To properly expose your services, you'll need to set up a reverse proxy forwards to  port 443 (HTTPS).
+To properly expose your services, you'll need to set up a reverse proxy forwards to port 443 (HTTPS).
 
 ## Nginx
 
@@ -22,7 +22,7 @@ server {
     # Proxy configuration
     location / {
         proxy_pass https://<YOUR_HOST_MACHINE_IP>:443;
-        
+
         # Forward headers to the proxied server
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
