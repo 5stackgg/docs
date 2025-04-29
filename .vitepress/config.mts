@@ -91,6 +91,13 @@ export default defineConfig({
         link: "/discord-bot",
       },
       {
+        text: "Custom S3",
+        link: "/s3",
+        items: [
+          { text: "Backblaze + Cloudflare", link: "/s3/backblaze" },
+        ]
+      },
+      {
         text: "Custom K8s",
         link: "/custom-k8s",
       },
