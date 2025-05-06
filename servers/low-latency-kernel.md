@@ -49,7 +49,7 @@ This guide provides instructions for installing the low-latency kernel on Ubuntu
 3. After installation, reboot your system:
 
    ```bash
-   sudo reboot
+   reboot now
    ```
 
 4. Verify the kernel installation after reboot:
@@ -58,6 +58,57 @@ This guide provides instructions for installing the low-latency kernel on Ubuntu
    ```
    The output should include "lowlatency" in the kernel name.
 
+## Kernel Parameter Optimization
+
+After installing the low-latency kernel, you'll want to optimize several kernel parameters for better performance:
+
+1. Configure TCP and system parameters by editing sysctl configuration:
+
+   ```bash
+   nano /etc/sysctl.conf
+   ```
+
+   Add these lines:
+
+   ```bash
+   # TCP Low Latency Settings
+   net.ipv4.tcp_low_latency = 1
+   net.ipv4.tcp_congestion_control = cubic
+
+   sysctl -p
+   ```
+
+2. Set CPU Governor to Performance Mode:
+
+   ```bash
+   # 1. Install cpufrequtils
+   sudo apt update
+   sudo apt install -y cpufrequtils
+
+   # 2. Set governor to "performance" for all CPU cores
+   for cpu in /sys/devices/system/cpu/cpu[0-9]*; do
+      sudo cpufreq-set -c "${cpu##*/cpu}" -g performance
+   done
+
+   # 3. Make it persistent across reboots
+   echo 'GOVERNOR="performance"' | sudo tee /etc/default/cpufrequtils
+
+   # 4. Enable and start the cpufrequtils service
+   sudo systemctl enable cpufrequtils
+   sudo systemctl restart cpufrequtils
+   ```
+
+3. Verify the settings:
+
+   ```bash
+   # Check TCP settings
+   sysctl net.ipv4.tcp_low_latency
+   sysctl net.ipv4.tcp_congestion_control
+
+   # Check CPU governor
+   cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+   ```
+
 ## Reverting to Standard Kernel
 
 If needed, you can switch back to the standard kernel:
@@ -65,6 +116,8 @@ If needed, you can switch back to the standard kernel:
 1. Boot into the standard kernel from GRUB menu
 2. Remove the low-latency kernel:
    ```bash
-   sudo apt remove linux-lowlatency
-   sudo update-grub
+   apt remove linux-lowlatency
+   LOWLAT_PACKAGES=$(dpkg --list | grep lowlatency | awk '{print $2}')
+   apt purge -y $LOWLAT_PACKAGES
+   update-grub
    ```

@@ -23,6 +23,7 @@ kubelet-arg:
 After making the configuration changes, follow these steps to apply them:
 
 1. Remove the existing CPU manager state:
+
    ```bash
    rm /var/lib/kubelet/cpu_manager_state
    ```
