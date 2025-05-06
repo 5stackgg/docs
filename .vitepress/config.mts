@@ -82,8 +82,13 @@ export default defineConfig({
             items: [
               { text: "Custom Plugins", link: "/servers/game-server-nodes/custom-plugins" },
               { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
+
             ]
-          }
+          },
+          {
+            text: "Low Latency Kernel",
+            link: "/servers/low-latency-kernel",
+          },
         ],
       },
       {
