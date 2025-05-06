@@ -86,6 +86,10 @@ export default defineConfig({
             ]
           },
           {
+            text: "CPU Pinning",
+            link: "/servers/cpu-pinning",
+          },
+          {
             text: "Low Latency Kernel",
             link: "/servers/low-latency-kernel",
           },
