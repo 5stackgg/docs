@@ -74,11 +74,16 @@ After installing the low-latency kernel, you'll want to optimize several kernel 
    # TCP Low Latency Settings
    net.ipv4.tcp_low_latency = 1
    net.ipv4.tcp_congestion_control = cubic
+   ```
 
+   Then run:
+   
+   ```bash
    sysctl -p
    ```
 
-2. Set CPU Governor to Performance Mode:
+
+3. Set CPU Governor to Performance Mode:
 
    ```bash
    # 1. Install cpufrequtils
@@ -98,7 +103,7 @@ After installing the low-latency kernel, you'll want to optimize several kernel 
    sudo systemctl restart cpufrequtils
    ```
 
-3. Verify the settings:
+4. Verify the settings:
 
    ```bash
    # Check TCP settings
