@@ -80,9 +80,9 @@ export default defineConfig({
             text: "Game Server Nodes",
             link: "/servers/game-server-nodes",
             items: [
-              { text: "Custom Plugins", link: "/servers/game-server-nodes/custom-plugins" },
+              { text: "Port Forwarding", link: "/servers/game-server-nodes/ports" },
               { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
-
+              { text: "Custom CSS Plugins", link: "/servers/game-server-nodes/custom-plugins" },
             ]
           },
           {
