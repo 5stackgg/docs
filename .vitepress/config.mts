@@ -95,20 +95,34 @@ export default defineConfig({
           },
         ],
       },
-      {
-        text: "Discord Bot",
-        link: "/discord-bot",
-      },
-      {
-        text: "Custom S3",
-        link: "/s3",
+      { 
+        text: "Advanced", 
         items: [
-          { text: "Backblaze + Cloudflare", link: "/s3/backblaze" },
+          {
+            text: "Discord Bot",
+            link: "/discord-bot",
+          },
+          {
+            text: "Bring Your Own S3",
+            link: "/s3",
+            items: [
+              { text: "Backblaze + Cloudflare", link: "/s3/backblaze" },
+            ]
+          },
+          {
+            text: "Custom K8s",
+            link: "/custom-k8s",
+          },
         ]
       },
       {
-        text: "Custom K8s",
-        link: "/custom-k8s",
+        text: "Community",
+        items: [
+          {
+            text: "Localization",
+            link: "/localization",
+          },
+        ],
       },
     ],
 

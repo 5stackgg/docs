@@ -1,4 +1,4 @@
-# Custom S3
+# Bring Your Own S3
 
 5Stack uses S3-compatible storage for storing demos and backups. By default, it uses MinIO which is hosted locally within the Kubernetes cluster.
 
