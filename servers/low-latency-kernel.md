@@ -77,13 +77,12 @@ After installing the low-latency kernel, you'll want to optimize several kernel 
    ```
 
    Then run:
-   
+
    ```bash
    sysctl -p
    ```
 
-
-3. Set CPU Governor to Performance Mode:
+2. Set CPU Governor to Performance Mode:
 
    ```bash
    # 1. Install cpufrequtils
@@ -103,7 +102,7 @@ After installing the low-latency kernel, you'll want to optimize several kernel 
    sudo systemctl restart cpufrequtils
    ```
 
-4. Verify the settings:
+3. Verify the settings:
 
    ```bash
    # Check TCP settings
