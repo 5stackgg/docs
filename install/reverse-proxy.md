@@ -11,12 +11,15 @@ Here's a basic Nginx configuration example:
 
 ```nginx
 server {
+    # Listen on HTTPS port 443
     listen 443 ssl;
     server_name your-domain.com;
 
+    # SSL certificate configuration
     ssl_certificate /path/to/cert.pem;
     ssl_certificate_key /path/to/key.pem;
 
+    # Proxy configuration
     location / {
         proxy_pass https://<YOUR_HOST_MACHINE_IP>:443;
 
