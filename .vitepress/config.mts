@@ -67,6 +67,15 @@ export default defineConfig({
         link: "/servers",
         items: [
           {
+            text: "5Stack Game Server Nodes",
+            link: "/servers/game-server-nodes",
+            items: [
+              { text: "Port Forwarding", link: "/servers/game-server-nodes/ports" },
+              { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
+              { text: "Custom CSS Plugins", link: "/servers/game-server-nodes/custom-plugins" },
+            ]
+          },
+          {
             text: "Dedicated Servers",
             link: "/servers/dedicated-servers",
             items: [
@@ -77,21 +86,16 @@ export default defineConfig({
             ]
           },
           {
-            text: "Game Server Nodes",
-            link: "/servers/game-server-nodes",
-            items: [
-              { text: "Port Forwarding", link: "/servers/game-server-nodes/ports" },
-              { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
-              { text: "Custom CSS Plugins", link: "/servers/game-server-nodes/custom-plugins" },
-            ]
-          },
-          {
             text: "CPU Pinning",
             link: "/servers/cpu-pinning",
           },
           {
             text: "Low Latency Kernel",
             link: "/servers/low-latency-kernel",
+          },
+          {
+            text: "Steam Datagram Relay (SDR)",
+            link: "/servers/steam-relay",
           },
         ],
       },

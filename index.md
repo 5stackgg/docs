@@ -32,7 +32,7 @@ features:
   - title: Flexible Server Management
     details: Automatically provision on-demand servers or manually configure dedicated instances
   - title: Regional Servers
-    details: Configure multiple regions with LAN support
+    details: Configure multiple regions with LAN support and automatic Steam Relay setup
   - title: RCON Access
     details: Manage your servers remotely through the RCON console
   - title: Server Monitoring
