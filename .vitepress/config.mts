@@ -13,9 +13,10 @@ export default defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
     ['meta', { property: 'og:title', content: '5Stack | Counter-Strike Management System' }],
+    ['meta', { property: 'og:description', content: 'A Counter-Strike Panel for Managing Servers, Matches, and Tournaments' }],
     ['meta', { property: 'og:site_name', content: '5Stack' }],
     ['meta', { property: 'og:image', content: 'https://docs.5stack.gg/5stack-logo.png' }],
-    ['meta', { property: 'og:url', content: 'https://docs.5stack.gg//' }],
+    ['meta', { property: 'og:url', content: 'https://docs.5stack.gg' }],
   ],  
 
   themeConfig: {
@@ -116,6 +117,10 @@ export default defineConfig({
           {
             text: "Custom K8s",
             link: "/custom-k8s",
+          },
+          {
+            text: "HashiCorp Vault",
+            link: "/vault",
           },
         ]
       },

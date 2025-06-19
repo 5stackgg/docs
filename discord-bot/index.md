@@ -20,7 +20,7 @@ First, you need to create a new application in the [Discord Developer Portal](ht
     ![Oauth URL](./discord-oauth.png)
 
     * Update the Redirect URL to your `WEB_DOMAIN` URL, which can be found in `INSTALL_DIR/base/properties/api-config.env`.
-    * Update the `INSTALL_DIR/base/secrets/discord-secrets.env`, you need to update both the `DISCORD_CLIENT_ID` and `DISCORD_CLIENT_SECRET`.
+    * Update the `INSTALL_DIR/overlays/secrets/discord-secrets.env`, you need to update both the `DISCORD_CLIENT_ID` and `DISCORD_CLIENT_SECRET`.
 
 4. Bot Tab 
 
@@ -28,7 +28,7 @@ First, you need to create a new application in the [Discord Developer Portal](ht
 
       ![Reset Token](./discord-reset-token.png)
 
-    In the file `INSTALL_DIR/base/secrets/discord-secrets.env`, you need to update the `DISCORD_BOT_TOKEN`.
+    In the file `INSTALL_DIR/overlays/secrets/discord-secrets.env`, you need to update the `DISCORD_BOT_TOKEN`.
 
     2. Disable Public Bot
 
