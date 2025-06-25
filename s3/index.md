@@ -10,6 +10,6 @@ The S3 storage is primarily used for storing match demos and backups. When a mat
 
 The default configuration uses MinIO, but you can override this by modifying the following files:
 
-1. Update the S3 `S3_ENDPOINT`, `S3_USE_SSL`, and `S3_PORT` configuration in `<INSTALL_DIR>/base/properties/s3-config.env`:
+1. Update the S3 `S3_ENDPOINT`, `S3_USE_SSL`, and `S3_PORT` configuration in `<INSTALL_DIR>/overlays/config/s3-config.env`:
 
-2. Update the S3 credentials in `<INSTALL_DIR>/overlays/secrets/s3-secrets.env` with your provider's access key and secret key.
+2. Update the S3 credentials in `<INSTALL_DIR>/overlays/local-secrets/s3-secrets.env` with your provider's access key and secret key.
