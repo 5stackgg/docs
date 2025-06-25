@@ -19,7 +19,7 @@ First, you need to create a new application in the [Discord Developer Portal](ht
 
     ![Oauth URL](./discord-oauth.png)
 
-    * Update the Redirect URL to your `WEB_DOMAIN` URL, which can be found in `INSTALL_DIR/base/properties/api-config.env`.
+    * Update the Redirect URL to your `WEB_DOMAIN` URL, which can be found in `INSTALL_DIR/overlays/config/api-config.env`.
     * Update the `INSTALL_DIR/overlays/secrets/discord-secrets.env`, you need to update both the `DISCORD_CLIENT_ID` and `DISCORD_CLIENT_SECRET`.
 
 4. Bot Tab 
