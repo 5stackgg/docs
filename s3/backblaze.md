@@ -2,7 +2,7 @@
 
 Backblaze has a partnership with Cloudflare to provide [free data transfer](https://www.backblaze.com/blog/backblaze-and-cloudflare-partner-to-provide-free-data-transfer/).
 
-To set this up, clone down our [web project](https://github.com/5stackgg/web), then using the following commands to deploy to your cloudfalre instance.
+To set this up, clone down our [web project](https://github.com/5stackgg/web), then using the following commands to deploy to your Cloudflare instance.
 
 1. Set S3 Secret
 
