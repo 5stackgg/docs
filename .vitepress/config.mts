@@ -122,6 +122,10 @@ export default defineConfig({
             text: "HashiCorp Vault",
             link: "/vault",
           },
+          {
+            text: "Lens IDE",
+            link: "/lens-ide",
+          },
         ]
       },
       {
