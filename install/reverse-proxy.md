@@ -14,6 +14,7 @@ server {
     # Listen on HTTPS port 443
     listen 443 ssl;
     server_name your-domain.com;
+                *.your-domain.com;
 
     # SSL certificate configuration
     ssl_certificate /path/to/cert.pem;
