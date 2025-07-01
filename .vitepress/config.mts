@@ -59,6 +59,7 @@ export default defineConfig({
         text: "Common Issues", 
         link: "/common-issues", 
         items: [
+          { text: "Unable to Login", link: "/common-issues/unable-to-login" },
           { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
           { text: "System Not Updating", link: "/common-issues/system-not-updating" },
         ]
