@@ -15,3 +15,6 @@ To resolve this issue and regenerate the SSL certificates:
 1. Go to your 5Stack installation directory.
 2. Run `git pull` to ensure you have the latest updates.
 3. Regenerate the certificates by running:
+   ```sh
+   ./fix-ssl.sh
+   ```
