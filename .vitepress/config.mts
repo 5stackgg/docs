@@ -76,6 +76,7 @@ export default defineConfig({
               { text: "Port Forwarding", link: "/servers/game-server-nodes/ports" },
               { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
               { text: "Custom CSS Plugins", link: "/servers/game-server-nodes/custom-plugins" },
+              { text: "Version Pinning", link: "/servers/game-server-nodes/version-pinning" },  
             ]
           },
           {
