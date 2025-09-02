@@ -2,7 +2,7 @@
 
 If you notice that your API logs show failed requests to services like GitHub or SteamCMD, it may be caused by a search domain set by your DHCP server.
 
-# Confirming Search Domains
+## Confirming Search Domains
 
 To check if your DHCP server is setting a search domain, review your `/etc/resolv.conf` file. Look for any `search` or `domain` entries - if there's anything other than standard DNS servers, you may have this issue.
 

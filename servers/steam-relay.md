@@ -1,6 +1,6 @@
 # Steam Datagram Relay (SDR)
 
-The Steam Datagram Relay (SDR) is Valve's virtual private gaming network for CS2 servers. When enabled in 5Stack, your game server traffic is routed through Valve's dedicated gaming backbone, providing access to their global network of relays for optimal connectivity.
+The Steam Datagram Relay (SDR) is Valve's virtual private gaming network for Counter-Strike servers. When enabled in 5Stack, your game server traffic is routed through Valve's dedicated gaming backbone, providing access to their global network of relays for optimal connectivity.
 
 ## Game Server Nodes
 

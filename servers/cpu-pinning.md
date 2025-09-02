@@ -1,6 +1,6 @@
 # CPU Pinning
 
-CPU pinning is particularly beneficial for CS2 servers as it helps reduce latency and improve performance by dedicating specific CPU cores to the game server process. This prevents other system processes from interfering with the game server's CPU usage, leading to more consistent tick rates and lower latency for players.
+CPU pinning is particularly beneficial for Counter-Strike servers as it helps reduce latency and improve performance by dedicating specific CPU cores to the game server process. This prevents other system processes from interfering with the game server's CPU usage, leading to more consistent tick rates and lower latency for players.
 
 ## Configuration
 

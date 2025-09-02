@@ -1,4 +1,4 @@
-### Plugin Configuration
+# Plugin Configuration
 
 The plugin configuration will be located in `<server_path>/game/csgo/addons/counterstrikesharp/configs`.
 

@@ -57,8 +57,8 @@ export default defineConfig({
       },
       { 
         text: "Common Issues", 
-        link: "/common-issues", 
         items: [
+          { text: "Debug Script", link: "/common-issues/debug-script" },
           { text: "Unable to Login", link: "/common-issues/unable-to-login" },
           { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
           { text: "System Not Updating", link: "/common-issues/system-not-updating" },
@@ -67,8 +67,11 @@ export default defineConfig({
       },
       {
         text: "Servers",
-        link: "/servers",
         items: [
+          {
+            text: "Getting Started with Servers",
+            link: "/servers",
+          },
           {
             text: "5Stack Game Server Nodes",
             link: "/servers/game-server-nodes",

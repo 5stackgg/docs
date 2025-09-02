@@ -8,7 +8,7 @@ Any files placed in `/opt/5stack/custom-plugins` will automatically be transferr
 Game Node servers operate independently, so you'll need to copy your plugin files to each game server node where you want them to run.
 :::
 
-#### Example : gamedata.json
+## Example : gamedata.json
 
 Sometimes when Counter-Strike is updated, it can break CounterStrikeSharp. While waiting for an official fix, you can update the `gamedata.json` file as a temporary solution.
 

@@ -16,7 +16,7 @@ hero:
 
 features:
   - title: Quick Play
-    details: Set up competitive matches on official or workshop maps, or join regional matchmaking
+    details: Jump into 1v1, 2v2, or 5v5 on official or workshop maps, or join regional matchmaking
   - title: Comprehensive Stats
     details: Track detailed statistics for matches, players, teams, and tournaments
   - title: Social Connectivity
@@ -27,8 +27,8 @@ features:
     details: Enjoy map veto, ready-up system, knife rounds, technical pauses, best-of series, and more
   - title: Player Sanctions
     details: Manage player behavior with bans, mutes, gags, or silences
-  - title: Demo & Backup System
-    details: Store match demos and backup rounds locally or externally via the S3 API
+  - title: Demo
+    details: Store match demos locally or externally via the S3 API
   - title: Flexible Server Management
     details: Automatically provision on-demand servers or manually configure dedicated instances
   - title: Regional Servers

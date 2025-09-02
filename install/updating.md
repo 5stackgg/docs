@@ -10,7 +10,7 @@ Occasionally, you may need to update the 5Stack Panel to the latest version. Cur
 ./update.sh
 ```
 
-# Updating 5Stack Components
+## Updating 5Stack Components
 
 The 5Stack Panel can update its components (API, Web, Game Server Node Connector, etc.) through the update interface at the top of the application.
 
