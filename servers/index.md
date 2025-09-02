@@ -3,14 +3,14 @@
 
 ## What is a Game Server Node
 
-A [5Stack Game Server Node](./game-server-nodes/index) is a Kubernetes cluster that automatically creates Counter-Strike servers on demand. Here are the advantages of running a game server node:
-
-* Automatic Counter-Strike Updates
-* Zero Plugin Configuration 
-* Ability to spin up multiple servers on demand
+A [5Stack Game Server Node](./game-server-nodes/index) is a Kubernetes cluster that automatically creates Counter-Strike servers on demand.
 
 :::info
-The number of servers you can run depends on your machine's specifications.
+The number of servers you can run depends on your machine’s hardware specifications and the number of open ports available.
+:::
+
+:::warning
+Each game server node should have around 150 GB of available disk space. This space is needed for the Counter-Strike game files and for storing demo recordings of each match (up to 1 GB per match, which will be uploaded and deleted after uploading).
 :::
 
 
@@ -38,6 +38,7 @@ Game server nodes offer several advantages:
 - Real-time CPU and memory monitoring for each node
 - Demos are uploaded by a separate process, reducing server load
 - Easy CPU pinning for performance optimization
+- Reuse of Counter-Strike game files reduces disk space required
 
 **Game server nodes are ideal for LAN tournaments or gaming centers**, where you want to maximize performance and reduce energy costs in a local environment.
 

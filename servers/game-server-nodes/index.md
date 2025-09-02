@@ -6,6 +6,8 @@ Not sure if you should use game server nodes or dedicated servers? See [Should I
 
 ## Panel Upgrade
 
+The panel requires an upgrade to enable the installation of game server nodes. This is for upgrading the panel itself, not for setting up game node servers. Game node servers should be created through the panel interface.
+
 ::: warning
 This should be ran after the base installation of the panel.
 :::
