@@ -6,7 +6,7 @@
 
 - Server Management
   - Regional Server Management
-  - Automatic Steam Relay Integration
+  - Built-in Steam Relay integration
   - On-Demand / Dedicated Servers
   - Automated CS Updates
   - CS Version Pinning
