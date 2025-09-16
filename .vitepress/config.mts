@@ -26,6 +26,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Getting Started", link: "/getting-started" },
+      { text: "Common Issues", link: "/common-issues/debug-script" },
       {
         text: 'Report an Issue',
         link: 'https://github.com/5stackgg/5stack-panel/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+'
@@ -63,6 +64,7 @@ export default defineConfig({
           { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
           { text: "System Not Updating", link: "/common-issues/system-not-updating" },
           { text: "Network Requests Failing", link: "/common-issues/network-requests-failing" },
+          { text: "Failed to Obtain Auth Key", link: "/common-issues/failed-auth-key" },
         ]
       },
       {
