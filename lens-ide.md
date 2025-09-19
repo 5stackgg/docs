@@ -27,7 +27,6 @@ If you have access to your 5stack server:
    ```
 
 3. **Edit the server URL**:
-
    - Open the downloaded `k3s.yaml` file
    - Replace `https://127.0.0.1:6443` with your actual server IP
    - Example: `https://your-server-ip:6443`

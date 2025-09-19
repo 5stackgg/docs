@@ -5,13 +5,11 @@ If you are unable to obtain a Tailscale auth key when adding a new node to the p
 1. **Enviroment Variables**
 
    Open `overlays/config/api-config.env` and ensure the following values are present and correct:
-
    - `TAILSCALE_CLIENT_ID` ([OAuth Settings](https://login.tailscale.com/admin/settings/oauth))
    - `TAILSCALE_NODE_IP` ([Machines](https://login.tailscale.com))
    - `TAILSCALE_NET_NAME` ([DNS Settings](https://login.tailscale.com/admin/dns))
 
    Open `overlays/local-secrets/tailscale-secrets.env` and confirm:
-
    - `TAILSCALE_SECRET_ID` is set
 
    :::info
@@ -28,9 +26,14 @@ If you are unable to obtain a Tailscale auth key when adding a new node to the p
 
    ![Auto Approvers](./auto-approvers.png)
 
-
-4. **OAuth Client**
+3. **OAuth Client**
 
    Go to [OAuth Settings](https://login.tailscale.com/admin/settings/oauth) and ensure your client has the proper permissions:
 
    ![AuthKey](./auth-key.png)
+
+4. **Verify Machine and Subnet Approval**
+
+   Visit the [Machines](https://login.tailscale.com/admin/machines) page and ensure that all 5Stack machines and their associated subnets are approved.
+
+   ![Machine Approval](./machine-approval.png)
