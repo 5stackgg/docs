@@ -60,11 +60,10 @@ export default defineConfig({
         text: "Common Issues", 
         items: [
           { text: "Debug Script", link: "/common-issues/debug-script" },
-          { text: "Unable to Login", link: "/common-issues/unable-to-login" },
+          { text: "Unable to Log In", link: "/common-issues/unable-to-login" },
           { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
           { text: "System Not Updating", link: "/common-issues/system-not-updating" },
-          { text: "Network Requests Failing", link: "/common-issues/network-requests-failing" },
-          { text: "Failed to Obtain Auth Key", link: "/common-issues/failed-auth-key" },
+          { text: "Network / Tailscale", link: "/common-issues/network-issues" },
         ]
       },
       {

@@ -1,4 +1,4 @@
-# Failed to Obtain Tailscale Auth Key
+# Network / Tailscale Connectivity
 
 If you are unable to obtain a Tailscale auth key when adding a new node to the panel, please check the following:
 
