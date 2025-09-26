@@ -13,7 +13,7 @@ The 5Stack Panel relies on several open-source software components for its opera
 - [5Stack Web](https://github.com/5stackgg/web)
 - [5Stack Api](https://github.com/5stackgg/api)
 - [5Stack Game Server](https://github.com/5stackgg/game-server)
-- [5Stack Game Server Node Connector](https://github.com/5stackgg/game-server-node)
+- [5Stack Game Server Node Connector](https://github.com/5stackgg/game-server-node-connector)
 
 Additional Credits:
 
