@@ -81,6 +81,7 @@ export default defineConfig({
               { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
               { text: "Custom CSS Plugins", link: "/servers/game-server-nodes/custom-plugins" },
               { text: "Version Pinning", link: "/servers/game-server-nodes/version-pinning" },  
+              { text: "Offline Support", link: "/servers/game-server-nodes/offline-support" },
             ]
           },
           {
