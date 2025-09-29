@@ -100,6 +100,10 @@ export default defineConfig({
             link: "/servers/cpu-pinning",
           },
           {
+            text: "CPU Governance",
+            link: "/servers/cpu-governance",
+          },
+          {
             text: "Low Latency Kernel",
             link: "/servers/low-latency-kernel",
           },
