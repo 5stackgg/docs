@@ -34,29 +34,26 @@ This guide provides instructions for installing the low-latency kernel on Ubuntu
 
 ## Installation Steps
 
-1. First, update your package list:
+1. Update your package lists and install the low-latency kernel:
 
    ```bash
    apt update
-   ```
-
-2. Install the low-latency kernel:
-
-   ```bash
    apt install linux-lowlatency
    ```
 
-3. After installation, reboot your system:
+2. Once installation is complete, reboot your system:
 
    ```bash
    reboot now
    ```
 
-4. Verify the kernel installation after reboot:
+3. After rebooting, verify that the low-latency kernel is active:
+
    ```bash
    uname -r
    ```
-   The output should include "lowlatency" in the kernel name.
+
+   The output should show "lowlatency" in the kernel version.
 
 ## Kernel Parameter Optimization
 
@@ -68,7 +65,7 @@ After installing the low-latency kernel, you'll want to optimize several kernel 
    nano /etc/sysctl.conf
    ```
 
-   Add these lines:
+   Add or modify the following lines:
 
    ```bash
    # TCP Low Latency Settings
@@ -76,42 +73,23 @@ After installing the low-latency kernel, you'll want to optimize several kernel 
    net.ipv4.tcp_congestion_control = cubic
    ```
 
-   Then run:
+   Next, apply the changes by running:
 
    ```bash
    sysctl -p
    ```
 
-2. Set CPU Governor to Performance Mode:
-
-   ```bash
-   # 1. Install cpufrequtils
-   sudo apt update
-   sudo apt install -y cpufrequtils
-
-   # 2. Set governor to "performance" for all CPU cores
-   for cpu in /sys/devices/system/cpu/cpu[0-9]*; do
-      sudo cpufreq-set -c "${cpu##*/cpu}" -g performance
-   done
-
-   # 3. Make it persistent across reboots
-   echo 'GOVERNOR="performance"' | sudo tee /etc/default/cpufrequtils
-
-   # 4. Enable and start the cpufrequtils service
-   sudo systemctl enable cpufrequtils
-   sudo systemctl restart cpufrequtils
-   ```
-
-3. Verify the settings:
+2. Verify the settings:
 
    ```bash
    # Check TCP settings
    sysctl net.ipv4.tcp_low_latency
    sysctl net.ipv4.tcp_congestion_control
-
-   # Check CPU governor
-   cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
    ```
+
+:::info
+For even better low-latency performance, consider setting your [CPU Governor](./cpu-governance.md) to "performance" mode and ensuring this setting persists after reboot.
+:::
 
 ## Reverting to Standard Kernel
 
