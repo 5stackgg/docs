@@ -13,8 +13,7 @@ Here's a basic Nginx configuration example:
 server {
     # Listen on HTTPS port 443
     listen 443 ssl;
-    server_name your-domain.com;
-                *.your-domain.com;
+    server_name your-domain.com *.your-domain.com;
 
     # SSL certificate configuration
     ssl_certificate /path/to/cert.pem;
