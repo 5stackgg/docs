@@ -12,7 +12,19 @@ If you are using Cloudflare's proxy and **not** using a reverse proxy, the 5Stac
 
 However, when Cloudflare's proxy is enabled, it blocks direct HTTP requests to your server. This prevents Let's Encrypt from verifying your domain and issuing SSL certificates, causing certificate generation to fail.
 
-To resolve this, disable the Cloudflare proxy. Also, ensure that any automatic HTTP to HTTPS redirects are turned off; otherwise, Let's Encrypt will still be unable to complete the verification process and the issue will persist.
+To resolve this, you have two options:
+
+**Option 1: Disable Cloudflare proxy entirely**
+Disable the Cloudflare proxy and ensure that any automatic HTTP to HTTPS redirects are turned off; otherwise, Let's Encrypt will still be unable to complete the verification process and the issue will persist.
+
+**Option 2: Use Cloudflare Page Rule / Redirect Rule Exception (Recommended)**
+You don't have to disable HTTPS globally — only for the ACME challenge paths.
+
+1. Go to Rules → Redirect Rules (or Page Rules if still enabled on your account)
+2. Create a rule:
+   - If URL path starts with `/.well-known/acme-challenge/*`
+   - → Do not forward to HTTPS
+3. Make sure this rule is above any global redirect
 
 ## Debugging
 
