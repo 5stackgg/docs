@@ -1,13 +1,15 @@
 # System Not Updating
 
-If after updating the system a service still shows it needs an update, this usually means the version number hasn't properly refreshed in your system.
+If a service still appears as needing an update after you've already updated the system, the version information may not have refreshed properly.
 
-To fix this issue, follow these steps to refresh the service versions:
+To fix this, follow these steps to refresh the service versions:
 
-1. Navigate to the installation directory.
-2. Run `git pull` to fetch the latest updates.
-3. Execute
+1. **On each server running 5Stack services, run:**
+   ```bash
+   crictl image | grep ghcr.io/5stackgg | awk '{print $3}' | xargs -n 1 crictl rmi
+   ```
+   This command removes cached 5Stack images so the latest versions can be pulled.
 
-```bash
-./fix-versions.sh
-```
+2. **In the 5Stack Panel, click the `Update` button** to refresh the service status.
+
+After completing these steps, the update status should display correctly.
