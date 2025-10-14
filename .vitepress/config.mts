@@ -59,9 +59,8 @@ export default defineConfig({
       { 
         text: "Common Issues", 
         items: [
-          { text: "Debug Script", link: "/common-issues/debug-script" },
-          { text: "Unable to Log In", link: "/common-issues/unable-to-login" },
           { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
+          { text: "Unable to Log In", link: "/common-issues/unable-to-login" },
           { text: "System Not Updating", link: "/common-issues/system-not-updating" },
           {
             text: "Game Node Server",
@@ -70,6 +69,7 @@ export default defineConfig({
               { text: "Tailscale Disconnected After Reboot", link: "/common-issues/tailscale-disconnected-after-reboot" }
             ]
           },
+          { text: "Debug Script", link: "/common-issues/debug-script" },
         ]
       },
       {
