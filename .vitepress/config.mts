@@ -63,7 +63,13 @@ export default defineConfig({
           { text: "Unable to Log In", link: "/common-issues/unable-to-login" },
           { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
           { text: "System Not Updating", link: "/common-issues/system-not-updating" },
-          { text: "Network / Tailscale", link: "/common-issues/network-issues" },
+          {
+            text: "Game Node Server",
+            items: [
+              { text: "Unable to Obtain Auth Key", link: "/common-issues/tailscale-setup-issues" },
+              { text: "Tailscale Disconnected After Reboot", link: "/common-issues/tailscale-disconnected-after-reboot" }
+            ]
+          },
         ]
       },
       {
