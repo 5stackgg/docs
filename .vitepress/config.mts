@@ -87,12 +87,12 @@ export default defineConfig({
               { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
               { text: "Custom CSS Plugins", link: "/servers/game-server-nodes/custom-plugins" },
               { text: "Version Pinning", link: "/servers/game-server-nodes/version-pinning" },  
-              { text: "Dedicated Servers", link: "/servers/game-server-nodes/dedicated-servers" },
+              { text: "Dedicated Servers on Game Node Server", link: "/servers/game-server-nodes/dedicated-servers" },
               { text: "Offline Support", link: "/servers/game-server-nodes/offline-support" },
             ]
           },
           {
-            text: "Dedicated Servers",
+            text: "Third PartyDedicated Servers",
             link: "/servers/dedicated-servers",
             items: [
               {

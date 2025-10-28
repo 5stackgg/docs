@@ -1,6 +1,6 @@
 # Custom Counter-Strike Sharp (CSS) Plugins
 
-5Stack Game Node Server Containers support custom plugins. To set up a custom plugin, navigate to the `/opt/5stack/custom-plugins` directory on your Game Server Node.
+5Stack Game Node Server Containers support custom plugins. To set up custom plugins, there is a special folder located at `/opt/5stack/custom-plugins` directory on your Game Server Node.
 
 Any files placed in `/opt/5stack/custom-plugins` will automatically be transferred to `<install-dir>/game/csgo` when the game server starts. A [CounterStrikeSharp](https://docs.cssharp.dev/) plugin typically includes an `addons` folder.
 
