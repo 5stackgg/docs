@@ -37,12 +37,12 @@ export default defineConfig({
       {
         text: "Getting Started",
         items: [
-          { text: "Requirements", link: "/install/requirements" },
-          { text: "What is Installed?", link: "/install/what-is-installed" },
           {
             text: "Install",
             link: "/install",
             items: [
+              { text: "Requirements", link: "/install/requirements" },
+              { text: "What is Installed?", link: "/install/what-is-installed" },
               {
                 text: "Configuration Options",
                 link: "/install/command-line-arguments",
@@ -57,7 +57,7 @@ export default defineConfig({
         ],
       },
       { 
-        text: "Common Issues", 
+        text: "Troubleshooting", 
         items: [
           { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
           { text: "Unable to Log In", link: "/common-issues/unable-to-login" },
@@ -83,6 +83,17 @@ export default defineConfig({
             text: "5Stack Game Server Nodes",
             link: "/servers/game-server-nodes",
             items: [
+              { text: "Install", link: "/servers/game-server-nodes/install",
+                
+              },
+              {
+                text: "Create Game Server Node",
+                link: "/servers/game-server-nodes/create-game-server-node",
+                items: [
+                  { text: "Requirements", link: "/servers/game-server-nodes/requirements" },
+                  { text: "What is Installed?", link: "/servers/game-server-nodes/what-is-installed" },
+                ]
+              },
               { text: "Port Forwarding", link: "/servers/game-server-nodes/ports" },
               { text: "Tailscale Integration", link: "/servers/game-server-nodes/tailscale" },
               { text: "Custom CSS Plugins", link: "/servers/game-server-nodes/custom-plugins" },
