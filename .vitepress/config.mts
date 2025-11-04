@@ -134,6 +134,10 @@ export default defineConfig({
         text: "Advanced", 
         items: [
           {
+            text: "API",
+            link: "/api",
+          },
+          {
             text: "Discord Bot",
             link: "/discord-bot",
           },
