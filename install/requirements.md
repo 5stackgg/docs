@@ -8,9 +8,15 @@ The 5Stack Panel runs on [K3s](https://docs.k3s.io/installation/requirements), a
 
 While the 5Stack Panel is not a resource intensive application, we recommend a minimum of **`3 GB`** of Memory.
 
-### Available Ports `80` and `443`
+### Required Ports: `80`, `443`, and `8585`
 
-The 5Stack Panel requires port `80` and `443` to be open and accessible, if that is not possible you can modify the [Nginx configuration](/install/nginx) to use different ports.
+#### HTTP Ports `80` / `443`
+
+The 5Stack Panel requires ports `80` and `443` to be open and accessible for Kubernetes routing. If it is not possible to use these ports, you can modify the [Nginx configuration](/install/nginx) to listen on different ports.
+
+#### Game Node Connector Port `8585`
+
+Port `8585` is required on all 5Stack servers for the Game Server Node Connector.
 
 :::info
 We recommend using a Linux-based server such as [Ubuntu](https://ubuntu.com/download/server).
