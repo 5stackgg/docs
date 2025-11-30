@@ -1,13 +1,16 @@
 # Reverse Proxy
 
-This guide covers setting up a reverse proxy using Nginx to securely expose your services while handling SSL termination.
-To properly expose your services, you'll need to set up a reverse proxy forwards to port 443 (HTTPS).
+A reverse proxy sits between your users and your backend services, forwarding requests and providing additional features such as SSL termination, load balancing, and enhanced security.
 
-## Nginx
+## Cloudflare
 
-When setting up Nginx as a reverse proxy, make sure to listen on HTTPS (port 443) and proxy to your services.
+Cloudflare acts as a reverse proxy when you enable the "Proxied" DNS (orange cloud). Incoming traffic to your domain first passes through Cloudflare before reaching your server, providing DDoS protection and performance benefits.
 
-Here's a basic Nginx configuration example:
+## Nginx Proxy
+
+To use Nginx as a reverse proxy, configure it to listen on HTTPS (port 443) and forward requests to your backend services.
+
+Below is a basic Nginx configuration example:
 
 ```nginx
 server {
