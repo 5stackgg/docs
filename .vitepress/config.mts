@@ -62,6 +62,7 @@ export default defineConfig({
           { text: "Invalid SSL", link: "/common-issues/invalid-ssl" },
           { text: "Unable to Log In", link: "/common-issues/unable-to-login" },
           { text: "System Not Updating", link: "/common-issues/system-not-updating" },
+          { text: "RCON Commands Fail", link: "/common-issues/rcon-fails" },
           {
             text: "Game Node Server",
             items: [
