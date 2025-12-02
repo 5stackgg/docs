@@ -1,59 +1,80 @@
 # What is 5Stack?
 
-5Stack is a comprehensive platform originally designed for managing LAN tournaments, which has evolved to support a wide range of competitive Counter-Strike matches and features.
+5Stack is a comprehensive Counter-Strike management system originally built for LAN tournaments, and now supports online servers, advanced matchmaking, statistics, social connectivity, and more.
 
 ## Key Features
 
-- Server Management
-  - Regional Server Management
-  - Built-in Steam Relay integration
-  - On-Demand / Dedicated Servers
-  - Automated CS Updates
-  - CS Version Pinning
-  - Live Logging
-  - CPU / Memory Graphs
-  - Flexible Server Controls
-  - Config Management for each stage of the match
-  - Passwordless Connections
-  - RCON Access
-  - Server Connectivity Monitoring
-- Social Features
-  - Lobbies
-  - Friends List
-- Team Management
-- Player Management
-  - Player Name Registration
-  - Sanctions (Ban, Mute, Gag, Silence)
-  - Restrict Matchmaking/Streaming by player roles
-- Matchmaking
-  - Quick Play: 1v1, 2v2, 5v5
-  - Duel: 1 vs 1
-  - Wingman: 2 vs 2
-  - Competitive: 5 vs 5
-  - Custom Map Pools
-  - Best-of-X Series
-  - Ready-Up System
-  - Captain System
-  - Automatic Team Assignment / Whitelist
-  - Knife Round
-  - Map Veto System
-  - Tactical Timeout System
-  - Technical Pauses (Player and Admin Permissions)
-  - Overtime System
-  - Demos stored locally or via S3 API
-  - Round Backups
-- Comprehensive Player Statistics
-  - Damage
-  - Kills, Deaths, and Assists
-  - Utility Usage
-  - Flash Effectiveness (Enemies and Teammates)
-  - Objective Completion (Plant and Defuse)
-- Integrated Discord Bot
-  - Match Creation
-  - Team Assignments
-  - Captain System Integration
-  - Live Match Status and Scoring
-  - Automatic Voice Channel and Thread Management
-- Tournaments (ALPHA)
-  - Organize open or private tournaments
+- **Quick Play**
+  - Instantly join 1v1, 2v2, or 5v5 matches on official or workshop maps
+  - Spin up instant scrims or queue with friends
+  - Regional matchmaking supported
+
+- **Comprehensive Stats & Elo Rating**
+  - Track damage, kills, deaths, assists, utility usage, flash effectiveness (enemies/teammates), plant/defuse, and more
+  - Elo ratings for players and teams
+
+- **Social Connectivity**
+  - Create and manage your team
+  - Friends list and player communications (in and out of server)
+
+- **Tournaments (ALPHA)**
+  - Host open or private tournaments
+  - Single or double elimination brackets
+  - Group stage support
   - Multi-stage bracket systems
+
+- **Custom Match Options**
+  - Map veto
+  - Ready-up system
+  - Knife rounds
+  - Technical pauses (player/admin)
+  - Best-of-X series
+  - Captain system
+  - Overtime system
+  - Tactical/technical pause support
+  - Automatic team assignment and whitelist
+  - Round backups
+  - Demos automatically uploaded and available via built-in streamer (Twitch, YouTube, Kick)
+  - Demos stored locally or via S3 API
+
+- **Player Sanctions**
+  - Manage player behavior with bans, mutes, gags, or silences
+  - Restrict matchmaking/streaming based on player roles
+
+- **Demos & Streaming**
+  - Demos automatically uploaded and available via built-in streamer (Twitch, YouTube, Kick)
+  - Demos stored locally or via S3 API
+
+- **Flexible Server Management**
+  - On-demand servers
+  - Configure dedicated servers or connect to third-party servers
+  - Automated CS updates and version pinning
+  - Built-in configuration management for each match stage
+  - Passwordless connections
+  - RCON access
+  - Server monitoring: CPU/memory graphs, live logging, monitoring connectivity
+  - Automated server controls
+  - CPU pinning and low latency kernel info
+
+- **Regional Servers**
+  - Regional/LAN servers
+  - Built-in Steam Relay integration
+
+- **Custom Map Pools**
+  - Custom map pools for all formats (1v1, 2v2, 5v5)
+  - Configure per playlist, queue, or event
+
+- **Server Insights & Monitoring**
+  - Performance monitoring
+  - Log review
+  - CPU info, pinning status, low-latency kernel availability
+
+- **Discord Integration**
+  - Match creation and management
+  - Team assignments and captain system integration
+  - Live match status and scoring updates
+  - Automatic voice channel and thread management
+
+---
+
+5Stack aims to be your complete solution for competitive and tournament Counter-Strike, with both server management and community features built-in.

@@ -16,29 +16,29 @@ hero:
 
 features:
   - title: Quick Play
-    details: Jump into 1v1, 2v2, or 5v5 on official or workshop maps, or join regional matchmaking
-  - title: Comprehensive Stats
-    details: Track detailed statistics for matches, players, teams, and tournaments
+    details: Jump straight into 1v1, 2v2, or 5v5 on official or workshop maps, spin up instant scrims, or queue into regional matchmaking with friends.
+  - title: Comprehensive Stats & Elo Rating
+    details: Follow every round with detailed stats and Elo ratings for players, teams, servers, and tournaments, so improvement is always visible.
   - title: Social Connectivity
-    details: Create and manage your teams and friends list, and communicate with players both inside and outside the server
+    details: Manage your team and grow your friends list, communicate seamlessly between in-server and web app, and use lobbies to chat, queue up, or create matches together.
   - title: Tournaments (ALPHA)
-    details: Organize open or private tournaments with multi-stage bracket systems
+    details: Host open or private events with flexible, multi-stage brackets that plug directly into your servers and player pool.
   - title: Custom Match Options
-    details: Enjoy map veto, ready-up system, knife rounds, technical pauses, best-of series, and more
+    details: Use map veto, ready-up, knife rounds, tech pauses, best-of series, side choice, and more to run matches exactly how you want.
   - title: Player Sanctions
-    details: Manage player behavior with bans, mutes, gags, or silences
-  - title: Demo
-    details: Store match demos locally or externally via the S3 API
+    details: Keep games clean with bans, mutes, gags, and silences that sync across matches and servers.
+  - title: Demos and Streaming
+    details: Capture every match with automatic demo uploads and watch live with the integrated viewer that supports Twitch, YouTube, and Kick streams.
   - title: Flexible Server Management
-    details: Automatically provision on-demand servers or manually configure dedicated instances
+    details: Run on-demand servers, manage dedicated hardware, or plug in existing third-party machines—all from the same panel.
   - title: Regional Servers
-    details: Configure multiple regions with LAN support and built-in Steam Relay integration
-  - title: RCON Access
-    details: Manage your servers remotely through the RCON console
-  - title: Server Monitoring
-    details: Monitor server performance metrics and access detailed logs
+    details: Operate multiple regions with LAN-capable setups, built-in Steam Relay, and routing designed for low ping.
+  - title: Custom Map Pools
+    details: Build curated map pools for 1v1, 2v2, and 5v5, and swap them per playlist, queue, or event.
+  - title: Server Insights & Monitoring
+    details: Watch performance, logs, CPU pinning, and low-latency kernel status in real time so issues surface before players feel them.
   - title: Discord Integration
-    details: Seamlessly set up custom matches through our Discord bot
+    details: Let players spin up matches, manage lobbies, and sync roles directly from your Discord server with the 5Stack bot.
 
 ---
 
