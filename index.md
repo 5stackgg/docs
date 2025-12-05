@@ -24,7 +24,7 @@ features:
   - title: Tournaments (ALPHA)
     details: Host open or private events with flexible, multi-stage brackets that plug directly into your servers and player pool.
   - title: Custom Match Options
-    details: Use map veto, ready-up, knife rounds, tech pauses, best-of series, side choice, and more to run matches exactly how you want.
+    details: Use map veto, ready-up, knife rounds, tech pauses, best-of series, default player models, and more to run matches exactly how you want.
   - title: Player Sanctions
     details: Keep games clean with bans, mutes, gags, and silences that sync across matches and servers.
   - title: Demos and Streaming

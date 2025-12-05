@@ -29,6 +29,7 @@
   - Knife rounds
   - Technical pauses (player/admin)
   - Best-of-X series
+  - Enforce Default Player Models
   - Captain system
   - Overtime system
   - Tactical/technical pause support
