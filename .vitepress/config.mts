@@ -170,6 +170,10 @@ export default defineConfig({
             text: "Localization",
             link: "/localization",
           },
+          {
+            text: "Developer",
+            link: "/developer",
+          }
         ],
       },
     ],
