@@ -3,6 +3,7 @@
 ### Requirements
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [k3d](https://k3d.io/stable/#releases)
 - [mkcert](https://github.com/FiloSottile/mkcert) for generating local SSL certificates
 
 :::info
