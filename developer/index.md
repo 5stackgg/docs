@@ -32,10 +32,10 @@ Run `./dev.sh` to start the development environment.
 
 :::warning
 * The game-server does not currently support ARM-based systems.
+* Installing or running CS servers is not currently available on ARM-based systems.
 * Displayed CPU information may be inaccurate.
 * Multi-node setups with Tailscale are not currently supported.
 * Update warnings will persist and not disappear.
-* Installing or running CS servers is not currently available.
 
 If you encounter any issues, please report them to the development team.
 :::
