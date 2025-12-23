@@ -45,6 +45,8 @@
 - **Demos & Streaming**
   - Demos automatically uploaded and available via built-in streamer (Twitch, YouTube, Kick)
   - Demos stored locally or via S3 API
+  - Integrated GOTV support
+  - GOTV Playcast enables spectators to connect to relay servers rather than your game server, greatly increasing viewing capacity while reducing load on the match server
 
 - **Flexible Server Management**
   - On-demand servers

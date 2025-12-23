@@ -27,8 +27,8 @@ features:
     details: Use map veto, ready-up, knife rounds, tech pauses, best-of series, default player models, and more to run matches exactly how you want.
   - title: Player Sanctions
     details: Keep games clean with bans, mutes, gags, and silences that sync across matches and servers.
-  - title: Demos and Streaming
-    details: Capture every match with automatic demo uploads and watch live with the integrated viewer that supports Twitch, YouTube, and Kick streams.
+  - title: Demos / Streaming / Playcast
+    details: Capture every match with automatic demo uploads and watch live with GOTV / Playcast or using integrated stream viewer that supports Twitch, YouTube, and Kick streams.
   - title: Flexible Server Management
     details: Run on-demand servers, manage dedicated hardware, or plug in existing third-party machines—all from the same panel.
   - title: Regional Servers
