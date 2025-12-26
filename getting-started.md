@@ -17,9 +17,12 @@
   - Create and manage your team
   - Friends list and player communications (in and out of server)
 
-- **Tournaments (ALPHA)**
+- **Tournaments**
   - Host open or private tournaments
-  - Single or double elimination brackets
+  - Single Elimination 
+  - Double Elimination
+  - Round Robin (planned)
+  - Swiss System (planned)
   - Group stage support
   - Multi-stage bracket systems
 

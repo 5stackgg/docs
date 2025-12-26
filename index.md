@@ -21,7 +21,7 @@ features:
     details: Follow every round with detailed stats and Elo ratings for players, teams, servers, and tournaments, so improvement is always visible.
   - title: Social Connectivity
     details: Manage your team and grow your friends list, communicate seamlessly between in-server and web app, and use lobbies to chat, queue up, or create matches together.
-  - title: Tournaments (ALPHA)
+  - title: Tournaments
     details: Host open or private events with flexible, multi-stage brackets that plug directly into your servers and player pool.
   - title: Custom Match Options
     details: Use map veto, ready-up, knife rounds, tech pauses, best-of series, default player models, and more to run matches exactly how you want.
