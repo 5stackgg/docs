@@ -21,7 +21,7 @@
   - Host open or private tournaments
   - Single Elimination 
   - Double Elimination
-  - Round Robin (planned)
+  - Round Robin
   - Swiss System (planned)
   - Group stage support
   - Multi-stage bracket systems
