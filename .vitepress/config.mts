@@ -27,6 +27,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Getting Started", link: "/getting-started" },
       { text: "Common Issues", link: "/common-issues/debug-script" },
+      { text: "Roadmap", link: "https://github.com/orgs/5stackgg/projects/14/views/2" },
       {
         text: 'Report an Issue',
         link: 'https://github.com/5stackgg/5stack-panel/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D+'

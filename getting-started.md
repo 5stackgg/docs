@@ -19,7 +19,7 @@
 
 - **Tournaments**
   - Host open or private tournaments
-  - Single Elimination 
+  - Single Elimination
   - Double Elimination
   - Round Robin
   - Swiss System (planned)
