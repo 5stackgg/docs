@@ -42,7 +42,9 @@ export default defineConfig({
             text: "Install",
             link: "/install",
             items: [
-              { text: "Requirements", link: "/install/requirements" },
+              { text: "Requirements", link: "/install/requirements" , items: [
+                { text: "Why Kubernetes?", link: "/install/why-k8s" },
+              ]},
               { text: "What is Installed?", link: "/install/what-is-installed" },
               {
                 text: "Configuration Options",

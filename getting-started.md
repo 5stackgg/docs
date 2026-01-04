@@ -12,19 +12,23 @@
 - **Comprehensive Stats & Elo Rating**
   - Track damage, kills, deaths, assists, utility usage, flash effectiveness (enemies/teammates), plant/defuse, and more
   - Elo ratings for players and teams
+  - Detailed ELO changes per Match
 
 - **Social Connectivity**
   - Create and manage your team
   - Friends list and player communications (in and out of server)
+  - Player lobbies
 
 - **Tournaments**
   - Host open or private tournaments
   - Single Elimination
   - Double Elimination
   - Round Robin
-  - Swiss System (planned)
+  - Swiss System
   - Group stage support
   - Multi-stage bracket systems
+  - Automatic / Custom Seeds
+  - Automatic bye handling
 
 - **Custom Match Options**
   - Map veto
@@ -35,11 +39,13 @@
   - Enforce Default Player Models
   - Captain system
   - Overtime system
+  - Substitutes / Backup Players
   - Tactical/technical pause support
   - Automatic team assignment and whitelist
   - Round backups
   - Demos automatically uploaded and available via built-in streamer (Twitch, YouTube, Kick)
   - Demos stored locally or via S3 API
+  - Private / Friends Only / Open Matches
 
 - **Player Sanctions**
   - Manage player behavior with bans, mutes, gags, or silences
@@ -80,6 +86,14 @@
   - Team assignments and captain system integration
   - Live match status and scoring updates
   - Automatic voice channel and thread management
+
+- **Additional Admin Settings**
+  - Matchmaking Settings
+  - Streaming Settings
+  - Custom Server Configs per match type
+  - Demo Retention Settings
+  - Automatic Database Backups
+  - Discord Admin Notifications
 
 ---
 

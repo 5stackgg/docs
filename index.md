@@ -20,11 +20,11 @@ features:
   - title: Comprehensive Stats & Elo Rating
     details: Follow every round with detailed stats and Elo ratings for players, teams, servers, and tournaments, so improvement is always visible.
   - title: Social Connectivity
-    details: Manage your team and grow your friends list, communicate seamlessly between in-server and web app, and use lobbies to chat, queue up, or create matches together.
+    details: Manage your team and grow your friends list, player lobbies, communicate seamlessly between in-server and web app, and use lobbies to chat, queue up, or create matches together.
   - title: Tournaments
-    details: Host open or private events with flexible, multi-stage brackets that plug directly into your servers and player pool.
+    details: Host open or private tournaments with flexible, multi-stage brackets, including Single Elimination, Double Elimination, Round Robin, or Swiss formats.
   - title: Custom Match Options
-    details: Use map veto, ready-up, knife rounds, tech pauses, best-of series, default player models, and more to run matches exactly how you want.
+    details: Set up map veto, ready-up, knife rounds, tactical/technical pauses, best-of series, enforce default player models, add substitutes, configure check-in settings, and more.
   - title: Player Sanctions
     details: Keep games clean with bans, mutes, gags, and silences that sync across matches and servers.
   - title: Demos / Streaming / Playcast
@@ -32,14 +32,13 @@ features:
   - title: Flexible Server Management
     details: Run on-demand servers, manage dedicated hardware, or plug in existing third-party machines—all from the same panel.
   - title: Regional Servers
-    details: Operate multiple regions with LAN-capable setups, built-in Steam Relay, and routing designed for low ping.
+    details: Operate in multiple regions with LAN-capable setups and built-in Steam Relay, which hides your real server IP addresses.
   - title: Custom Map Pools
-    details: Build curated map pools for 1v1, 2v2, and 5v5, and swap them per playlist, queue, or event.
+    details: Build curated map pools for 1v1, 2v2, and 5v5 matches.
   - title: Server Insights & Monitoring
-    details: Watch performance, logs, CPU pinning, and low-latency kernel status in real time so issues surface before players feel them.
+    details: Watch CPU / Memory / Disk, logs, CPU pinning, and low-latency kernel status in real time.
   - title: Discord Integration
     details: Let players spin up matches, manage lobbies, and sync roles directly from your Discord server with the 5Stack bot.
-
 ---
 
 <script setup>
