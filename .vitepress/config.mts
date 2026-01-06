@@ -74,6 +74,7 @@ export default defineConfig({
             ]
           },
           { text: "Debug Script", link: "/common-issues/debug-script" },
+          { text: "Google Tag Manager + CloudFlare", link: "/common-issues/google-tag-manager" },
         ]
       },
       {
