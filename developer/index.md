@@ -6,10 +6,6 @@
 - [k3d](https://k3d.io/stable/#releases)
 - [mkcert](https://github.com/FiloSottile/mkcert) for generating local SSL certificates
 
-:::info
-    After installing mkcert, make sure to run `mkcert -install`
-:::
-
 ### Setup
 
 #### Clone the 5stack Panel Repository
