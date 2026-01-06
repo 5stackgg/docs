@@ -40,3 +40,10 @@ Run `./dev.sh` to start the development environment.
 If you encounter any issues, please report them to the development team.
 :::
 
+### Working with Firefox
+
+If you want to run this in Firefox on macOS, install `nss` via Homebrew to enable local development support:
+
+```bash
+brew install nss
+```
