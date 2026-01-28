@@ -3,7 +3,7 @@
 The [5Stack-Panel](https://github.com/5stackgg/5stack-panel) repository includes scripts to help facilitate the installation process.
 
 ```bash
-git clone https://github.com/5stackgg/5stack-panel
+git clone https://github.com/5stackgg/5stack-panel; cd 5stack-panel; ./install.sh
 ```
 
 ::: danger
