@@ -28,9 +28,20 @@ Tailscale should be removed next. Follow the instructions below.
 
 ## Remove Tailscale
 
+To disconnect and remove Tailscale state, run:
+
 ```bash
 tailscale logout
+tailscale down
 rm -rf /var/lib/tailscale/tailscaled.state
+```
+
+### Uninstall Tailscale Completely
+
+To fully uninstall Tailscale, run:
+
+```bash
+apt-get remove tailscale
 ```
 
 ## 5Stack Panel Files
