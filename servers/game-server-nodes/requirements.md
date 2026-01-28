@@ -4,4 +4,4 @@ The 5Stack Game Node Server runs on [K3s](https://docs.k3s.io/installation/requi
 
 ## Panel Upgrade
 
-Before setting up a Game Server Node, make sure your panel is upgraded as described in the [Panel Install & Upgrade instructions](/servers/game-server-nodes/install).
+Before setting up a Game Server Node, make sure your panel is upgraded as described in the [Panel Install & Upgrade instructions](/servers/game-server-nodes/panel-upgrade).

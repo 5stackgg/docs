@@ -16,7 +16,7 @@ Each game server node should have around 150 GB of available disk space. This sp
 
 ## What is a Dedicated Server
 
-A [dedicated server](./dedicated-servers) is a standalone server that runs independently from a Kubernetes cluster. Here are the advantages of running a dedicated server:
+A [dedicated server](./dedicated-servers/) is a standalone server that runs independently from a Kubernetes cluster. Here are the advantages of running a dedicated server:
 
 * Full control over server configuration and plugins
 * Freedom to choose any hosting provider or self-host

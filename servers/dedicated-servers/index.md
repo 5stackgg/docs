@@ -2,8 +2,8 @@
 
 You can setup dedicated servers in three different ways:
 
-1. Using a game server node via the panel. [Learn more game server nodes](./game-server-nodes/)
-2. Using the plugin which will require manual upload of the plugin and configuration of the game server. [Learn more about using the plugin](#using-the-plugin)
+1. Using a game server node via the panel. [Learn more game server nodes](../game-server-nodes/)
+2. Using the plugin which will require manual upload of the plugin and configuration of the game server. [Learn more about using the plugin](./plugin-configuration.md)
 3. Using the container which will require a Docker installation and a Docker Compose file. [Learn more about using game server container](#using-the-container)
 
 Download the latest release of the 5Stack Game Server Plugin from the [Releases Page](https://github.com/5stackgg/game-server/releases).

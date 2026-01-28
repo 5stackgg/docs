@@ -1,4 +1,4 @@
-# Custom K8s Yamls
+# Custom Kubernetes YAML
 
 Sometimes you may need to customize the K8s YAML files, for instance if you want to add the cs2 ranks plugin, you may need to add mysql.
 

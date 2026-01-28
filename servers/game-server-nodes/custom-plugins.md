@@ -51,6 +51,6 @@ Sometimes when Counter-Strike is updated, it can break CounterStrikeSharp. While
 
 This file will be copied to the game folder, preserving its directory structure.
 
-#### Custom K8s
+#### Custom Kubernetes YAML
 
-If your plugin requires additional services like MySQL, please refer to the [Custom Kubernetes Setup Guide](/custom-k8s.md).
+If your plugin requires additional services like MySQL, please refer to the [Custom Kubernetes Setup Guide](/advanced/custom-k8s).
