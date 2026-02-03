@@ -45,6 +45,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Getting Started", link: "/getting-started" },
+      { text: "Screenshots", link: "/screenshots" },
       { text: "Common Issues", link: "/common-issues/debug-script" },
       {
         text: "Roadmap",
