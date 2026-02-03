@@ -14,4 +14,4 @@ Occasionally, you may need to update the 5Stack Panel to the latest version. Cur
 
 The 5Stack Panel can update its components (API, Web, Game Server Node Connector, etc.) through the update interface at the top of the application.
 
-![Update Notice](./update-notice.png)
+![Update Notice](./install/update-notice.png)

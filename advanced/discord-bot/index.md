@@ -35,7 +35,7 @@ First, you need to create a new application in the [Discord Developer Portal](ht
       ![Public Bot](./discord-public-bot.png)
 5. Update the Panel
 
-See [Update Guide](/install/updating) for instructions on updating the panel.
+See [Update Guide](/updating) for instructions on updating the panel.
 
 6. Invite the Bot to your Server    
 
