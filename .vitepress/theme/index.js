@@ -1,4 +1,11 @@
 import DefaultTheme from "vitepress/theme";
 import "./custom.css";
 
-export default DefaultTheme;
+import { Gallery } from "./gallery";
+
+export default {
+  extends: DefaultTheme,
+  enhanceApp(ctx) {
+    ctx.app.component("Gallery", Gallery);
+  },
+};

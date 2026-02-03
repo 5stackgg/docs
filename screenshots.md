@@ -1,119 +1,52 @@
-# Screenshots
-
-Browse through the 5Stack interface and features.
-
-## Gameplay & Matches
-
-Experience the core gameplay features from quick play to competitive matches.
-
-### Play Interface
-
-![Play](/screenshots/Play.webp)
-
-### Match Lobby
-
-![Lobby](/screenshots/Lobby.webp)
-
-### Match Overview & Live Stats
-
-![Match Overview](/screenshots/MatchOverview.webp)
-
-### Match Previews
-
-![Match Previews](/screenshots/MatchPreviews.webp)
-
-### Match Configuration
-
-![Match Settings](/screenshots/MatchSettings.webp)
-
-### Map Veto System
-
-![Match Map Veto](/screenshots/MatchMapVeto.webp)
-
-### Quick Match Status
-
-![Quick Match Status](/screenshots/QuickMatchStatus.webp)
-
-## Tournaments
-
-Host and manage competitive tournaments with flexible bracket systems.
-
-### Multi Stage Tournament System
-
-![Multi Stage Tournament](/screenshots/Mutli Stage Tounament.webp)
-
-## Server Infrastructure
-
-Manage your game servers, regions, and infrastructure.
-
-### Game Server Nodes
-
-![Game Server Nodes](/screenshots/GameServerNodes.webp)
-
-### Dedicated Servers
-
-![Dedicated Servers](/screenshots/DedicatedServers.webp)
-
-### Public Servers
-
-![Public Servers](/screenshots/PublicServers.webp)
-
-### Regional Server Management
-
-![Regions](/screenshots/Regions.webp)
-
-### Server File Manager
-
-![File Manager](/screenshots/FileManager.webp)
-
-## Social & Player Stats
-
-Track performance and manage your community.
-
-### Player Statistics & Elo
-
-![Player Stats](/screenshots/PlayerStats.webp)
-
-### Team Management
-
-![Teams](/screenshots/Teams.webp)
-
-### Friends List
-
-![Friends List](/screenshots/FriendsList.webp)
-
-## System Administration
-
-Monitor system health and configure your installation.
-
-### System Performance Metrics
-
-![System Metrics](/screenshots/SystemMetrics.webp)
-
-### System Logs
-
-![System Logs](/screenshots/Systemlogs.webp)
-
-### Map Pool Configuration
-
-![Map Pools](/screenshots/MapPools.webp)
-
-### Account Settings
-
-![Account Settings](/screenshots/AccountSettings.webp)
-
-### Application Settings
-
-![Application Settings](/screenshots/ApplictaionSettings.webp)
-
-## Additional Features
-
-Streaming, public pages, and more.
-
-### Public Pages & Profiles
-
-![Public Pages](/screenshots/PublicPages.webp)
-
-### Stream Picture-in-Picture Viewer
-
-![Stream Picture in Picture](/screenshots/StreamPictureInPicture.webp)
+<Gallery 
+  :images="[
+    '/screenshots/Play.webp',
+    '/screenshots/Lobby.webp',
+    '/screenshots/MatchOverview.webp',
+    '/screenshots/MatchPreviews.webp',
+    '/screenshots/MatchSettings.webp',
+    '/screenshots/MatchMapVeto.webp',
+    '/screenshots/QuickMatchStatus.webp',
+    '/screenshots/Mutli Stage Tounament.webp',
+    '/screenshots/GameServerNodes.webp',
+    '/screenshots/DedicatedServers.webp',
+    '/screenshots/PublicServers.webp',
+    '/screenshots/Regions.webp',
+    '/screenshots/FileManager.webp',
+    '/screenshots/PlayerStats.webp',
+    '/screenshots/Teams.webp',
+    '/screenshots/FriendsList.webp',
+    '/screenshots/SystemMetrics.webp',
+    '/screenshots/Systemlogs.webp',
+    '/screenshots/MapPools.webp',
+    '/screenshots/AccountSettings.webp',
+    '/screenshots/ApplictaionSettings.webp',
+    '/screenshots/PublicPages.webp',
+    '/screenshots/StreamPictureInPicture.webp'
+  ]"
+  :captions="[
+    'Play - Join ranked matches instantly',
+    'Lobby - Create parties and invite friends',
+    'Match Overview - Detailed match information',
+    'Match Previews - Preview upcoming games',
+    'Match Settings - Customize match options',
+    'Map Veto - Ban or pick your preferred maps',
+    'Quick Match Status - Live match progress updates',
+    'Tournament Brackets - Organize multi-stage tournaments',
+    'Server Nodes - Worldwide server locations',
+    'Dedicated Servers - Manage private game servers',
+    'Public Servers - Explore and join public servers',
+    'Regions - Choose your regional server',
+    'File Manager - Upload and manage custom files',
+    'Player Stats - Track and analyze your performance',
+    'Teams - Organize and manage your team',
+    'Friends List - Connect and play with friends',
+    'System Metrics - Monitor server performance',
+    'System Logs - View and audit server logs',
+    'Map Pools - Manage and customize map rotations',
+    'Account Settings - Personalize your profile',
+    'Application Settings - Configure app preferences',
+    'Public Pages - Share match results and events',
+    'Stream Picture-in-Picture - Watch streams while playing'
+  ]"
+/>
