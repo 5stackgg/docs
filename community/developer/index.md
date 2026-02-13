@@ -27,11 +27,12 @@ git clone git@github.com:5stackgg/5stack-panel.git ~/code/5stack
 Run `./dev.sh` to start the development environment.
 
 :::warning
-* The game-server does not currently support ARM-based systems.
-* Installing or running CS servers is not currently available on ARM-based systems.
-* Displayed CPU information may be inaccurate.
-* Multi-node setups with Tailscale are not currently supported.
-* Update warnings will persist and not disappear.
+
+- The game-server does not currently support ARM-based systems.
+- Installing or running CS servers is not currently available on ARM-based systems.
+- Displayed CPU information may be inaccurate.
+- Multi-node setups with Tailscale are not currently supported.
+- Update warnings will persist and not disappear.
 
 If you encounter any issues, please report them to the development team.
 :::

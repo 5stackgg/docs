@@ -19,7 +19,7 @@ server {
     server_name your-domain.com *.your-domain.com;
 
     # SSL certificate configuration
-    ssl_certificate /path/to/cert.pem;
+    ssl_certificate /path/to/fullchain.pem;
     ssl_certificate_key /path/to/key.pem;
 
     # Proxy configuration
