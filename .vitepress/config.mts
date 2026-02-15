@@ -82,6 +82,7 @@ export default defineConfig({
               { text: "Change Default Ports (80/443)", link: "/nginx" },
             ],
           },
+          { text: "Game Server Node Setup", link: "/servers/game-server-nodes/panel-upgrade" },
           { text: "Updating", link: "/updating" },
           { text: "Uninstall", link: "/uninstall" },
         ],
