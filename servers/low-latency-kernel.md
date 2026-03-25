@@ -55,6 +55,10 @@ This guide provides instructions for installing the low-latency kernel on Ubuntu
 
    The output should show "lowlatency" in the kernel version.
 
+:::info
+If the kernel does not yet show "lowlatency", the new kernel might have to be selected for boot first. One way to do this is [GrubReboot](https://wiki.debian.org/GrubReboot). Example: `grub-reboot '1>4'`, where the numbers depend on the grub menu items of your system as explained in the link.
+:::
+
 ## Kernel Parameter Optimization
 
 After installing the low-latency kernel, you'll want to optimize several kernel parameters for better performance:
