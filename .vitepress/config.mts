@@ -198,6 +198,15 @@ export default defineConfig({
             items: [{ text: "Backblaze + Cloudflare", link: "/s3/backblaze" }],
           },
           {
+            text: "Game Streaming",
+            link: "/game-streaming/",
+            items: [
+              { text: "NVIDIA", link: "/game-streaming/nvidia" },
+              { text: "AMD", link: "/game-streaming/amd" },
+              { text: "Intel", link: "/game-streaming/intel" },
+            ],
+          },
+          {
             text: "Custom Kubernetes",
             link: "/custom-k8s",
           },
