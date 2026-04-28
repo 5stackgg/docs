@@ -31,4 +31,4 @@ Reboot, then verify:
 nvidia-smi
 ```
 
-You should see your GPU(s) listed with the driver version. and you can conitnue to the [game streaming setup](/advanced/game-streaming#install).
+You should see your GPU(s) listed with the driver version, and you can continue to the [game streaming setup](/advanced/game-streaming/#install).
