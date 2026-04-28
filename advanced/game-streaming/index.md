@@ -1,6 +1,6 @@
 # Game Streaming
 
-5Stack can spectate live matches and render highlight clips from match demos. Match organizers see "Start Live Stream", "Stop Live Stream", and "Create Clips" actions on the match detail page; clicking them tells the API to run the work on any game server node that has been labeled as a GPU node.
+5Stack can spectate live matches with [OpenHud](https://github.com/JohnTimmermann/OpenHud).
 
 ## Requirements
 
