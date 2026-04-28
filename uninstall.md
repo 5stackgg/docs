@@ -26,6 +26,19 @@ Run the following command on each game server node:
 Tailscale should be removed next. Follow the instructions below.
 :::
 
+## Remove 5Stack systemd Helpers
+
+The panel and game node installers add standalone systemd helpers (a CPU state check and a Tailscale state check + timer). These are not removed by the k3s uninstallers — clean them up on each host where they were installed:
+
+```bash
+systemctl disable --now 5stack-tailscale-state-check.timer 2>/dev/null || true
+rm -f /etc/systemd/system/5stack-tailscale-state-check.timer
+rm -f /etc/systemd/system/5stack-tailscale-state-check.service
+rm -f /usr/local/bin/5stack-tailscale-state-check.sh
+rm -f /usr/local/bin/5stack-cpu-state-check.sh
+systemctl daemon-reload
+```
+
 ## Remove Tailscale
 
 To disconnect and remove Tailscale state, run:
