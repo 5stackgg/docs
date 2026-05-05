@@ -27,8 +27,14 @@ features:
     details: Set up map veto, ready-up, knife rounds, tactical/technical pauses, best-of series, enforce default player models, add substitutes, configure check-in settings, and more.
   - title: Player Sanctions
     details: Keep games clean with bans, mutes, gags, and silences that sync across matches and servers.
-  - title: Demos / Streaming / Playcast
-    details: Capture every match with automatic demo uploads and watch live with GOTV / Playcast or using integrated stream viewer that supports Twitch, YouTube, and Kick streams.
+  - title: Demos & Playcast
+    details: Capture every match with automatic demo uploads and watch live with GOTV / Playcast, or follow the action through the integrated stream viewer with support for Twitch, YouTube, and Kick.
+  - title: Live Streaming
+    details: Broadcast matches directly from 5Stack with built-in live streaming, complete with overlays, scoreboards, and observer integration—no third-party tooling required.
+  - title: Automatic Match Highlights
+    details: Every match is automatically processed into a highlight reel of clutches, multi-kills, and key rounds, ready to share or rewatch right after the game ends.
+  - title: In-App Demo Builder
+    details: Stitch together rounds, plays, and player POVs into custom demos straight from the panel—no external editors needed to create scrims reviews, frag movies, or coaching clips.
   - title: Flexible Server Management
     details: Run on-demand servers, manage dedicated hardware, or plug in existing third-party machines—all from the same panel.
   - title: Regional Servers
