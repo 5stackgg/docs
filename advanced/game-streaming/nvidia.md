@@ -31,4 +31,20 @@ Reboot, then verify:
 nvidia-smi
 ```
 
-You should see your GPU(s) listed with the driver version, and you can continue to the [game streaming setup](/advanced/game-streaming/#install).
+You should see your GPU(s) listed with the driver version.
+
+## 2. Restart K3s containerd
+
+K3s detects the NVIDIA container runtime when it starts and adds the matching runtime entries to its generated containerd config. Restart the K3s agent on each GPU node:
+
+```bash
+sudo systemctl restart k3s-agent
+```
+
+Confirm the runtime was detected:
+
+```bash
+grep nvidia /var/lib/rancher/k3s/agent/etc/containerd/config.toml
+```
+
+You can now continue to the [game streaming setup](/advanced/game-streaming/#install).
