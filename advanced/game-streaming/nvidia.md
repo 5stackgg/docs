@@ -6,7 +6,29 @@ Game streaming on NVIDIA GPUs needs three things on every node that will run a s
 2. The NVIDIA Container Toolkit (so containerd can expose GPUs into pods).
 3. The Kubernetes `nvidia` overlay applied to your cluster (registers the device plugin so pods can request `nvidia.com/gpu`).
 
-## 1. Install drivers and the container toolkit
+## 1. Add the NVIDIA Container Toolkit repository
+
+Before installing the drivers, install the prerequisites and add NVIDIA's apt repository so the container toolkit packages are available.
+
+```bash
+sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    gnupg2
+```
+
+```bash
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
+```bash
+sudo apt-get update
+```
+
+## 2. Install drivers and the container toolkit
 
 On Ubuntu / Debian-based hosts:
 
@@ -33,7 +55,7 @@ nvidia-smi
 
 You should see your GPU(s) listed with the driver version.
 
-## 2. Restart K3s containerd
+## 3. Restart K3s containerd
 
 K3s detects the NVIDIA container runtime when it starts and adds the matching runtime entries to its generated containerd config. Restart the K3s agent on each GPU node:
 
