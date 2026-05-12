@@ -26,13 +26,17 @@ sudo apt-get update
 
 ## 2. Install the NVIDIA runtime
 
-Install the CUDA toolkit and the container runtime packages so containerd can launch GPU-enabled containers:
+Install the container runtime packages so containerd can launch GPU-enabled containers:
 
 ```bash
 sudo apt install -y \
     nvidia-container-toolkit \
     nvidia-container-runtime
 ```
+
+::: tip Install order
+Do the runtime packages **before** the driver in step 3. Installing `nvidia-container-toolkit` / `nvidia-container-runtime` after the driver can pull in archive `libnvidia-*` userland that clobbers the proprietary driver. Installing them first means the driver packages in step 3 settle the userland last and stay consistent.
+:::
 
 ## 3. Install the NVIDIA drivers
 
