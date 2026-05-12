@@ -2,7 +2,7 @@
 
 Backblaze has a partnership with Cloudflare to provide [free data transfer](https://www.backblaze.com/blog/backblaze-and-cloudflare-partner-to-provide-free-data-transfer/).
 
-The Cloudflare Worker in our [web project](https://github.com/5stackgg/web) (`cloudflare-workers/backblaze-proxy/`) signs S3 v4 requests in front of your B2 bucket and serves them through Cloudflare's edge — giving you free B2 → Cloudflare egress *and* edge caching so popular clips/demos don't re-hit B2 on every view.
+The Cloudflare Worker in our [web project](https://github.com/5stackgg/web) (`cloudflare-workers/backblaze-proxy/`) signs S3 v4 requests in front of your B2 bucket and serves them through Cloudflare's edge — giving you free B2 → Cloudflare egress _and_ edge caching so popular clips/demos don't re-hit B2 on every view.
 
 ## 1. Edit `wrangler.toml`
 
@@ -58,5 +58,5 @@ Edge caching is enabled in the worker by default — `cf.cacheEverything` plus a
 
 ## Free-tier limits to watch
 
-- **Workers Free: 100,000 requests/day** across the whole account. Every clip view + every video Range seek consumes a request. Monitor under *Workers & Pages → your worker → Metrics*. The $5/mo Workers Paid plan lifts this to 10M/day.
+- **Workers Free: 100,000 requests/day** across the whole account. Every clip view + every video Range seek consumes a request. Monitor under _Workers & Pages → your worker → Metrics_. The $5/mo Workers Paid plan lifts this to 10M/day.
 - **Per-file cache cap on Free: 512 MB.** Files larger than this bypass the edge cache (egress is still free via the Bandwidth Alliance, but they re-fetch from B2 each time). Most clips and demos are well under this.
