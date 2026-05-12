@@ -15,30 +15,21 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
     gnupg2
-```
 
-```bash
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
     sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-```
 
-```bash
 sudo apt-get update
 ```
 
-## 2. Install drivers and the container toolkit
+## 2. Install the NVIDIA drivers
 
 On Ubuntu / Debian-based hosts:
 
 ```bash
 sudo apt install -y \
-    nvidia-cuda-toolkit \
-    nvidia-container-toolkit \
-    nvidia-container-runtime \
-    cuda-drivers-fabricmanager-590 \
-    nvidia-headless-590-server-open \
     nvidia-utils-590-server \
     nvidia-driver-590-server-open
 ```
@@ -56,7 +47,7 @@ nvidia-smi
 You should see your GPU(s) listed with the driver version.
 
 ::: warning Secure Boot
-If Secure Boot is enabled, `nvidia-smi` will fail to load the driver because the kernel module isn't signed by a trusted key. Enroll NVIDIA's Machine Owner Key so the module is accepted:
+If Secure Boot is enabled, `nvidia-smi` won't load the driver because the kernel module isn't signed by a trusted key. Enroll NVIDIA's Machine Owner Key so the module is accepted:
 
 ```bash
 sudo mokutil --import /var/lib/shim-signed/mok/MOK.der
@@ -65,7 +56,17 @@ sudo mokutil --import /var/lib/shim-signed/mok/MOK.der
 You'll be prompted to set a one-time password. Reboot, complete MOK enrollment in the blue MOK Manager screen using that password, then re-run `nvidia-smi`. Alternatively, disable Secure Boot in your firmware.
 :::
 
-## 3. Restart K3s containerd
+## 3. Install the NVIDIA runtime
+
+Install the container runtime packages so containerd can launch GPU-enabled containers:
+
+```bash
+sudo apt install -y \
+    nvidia-container-toolkit \
+    nvidia-container-runtime
+```
+
+## 4. Restart K3s containerd
 
 K3s detects the NVIDIA container runtime when it starts and adds the matching runtime entries to its generated containerd config. Restart the K3s agent on each GPU node:
 
