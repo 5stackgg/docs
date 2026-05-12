@@ -55,6 +55,16 @@ nvidia-smi
 
 You should see your GPU(s) listed with the driver version.
 
+::: warning Secure Boot
+If Secure Boot is enabled, `nvidia-smi` will fail to load the driver because the kernel module isn't signed by a trusted key. Enroll NVIDIA's Machine Owner Key so the module is accepted:
+
+```bash
+sudo mokutil --import /var/lib/shim-signed/mok/MOK.der
+```
+
+You'll be prompted to set a one-time password. Reboot, complete MOK enrollment in the blue MOK Manager screen using that password, then re-run `nvidia-smi`. Alternatively, disable Secure Boot in your firmware.
+:::
+
 ## 3. Restart K3s containerd
 
 K3s detects the NVIDIA container runtime when it starts and adds the matching runtime entries to its generated containerd config. Restart the K3s agent on each GPU node:
