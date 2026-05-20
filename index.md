@@ -1,6 +1,8 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
+title: 5Stack — The System Behind the Game—Yours
+titleTemplate: false
 
 hero:
   name: "5Stack"

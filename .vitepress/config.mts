@@ -3,8 +3,9 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "5Stack",
+  titleTemplate: ":title | 5Stack",
   description:
-    "A Counter-Strike Panel for Managing Servers, Matches, and Tournaments",
+    "Counter-Strike Management System — a panel for managing servers, matches, and tournaments.",
   appearance: "dark",
   cleanUrls: true,
 
@@ -16,7 +17,7 @@ export default defineConfig({
       "meta",
       {
         property: "og:title",
-        content: "5Stack | Counter-Strike Management System",
+        content: "5Stack — The System Behind the Game—Yours",
       },
     ],
     [
@@ -24,7 +25,7 @@ export default defineConfig({
       {
         property: "og:description",
         content:
-          "A Counter-Strike Panel for Managing Servers, Matches, and Tournaments",
+          "Counter-Strike Management System — a panel for managing servers, matches, and tournaments.",
       },
     ],
     ["meta", { property: "og:site_name", content: "5Stack" }],
