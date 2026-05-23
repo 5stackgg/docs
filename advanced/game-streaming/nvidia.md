@@ -29,14 +29,10 @@ sudo apt-get update
 On Ubuntu / Debian-based hosts:
 
 ```bash
-sudo apt install -y \
-    nvidia-utils-590-server \
-    nvidia-driver-590-server-open
+sudo ubuntu-drivers autoinstall
 ```
 
-::: tip Driver version
-The `590` package suffix tracks the driver branch. Pick the branch that matches your GPU and CUDA version — `nvidia-driver-590-server-open` is a recent open-kernel branch that works for the streamer pipeline. If `apt` doesn't have it, you may need NVIDIA's `cuda-keyring` repo: see [NVIDIA's installation guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/).
-:::
+This picks the recommended driver branch for your GPU automatically. If you'd rather pin a specific branch, see [NVIDIA's installation guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/).
 
 Reboot, then verify:
 
