@@ -211,6 +211,10 @@ export default defineConfig({
             link: "/custom-k8s",
           },
           {
+            text: "Faceit Ranks",
+            link: "/faceit-ranks",
+          },
+          {
             text: "HashiCorp Vault",
             link: "/vault",
           },

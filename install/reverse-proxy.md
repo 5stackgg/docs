@@ -2,6 +2,20 @@
 
 A reverse proxy sits between your users and your backend services, forwarding requests and providing additional features such as SSL termination, load balancing, and enhanced security.
 
+## Toggling the reverse proxy setting
+
+The installer asks whether you're using a reverse proxy (Nginx or a Cloudflare proxied DNS record) and stores the answer in `INSTALL_DIR/.5stack-env.config`.
+
+To change it later, edit that file and set:
+
+```env
+REVERSE_PROXY=false
+```
+
+Use `true` if you front the panel with Nginx or Cloudflare's orange-cloud DNS, `false` if traffic reaches the panel directly.
+
+After saving, re-run `./update.sh` so the new value is applied.
+
 ## Cloudflare Proxies
 
 Cloudflare acts as a reverse proxy when you enable the "Proxied" DNS (orange cloud). Incoming traffic to your domain first passes through Cloudflare before reaching your server, providing DDoS protection and performance benefits.
