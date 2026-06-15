@@ -82,9 +82,50 @@ export default defineConfig({
               { text: "Change Default Ports (80/443)", link: "/nginx" },
             ],
           },
-          { text: "Game Server Node Setup", link: "/servers/game-server-nodes/panel-upgrade" },
+          {
+            text: "Game Server Node Setup",
+            link: "/servers/game-server-nodes/panel-upgrade",
+          },
           { text: "Updating", link: "/updating" },
           { text: "Uninstall", link: "/uninstall" },
+        ],
+      },
+      {
+        text: "Features",
+        base: "/features",
+        link: "/",
+        items: [
+          {
+            text: "User Features",
+            items: [
+              { text: "Quick Play & Matchmaking", link: "/quick-play" },
+              { text: "Matches", link: "/matches" },
+              { text: "Tournaments & Brackets", link: "/tournaments" },
+              { text: "Teams, Lobbies & Chat", link: "/social" },
+              { text: "Match Replay (2D & 3D)", link: "/match-replay" },
+              { text: "In-Browser Demo Playback", link: "/demo-playback" },
+              { text: "Highlights", link: "/highlights" },
+              { text: "Live Streaming", link: "/live-streaming" },
+              { text: "Stats & Leaderboards", link: "/stats-and-leaderboards" },
+              { text: "External Matches", link: "/external-matches" },
+              { text: "Demos", link: "/demos" },
+              { text: "API Keys", link: "/api-keys" },
+              { text: "Languages", link: "/languages" },
+            ],
+          },
+          {
+            text: "Admin Features",
+            base: "/features/admin",
+            link: "/",
+            items: [
+              { text: "Roles & Players", link: "/roles-and-players" },
+              { text: "Matchmaking & Ranks", link: "/matchmaking" },
+              { text: "Servers & Regions", link: "/servers" },
+              { text: "Branding & Theming", link: "/branding" },
+              { text: "Integrations", link: "/integrations" },
+              { text: "System & Monitoring", link: "/system" },
+            ],
+          },
         ],
       },
       {
@@ -152,6 +193,10 @@ export default defineConfig({
             ],
           },
           {
+            text: "GPU Nodes",
+            link: "/gpu-nodes",
+          },
+          {
             text: "Third PartyDedicated Servers",
             base: "/servers/dedicated-servers",
             link: "/",
@@ -211,8 +256,8 @@ export default defineConfig({
             link: "/custom-k8s",
           },
           {
-            text: "Faceit Ranks",
-            link: "/faceit-ranks",
+            text: "Faceit Integration",
+            link: "/faceit-integration",
           },
           {
             text: "HashiCorp Vault",
