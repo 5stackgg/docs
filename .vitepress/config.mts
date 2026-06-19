@@ -100,6 +100,7 @@ export default defineConfig({
             items: [
               { text: "Quick Play & Matchmaking", link: "/quick-play" },
               { text: "Matches", link: "/matches" },
+              { text: "Map Veto Format", link: "/map-veto" },
               { text: "Tournaments & Brackets", link: "/tournaments" },
               { text: "Teams, Lobbies & Chat", link: "/social" },
               { text: "Match Replay (2D & 3D)", link: "/match-replay" },
