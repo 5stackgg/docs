@@ -29,7 +29,9 @@ match starts.
 ## Map & region veto
 
 - **Map veto** — an interactive pick/ban flow; once a map is chosen, teams pick
-  their **CT / T side**.
+  their **CT / T side**. The exact ban/pick sequence is generated deterministically
+  from the pool size and best-of — see [Map Veto Format](/features/map-veto) for
+  the full rules and worked examples.
 - **Region veto** — teams can veto server regions so neither side is forced onto
   unfavorable latency.
 
