@@ -1,6 +1,9 @@
 # Plugin Configuration
 
-The plugin configuration will be located in `<server_path>/game/csgo/addons/counterstrikesharp/configs`.
+The plugin configuration lives under your runtime's addons directory:
+
+- **SwiftlyS2** — `<server_path>/game/csgo/addons/swiftlys2/configs`
+- **CounterStrikeSharp** — `<server_path>/game/csgo/addons/counterstrikesharp/configs`
 
 ## Match Configuration Files
 

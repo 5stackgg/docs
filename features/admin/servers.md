@@ -28,9 +28,14 @@ game-server plugin — there's nothing to babysit. When you need stability inste
 
 - **Pin a CS2 build** on a node to freeze it on a specific version; **unpin** to
   go back to always-latest.
-- **Pin the plugin version** separately.
-- A warning flags any node whose build differs from the current stable version,
-  and an **Install CS** action appears if CS2 isn't on the node yet.
+- **Pin the plugin version** separately, so an older build keeps a plugin that
+  supports it.
+- A warning flags any node whose build differs from its target version, with an
+  update button to bring it in line; an **Install CS2** action appears if CS2
+  isn't on the node yet.
+
+Both are set from the **CS2 Build** and **Plugin Version** columns on the Game
+Server Nodes page.
 
 See [Version Pinning](/servers/game-server-nodes/version-pinning) for details.
 
@@ -50,8 +55,10 @@ Both game server nodes and dedicated servers have an **in-browser file manager**
 browse the file tree and **edit, rename, delete, or upload** files (server
 configs, plugin files, and more) right from the panel, no SFTP needed.
 
-Game server nodes also support **custom CounterStrikeSharp (CSS) plugins** dropped
-into a special folder. See [Custom Plugins](/servers/game-server-nodes/custom-plugins).
+Game server nodes also support **custom plugins** dropped into a special folder, for
+both the SwiftlyS2 and CounterStrikeSharp runtimes. See
+[Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) and
+[Custom Plugins](/servers/game-server-nodes/custom-plugins).
 
 ## Server tuning
 
