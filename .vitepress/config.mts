@@ -109,6 +109,7 @@ export default defineConfig({
               { text: "Live Streaming", link: "/live-streaming" },
               { text: "Stats & Leaderboards", link: "/stats-and-leaderboards" },
               { text: "External Matches", link: "/external-matches" },
+              { text: "Steam Presence", link: "/steam-presence" },
               { text: "Demos", link: "/demos" },
               { text: "API Keys", link: "/api-keys" },
               { text: "Languages", link: "/languages" },
@@ -184,7 +185,11 @@ export default defineConfig({
               },
               { text: "Port Forwarding", link: "/ports" },
               { text: "Tailscale Integration", link: "/tailscale" },
-              { text: "Custom CSS Plugins", link: "/custom-plugins" },
+              {
+                text: "Plugin Runtimes",
+                link: "/plugin-runtimes",
+                items: [{ text: "Custom Plugins", link: "/custom-plugins" }],
+              },
               { text: "Version Pinning", link: "/version-pinning" },
               {
                 text: "Dedicated Servers on Game Node Server",
