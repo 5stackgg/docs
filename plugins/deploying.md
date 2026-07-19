@@ -53,8 +53,9 @@ location = /assets/remoteEntry.js {
   add_header Access-Control-Allow-Origin "*" always;
 }
 
-# Hashed chunks are immutable — cache them hard.
-location ~* ^/assets/.+\.[a-f0-9]{8,}\.js$ {
+# Hashed chunks are immutable — cache them hard. Vite hashes are base64url
+# (mixed case, - and _), not hex.
+location ~ ^/assets/.+-[A-Za-z0-9_-]{8}\.js$ {
   add_header Cache-Control "public, max-age=31536000, immutable" always;
   add_header Access-Control-Allow-Origin "*" always;
 }

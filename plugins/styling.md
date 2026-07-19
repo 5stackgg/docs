@@ -18,21 +18,19 @@ npm install @5stack/ui reka-ui lucide-vue-next clsx tailwind-merge \
 npm install -D tailwindcss postcss autoprefixer
 ```
 
-`tailwind.config.js`:
+`tailwind.config.js` — use the **plugin** preset, not the base one:
 
 ```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
-  presets: [require("@5stack/ui/tailwind-preset")],
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,ts}",
-    // @5stack/ui ships raw source, so Tailwind must scan it too.
-    "./node_modules/@5stack/ui/src/**/*.{vue,ts}",
-  ],
+  presets: [require("@5stack/ui/tailwind-plugin-preset")],
+  content: ["./index.html", "./src/**/*.{vue,ts}"],
 };
 ```
+
+It wraps `@5stack/ui/tailwind-preset` with the two things every plugin needs:
+utility scoping (`important: "[data-5stack-plugin]"`) and the `@5stack/ui`
+content glob. Web uses the base preset directly; plugins should not.
 
 `postcss.config.cjs`:
 
@@ -45,17 +43,40 @@ module.exports = {
 };
 ```
 
-Then import the tokens once, from your root component or your stylesheet:
+Then one stylesheet import, and the attribute on your root element:
 
 ```css
 /* src/style.css */
-@import "@5stack/ui/tokens.css";
+@import "@5stack/ui/plugin.css";
 ```
 
-::: warning Do not add the `@tailwind` directives yourself
-`tokens.css` already contains `@tailwind base; @tailwind components; @tailwind
-utilities;`. Importing it **is** your Tailwind entrypoint. Declaring them again
-emits preflight twice.
+```vue
+<template>
+  <!-- display: contents so the wrapper adds no layout box inside the host -->
+  <div data-5stack-plugin style="display: contents">
+    <!-- your UI -->
+  </div>
+</template>
+```
+
+That is the whole contract. `plugin.css` is your Tailwind entrypoint — it brings
+the tokens, `@tailwind components`, `@tailwind utilities`, and the scoped base
+rules, and it is built so that nothing it emits can reach the panel's chrome.
+
+::: warning Do not add `@tailwind base` yourself
+`plugin.css` deliberately omits it. Preflight is global by nature, and your CSS
+loads after the panel's — see [below](#why-plugin-css-omits-preflight). For
+standalone dev, where nothing has reset UA styles, import the preflight from
+your **dev entry only**:
+
+```ts
+// src/main.ts
+if (import.meta.env.DEV) {
+  import("@5stack/ui/standalone.css");
+}
+```
+
+The guard is dead code in a production build, so it never reaches your bundle.
 :::
 
 ::: info CommonJS configs in an ESM package
@@ -117,6 +138,10 @@ That has one consequence that drives everything below: **your CSS is injected
 after the panel's**. On ties, you win — which is a problem, because the panel is
 not expecting to be overridden.
 
+`plugin.css` and the plugin preset handle all three collisions below for you.
+You do not need to do anything with this section beyond understanding why your
+plugin must not emit global CSS of its own.
+
 ### Token overrides stay out of the way
 
 `tokens.css` wraps its token blocks in `:where()`:
@@ -138,25 +163,34 @@ not expecting to be overridden.
 when your plugin is embedded, while the same declarations still apply standalone.
 If you define your own tokens, use the same trick.
 
-### Preflight resets the host's borders
+### Why `plugin.css` omits preflight
 
-Tailwind's preflight sets `*, ::before, ::after { border-color: … }`. Injected
-late, that repaints the panel's own chrome — most visibly as a pale line down the
-sidebar. `tokens.css` re-asserts the correct value:
+Tailwind's preflight sets `*, ::before, ::after { border-color: #e5e7eb }`.
+Injected late, that repaints every host border that does not set its own color —
+most visibly as a pale line down the sidebar. Its `body`, heading, and `img`
+resets land on the panel too.
+
+So `plugin.css` does not emit preflight at all. The panel already applies it
+document-wide, which covers your subtree when embedded. What `plugin.css` does
+ship is the one slice utilities actually depend on, scoped to your root:
 
 ```css
-@layer base {
-  *,
-  ::before,
-  ::after {
-    border-color: hsl(var(--border));
-  }
+[data-5stack-plugin],
+[data-5stack-plugin] *,
+[data-5stack-plugin] ::before,
+[data-5stack-plugin] ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: hsl(var(--border));
 }
 ```
 
-This ships in the package, so you get it by importing the tokens. It is worth
-knowing about because it explains why a bare Tailwind setup without `tokens.css`
-visibly damages the panel.
+Without that, `class="border"` renders nothing — Tailwind's `border` utility
+only sets border-*width*; the style and color come from preflight.
+
+This is why a bare Tailwind setup, or any plugin that adds `@tailwind base`
+itself, visibly damages the panel.
 
 ## Scoping your utilities
 
@@ -165,36 +199,24 @@ can override the host's identically-named one. The classic failure is `.hidden`:
 the panel's responsive `hidden md:flex` sidebar pattern breaks and the nav
 disappears.
 
-For anything beyond a simple page, scope your utilities with an important
-selector:
-
-```js
-// tailwind.config.js
-module.exports = {
-  darkMode: ["class"],
-  // Every generated utility is scoped under the plugin root, so nothing this
-  // plugin emits can affect host chrome.
-  important: "[data-my-plugin]",
-  presets: [require("@5stack/ui/tailwind-preset")],
-  content: ["./index.html", "./src/**/*.{vue,ts}"],
-};
-```
-
-Then anchor it on your root element:
-
-```vue
-<template>
-  <!-- display: contents so the wrapper adds no layout box inside the host -->
-  <div data-my-plugin style="display: contents">
-    <!-- your UI -->
-  </div>
-</template>
-```
+`tailwind-plugin-preset` handles this by setting `important:
+"[data-5stack-plugin]"`, which is why the attribute on your root element is
+required rather than optional.
 
 Note this is Tailwind's `important` **selector**, not a class `prefix`. Your class
 names stay normal (`bg-card`, not `tw-bg-card`); they simply generate as
-`[data-my-plugin] .bg-card`. The inventory plugin uses exactly this with
-`[data-cs2-inventory]`.
+`[data-5stack-plugin] .bg-card`.
+
+Two consequences worth knowing:
+
+- Utilities apply to **descendants** of the root, not to the root element
+  itself. Put your layout on a child, not on the `display: contents` wrapper.
+- Content portalled to `document.body` escapes the scope entirely — see
+  [Components](/plugins/components).
+
+If you need extra scoping for your own hand-written CSS, add a second attribute
+of your own (the inventory plugin uses `data-cs2-inventory`) alongside
+`data-5stack-plugin`.
 
 ## Avoid arbitrary-value classes
 

@@ -71,9 +71,9 @@ Your backend then trusts three headers:
 export function identify(req: FastifyRequest) {
   const steamId = req.headers["x-5stack-steam-id"] as string | undefined;
   if (!steamId) {
-    // Local dev only — never reachable in production, where the ingress
-    // rejects unauthenticated requests before they arrive.
-    if (process.env.DEV_STEAM_ID) {
+    // Local dev only. The NODE_ENV guard makes a leaked DEV_STEAM_ID harmless
+    // in production, where the ingress rejects unauthenticated requests anyway.
+    if (process.env.NODE_ENV !== "production" && process.env.DEV_STEAM_ID) {
       return { steamId: process.env.DEV_STEAM_ID, role: "administrator" };
     }
     return null;

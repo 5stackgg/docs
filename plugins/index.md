@@ -62,8 +62,11 @@ you call [your own backend](/plugins/backend).
 ::: info No sandbox
 A plugin is loaded into the panel's JavaScript context with no isolation. It can
 read the host's cookies and reach into its stores. `requiredRole` controls who
-*sees* the page, not what the code *can do*. Only install plugins you trust, and
-tell your users the same about yours.
+*sees* the page, not what the code *can do*. There is also no integrity pinning
+on `remoteEntry.js` — the panel loads whatever the registered URL serves, so a
+compromised plugin host compromises the panel for every user until the page is
+disabled. Only install plugins you trust, and tell your users the same about
+yours.
 :::
 
 ## Reference implementations

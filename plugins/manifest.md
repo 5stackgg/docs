@@ -112,6 +112,6 @@ The manifest is fetched **server-side** by the 5Stack API during Detect, not by
 the browser, so it does not need CORS headers. It should be served as
 `application/json`.
 
-Admins can also skip Detect and type all six values in by hand. The manifest is a
+Admins can also skip Detect and type every value in by hand. The manifest is a
 convenience, not a requirement — but shipping one means your users cannot get the
 scope or module wrong.

@@ -16,8 +16,10 @@ as "how to build components that will match, and migrate cleanly later".
 | ---------------------------- | ------------------------------------------------- |
 | `@5stack/ui`                 | Barrel — currently just `cn`                      |
 | `@5stack/ui/lib/utils`       | `cn` directly                                     |
-| `@5stack/ui/tailwind-preset` | The Tailwind preset ([Styling](/plugins/styling)) |
-| `@5stack/ui/tokens.css`      | The design tokens                                 |
+| `@5stack/ui/tailwind-plugin-preset` | The preset plugins use ([Styling](/plugins/styling)) |
+| `@5stack/ui/plugin.css`      | Tokens + utilities + scoped base rules            |
+| `@5stack/ui/standalone.css`  | Global preflight, dev entry only                  |
+| `@5stack/ui/tokens.css`      | The design tokens alone (pulled in by plugin.css) |
 
 ```ts
 import { cn } from "@5stack/ui";
@@ -126,8 +128,8 @@ import {
 ```
 
 ::: warning Portals escape your scope
-`DialogPortal` teleports content to `document.body`, which is outside the
-`[data-my-plugin]` wrapper if you are using an
+`DialogPortal` teleports content to `document.body`, which is outside your
+`[data-5stack-plugin]` root — and every utility is scoped to that
 [important selector](/plugins/styling#scoping-your-utilities). Put the attribute
 on the portalled content too, or its utilities will not apply.
 :::

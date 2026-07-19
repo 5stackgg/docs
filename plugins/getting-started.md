@@ -68,8 +68,9 @@ createApp(App, {
 }).mount("#app");
 ```
 
-You are not embedded here, so you are seeing your own `tokens.css` fallbacks
-rather than the operator's live branding. Layout bugs that only appear inside the
+You are not embedded here, so you are seeing the fallback tokens from
+`plugin.css` rather than the operator's live branding, plus the global preflight
+your dev entry imports from `@5stack/ui/standalone.css`. Layout bugs that only appear inside the
 panel will not show up in this mode.
 
 ### Embedded
