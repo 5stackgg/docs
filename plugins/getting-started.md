@@ -1,12 +1,12 @@
 # Getting Started
 
 The fastest path to a working plugin is to copy the
-[hello-world sample](https://github.com/5stackgg/5stack-plugin-hello-world). It
+[example plugin](https://github.com/5stackgg/5stack-example-plugin). It
 is deliberately tiny — one component, one manifest, one Vite config — and it is
 already wired for everything described in this section.
 
 ```sh
-git clone https://github.com/5stackgg/5stack-plugin-hello-world my-plugin
+git clone https://github.com/5stackgg/5stack-example-plugin my-plugin
 cd my-plugin
 rm -rf .git && git init
 npm install
@@ -83,7 +83,7 @@ npm run build
 npx vite preview   # serves dist/ with cors enabled
 ```
 
-Then register `http://localhost:4173` as a Custom Page in your dev panel. See
+Then register `http://localhost:4173` as a plugin in your dev panel. See
 [Deploying](/plugins/deploying) for the CORS and cache headers this needs.
 
 ## Write your page
@@ -120,9 +120,9 @@ role check is never sufficient on its own.
 npm run build   # -> dist/remoteEntry.js in assets/, plus dist/5stack-plugin.json
 ```
 
-Host `dist/`, then in the panel go to **Settings → Application → Custom Pages →
+Host `dist/`, then in the panel go to **Settings → Application → Plugins →
 Add**, paste your base URL, press **Detect**, toggle **Enabled**, and save. Make
-sure the **Custom Pages** master switch is on.
+sure the **Plugins** master switch is on.
 
 Your page is now in the sidebar at `/apps/<slug>`.
 

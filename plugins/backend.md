@@ -47,49 +47,85 @@ headers below.
 
 ## Identity in your backend
 
-Do not implement Steam OpenID, and do not try to parse the 5Stack session cookie.
-Put your service behind 5Stack's forward-auth endpoint instead: the 5Stack API
-validates the session and passes the identity to you as headers.
+Do not implement Steam OpenID, and do not try to decode the 5Stack session
+cookie — it is signed and `httpOnly`, and its contents are not a stable contract.
 
-On Kubernetes with the nginx ingress:
-
-```yaml
-nginx.ingress.kubernetes.io/auth-url: "http://api.5stack.svc.cluster.local:5585/custom-pages/authorize"
-nginx.ingress.kubernetes.io/auth-response-headers: "X-5stack-Steam-Id,X-5stack-Role,X-5stack-Name"
-```
-
-Your backend then trusts three headers:
-
-| Header              | Contents                           |
-| ------------------- | ---------------------------------- |
-| `X-5stack-Steam-Id` | The authenticated user's SteamID64 |
-| `X-5stack-Role`     | Their 5Stack role                  |
-| `X-5stack-Name`     | Their display name                 |
+Instead, hand the cookie back to us. Every request the browser makes to your
+backend already carries the 5Stack session cookie (see
+[Hosting](#hosting-is-part-of-the-security-model)). Forward it to the panel's
+authorize endpoint and you get the identity as JSON:
 
 ```ts
 // identity.ts
-export function identify(req: FastifyRequest) {
-  const steamId = req.headers["x-5stack-steam-id"] as string | undefined;
-  if (!steamId) {
-    // Local dev only. The NODE_ENV guard makes a leaked DEV_STEAM_ID harmless
-    // in production, where the ingress rejects unauthenticated requests anyway.
-    if (process.env.NODE_ENV !== "production" && process.env.DEV_STEAM_ID) {
-      return { steamId: process.env.DEV_STEAM_ID, role: "administrator" };
-    }
+const AUTH_URL =
+  process.env.FIVESTACK_AUTH_URL ??
+  "http://api.5stack.svc.cluster.local:5585/plugins/authorize";
+
+export async function identify(req: FastifyRequest) {
+  const cookie = req.headers.cookie;
+  if (!cookie) {
     return null;
   }
-  return {
-    steamId,
-    role: req.headers["x-5stack-role"] as string,
-    name: req.headers["x-5stack-name"] as string,
+
+  const res = await fetch(AUTH_URL, { headers: { cookie } });
+  if (!res.ok) {
+    return null;
+  }
+
+  return (await res.json()) as {
+    steam_id: string;
+    role: string;
+    name: string;
   };
 }
 ```
 
-::: danger These headers are only trustworthy behind the gate
-They are plain HTTP headers. If your backend is reachable without passing through
-the forward-auth ingress, anyone can set them. Never expose the service directly,
-and keep any `DEV_STEAM_ID`-style fallback strictly out of production.
+A `200` means the session is valid. `401` means there is no session. Treat
+anything non-`200` as anonymous.
+
+::: tip Cache the lookup
+This is one extra in-cluster round-trip per request. Cache the result for a few
+seconds keyed on the cookie value — long enough to collapse a page's burst of
+API calls, short enough that a logout takes effect promptly.
+:::
+
+This fails closed. If your backend is misconfigured or unexpectedly reachable,
+the worst case is that requests are rejected — never that an attacker is
+believed.
+
+### Optional: forward-auth at the ingress
+
+If you would rather spend the round-trip once at the edge than once per request
+in your process, nginx can call the same endpoint for you and inject the result
+as headers:
+
+```yaml
+nginx.ingress.kubernetes.io/auth-url: "http://api.5stack.svc.cluster.local:5585/plugins/authorize"
+nginx.ingress.kubernetes.io/auth-response-headers: "X-5stack-Steam-Id,X-5stack-Role,X-5stack-Name"
+```
+
+| Header              | Contents                                       |
+| ------------------- | ---------------------------------------------- |
+| `X-5stack-Steam-Id` | The authenticated user's SteamID64             |
+| `X-5stack-Role`     | Their 5Stack role                              |
+| `X-5stack-Name`     | Their display name, URI-encoded                |
+
+::: danger This mode fails open — know what you are signing up for
+These are plain HTTP headers. nginx overwrites them on the way through, so they
+are trustworthy *only* on traffic that actually traversed that ingress. Expose
+the Service any other way — a second ingress without the annotations, a
+NodePort, a LoadBalancer, a port-forward — and `curl -H "X-5stack-Role:
+administrator"` is an admin session. Nothing will warn you.
+
+Prefer the cookie check above unless you have measured a reason not to. If you
+do use this mode, keep the backend a `ClusterIP` Service with the annotated
+ingress as its only route in.
+:::
+
+::: warning Never ship a `DEV_STEAM_ID` escape hatch unguarded
+A local-dev fallback that returns an `administrator` when no identity is present
+is unauthenticated admin the moment that variable exists in a real environment.
+Guard it on `process.env.NODE_ENV !== "production"`, not on a comment.
 :::
 
 ## Calling your API from the plugin
@@ -105,7 +141,8 @@ const API_BASE =
 
 export async function get<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE}/api${path}`, {
-    // Required — carries the 5Stack session cookie to the forward-auth gate.
+    // Required — carries the 5Stack session cookie, which is the only thing
+    // that lets your backend establish who is calling.
     credentials: "include",
   });
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
@@ -116,7 +153,7 @@ export async function get<T>(path: string): Promise<T> {
 Two details matter:
 
 - **`credentials: "include"` on every request.** Without it the session cookie
-  never reaches the gate and the ingress rejects you. This also applies to plain
+  never arrives and every request is anonymous. This also applies to plain
   `<img>` tags pointing at gated endpoints, which send cookies automatically only
   when same-site.
 - **CORS with credentials.** Your backend must reflect the requesting origin and
@@ -126,10 +163,33 @@ Two details matter:
   await app.register(cors, { origin: true, credentials: true });
   ```
 
-::: tip Hosting on a subdomain of the panel
-Serving your plugin from `myplugin.panel.example.com` keeps the 5Stack session
-cookie same-site, which sidesteps a whole category of third-party-cookie
-problems. It is the simplest arrangement that works.
+## Hosting is part of the security model
+
+**Your backend must be served from a subdomain of the panel's domain** —
+`myplugin.panel.example.com` for a panel at `panel.example.com`. This is a
+requirement, not a preference.
+
+The 5Stack session cookie is issued for `.panel.example.com` with the browser
+default `SameSite=Lax`. Lax cookies are not attached to cross-site subresource
+requests, so a backend on an unrelated domain receives no cookie at all — no
+matter what `credentials: "include"` says, and no matter how the ingress is
+annotated. Identity is simply unavailable there.
+
+Two useful consequences fall out of this:
+
+- Hosting in-cluster, behind the panel's own domain, is the only arrangement that
+  works — which is also the arrangement where your Service is not casually
+  reachable from outside.
+- Because the cookie is `httpOnly`, your plugin's frontend can never read it. It
+  rides along on requests and is exchanged for identity only by your backend
+  talking to the panel.
+
+::: warning Your backend receives a live session cookie
+Whichever identity mode you pick, the cookie reaches your service. It is a bearer
+credential for the calling user's 5Stack account. Do not log it, do not persist
+it, and do not forward it anywhere except the authorize endpoint. This is why
+plugins are admin-installed and why the panel treats a plugin backend as
+fully trusted code.
 :::
 
 ## Storing data
@@ -161,8 +221,8 @@ overwrite you.
 ## Machine-to-machine access
 
 If a game server or another service needs to reach your API without a browser
-session, forward-auth will not help — there is no user. Issue your own API key:
-generate it from an admin screen in your plugin, store it in your schema, and
-check it on a route excluded from the forward-auth ingress path.
+session, neither identity mode helps — there is no user and no cookie. Issue your
+own API key: generate it from an admin screen in your plugin, store it in your
+schema, and check it on a route excluded from the session check.
 
 Keep those routes narrow and separate from the session-authenticated ones.
