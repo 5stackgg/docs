@@ -232,6 +232,20 @@ export default defineConfig({
         ],
       },
       {
+        text: "Plugin Development",
+        base: "/plugins",
+        link: "/",
+        items: [
+          { text: "Getting Started", link: "/getting-started" },
+          { text: "The Manifest", link: "/manifest" },
+          { text: "Module Federation", link: "/module-federation" },
+          { text: "Styling", link: "/styling" },
+          { text: "Components", link: "/components" },
+          { text: "Backend & Auth", link: "/backend" },
+          { text: "Deploying", link: "/deploying" },
+        ],
+      },
+      {
         text: "Advanced",
         base: "/advanced",
         items: [
