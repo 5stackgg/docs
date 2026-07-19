@@ -1,6 +1,6 @@
 # Plugin Development
 
-Plugins — called **Custom Pages** in the panel UI — let you run your own web app
+Plugins let you run your own web app
 **inside 5Stack**. Same sidebar, same header, same theme, same login. Your app is
 not part of 5Stack and does not require a fork or a rebuild of the panel.
 
@@ -11,8 +11,8 @@ remote. The panel loads it at runtime and mounts it on a native route,
 - **No iframe.** Your component runs inside the panel's own Vue app, sharing its
   Vue instance, its router, and its styling.
 - **No second login.** The panel hands you the authenticated user. If you have a
-  backend, it sits behind 5Stack forward-auth instead of running its own Steam
-  OpenID flow.
+  backend, it exchanges the session cookie the browser already sends for a
+  verified identity, instead of running its own Steam OpenID flow.
 - **Native look.** The shared `@5stack/ui` Tailwind preset and design tokens mean
   your UI follows the operator's live branding automatically.
 - **No panel rebuild.** Plugins live in a database registry. An admin adds a URL;
@@ -31,9 +31,9 @@ SwiftlyS2 or CounterStrikeSharp plugins on a game server, see
    Federation remote. The build emits `dist/assets/remoteEntry.js`.
 2. You ship a manifest, `5stack-plugin.json`, at the root of that same build.
 3. You host `dist/` somewhere the panel's users can reach.
-4. An admin pastes your URL into **Settings → Application → Custom Pages**, hits
+4. An admin pastes your URL into **Settings → Application → Plugins**, hits
    **Detect**, and enables it.
-5. The panel writes a row into its `custom_pages` registry. Every connected
+5. The panel writes a row into its plugin registry. Every connected
    client picks the new entry up over a live subscription, renders a sidebar
    item, and — when a user navigates to `/apps/<slug>` — fetches your
    `remoteEntry.js`, resolves your exposed module, and mounts it:
@@ -61,7 +61,11 @@ you call [your own backend](/plugins/backend).
 
 ::: info No sandbox
 A plugin is loaded into the panel's JavaScript context with no isolation. It can
-read the host's cookies and reach into its stores. `requiredRole` controls who
+reach into the host's stores and act as the logged-in user against any API the
+panel can reach, and its backend receives that user's live session cookie. (The
+cookie itself is `httpOnly`, so plugin JavaScript cannot read it directly — but
+that is a small consolation given everything else it can do.) `requiredRole`
+controls who
 *sees* the page, not what the code *can do*. There is also no integrity pinning
 on `remoteEntry.js` — the panel loads whatever the registered URL serves, so a
 compromised plugin host compromises the panel for every user until the page is
@@ -73,8 +77,8 @@ yours.
 
 | Repo | What it shows |
 | --- | --- |
-| [5stack-plugin-hello-world](https://github.com/5stackgg/5stack-plugin-hello-world) | The smallest complete plugin. Start here — copy it. |
-| [5stack-inventory-plugin](https://github.com/lukepolo/5stack-inventory-plugin) | A production plugin with a Fastify backend, Postgres, forward-auth, and a Kubernetes deployment. |
+| [5stack-example-plugin](https://github.com/5stackgg/5stack-example-plugin) | The smallest complete plugin. Start here — copy it. |
+| [5stack-inventory-plugin](https://github.com/lukepolo/5stack-inventory-plugin) | A production plugin with a Fastify backend, Postgres, session-cookie auth, and a Kubernetes deployment. |
 
 ## Next steps
 
@@ -86,5 +90,5 @@ yours.
 - [Styling](/plugins/styling) — Tailwind setup, design tokens, and the CSS
   pitfalls unique to runtime-injected styles.
 - [Components](/plugins/components) — what `@5stack/ui` actually gives you today.
-- [Backend & Auth](/plugins/backend) — forward-auth and talking to your own API.
+- [Backend & Auth](/plugins/backend) — verifying identity and talking to your own API.
 - [Deploying](/plugins/deploying) — hosting, CORS, caching, and registration.

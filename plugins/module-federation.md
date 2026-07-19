@@ -78,7 +78,7 @@ Two rules follow.
 
 **Only list what you actually import.** Federation builds a shared entry chunk for
 every key in `shared`, and a package that is listed but not installed fails the
-build. The hello-world sample lists six because it imports six. Add `pinia` or
+build. The example plugin lists six because it imports six. Add `pinia` or
 `vue-router` to both `shared` and your `package.json` only once you actually use
 them.
 

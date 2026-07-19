@@ -4,7 +4,7 @@
 project's `public/` directory so Vite copies it to `dist/5stack-plugin.json`,
 where it is served from the root of your build.
 
-An admin pastes your base URL into **Settings → Application → Custom Pages →
+An admin pastes your base URL into **Settings → Application → Plugins →
 Detect**, the panel fetches the manifest, and every field below is auto-filled
 into the registration form.
 
@@ -102,8 +102,8 @@ is in [Backend & Auth](/plugins/backend#roles).
 
 ::: warning `requiredRole` is visibility, not security
 It controls whether the sidebar entry and the route render. It does not protect
-your data. Anything sensitive must be enforced by your own backend against the
-forward-auth headers — see [Backend & Auth](/plugins/backend).
+your data. Anything sensitive must be re-checked by your own backend against a
+verified identity — see [Backend & Auth](/plugins/backend).
 :::
 
 ## Serving it

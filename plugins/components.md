@@ -176,7 +176,7 @@ match the panel's versions:
 
 ::: info
 `class-variance-authority` is a peer dependency of `@5stack/ui` but is not in the
-hello-world sample, because nothing currently exported from the package uses it.
+example plugin, because nothing currently exported from the package uses it.
 The moment you copy in a `cva`-based component — or the official components land
 — you need it. Adding it up front costs nothing.
 :::

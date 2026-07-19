@@ -72,9 +72,10 @@ entry, which helps — but do not rely on it in place of correct headers.
 Any static host works: nginx in a container, an object-storage bucket behind a
 CDN, or a static-site host.
 
-Serving from a **subdomain of the panel** (`myplugin.panel.example.com`) is the
-simplest arrangement, because it keeps the 5Stack session cookie same-site for
-any backend calls. See [Backend & Auth](/plugins/backend).
+If you have a backend, serving from a **subdomain of the panel**
+(`myplugin.panel.example.com`) is required, not just convenient — the 5Stack
+session cookie is `SameSite=Lax` and never reaches an unrelated domain, so
+identity is unavailable there. See [Backend & Auth](/plugins/backend).
 
 A minimal container:
 
@@ -101,15 +102,16 @@ the panel repo under `custom/<name>/` can be applied with:
 ```
 
 The inventory plugin is laid out this way — two ingresses on one host, `/api` to
-the backend with the forward-auth annotations and `/` to the static frontend.
-Its `k8s/` directory is a working template. See also
+the backend and `/` to the static frontend. Keep the backend a `ClusterIP`
+Service so the ingress is its only route in. Its `k8s/` directory is a working
+template. See also
 [Custom Kubernetes](/advanced/custom-k8s).
 
 ## Register it
 
-In the panel, go to **Settings → Application → Custom Pages**.
+In the panel, go to **Settings → Application → Plugins**.
 
-1. Make sure the **Custom Pages** master switch is enabled.
+1. Make sure the **Plugins** master switch is enabled.
 2. **Add**, paste your base URL (e.g. `https://myplugin.example.com`).
 3. Press **Detect**. The panel fetches `5stack-plugin.json` and fills in the
    name, slug, icon, remote entry, scope, module, and required role.
