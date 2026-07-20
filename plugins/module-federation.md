@@ -123,17 +123,27 @@ through [its own backend](/plugins/backend).
 only useful if something else consumes them.
 
 If your plugin needs multiple screens, route inside your own component rather
-than exposing several. Both reference plugins do this with a querystring:
+than exposing several. Use the `path`, `query`, and `navigate` props the host
+passes you — see [Routing](/plugins/routing):
 
 ```ts
-// /apps/inventory?player=<steamid>
-const params = new URLSearchParams(window.location.search);
-history.replaceState({}, "", `?player=${steamId}`);
+// /apps/inventory/items  ->  path === "/items"
+const screen = computed(() => (props.path === "/items" ? "items" : "home"));
+props.navigate?.("/items");
 ```
+
+Do **not** reach for `window.location` and `history.replaceState` directly. They
+appear to work and then desync from the host router, which is the thing actually
+driving the URL.
 
 Using `vue-router` is possible — it is a shared singleton — but you are sharing
 the panel's router instance, so be careful not to fight it over the `/apps/*`
 route.
+
+This also matters if you ship a
+[player-profile tab](/plugins/routing#the-player-profile-tab): the same exposed
+module gets mounted in a second position, so a component that reads the real URL
+instead of its props will read the *profile's* URL, not its own.
 
 ## Development builds
 

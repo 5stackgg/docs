@@ -17,7 +17,8 @@ into the registration form.
   "remoteEntry": "/assets/remoteEntry.js",
   "scope": "hello",
   "module": "./App",
-  "requiredRole": null
+  "requiredRole": null,
+  "profileTabLabel": "Hello"
 }
 ```
 
@@ -32,6 +33,7 @@ into the registration form.
 | `scope`        | ✓        | Your Federation container name — must equal `name` in your Vite federation config.           |
 | `module`       | ✓        | The exposed module path, e.g. `./App`.                                                       |
 | `requiredRole` |          | `null` for a public page, or a role name to gate visibility.                                 |
+| `profileTabLabel` |       | Also render your plugin as a tab on player profiles, using this label. Omit for no tab.      |
 
 ### `slug`
 
@@ -104,6 +106,32 @@ is in [Backend & Auth](/plugins/backend#roles).
 It controls whether the sidebar entry and the route render. It does not protect
 your data. Anything sensitive must be re-checked by your own backend against a
 verified identity — see [Backend & Auth](/plugins/backend).
+:::
+
+### `profileTabLabel`
+
+Opt in to a second mounting position. With this set, your plugin also appears as
+a tab on every player's profile page (`/players/:steamid`), beside Combat, and
+the panel mounts your remote inside that tab.
+
+```json
+{ "profileTabLabel": "Inventory" }
+```
+
+The value is the tab's label. Omit the field and no tab is rendered — the field
+is both the opt-in and the wording, so there is no separate boolean. Admins can
+override the label per-site in the registration form without touching your
+manifest.
+
+Your `/apps/<slug>` page is unaffected; this is an additional place your same
+exposed module gets mounted. What changes is the query the host passes you — see
+[Routing](/plugins/routing#the-player-profile-tab), which covers the `player` and
+`embed` keys and the one behavior difference in `navigate`.
+
+::: tip Same gating as the sidebar
+The tab is filtered through the same checks as the nav entry: the plugins master
+switch, the plugin's `enabled` flag, and `requiredRole`. A profile tab is not a
+way around visibility rules.
 :::
 
 ## Serving it

@@ -114,7 +114,8 @@ In the panel, go to **Settings → Application → Plugins**.
 1. Make sure the **Plugins** master switch is enabled.
 2. **Add**, paste your base URL (e.g. `https://myplugin.example.com`).
 3. Press **Detect**. The panel fetches `5stack-plugin.json` and fills in the
-   name, slug, icon, remote entry, scope, module, and required role.
+   name, slug, icon, remote entry, scope, module, required role, and — if you
+   ship one — the player-profile tab label.
 4. Toggle **Enabled** and save.
 
 The page appears in the sidebar immediately for every connected client — the
@@ -122,7 +123,10 @@ registry is subscription-backed, so no one needs to reload.
 
 Admins can override any detected field, and can register a plugin entirely by
 hand if it ships no manifest. One page can be marked **default**, which makes it
-take over the panel's landing route.
+take over the panel's landing route. Setting a **Player Profile Tab** label —
+whether detected or typed by hand — also mounts the plugin as a tab on
+`/players/:steamid`; clearing it removes the tab. See
+[Routing](/plugins/routing#the-player-profile-tab).
 
 ## Updating
 

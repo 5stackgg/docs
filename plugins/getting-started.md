@@ -88,7 +88,9 @@ Then register `http://localhost:4173` as a plugin in your dev panel. See
 
 ## Write your page
 
-The panel passes the authenticated user in, and nothing else:
+The panel passes the authenticated user in. That is all you need to render
+something; when you want real routes, [Routing](/plugins/routing) covers the
+other four props:
 
 ```vue
 <script setup lang="ts">

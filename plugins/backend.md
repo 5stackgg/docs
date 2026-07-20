@@ -6,8 +6,7 @@ client and Hasura session are deliberately not shared.
 
 ## Identity in the browser
 
-The panel mounts your component with the authenticated user as a prop, and that
-is the entire inbound contract:
+The panel mounts your component with the authenticated user as a prop:
 
 ```vue
 <script setup lang="ts">
@@ -18,6 +17,13 @@ const props = defineProps<{
 ```
 
 `user` is `null` for guests on a public page (`"requiredRole": null`). Handle it.
+
+::: warning `user` is the viewer, not always the subject
+If your plugin also mounts as a [player-profile tab](/plugins/routing#the-player-profile-tab),
+the profile being viewed arrives as a separate `player` query key. On someone
+else's profile those are different people — never treat `player` as the
+authenticated identity.
+:::
 
 ### Roles
 
@@ -120,6 +126,25 @@ administrator"` is an admin session. Nothing will warn you.
 Prefer the cookie check above unless you have measured a reason not to. If you
 do use this mode, keep the backend a `ClusterIP` Service with the annotated
 ingress as its only route in.
+:::
+
+::: warning It also locks out anything that is not a browser
+The annotation applies to the whole Ingress object, not per path, and it demands
+a session cookie. Any caller that authenticates some other way — a game server
+holding an API key, a webhook, a cron job — has no cookie to present and gets a
+flat `401` from nginx. Your handler never runs, so nothing in your logs explains
+it, and the reply is an nginx HTML page rather than your own error shape. That
+detail is the fastest way to tell the two apart:
+
+```console
+$ curl -i https://your-plugin.example.com/api/public-thing
+HTTP/2 401
+<html><head><title>401 Authorization Required</title></head>
+```
+
+If any part of your API serves non-browser clients, use the cookie check and let
+each route decide, or split the public paths onto a second Ingress with no
+annotations — nginx prefers the longer path match.
 :::
 
 ::: warning Never ship a `DEV_STEAM_ID` escape hatch unguarded
@@ -226,3 +251,8 @@ own API key: generate it from an admin screen in your plugin, store it in your
 schema, and check it on a route excluded from the session check.
 
 Keep those routes narrow and separate from the session-authenticated ones.
+
+Excluding a route from your own session check is not enough if you also enabled
+[forward-auth at the ingress](#optional-forward-auth-at-the-ingress) — that runs
+in front of your process and rejects the caller before your exclusion is ever
+consulted. Pick one or the other.
