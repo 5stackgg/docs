@@ -39,11 +39,19 @@ SwiftlyS2 or CounterStrikeSharp plugins on a game server, see
    `remoteEntry.js`, resolves your exposed module, and mounts it:
 
    ```vue
-   <component :is="RemoteComponent" :user="authStore.me" />
+   <component
+     :is="RemoteComponent"
+     :user="authStore.me"
+     :base="base"
+     :path="path"
+     :query="query"
+     :navigate="navigate"
+   />
    ```
 
-That `user` prop is the entire inbound contract. Everything else your plugin
-needs, it fetches itself.
+Those props are the entire inbound contract: who is signed in, where you are
+mounted, and a way to move around. Everything else your plugin needs, it fetches
+itself. See [Routing](/plugins/routing) for what each one carries.
 
 ## What you get, and what you don't
 
@@ -85,6 +93,8 @@ yours.
 - [Getting Started](/plugins/getting-started) — scaffold, build, and register a
   plugin in about ten minutes.
 - [The Manifest](/plugins/manifest) — every `5stack-plugin.json` field.
+- [Routing](/plugins/routing) — the inbound props, deriving screens from the
+  URL, and mounting as a tab on player profiles.
 - [Module Federation](/plugins/module-federation) — the Vite config and the
   shared-singleton rules that make or break a plugin.
 - [Styling](/plugins/styling) — Tailwind setup, design tokens, and the CSS

@@ -238,6 +238,7 @@ export default defineConfig({
         items: [
           { text: "Getting Started", link: "/getting-started" },
           { text: "The Manifest", link: "/manifest" },
+          { text: "Routing", link: "/routing" },
           { text: "Module Federation", link: "/module-federation" },
           { text: "Styling", link: "/styling" },
           { text: "Components", link: "/components" },
