@@ -27,7 +27,7 @@ link their own Steam match history from their personal settings.
 - **Enable telemetry** — anonymous usage reporting that helps 5Stack development.
 - **Google Tag Manager** — drop in a `GTM-XXXXXXX` code for your own analytics.
   (If GTM is blocked behind Cloudflare, see
-  [Google Tag Manager + Cloudflare](/common-issues/google-tag-manager).)
+  [Google Tag Manager + Cloudflare](/install/cloudflare/google-tag-manager).)
 
 ## Chat
 

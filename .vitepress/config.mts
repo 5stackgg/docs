@@ -80,6 +80,20 @@ export default defineConfig({
               { text: "Cookie Domain", link: "/cookie-domain" },
               { text: "Reverse Proxy", link: "/reverse-proxy" },
               { text: "Change Default Ports (80/443)", link: "/nginx" },
+              {
+                base: "/install/cloudflare",
+                text: "Cloudflare",
+                link: "/",
+                items: [
+                  { text: "DNS & SSL", link: "/dns-and-ssl" },
+                  { text: "Cloudflare Proxy", link: "/proxy" },
+                  { text: "Cloudflare Tunnel", link: "/tunnel" },
+                  {
+                    text: "Google Tag Manager",
+                    link: "/google-tag-manager",
+                  },
+                ],
+              },
             ],
           },
           {
@@ -134,7 +148,6 @@ export default defineConfig({
         text: "Troubleshooting",
         base: "/common-issues",
         items: [
-          { text: "Invalid SSL", link: "/invalid-ssl" },
           { text: "Unable to Log In", link: "/unable-to-login" },
           { text: "System Not Updating", link: "/system-not-updating" },
           { text: "RCON Commands Fail", link: "/rcon-fails" },
@@ -153,8 +166,9 @@ export default defineConfig({
           },
           { text: "Debug Script", link: "/debug-script" },
           {
-            text: "Google Tag Manager + CloudFlare",
-            link: "/google-tag-manager",
+            base: "/install/cloudflare",
+            text: "Cloudflare Issues",
+            link: "/dns-and-ssl",
           },
         ],
       },

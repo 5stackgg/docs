@@ -16,9 +16,11 @@ Use `true` if you front the panel with Nginx or Cloudflare's orange-cloud DNS, `
 
 After saving, re-run `./update.sh` so the new value is applied.
 
-## Cloudflare Proxies
+## Cloudflare
 
-Cloudflare acts as a reverse proxy when you enable the "Proxied" DNS (orange cloud). Incoming traffic to your domain first passes through Cloudflare before reaching your server, providing DDoS protection and performance benefits.
+Cloudflare acts as a reverse proxy when you enable "Proxied" DNS (the orange cloud), and a [Cloudflare Tunnel](/install/cloudflare/tunnel) does the same. Both need `REVERSE_PROXY=true`.
+
+Cloudflare has its own setup requirements — see the [Cloudflare](/install/cloudflare/) section.
 
 ## Nginx Proxy
 
