@@ -180,7 +180,7 @@ One command gets you a full install, Kubernetes, database, storage, and panel.
     <span class="home-discord-title">Join the crowd</span>
     <span class="home-discord-sub">Questions, help, and the people running 5Stack are all in Discord.</span>
   </span>
-  <span class="home-discord-cta">Open Discord →</span>
+  <span class="home-discord-cta">Open Discord <span class="home-discord-arrow" aria-hidden="true">→</span></span>
 </a>
 
 <div class="home-section">
