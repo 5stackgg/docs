@@ -1,6 +1,15 @@
 # Servers
 
-5Stack provides two different methods of managing servers, [game server nodes](#what-is-a-game-server-node) and [dedicated servers](#what-is-a-dedicated-server) .
+5Stack provides two different methods of managing servers, [game server nodes](#what-is-a-game-server-node) and [dedicated servers](#what-is-a-dedicated-server).
+
+::: tip Looking for plugins?
+This section covers **game plugins**, the CS2 server-side plugins that run
+inside your game servers (SwiftlyS2 / CounterStrikeSharp). See
+[Game Plugins](/servers/game-server-nodes/plugin-runtimes).
+
+If you want to build a web app that runs **inside the panel**, that's
+[5Stack Plugin Development](/plugins/) instead.
+:::
 
 ## What is a Game Server Node
 

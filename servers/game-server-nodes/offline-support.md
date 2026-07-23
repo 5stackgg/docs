@@ -1,6 +1,6 @@
 # Game Server Offline Support
 
-If your internet connection goes down, you can still set up and run offline matches using the Game Server Node Connector interface.
+If your internet connection goes down. You can still set up and run offline matches using the Game Server Node Connector interface.
 
 To access the offline interface, open a browser and go to your node’s LAN IP at:  
 `http://<lan-ip>:8585`

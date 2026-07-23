@@ -1,6 +1,825 @@
+/* ---------------------------------------------------------------------------
+   Tactical design language
+
+   The panel itself has a distinctive look: Oxanium display type, an amber
+   accent, corner brackets, wide-tracked uppercase eyebrows, faint HUD
+   scanlines. These are lifted from `web/assets/css/tailwind.css` so the docs
+   read as the same product rather than as stock VitePress.
+
+   Display type only: body copy stays on the theme's reading font, because a
+   docs site is read, not scanned.
+   --------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Oxanium";
+  src: url("/fonts/Oxanium-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --tac-amber: 33 94% 58%;
+  --vp-font-family-display: "Oxanium", var(--vp-font-family-base);
+
+  /* Retarget VitePress's brand color (default: indigo) to the panel's amber.
+     The web app is a near-monochrome neutral-gray theme with amber as its one
+     accent; the blues/purples the default theme shows are not ours. Light-mode
+     link text is darkened so amber clears contrast on a white background;
+     buttons keep the bright amber fill with near-black text. */
+  --vp-c-brand-1: hsl(33 82% 40%);
+  --vp-c-brand-2: hsl(33 82% 35%);
+  --vp-c-brand-3: hsl(33 94% 55%);
+  --vp-c-brand-soft: hsl(33 94% 50% / 0.14);
+
+  --vp-button-brand-text: hsl(0 0% 10%);
+  --vp-button-brand-bg: hsl(33 94% 55%);
+  --vp-button-brand-border: hsl(33 94% 55%);
+  --vp-button-brand-hover-text: hsl(0 0% 8%);
+  --vp-button-brand-hover-bg: hsl(33 94% 49%);
+  --vp-button-brand-hover-border: hsl(33 94% 49%);
+  --vp-button-brand-active-text: hsl(0 0% 8%);
+  --vp-button-brand-active-bg: hsl(33 94% 45%);
+  --vp-button-brand-active-border: hsl(33 94% 45%);
+}
+
+.dark {
+  /* On the dark surface a brighter amber reads as the accent and stays legible
+     as link text. */
+  --vp-c-brand-1: hsl(33 94% 62%);
+  --vp-c-brand-2: hsl(33 94% 70%);
+  --vp-c-brand-3: hsl(33 80% 48%);
+  --vp-c-brand-soft: hsl(33 94% 58% / 0.16);
+
+  --vp-button-brand-text: hsl(0 0% 8%);
+  --vp-button-brand-bg: hsl(33 90% 55%);
+  --vp-button-brand-border: hsl(33 90% 55%);
+  --vp-button-brand-hover-text: hsl(0 0% 8%);
+  --vp-button-brand-hover-bg: hsl(33 94% 61%);
+  --vp-button-brand-hover-border: hsl(33 94% 61%);
+  --vp-button-brand-active-text: hsl(0 0% 8%);
+  --vp-button-brand-active-bg: hsl(33 90% 50%);
+  --vp-button-brand-active-border: hsl(33 90% 50%);
+}
+
 .VPImage.logo {
   border-radius: 3px;
 }
+
 .VPHome .VPHero .VPImage {
   border-radius: 15px;
+}
+
+/* Nav wordmark: the tiny logo image was illegible, so the nav shows "5Stack"
+   set in the display font, matching the headings used across the site. */
+.VPNavBarTitle .title {
+  font-family: var(--vp-font-family-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
+}
+
+/* Headings across the whole site, not just home: this is the identity. */
+.VPHome .VPHero .name,
+.VPHome .VPHero .text,
+.VPHome .VPFeature .title,
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  font-family: var(--vp-font-family-display);
+  font-weight: 700;
+}
+
+.VPHome .VPHero .name,
+.VPHome .VPHero .text {
+  letter-spacing: -0.01em;
+}
+
+/* VitePress lays the hero out as flex, which lets the logo sprawl and leaves a
+   dead gap on its right. Re-lay it as a real 2:1 grid: copy on the left, logo
+   centered in a fixed right cell. */
+@media (min-width: 960px) {
+  .VPHome .VPHero .container {
+    display: grid;
+    grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: center;
+  }
+
+  /* VitePress caps .main (592px) and .name/.text/.tagline (576px). Those beat a
+     plain `.VPHome .VPHero .main` on source order, so target through .container
+     for extra specificity and free the heading to use the whole column. The
+     tagline stays capped for a comfortable reading measure. */
+  .VPHome .VPHero .container .main {
+    max-width: none;
+    /* VitePress centres .main with `margin: 0 auto`, which makes a grid item
+       shrink to its content instead of filling the column. Reset both so the
+       heading can run the full width toward the logo. */
+    width: 100%;
+    margin: 0;
+    grid-column: 1;
+  }
+
+  .VPHome .VPHero .container .name,
+  .VPHome .VPHero .container .text {
+    max-width: none;
+  }
+
+  .VPHome .VPHero .container .tagline {
+    max-width: 620px;
+  }
+
+  .VPHome .VPHero .image {
+    grid-column: 2;
+    margin: 0;
+    min-height: 0;
+  }
+
+  /* Center the logo in its cell, cap its size so the copy column dominates, and
+     drop VitePress's -32px horizontal nudge (keeping the vertical lift). */
+  .VPHome .VPHero .image-container {
+    margin: 0 auto;
+    transform: translateY(-24px);
+  }
+
+  .VPHome .VPHero .image-src {
+    max-width: 300px;
+    max-height: 300px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Home page
+   --------------------------------------------------------------------------- */
+
+/* Hero name picks up the brand gradient rather than a flat accent color. */
+.VPHome .VPHero .name .clip {
+  background: linear-gradient(
+    120deg,
+    var(--vp-c-brand-1) 30%,
+    var(--vp-c-brand-3)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Feature cards carry the panel's corner-bracket motif: an amber L in the
+   top-left that only resolves on hover, so the grid stays calm at rest. */
+.VPHome .VPFeature {
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    transform 0.25s;
+}
+
+.VPHome .VPFeature::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid hsl(var(--tac-amber));
+  border-left: 2px solid hsl(var(--tac-amber));
+  opacity: 0;
+  transform: translate(-3px, -3px);
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+  pointer-events: none;
+}
+
+.VPHome .VPFeature:hover {
+  border-color: hsl(var(--tac-amber) / 0.5);
+  transform: translateY(-2px);
+}
+
+.VPHome .VPFeature:hover::before {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.VPHome .VPFeature .icon {
+  transition: color 0.25s;
+}
+
+.VPHome .VPFeature:hover .icon {
+  color: hsl(var(--tac-amber));
+}
+
+/* Default VPFeature stacks the icon above the title. Re-lay the four fixed
+   children (icon, title, details, link-text) onto a grid so the icon sits
+   on the same line as the heading, with body copy spanning the full width. */
+.VPHome .VPFeature .box {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon    title"
+    "details details"
+    "link    link";
+  align-content: start;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.VPHome .VPFeature .box > .icon {
+  grid-area: icon;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0;
+}
+
+.VPHome .VPFeature .box > .title {
+  grid-area: title;
+  align-self: center;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.VPHome .VPFeature .box > .details {
+  grid-area: details;
+  margin-top: 14px;
+}
+
+.VPHome .VPFeature .box > .link-text {
+  grid-area: link;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* One orchestrated reveal on load beats scattered micro-interactions. */
+@media (prefers-reduced-motion: no-preference) {
+  .VPHome .VPFeatures .item {
+    animation: tac-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+
+  .VPHome .VPFeatures .item:nth-child(1) {
+    animation-delay: 0.02s;
+  }
+  .VPHome .VPFeatures .item:nth-child(2) {
+    animation-delay: 0.06s;
+  }
+  .VPHome .VPFeatures .item:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+  .VPHome .VPFeatures .item:nth-child(4) {
+    animation-delay: 0.14s;
+  }
+  .VPHome .VPFeatures .item:nth-child(5) {
+    animation-delay: 0.18s;
+  }
+  .VPHome .VPFeatures .item:nth-child(6) {
+    animation-delay: 0.22s;
+  }
+  .VPHome .VPFeatures .item:nth-child(7) {
+    animation-delay: 0.26s;
+  }
+  .VPHome .VPFeatures .item:nth-child(8) {
+    animation-delay: 0.3s;
+  }
+  .VPHome .VPFeatures .item:nth-child(9) {
+    animation-delay: 0.34s;
+  }
+}
+
+@keyframes tac-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sections of hand-written markdown that follow the feature grid. The parent
+   `.container` already supplies the page gutter and clamps to 1152px of
+   content, so these must not add padding of their own or they fall out of
+   alignment with the feature cards above them. */
+.home-section {
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.home-lede {
+  max-width: 760px;
+  margin-top: 56px;
+  text-align: center;
+}
+
+.vp-doc .home-lede p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc .home-lede p strong {
+  color: var(--vp-c-text-1);
+}
+
+/* Each section opens with an amber-tipped rule, the same separator language as
+   the tactical eyebrows in the intro band. */
+.home-section::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 64px;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--tac-amber) / 0.7) 0,
+    hsl(var(--tac-amber) / 0.25) 6%,
+    var(--vp-c-divider) 20%,
+    transparent 100%
+  );
+}
+
+.home-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 28px 0 24px;
+  padding-top: 0;
+  border-top: none;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* The amber tick that marks a section heading throughout the panel UI. */
+.home-section h2::before {
+  content: "◢";
+  font-size: 11px;
+  line-height: 1;
+  color: hsl(var(--tac-amber));
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.home-grid > div {
+  padding: 20px 24px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background-color: var(--vp-c-bg-soft);
+}
+
+.home-grid p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+.home-grid p strong {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vp-c-text-1);
+}
+
+.home-grid ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Each item is two lines: the amber feature link, then its description directly
+   beneath. Items are separated by a hairline divider rather than a per-item
+   border, so a scan reads as one clean list. */
+.home-grid li {
+  padding: 12px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--vp-c-text-2);
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.home-grid li:first-child {
+  padding-top: 4px;
+  border-top: none;
+}
+
+.home-grid li:last-child {
+  padding-bottom: 0;
+}
+
+/* vp-doc underlines every link; inside these link-dense cards that reads as
+   noise, so underline on hover only. The link is the first line: block, amber,
+   sitting tight above its description. */
+.vp-doc .home-grid a {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--vp-font-family-display);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.vp-doc .home-grid a:hover {
+  text-decoration: underline;
+}
+
+.home-cta {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.vp-doc .home-cta p {
+  color: var(--vp-c-text-2);
+}
+
+/* Centered sections still get a left-anchored separator, so the amber tick
+   stays on the same vertical line down the whole page. */
+.home-cta h2 {
+  justify-content: center;
+}
+
+/* Scoped under .vp-doc so these beat `.vp-doc a`, which would otherwise paint
+   the label in the brand color, near-invisible on the brand-filled button.
+   Colors come from VitePress's own button tokens rather than raw brand vars, so
+   these match the hero buttons and stay legible in both themes. */
+.vp-doc a.home-button {
+  display: inline-block;
+  margin: 12px 4px 0;
+  padding: 0 20px;
+  border: 1px solid var(--vp-button-brand-border);
+  border-radius: 20px;
+  background-color: var(--vp-button-brand-bg);
+  color: var(--vp-button-brand-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 38px;
+  text-decoration: none;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    color 0.25s;
+}
+
+.vp-doc a.home-button:hover {
+  border-color: var(--vp-button-brand-hover-border);
+  background-color: var(--vp-button-brand-hover-bg);
+  color: var(--vp-button-brand-hover-text);
+}
+
+.vp-doc a.home-button-alt {
+  border-color: var(--vp-button-alt-border);
+  background-color: var(--vp-button-alt-bg);
+  color: var(--vp-button-alt-text);
+}
+
+.vp-doc a.home-button-alt:hover {
+  border-color: var(--vp-button-alt-hover-border);
+  background-color: var(--vp-button-alt-hover-bg);
+  color: var(--vp-button-alt-hover-text);
+}
+
+.vp-doc a.home-button svg {
+  display: inline-block;
+  vertical-align: -3px;
+  margin-right: 6px;
+}
+
+/* Maintainer / sponsor card. Sits inside a .home-section, whose ::before rule
+   separates it, so it only needs to clear that rule. */
+.home-maintainer {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  max-width: 720px;
+  margin: 40px auto 0;
+  padding: 28px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background-color: var(--vp-c-bg-soft);
+}
+
+.home-maintainer-avatar {
+  flex-shrink: 0;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.vp-doc .home-maintainer p {
+  margin: 0;
+}
+
+.vp-doc .home-maintainer-eyebrow {
+  font-family: var(--vp-font-family-display);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-text-3);
+}
+
+.vp-doc .home-maintainer-name {
+  margin-top: 2px !important;
+  font-family: var(--vp-font-family-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc .home-maintainer-copy {
+  margin-top: 10px !important;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+.home-maintainer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.vp-doc .home-maintainer-actions .home-button {
+  margin: 12px 0 0;
+}
+
+@media (max-width: 639px) {
+  .home-maintainer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-maintainer-actions {
+    justify-content: center;
+  }
+}
+
+/* The home page ends on the sponsor card; VitePress's default 128px tail leaves
+   it stranded in dead space. */
+.VPHome {
+  margin-bottom: 48px !important;
+}
+
+/* Footnote for the `*` on GPU-dependent feature cards. */
+.vp-doc .home-footnote {
+  max-width: 1152px;
+  margin: 40px auto 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vp-c-text-3);
+}
+
+.home-footnote-mark {
+  margin-right: 4px;
+  color: hsl(var(--tac-amber));
+  font-weight: 700;
+}
+
+/* The GPU-dependency asterisk on feature cards, in the accent color. */
+.VPFeature .gpu-mark {
+  color: hsl(var(--tac-amber));
+  font-weight: 700;
+}
+
+/* "Join the crowd" Discord banner, sits under the CTA. Scoped under .vp-doc so
+   `text-decoration: none` beats vp-doc's link underline. */
+.vp-doc a.home-discord,
+.vp-doc a.home-discord:hover {
+  text-decoration: none;
+}
+
+.home-discord {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 720px;
+  margin: 24px auto 0;
+  padding: 20px 24px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: linear-gradient(
+    120deg,
+    hsl(235 86% 65% / 0.1),
+    var(--vp-c-bg-soft) 70%
+  );
+  transition:
+    border-color 0.25s,
+    transform 0.25s;
+}
+
+.home-discord:hover {
+  border-color: hsl(235 86% 65% / 0.6);
+  transform: translateY(-2px);
+}
+
+.home-discord-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: hsl(235 86% 65%);
+  color: #fff;
+}
+
+.home-discord-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-discord-title {
+  display: block;
+  font-family: var(--vp-font-family-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.home-discord-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--vp-c-text-2);
+}
+
+.home-discord-cta {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: hsl(235 86% 72%);
+}
+
+@media (max-width: 639px) {
+  .home-discord {
+    flex-wrap: wrap;
+  }
+
+  .home-discord-cta {
+    width: 100%;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Home page nav bar
+
+   The hero already shows the 5Stack wordmark and logo, so repeating them in the
+   nav is redundant and leaves the search box stranded. On home only, drop the
+   nav title and let search claim the freed space. Other pages keep the logo.
+   --------------------------------------------------------------------------- */
+.is-home-page .VPNavBarTitle {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .is-home-page .VPNavBar .content-body {
+    gap: 12px;
+  }
+
+  .is-home-page .VPNavBarSearch {
+    flex-grow: 1;
+    justify-content: flex-start;
+    padding-right: 0;
+  }
+
+  /* The trigger nests inside a shrink-wrapping #local-search div, so both it and
+     the button need to stretch for search to claim the freed title space. */
+  .is-home-page .VPNavBarSearch #local-search {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .is-home-page .VPNavBarSearch .DocSearch-Button,
+  .is-home-page .VPNavBarSearch #local-search button,
+  .is-home-page .VPNavBarSearch button {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion: page transitions, sidebar wayfinding, hover micro-interactions
+   --------------------------------------------------------------------------- */
+
+/* Page transition. A `route-enter` class is toggled on the content column on
+   each navigation (see theme/index.js), re-running this fade-and-rise so the
+   new page eases in instead of snapping. Mirrors the web app's PageTransition
+   timing (ease-out-expo). Content only, so the nav and sidebar stay put. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Animate only the main content column, never `.container`: that also holds
+     the sticky "On this page" TOC, and a transform on a sticky element's
+     ancestor breaks stickiness mid-animation, making the TOC jump when it ends. */
+  .VPContent.route-enter .VPDoc .content,
+  .VPContent.route-enter .VPHome {
+    animation: content-in 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes content-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* In-page anchor jumps (TOC, heading links) glide instead of snapping. */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Sidebar wayfinding ---------------------------------------------------------
+   Make the current section and page obvious: the active top-level section
+   heading turns amber, and the active page gets an amber bar in the gutter. */
+.VPSidebarItem .text {
+  transition: color 0.2s;
+}
+
+/* Amber means exactly one thing: the page you're on. The nav bar already shows
+   which area (Docs / Features / Troubleshooting) you're in, so colouring the
+   sidebar section header too made it read as two active things at once. The
+   active section header just gets a touch more weight instead. */
+.VPSidebar .VPSidebarItem.level-0.has-active > .item .text {
+  color: var(--vp-c-text-1);
+  font-weight: 700;
+}
+
+.VPSidebarItem.is-link > .item .link:hover .text {
+  color: var(--vp-c-brand-1);
+}
+
+.VPSidebarItem.is-active > .item .link .text {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+/* VitePress already draws an active-item indicator bar; the brand override
+   makes it amber, so no custom bar is needed (a second one doubled up). Just
+   give it a touch more presence. */
+.VPSidebarItem.is-active > .item > .indicator {
+  width: 2px;
+  border-radius: 2px;
+}
+
+/* Hover micro-interactions ---------------------------------------------------
+   Arrows nudge forward on hover, giving links a sense of direction. */
+.VPHome .VPFeature .link-text-icon {
+  transition: transform 0.2s;
+}
+
+.VPHome .VPFeature:hover .link-text-icon {
+  transform: translateX(3px);
+}
+
+.home-discord-arrow,
+.home-intro-punch-cta span[aria-hidden] {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.home-discord:hover .home-discord-arrow,
+.home-intro-punch-cta:hover span[aria-hidden] {
+  transform: translateX(3px);
+}
+
+.home-discord-icon {
+  transition: transform 0.2s;
+}
+
+.home-discord:hover .home-discord-icon {
+  transform: scale(1.06) rotate(-3deg);
+}
+
+/* The "Is it for you?" cards pick up the same amber-on-hover treatment as the
+   feature cards, so the whole page reacts consistently. */
+.home-intro-card {
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.home-intro-card:hover {
+  border-color: hsl(var(--tac-amber) / 0.45);
+  transform: translateY(-2px);
 }

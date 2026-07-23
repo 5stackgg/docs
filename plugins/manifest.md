@@ -24,16 +24,16 @@ into the registration form.
 
 ## Fields
 
-| Field          | Required | Meaning                                                                                      |
-| -------------- | -------- | -------------------------------------------------------------------------------------------- |
-| `name`         | ✓        | The title shown in the sidebar and on the page.                                              |
-| `slug`         | ✓        | URL segment — your page lives at `/apps/<slug>`. Lowercase `a-z0-9-`.                        |
-| `icon`         |          | A [lucide](https://lucide.dev) icon name, an image/SVG **URL**, or an inline `<svg>` string. |
-| `remoteEntry`  | ✓        | URL of your Federation `remoteEntry.js`. Absolute, or relative to the manifest.              |
-| `scope`        | ✓        | Your Federation container name — must equal `name` in your Vite federation config.           |
-| `module`       | ✓        | The exposed module path, e.g. `./App`.                                                       |
-| `requiredRole` |          | `null` for a public page, or a role name to gate visibility.                                 |
-| `profileTabLabel` |       | Also render your plugin as a tab on player profiles, using this label. Omit for no tab.      |
+| Field             | Required | Meaning                                                                                      |
+| ----------------- | -------- | -------------------------------------------------------------------------------------------- |
+| `name`            | ✓        | The title shown in the sidebar and on the page.                                              |
+| `slug`            | ✓        | URL segment, your page lives at `/apps/<slug>`. Lowercase `a-z0-9-`.                         |
+| `icon`            |          | A [lucide](https://lucide.dev) icon name, an image/SVG **URL**, or an inline `<svg>` string. |
+| `remoteEntry`     | ✓        | URL of your Federation `remoteEntry.js`. Absolute, or relative to the manifest.              |
+| `scope`           | ✓        | Your Federation container name, must equal `name` in your Vite federation config.            |
+| `module`          | ✓        | The exposed module path, e.g. `./App`.                                                       |
+| `requiredRole`    |          | `null` for a public page, or a role name to gate visibility.                                 |
+| `profileTabLabel` |          | Also render your plugin as a tab on player profiles, using this label. Omit for no tab.      |
 
 ### `slug`
 
@@ -49,7 +49,7 @@ Three accepted forms, in order of how much control they give you:
 { "icon": "sparkles" }
 ```
 
-A lucide icon name. The panel ships a curated set — if yours does not render,
+A lucide icon name. The panel ships a curated set, if yours does not render,
 fall back to one of the other two forms.
 
 ```json
@@ -70,7 +70,7 @@ stripped.
 
 ### `remoteEntry`
 
-With the standard Vite setup this is `/assets/remoteEntry.js` — relative to the
+With the standard Vite setup this is `/assets/remoteEntry.js`, relative to the
 manifest, which means it resolves against whatever base URL the admin registered.
 Keep it relative unless your JS is genuinely hosted on a different origin from
 your manifest.
@@ -90,7 +90,7 @@ federation({
 ```
 
 A mismatch produces a page that loads the remote entry successfully and then
-fails to resolve the module — see [Module Federation](/plugins/module-federation).
+fails to resolve the module. See [Module Federation](/plugins/module-federation).
 
 ### `requiredRole`
 
@@ -105,7 +105,7 @@ is in [Backend & Auth](/plugins/backend#roles).
 ::: warning `requiredRole` is visibility, not security
 It controls whether the sidebar entry and the route render. It does not protect
 your data. Anything sensitive must be re-checked by your own backend against a
-verified identity — see [Backend & Auth](/plugins/backend).
+verified identity. See [Backend & Auth](/plugins/backend).
 :::
 
 ### `profileTabLabel`
@@ -118,13 +118,13 @@ the panel mounts your remote inside that tab.
 { "profileTabLabel": "Inventory" }
 ```
 
-The value is the tab's label. Omit the field and no tab is rendered — the field
+The value is the tab's label. Omit the field and no tab is rendered, the field
 is both the opt-in and the wording, so there is no separate boolean. Admins can
 override the label per-site in the registration form without touching your
 manifest.
 
 Your `/apps/<slug>` page is unaffected; this is an additional place your same
-exposed module gets mounted. What changes is the query the host passes you — see
+exposed module gets mounted. What changes is the query the host passes you, see
 [Routing](/plugins/routing#the-player-profile-tab), which covers the `player` and
 `embed` keys and the one behavior difference in `navigate`.
 
@@ -141,5 +141,5 @@ the browser, so it does not need CORS headers. It should be served as
 `application/json`.
 
 Admins can also skip Detect and type every value in by hand. The manifest is a
-convenience, not a requirement — but shipping one means your users cannot get the
+convenience, not a requirement, but shipping one means your users cannot get the
 scope or module wrong.

@@ -13,7 +13,7 @@ Run `./overlays/vault/scripts/install.sh`, which will install the external-secre
 2. Setup Vault
 
 ::: warning
-The setup vault script should only be run if it's a clean install of vault, otherwise you should manually configure vault access.
+The setup vault script should only be run if it's a clean install of vault; otherwise you should manually configure vault access.
 :::
 
 Run `./overlays/vault/scripts/setup-vault.sh`, which will setup the proper access to your vault within the Kubernetes cluster.

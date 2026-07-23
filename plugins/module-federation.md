@@ -42,7 +42,7 @@ export default defineConfig({
 });
 ```
 
-`build.target: "esnext"` is required — Federation emits top-level `await`.
+`build.target: "esnext"` is required, Federation emits top-level `await`.
 `cssCodeSplit: false` keeps your CSS in one bundle so `cssInjectedByJs` can inline
 all of it.
 
@@ -84,7 +84,7 @@ them.
 
 **Pin the same versions the panel uses.** Every entry is
 `requiredVersion: false`, which disables Federation's version check entirely.
-That is deliberate — it avoids spurious mismatch errors — but it means a wrong
+That is deliberate. It avoids spurious mismatch errors, but it means a wrong
 version does not error. It loads a second copy and you debug phantom reactivity
 bugs instead.
 
@@ -118,13 +118,13 @@ through [its own backend](/plugins/backend).
 
 ## Exposing more than one module
 
-`exposes` takes any number of entries, but the panel mounts exactly one — the
+`exposes` takes any number of entries, but the panel mounts exactly one: the
 `module` named in your [manifest](/plugins/manifest). Exposing extra modules is
 only useful if something else consumes them.
 
 If your plugin needs multiple screens, route inside your own component rather
 than exposing several. Use the `path`, `query`, and `navigate` props the host
-passes you — see [Routing](/plugins/routing):
+passes you. See [Routing](/plugins/routing):
 
 ```ts
 // /apps/inventory/items  ->  path === "/items"
@@ -136,14 +136,14 @@ Do **not** reach for `window.location` and `history.replaceState` directly. They
 appear to work and then desync from the host router, which is the thing actually
 driving the URL.
 
-Using `vue-router` is possible — it is a shared singleton — but you are sharing
+Using `vue-router` is possible. It is a shared singleton, but you are sharing
 the panel's router instance, so be careful not to fight it over the `/apps/*`
 route.
 
 This also matters if you ship a
 [player-profile tab](/plugins/routing#the-player-profile-tab): the same exposed
 module gets mounted in a second position, so a component that reads the real URL
-instead of its props will read the *profile's* URL, not its own.
+instead of its props will read the _profile's_ URL, not its own.
 
 ## Development builds
 

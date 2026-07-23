@@ -39,6 +39,6 @@ Downloading the demo is the one piece that needs more than the standard key. The
 ## Troubleshooting
 
 - **No chip appears on any player.** Double-check that `FACEIT_API_KEY` is set in `INSTALL_DIR/overlays/local-secrets/faceit-secrets.env` and that the panel has been updated. The API logs `FACEIT_API_KEY not configured` on each refresh attempt when the key is missing.
-- **Chip appears for some players but not others on a player page.** That's expected — only players who have linked their Steam account to Faceit will have a CS2 profile to fetch.
-- **Scoreboard ranks are missing for opponents on an imported match.** Re-import the match — every player's Faceit rank is fetched at import time, so opponents who have never opened 5Stack get filled in.
+- **Chip appears for some players but not others on a player page.** That's expected, only players who have linked their Steam account to Faceit will have a CS2 profile to fetch.
+- **Scoreboard ranks are missing for opponents on an imported match.** Re-import the match. Every player's Faceit rank is fetched at import time, so opponents who have never opened 5Stack get filled in.
 - **Matches never import automatically.** Confirm `FACEIT_API_KEY` is set and that the player has linked their Steam match history; without the key, only manual demo upload works.

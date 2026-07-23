@@ -4,11 +4,11 @@ Your server has a concept of CPU governance, which controls how the CPU manages 
 
 ## Recommended Configuration
 
-For game servers, it is **strongly recommended** to set the CPU governor to `performance` to ensure consistent, low-latency performance.
+For game servers. It is **strongly recommended** to set the CPU governor to `performance` to ensure consistent, low-latency performance.
 
 ## Ubuntu/Debian Configuration
 
-If you're using Ubuntu or Debian, you can install `cpufrequtils` and configure the governor:
+If you're using Ubuntu or Debian. You can install `cpufrequtils` and configure the governor:
 
 ```bash
    apt update

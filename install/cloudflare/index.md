@@ -1,6 +1,6 @@
 # Cloudflare
 
-If your domain's DNS is managed by Cloudflare, there are a few 5Stack specific settings you need to get right. Cloudflare sits in front of your panel and can interfere with certificate generation, WebSockets, and login if it isn't configured correctly.
+If your domain's DNS is managed by Cloudflare. There are a few 5Stack specific settings you need to get right. Cloudflare sits in front of your panel and can interfere with certificate generation, WebSockets, and login if it isn't configured correctly.
 
 Pick the setup that matches how you want traffic to reach your server:
 
@@ -15,7 +15,7 @@ Pick the setup that matches how you want traffic to reach your server:
 Regardless of which setup you choose:
 
 - **SSL/TLS encryption mode** must be set to **Full** (or **Full (strict)** only if Cloudflare can validate your origin certificate). Under **Flexible**, Cloudflare talks to your origin over HTTP and 5Stack will end up in a redirect loop.
-- 5Stack provisions several subdomains — make sure each one resolves to your server:
+- 5Stack provisions several subdomains, make sure each one resolves to your server:
 
 | Subdomain | Purpose |
 |---|---|
@@ -31,7 +31,7 @@ A wildcard record (`*.yourdomain.com`) covers all of these, but see the note on 
 
 ## In this section
 
-- [DNS & SSL](/install/cloudflare/dns-and-ssl) — records, SSL/TLS mode, and certificate problems
-- [Cloudflare Proxy](/install/cloudflare/proxy) — using the orange cloud in front of 5Stack
-- [Cloudflare Tunnel](/install/cloudflare/tunnel) — expose 5Stack without opening ports
-- [Google Tag Manager](/install/cloudflare/google-tag-manager) — Google Tag Gateway
+- [DNS & SSL](/install/cloudflare/dns-and-ssl), records, SSL/TLS mode, and certificate problems
+- [Cloudflare Proxy](/install/cloudflare/proxy), using the orange cloud in front of 5Stack
+- [Cloudflare Tunnel](/install/cloudflare/tunnel), expose 5Stack without opening ports
+- [Google Tag Manager](/install/cloudflare/google-tag-manager), Google Tag Gateway

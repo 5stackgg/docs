@@ -9,10 +9,10 @@ You can setup dedicated servers in three different ways:
 The 5Stack Game Server Plugin ships for two CS2 frameworks. Pick one, then download its
 latest release and follow that framework's install guide:
 
-- **SwiftlyS2** (default) — [Releases](https://github.com/5stackgg/swiftly-game-server/releases) · [SwiftlyS2 docs](https://github.com/swiftly-solution/swiftlys2)
-- **CounterStrikeSharp** — [Releases](https://github.com/5stackgg/game-server/releases) · [CounterStrikeSharp docs](https://docs.cssharp.dev/docs/guides/getting-started.html)
+- **SwiftlyS2** (default), [Releases](https://github.com/5stackgg/swiftly-game-server/releases) · [SwiftlyS2 docs](https://github.com/swiftly-solution/swiftlys2)
+- **CounterStrikeSharp**: [Releases](https://github.com/5stackgg/game-server/releases) · [CounterStrikeSharp docs](https://docs.cssharp.dev/docs/guides/getting-started.html)
 
-See [Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) for how the two differ.
+See [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) for how the two differ.
 
 ::: warning
 The server must be started with `-usercon`, and `-ip 0.0.0.0` to allow remote rcon
@@ -65,4 +65,4 @@ services:
           memory: 10Gi
 ```
 
-After a Counter-Strike update, you will need to run `docker-compose run --rm update-server` to download and install the latest version of the game.
+After a Counter-Strike update. You will need to run `docker-compose run --rm update-server` to download and install the latest version of the game.

@@ -1,6 +1,6 @@
 # Updating the 5Stack Panel
 
-Occasionally, you may need to update the 5Stack Panel to the latest version. Currently, this process requires manual intervention:
+Occasionally. You may need to update the 5Stack Panel to the latest version. Currently, this process requires manual intervention:
 
 1. Navigate to the installation directory.
 2. Run `git pull` to fetch the latest updates.

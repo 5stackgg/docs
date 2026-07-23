@@ -1,6 +1,6 @@
-# Custom Plugins
+# Custom Game Plugins
 
-5Stack Game Node Server containers support custom plugins for both supported frameworks. To set up custom plugins, there is a special folder located at `/opt/5stack/custom-plugins` on your Game Server Node.
+5Stack Game Node Server containers support custom plugins for both supported frameworks. To set up custom plugins. There is a special folder located at `/opt/5stack/custom-plugins` on your Game Server Node.
 
 Any files placed in `/opt/5stack/custom-plugins` are mirrored into `<install-dir>/game/csgo` when the game server starts, preserving their directory structure. So lay your files out exactly as they would sit inside `game/csgo`.
 
@@ -11,7 +11,7 @@ Game Node servers operate independently, so you'll need to copy your plugin file
 ::: danger Pick the directory that matches your runtime
 Plugins are **framework-specific**. A CounterStrikeSharp plugin will not load under SwiftlyS2, and vice versa. Files under the wrong `addons/` directory are copied to the server and then silently ignored.
 
-Check which runtime you're on first — see [Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes). **SwiftlyS2 is the default.**
+Check which runtime you're on first. See [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes). **SwiftlyS2 is the default.**
 :::
 
 ## Where files go
@@ -44,13 +44,13 @@ The `configs` directory is symlinked rather than copied, so anything a plugin wr
 
 ## Gamedata overrides
 
-Sometimes when Counter-Strike is updated, it breaks the plugin framework's signatures before an official fix ships. Overriding the gamedata files is the temporary workaround.
+Sometimes when Counter-Strike is updated. It breaks the plugin framework's signatures before an official fix ships. Overriding the gamedata files is the temporary workaround.
 
-The two frameworks store gamedata very differently — CounterStrikeSharp uses a single `gamedata.json`, while SwiftlyS2 splits it into three `.jsonc` files. **If a file exists in your custom-plugins folder it replaces the shipped one wholesale**, so copy the original out of a running server first and edit that, rather than writing a file containing only your changes.
+The two frameworks store gamedata very differently. CounterStrikeSharp uses a single `gamedata.json`, while SwiftlyS2 splits it into three `.jsonc` files. **If a file exists in your custom-plugins folder it replaces the shipped one wholesale**, so copy the original out of a running server first and edit that, rather than writing a file containing only your changes.
 
 ### SwiftlyS2
 
-SwiftlyS2 reads `offsets.jsonc`, `patches.jsonc`, and `signatures.jsonc` from `addons/swiftlys2/gamedata/cs2/core/`. Override any subset of the three — each is replaced independently.
+SwiftlyS2 reads `offsets.jsonc`, `patches.jsonc`, and `signatures.jsonc` from `addons/swiftlys2/gamedata/cs2/core/`. Override any subset of the three, each is replaced independently.
 
 ::: code-group
 
@@ -81,7 +81,7 @@ SwiftlyS2 reads `offsets.jsonc`, `patches.jsonc`, and `signatures.jsonc` from `a
 
 :::
 
-Note the differences from CounterStrikeSharp: the key is `lib` (not `library`), signatures and offsets live in **separate files**, and there is no nested `"signatures": { ... }` object — the patterns sit directly on the entry. These files are `.jsonc`, so comments and trailing commas are allowed.
+Note the differences from CounterStrikeSharp: the key is `lib` (not `library`), signatures and offsets live in **separate files**, and there is no nested `"signatures": { ... }` object. The patterns sit directly on the entry. These files are `.jsonc`, so comments and trailing commas are allowed.
 
 ### CounterStrikeSharp
 

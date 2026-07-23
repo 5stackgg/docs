@@ -1,7 +1,7 @@
 # Backend & Auth
 
 Your plugin receives identity from the panel and gets data from its own API.
-There is no federated access to 5Stack's GraphQL layer — the panel's Apollo
+There is no federated access to 5Stack's GraphQL layer, the panel's Apollo
 client and Hasura session are deliberately not shared.
 
 ## Identity in the browser
@@ -21,7 +21,7 @@ const props = defineProps<{
 ::: warning `user` is the viewer, not always the subject
 If your plugin also mounts as a [player-profile tab](/plugins/routing#the-player-profile-tab),
 the profile being viewed arrives as a separate `player` query key. On someone
-else's profile those are different people — never treat `player` as the
+else's profile those are different people, never treat `player` as the
 authenticated identity.
 :::
 
@@ -54,7 +54,7 @@ headers below.
 ## Identity in your backend
 
 Do not implement Steam OpenID, and do not try to decode the 5Stack session
-cookie — it is signed and `httpOnly`, and its contents are not a stable contract.
+cookie. It is signed and `httpOnly`, and its contents are not a stable contract.
 
 Instead, hand the cookie back to us. Every request the browser makes to your
 backend already carries the 5Stack session cookie (see
@@ -91,12 +91,12 @@ anything non-`200` as anonymous.
 
 ::: tip Cache the lookup
 This is one extra in-cluster round-trip per request. Cache the result for a few
-seconds keyed on the cookie value — long enough to collapse a page's burst of
+seconds keyed on the cookie value, long enough to collapse a page's burst of
 API calls, short enough that a logout takes effect promptly.
 :::
 
 This fails closed. If your backend is misconfigured or unexpectedly reachable,
-the worst case is that requests are rejected — never that an attacker is
+the worst case is that requests are rejected, never that an attacker is
 believed.
 
 ### Optional: forward-auth at the ingress
@@ -110,17 +110,17 @@ nginx.ingress.kubernetes.io/auth-url: "http://api.5stack.svc.cluster.local:5585/
 nginx.ingress.kubernetes.io/auth-response-headers: "X-5stack-Steam-Id,X-5stack-Role,X-5stack-Name"
 ```
 
-| Header              | Contents                                       |
-| ------------------- | ---------------------------------------------- |
-| `X-5stack-Steam-Id` | The authenticated user's SteamID64             |
-| `X-5stack-Role`     | Their 5Stack role                              |
-| `X-5stack-Name`     | Their display name, URI-encoded                |
+| Header              | Contents                           |
+| ------------------- | ---------------------------------- |
+| `X-5stack-Steam-Id` | The authenticated user's SteamID64 |
+| `X-5stack-Role`     | Their 5Stack role                  |
+| `X-5stack-Name`     | Their display name, URI-encoded    |
 
-::: danger This mode fails open — know what you are signing up for
+::: danger This mode fails open, know what you are signing up for
 These are plain HTTP headers. nginx overwrites them on the way through, so they
-are trustworthy *only* on traffic that actually traversed that ingress. Expose
-the Service any other way — a second ingress without the annotations, a
-NodePort, a LoadBalancer, a port-forward — and `curl -H "X-5stack-Role:
+are trustworthy _only_ on traffic that actually traversed that ingress. Expose
+the Service any other way, a second ingress without the annotations, a
+NodePort, a LoadBalancer, a port-forward, and `curl -H "X-5stack-Role:
 administrator"` is an admin session. Nothing will warn you.
 
 Prefer the cookie check above unless you have measured a reason not to. If you
@@ -130,8 +130,8 @@ ingress as its only route in.
 
 ::: warning It also locks out anything that is not a browser
 The annotation applies to the whole Ingress object, not per path, and it demands
-a session cookie. Any caller that authenticates some other way — a game server
-holding an API key, a webhook, a cron job — has no cookie to present and gets a
+a session cookie. Any caller that authenticates some other way, a game server
+holding an API key, a webhook, a cron job, has no cookie to present and gets a
 flat `401` from nginx. Your handler never runs, so nothing in your logs explains
 it, and the reply is an nginx HTML page rather than your own error shape. That
 detail is the fastest way to tell the two apart:
@@ -142,9 +142,9 @@ HTTP/2 401
 <html><head><title>401 Authorization Required</title></head>
 ```
 
-If any part of your API serves non-browser clients, use the cookie check and let
+If any part of your API serves non-browser clients. Use the cookie check and let
 each route decide, or split the public paths onto a second Ingress with no
-annotations — nginx prefers the longer path match.
+annotations, nginx prefers the longer path match.
 :::
 
 ::: warning Never ship a `DEV_STEAM_ID` escape hatch unguarded
@@ -160,13 +160,13 @@ origin. Hardcoding a URL means reconfiguring per deployment. Derive it instead
 from where your own bundle was loaded:
 
 ```ts
-// api.ts — zero config in production
+// api.ts, zero config in production
 const API_BASE =
   import.meta.env.VITE_MY_PLUGIN_API ?? new URL(import.meta.url).origin;
 
 export async function get<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE}/api${path}`, {
-    // Required — carries the 5Stack session cookie, which is the only thing
+    // Required, carries the 5Stack session cookie, which is the only thing
     // that lets your backend establish who is calling.
     credentials: "include",
   });
@@ -182,7 +182,7 @@ Two details matter:
   `<img>` tags pointing at gated endpoints, which send cookies automatically only
   when same-site.
 - **CORS with credentials.** Your backend must reflect the requesting origin and
-  allow credentials — a wildcard `*` is invalid once credentials are involved:
+  allow credentials, a wildcard `*` is invalid once credentials are involved:
 
   ```ts
   await app.register(cors, { origin: true, credentials: true });
@@ -190,20 +190,20 @@ Two details matter:
 
 ## Hosting is part of the security model
 
-**Your backend must be served from a subdomain of the panel's domain** —
+**Your backend must be served from a subdomain of the panel's domain**,
 `myplugin.panel.example.com` for a panel at `panel.example.com`. This is a
 requirement, not a preference.
 
 The 5Stack session cookie is issued for `.panel.example.com` with the browser
 default `SameSite=Lax`. Lax cookies are not attached to cross-site subresource
-requests, so a backend on an unrelated domain receives no cookie at all — no
+requests, so a backend on an unrelated domain receives no cookie at all, no
 matter what `credentials: "include"` says, and no matter how the ingress is
 annotated. Identity is simply unavailable there.
 
 Two useful consequences fall out of this:
 
 - Hosting in-cluster, behind the panel's own domain, is the only arrangement that
-  works — which is also the arrangement where your Service is not casually
+  works, which is also the arrangement where your Service is not casually
   reachable from outside.
 - Because the cookie is `httpOnly`, your plugin's frontend can never read it. It
   rides along on requests and is exchanged for identity only by your backend
@@ -239,20 +239,20 @@ on every boot without a migration framework.
 ::: warning
 If you share the panel's database, a destructive migration is a destructive
 migration for 5Stack's data too. Confine yourself to your own schema and never
-write to 5Stack's tables — the panel's own migrations own those, and it will
+write to 5Stack's tables (the panel's own migrations own those), and it will
 overwrite you.
 :::
 
 ## Machine-to-machine access
 
 If a game server or another service needs to reach your API without a browser
-session, neither identity mode helps — there is no user and no cookie. Issue your
+session, neither identity mode helps. There is no user and no cookie. Issue your
 own API key: generate it from an admin screen in your plugin, store it in your
 schema, and check it on a route excluded from the session check.
 
 Keep those routes narrow and separate from the session-authenticated ones.
 
 Excluding a route from your own session check is not enough if you also enabled
-[forward-auth at the ingress](#optional-forward-auth-at-the-ingress) — that runs
+[forward-auth at the ingress](#optional-forward-auth-at-the-ingress), that runs
 in front of your process and rejects the caller before your exclusion is ever
 consulted. Pick one or the other.

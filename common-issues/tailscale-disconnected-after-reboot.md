@@ -2,7 +2,7 @@
 
 If Tailscale does not reconnect after a reboot, try restarting the Tailscale daemon.
 
-First, check the connection status:
+First. Check the connection status:
 
 ```bash
 tailscale status
