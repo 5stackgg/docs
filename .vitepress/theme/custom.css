@@ -70,6 +70,16 @@
   border-radius: 15px;
 }
 
+/* Nav wordmark: the tiny logo image was illegible, so the nav shows "5Stack"
+   set in the display font, matching the headings used across the site. */
+.VPNavBarTitle .title {
+  font-family: var(--vp-font-family-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
+}
+
 /* Headings across the whole site, not just home: this is the identity. */
 .VPHome .VPHero .name,
 .VPHome .VPHero .text,

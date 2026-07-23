@@ -47,7 +47,8 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: "/5stack-logo.png",
+    // No nav logo image: the mini logo was illegible at that size. The nav
+    // shows the "5Stack" wordmark styled in Oxanium instead (see custom.css).
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -141,6 +142,7 @@ export default defineConfig({
           text: "Admin Features",
           base: "/features/admin",
           items: [
+            { text: "Overview", link: "/" },
             { text: "Roles & Players", link: "/roles-and-players" },
             { text: "Matchmaking & Ranks", link: "/matchmaking" },
             { text: "Servers & Regions", link: "/servers" },
@@ -154,8 +156,8 @@ export default defineConfig({
       "/": [
         {
           text: "Getting Started",
-          link: "/getting-started",
           items: [
+            { text: "Overview", link: "/getting-started" },
             {
               base: "/install",
               text: "Install",
@@ -300,8 +302,8 @@ export default defineConfig({
         {
           text: "5Stack Plugin Development",
           base: "/plugins",
-          link: "/",
           items: [
+            { text: "Overview", link: "/" },
             { text: "Getting Started", link: "/getting-started" },
             { text: "The Manifest", link: "/manifest" },
             { text: "Routing", link: "/routing" },
