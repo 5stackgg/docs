@@ -38,7 +38,7 @@ rm -rf /etc/rancher/k3s
 # 5. Remove sysctl IP forwarding drop
 rm -f /etc/sysctl.d/99-tailscale.conf
 # (if /etc/sysctl.d/ didn't exist on this host, the entries were appended
-# to /etc/sysctl.conf — remove the net.ipv4.ip_forward and
+# to /etc/sysctl.conf, remove the net.ipv4.ip_forward and
 # net.ipv6.conf.all.forwarding lines from there manually if needed)
 
 # 6. Disconnect and remove Tailscale

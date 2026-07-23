@@ -2,7 +2,7 @@
 
 Backblaze has a partnership with Cloudflare to provide [free data transfer](https://www.backblaze.com/blog/backblaze-and-cloudflare-partner-to-provide-free-data-transfer/).
 
-The Cloudflare Worker in our [web project](https://github.com/5stackgg/web) (`cloudflare-workers/backblaze-proxy/`) signs S3 v4 requests in front of your B2 bucket and serves them through Cloudflare's edge — giving you free B2 → Cloudflare egress _and_ edge caching so popular clips/demos don't re-hit B2 on every view.
+The Cloudflare Worker in our [web project](https://github.com/5stackgg/web) (`cloudflare-workers/backblaze-proxy/`) signs S3 v4 requests in front of your B2 bucket and serves them through Cloudflare's edge, giving you free B2 → Cloudflare egress _and_ edge caching so popular clips/demos don't re-hit B2 on every view.
 
 ## 1. Edit `wrangler.toml`
 
@@ -14,7 +14,7 @@ BUCKET_NAME = "your-bucket-name"
 S3_ENDPOINT = "s3.us-east-005.backblazeb2.com"  # whatever your bucket lists under "Endpoint"
 ```
 
-Both values are non-secret and live in `wrangler.toml` — **not** in `wrangler secret put`.
+Both values are non-secret and live in `wrangler.toml`, **not** in `wrangler secret put`.
 
 ## 2. Set the S3 secrets
 
@@ -54,11 +54,11 @@ You can find your worker's URL in the [Cloudflare Dashboard](https://dash.cloudf
 
 ## Caching
 
-Edge caching is enabled in the worker by default — `cf.cacheEverything` plus a `Cache-Control: public, max-age=2592000, immutable` response header. Clip/demo objects are UUID-keyed so they're safe to cache for the full 30-day window Cloudflare allows on the Free tier. The first request to a clip warms the edge cache; subsequent viewers (including `<video>` Range seeks) are served from Cloudflare without touching B2.
+Edge caching is enabled in the worker by default, `cf.cacheEverything` plus a `Cache-Control: public, max-age=2592000, immutable` response header. Clip/demo objects are UUID-keyed so they're safe to cache for the full 30-day window Cloudflare allows on the Free tier. The first request to a clip warms the edge cache; subsequent viewers (including `<video>` Range seeks) are served from Cloudflare without touching B2.
 
 ## 6. Enable Tiered Cache (recommended)
 
-Cloudflare's edge cache is per-datacenter — without Tiered Cache, a clip viewed first from London is still a cold miss in Tokyo and re-fetches from B2. Tiered Cache lets edges pull from each other before going to origin, so each clip is fetched from B2 once globally instead of once per region.
+Cloudflare's edge cache is per-datacenter. Without Tiered Cache, a clip viewed first from London is still a cold miss in Tokyo and re-fetches from B2. Tiered Cache lets edges pull from each other before going to origin, so each clip is fetched from B2 once globally instead of once per region.
 
 In the [Cloudflare Dashboard](https://dash.cloudflare.com/), select your zone, then go to **Caching → Tiered Cache** and enable **Smart Tiered Cache Topology**. It's free on all plans and is the single biggest reduction in B2 cold-miss traffic you can make.
 

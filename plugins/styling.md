@@ -2,7 +2,7 @@
 
 5Stack's design system is Tailwind CSS driving a set of CSS-variable tokens. A
 plugin opts into it by extending the shared preset from `@5stack/ui`. Do that and
-your buttons, cards, and text inherit the operator's live branding for free — an
+your buttons, cards, and text inherit the operator's live branding for free, an
 admin who changes the panel's colors changes yours too, with no rebuild.
 
 The whole system rests on one idea: **every color in the preset is
@@ -18,7 +18,7 @@ npm install @5stack/ui reka-ui lucide-vue-next clsx tailwind-merge \
 npm install -D tailwindcss postcss autoprefixer
 ```
 
-`tailwind.config.js` — use the **plugin** preset, not the base one:
+`tailwind.config.js`. Use the **plugin** preset, not the base one:
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -59,13 +59,13 @@ Then one stylesheet import, and the attribute on your root element:
 </template>
 ```
 
-That is the whole contract. `plugin.css` is your Tailwind entrypoint — it brings
+That is the whole contract. `plugin.css` is your Tailwind entrypoint. It brings
 the tokens, `@tailwind components`, `@tailwind utilities`, and the scoped base
 rules, and it is built so that nothing it emits can reach the panel's chrome.
 
 ::: warning Do not add `@tailwind base` yourself
 `plugin.css` deliberately omits it. Preflight is global by nature, and your CSS
-loads after the panel's — see [below](#why-plugin-css-omits-preflight). For
+loads after the panel's. See [below](#why-plugin-css-omits-preflight). For
 standalone dev, where nothing has reset UA styles, import the preflight from
 your **dev entry only**:
 
@@ -123,7 +123,7 @@ The border-radius scale derives from `--radius`, so `rounded-sm` through
 
 ::: tip
 Standalone dev falls back to the values baked into `tokens.css`. Those match the
-stock panel theme, but they are a fallback — when embedded, the host's live
+stock panel theme, but they are a fallback: when embedded, the host's live
 values win. Always sanity-check your plugin inside the panel before shipping.
 :::
 
@@ -135,7 +135,7 @@ Tailwind into `remoteEntry.js` as a string, and it installs itself into `<head>`
 when your remote mounts.
 
 That has one consequence that drives everything below: **your CSS is injected
-after the panel's**. On ties, you win — which is a problem, because the panel is
+after the panel's**. On ties you win, which is a problem, because the panel is
 not expecting to be overridden.
 
 `plugin.css` and the plugin preset handle all three collisions below for you.
@@ -161,12 +161,12 @@ plugin must not emit global CSS of its own.
 
 `:where()` has zero specificity, so the host's own `:root` and `.dark` rules win
 when your plugin is embedded, while the same declarations still apply standalone.
-If you define your own tokens, use the same trick.
+If you define your own tokens. Use the same trick.
 
 ### Why `plugin.css` omits preflight
 
 Tailwind's preflight sets `*, ::before, ::after { border-color: #e5e7eb }`.
-Injected late, that repaints every host border that does not set its own color —
+Injected late, that repaints every host border that does not set its own color,
 most visibly as a pale line down the sidebar. Its `body`, heading, and `img`
 resets land on the panel too.
 
@@ -186,8 +186,8 @@ ship is the one slice utilities actually depend on, scoped to your root:
 }
 ```
 
-Without that, `class="border"` renders nothing — Tailwind's `border` utility
-only sets border-*width*; the style and color come from preflight.
+Without that, `class="border"` renders nothing, Tailwind's `border` utility
+only sets border-_width_; the style and color come from preflight.
 
 This is why a bare Tailwind setup, or any plugin that adds `@tailwind base`
 itself, visibly damages the panel.
@@ -211,7 +211,7 @@ Two consequences worth knowing:
 
 - Utilities apply to **descendants** of the root, not to the root element
   itself. Put your layout on a child, not on the `display: contents` wrapper.
-- Content portalled to `document.body` escapes the scope entirely — see
+- Content portalled to `document.body` escapes the scope entirely, see
   [Components](/plugins/components).
 
 If you need extra scoping for your own hand-written CSS, add a second attribute
@@ -244,10 +244,10 @@ Slightly less convenient, reliably correct.
 ## Fonts
 
 The preset names `Oxanium` in its font stack, but the `@font-face` that loads it
-lives in the panel's own stylesheet, not in `tokens.css`. Embedded, you get
-Oxanium because the host loaded it. Standalone, you silently fall back to
+lives in the panel's own stylesheet, not in `tokens.css`. Embedded. You get
+Oxanium because the host loaded it. Standalone. You silently fall back to
 `sans-serif`.
 
 If your dev-mode typography needs to match, ship the font yourself in your dev
-entry — but do not add a global `@font-face` to your production bundle, since the
+entry, but do not add a global `@font-face` to your production bundle, since the
 host already provides one.

@@ -16,4 +16,4 @@ Before you begin, review the system requirements and networking needs:
 4. Paste and run the command. The installer will set up all required components and register the node with your panel.
 5. Return to the panel to confirm the node shows as Connected.
 
-This creates an internal network the panel uses to create and manage servers. For a broader overview, see [What is installed?](/install/what-is-installed.md).
+This creates an internal network the panel uses to create and manage servers. For a broader overview. See [What is installed?](/install/what-is-installed.md).

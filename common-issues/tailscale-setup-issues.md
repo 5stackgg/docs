@@ -13,7 +13,7 @@ If you are unable to obtain a Tailscale auth key when adding a new node to the p
    - `TAILSCALE_SECRET_ID` is set
 
    :::info
-   You cannot view your secret after it has been created. If you lose your secret, you will need to generate a new OAuth client (see step 4).
+   You cannot view your secret after it has been created. If you lose your secret. You will need to generate a new OAuth client (see step 4).
    :::
 
 2. **Tag / Access Controls / Auto Approvers**

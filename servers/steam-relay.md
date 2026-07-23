@@ -4,7 +4,7 @@ The Steam Datagram Relay (SDR) is Valve's virtual private gaming network for Cou
 
 ## Game Server Nodes
 
-Game server nodes are automatic, and no configuration is needed. For more information about game server nodes, see [Game Server Nodes](/servers/game-server-nodes/).
+Game server nodes are automatic, and no configuration is needed. For more information about game server nodes. See [Game Server Nodes](/servers/game-server-nodes/).
 
 ## Dedicated Servers Setup
 

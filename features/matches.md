@@ -1,24 +1,33 @@
 # Matches
 
 Whether it's a casual scrim or a tournament final, 5Stack runs the whole match
-flow — from picking a server to vetoing maps to the live game — from the panel.
+flow, from picking a server to vetoing maps to the live game, from the panel.
 
 ## Servers, your way
 
 Pick how the match is hosted:
 
-- **On-demand** — provision a fresh server in a chosen region automatically.
-- **Dedicated** — use a server you manage in 5Stack.
-- **Third-party** — point the match at an external server.
+- **On-demand**: provision a fresh server in a chosen region automatically.
+- **Dedicated**: use a server you manage in 5Stack.
+- **Third-party**: point the match at an external server.
 
 Players join with a **passwordless connect** link, and organizers can **reboot the
 server** straight from the match page if something needs a reset during setup.
 
 ## Access & invites
 
-Set who can join with a flick between **Private, Invite-Only, Friends-Only, and
-Open**, and share an auto-generated **invite link** to pull players onto a roster
-quickly. Access can be changed mid-setup without recreating the match.
+Set who can join with a flick between four access modes:
+
+| Access      | Who can get in                                          |
+| ----------- | ------------------------------------------------------- |
+| **Open**    | Anyone can find it in the public list and join          |
+| **Friends** | Only friends of players already in the lobby can see it |
+| **Invite**  | Joinable only via the invite link you share             |
+| **Private** | Only people you let in; hidden from the list            |
+
+Share the auto-generated **invite link** to pull players onto a roster quickly,
+or send **direct invites** to specific players. Access can be changed mid-setup
+without recreating the match.
 
 ## Lineups, check-in & substitutes
 
@@ -28,11 +37,11 @@ match starts.
 
 ## Map & region veto
 
-- **Map veto** — an interactive pick/ban flow; once a map is chosen, teams pick
+- **Map veto**: an interactive pick/ban flow; once a map is chosen, teams pick
   their **CT / T side**. The exact ban/pick sequence is generated deterministically
-  from the pool size and best-of — see [Map Veto Format](/features/map-veto) for
+  from the pool size and best-of. See [Map Veto Format](/features/map-veto) for
   the full rules and worked examples.
-- **Region veto** — teams can veto server regions so neither side is forced onto
+- **Region veto**: teams can veto server regions so neither side is forced onto
   unfavorable latency.
 
 ## Match rules

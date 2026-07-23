@@ -4,14 +4,14 @@
 LAN tournaments, and now supporting online servers, advanced matchmaking,
 statistics, social connectivity, and more.
 
-It runs everything around your matches end to end — from spinning up servers and
+It runs everything around your matches end to end, from spinning up servers and
 running tournaments, to capturing demos and turning them into replays,
 highlights, and live broadcasts, to tracking detailed stats and Elo across your
 community.
 
 ## Explore what it offers
 
-See the **[Features](/features/)** overview for the full picture — match replay,
+See the **[Features](/features/)** overview for the full picture, match replay,
 in-browser demo playback, highlights, live streaming, stats and leaderboards,
 tournaments, and the admin settings behind it all.
 

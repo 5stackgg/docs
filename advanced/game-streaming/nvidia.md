@@ -32,7 +32,7 @@ On Ubuntu / Debian-based hosts:
 sudo ubuntu-drivers autoinstall
 ```
 
-This picks the recommended driver branch for your GPU automatically. If you'd rather pin a specific branch, see [NVIDIA's installation guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/).
+This picks the recommended driver branch for your GPU automatically. If you'd rather pin a specific branch. See [NVIDIA's installation guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/).
 
 Reboot, then verify:
 

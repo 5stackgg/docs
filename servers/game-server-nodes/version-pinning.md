@@ -1,12 +1,12 @@
 # Server Version Pinning
 
-By default, every enabled game server node **auto-updates to the latest CS2 build** and runs the latest 5Stack game server plugin. When Counter-Strike updates, it may not work correctly with your compiled plugins — pinning lets you freeze a node on a known-good build until things catch up.
+By default, every enabled game server node **auto-updates to the latest CS2 build** and runs the latest 5Stack game server plugin. When Counter-Strike updates. It may not work correctly with your compiled plugins. Pinning lets you freeze a node on a known-good build until things catch up.
 
 Pinning is configured **per node**. There is no global pin, so you can hold one node back while the rest track the latest build.
 
 ## Enabling CS2 build pinning
 
-Downloading anything other than the latest build requires an authenticated Steam account — anonymous SteamCMD can only fetch the current build. To pin CS2 builds you must provide Steam credentials:
+Downloading anything other than the latest build requires an authenticated Steam account, anonymous SteamCMD can only fetch the current build. To pin CS2 builds you must provide Steam credentials:
 
 1. Open `INSTALL_DIR/overlays/local-secrets/steam-secrets.env` and set the `STEAM_USER` and `STEAM_PASSWORD` values.
 2. Run `./update.sh`.
@@ -18,7 +18,7 @@ You should use an account dedicated to updating servers, as we are unable to pro
 Until credentials are set, the **CS2 Build** dropdown is disabled and a warning icon appears next to it reading _"Version pinning is not supported on this server."_
 
 ::: tip
-Pinning the **plugin version** does not require Steam credentials — that dropdown works on any install.
+Pinning the **plugin version** does not require Steam credentials, that dropdown works on any install.
 :::
 
 ## Pinning a CS2 build
@@ -41,17 +41,17 @@ Pinning sets the node's **target** build; it does not move the node on its own. 
 
 - The node must be **Online** for the update button to be clickable.
 - While the update runs, the column is replaced by a spinner and **Updating to {version}**. Click **Show Update Logs** to follow along.
-- Rolling _back_ to an older build works exactly the same way — pin it, then run the update.
+- Rolling _back_ to an older build works exactly the same way, pin it, then run the update.
 
 If a node has no CS2 installed yet, you'll see an **Install CS2** button instead of the dropdown.
 
 ## Pinning the plugin version
 
-The **Plugin Version** column controls which 5Stack game server plugin the node runs. Unpinned, it reads **Latest**; pick a version from the dropdown to pin it, or choose **Use Latest Plugin Version** to go back to automatic.
+The **Plugin Version** column controls which 5Stack game server plugin the node runs. Unpinned. It reads **Latest**; pick a version from the dropdown to pin it, or choose **Use Latest Plugin Version** to go back to automatic.
 
-The dropdown only lists releases for the [plugin runtime](/servers/game-server-nodes/plugin-runtimes) you have selected — SwiftlyS2 and CounterStrikeSharp number their releases independently. A pin remembers the runtime it was made under, so a pinned node stays on that framework even if you switch the deployment-wide runtime later. Clear the pin to move it.
+The dropdown only lists releases for the [plugin runtime](/servers/game-server-nodes/plugin-runtimes) you have selected. SwiftlyS2 and CounterStrikeSharp number their releases independently. A pin remembers the runtime it was made under, so a pinned node stays on that framework even if you switch the deployment-wide runtime later. Clear the pin to move it.
 
-Each version shows when it was published, and — where the plugin declares a minimum — a green **Supports: {build_id}+** line telling you the oldest CS2 build it works with. Use that to match a plugin to whatever build you pinned above.
+Each version shows when it was published, and, where the plugin declares a minimum, a green **Supports: {build_id}+** line telling you the oldest CS2 build it works with. Use that to match a plugin to whatever build you pinned above.
 
 If the node's current plugin can't run against its current CS2 build, a red **Plugin version not supported** icon appears next to the dropdown.
 

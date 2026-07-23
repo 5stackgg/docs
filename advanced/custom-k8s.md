@@ -1,6 +1,6 @@
 # Custom Kubernetes YAML
 
-Sometimes you may need to customize the K8s YAML files, for instance if you want to add the cs2 ranks plugin, you may need to add mysql.
+Sometimes you may need to customize the K8s YAML files, for instance if you want to add the cs2 ranks plugin. You may need to add mysql.
 
 In the `<INSTALL_DIR>` of your panel, create a new folder called `custom/mysql`.
 
@@ -116,12 +116,12 @@ spec:
 
 :::
 
-Once you have created the files, you can apply the changes using the following command:
+Once you have created the files. You can apply the changes using the following command:
 
 ```bash
 ./custom.sh mysql
 ```
 
 ::: info
-To allow the plugin to connect to the database, use the service name `mysql`.
+To allow the plugin to connect to the database. Use the service name `mysql`.
 :::

@@ -1,6 +1,6 @@
 # Quick Play & Matchmaking
 
-Quick Play is the fast lane into a game — jump into 1v1, 2v2, or 5v5 on official
+Quick Play is the fast lane into a game, jump into 1v1, 2v2, or 5v5 on official
 or workshop maps, spin up an instant scrim, or queue into regional matchmaking
 with friends.
 
@@ -19,11 +19,11 @@ party stays together through the queue instead of accidentally splitting.
 
 ## Ready up your way
 
-When a match is found you get a ready-up prompt — or, if you'd rather skip the
-confirmation, you can turn the "match found" modal off for instant accept.
+When a match is found you get a ready-up prompt, or, if you'd rather skip the
+confirmation. You can turn the "match found" modal off for instant accept.
 
 ## On-demand or your own servers
 
 Matchmaking can provision an **on-demand server** in your chosen region
-automatically, or run on your dedicated/third-party servers — see
+automatically, or run on your dedicated/third-party servers, see
 [Matches](/features/matches) for how servers are selected.

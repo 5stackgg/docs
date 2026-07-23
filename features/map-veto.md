@@ -14,7 +14,7 @@ of bans and picks is fully predictable and reproducible from two inputs alone:
 2. The building block is a repeating unit of **`Ban, Ban, Pick, Pick`**, with the
    two teams alternating turns.
 3. As soon as the series has enough picked maps to satisfy the best-of, every
-   remaining step is a **Ban** — there is no point picking maps that can't be
+   remaining step is a **Ban**. There is no point picking maps that can't be
    played.
 4. When few enough maps remain that bans would dip below what's needed, the
    remaining steps collapse to **Picks**.
@@ -25,12 +25,12 @@ of bans and picks is fully predictable and reproducible from two inputs alone:
 
 ## Step types
 
-| Type      | Meaning                                                           |
-| --------- | ----------------------------------------------------------------- |
-| `Ban`     | The acting team removes a map from the pool.                      |
-| `Pick`    | The acting team selects a map to be played in the series.         |
-| `Side`    | A starting side (CT / T) is chosen for the just-picked map.       |
-| `Decider` | The final unbanned, unpicked map — assigned automatically.        |
+| Type      | Meaning                                                     |
+| --------- | ----------------------------------------------------------- |
+| `Ban`     | The acting team removes a map from the pool.                |
+| `Pick`    | The acting team selects a map to be played in the series.   |
+| `Side`    | A starting side (CT / T) is chosen for the just-picked map. |
+| `Decider` | The final unbanned, unpicked map, assigned automatically.   |
 
 ## Examples
 
@@ -62,7 +62,7 @@ Ban → Ban → Pick → Side → Pick → Side → Ban → Ban
 ```
 
 Once the two picks needed for a best-of-3 are in, the remaining steps are all bans
-— the Decider is whatever survives.
+the Decider is whatever survives.
 
 ### Best of 5, 7-map pool
 
@@ -70,5 +70,5 @@ Once the two picks needed for a best-of-3 are in, the remaining steps are all ba
 Ban → Ban → Pick → Side → Pick → Side → Pick → Side → Pick → Side
 ```
 
-Four maps are picked (with side responses), and the seventh map is the Decider —
+Four maps are picked (with side responses), and the seventh map is the Decider,
 five maps total.

@@ -2,7 +2,7 @@
 
 You can generate an API token in your settings on the 5Stack panel. This token is tied to your user account.
 
-To access the API, use a GraphQL client such as [Altair GraphQL](https://altairgraphql.dev/) or any tool that supports sending GraphQL requests.
+To access the API. Use a GraphQL client such as [Altair GraphQL](https://altairgraphql.dev/) or any tool that supports sending GraphQL requests.
 
 **API Endpoint:**
 

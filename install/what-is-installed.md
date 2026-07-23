@@ -16,8 +16,8 @@ The 5Stack Panel relies on several open-source software components for its opera
 - [5Stack Game Server (CounterStrikeSharp)](https://github.com/5stackgg/game-server)
 - [5Stack Game Server Node Connector](https://github.com/5stackgg/game-server-node-connector)
 
-The match plugin ships for two CS2 frameworks — SwiftlyS2 is installed by default.
-See [Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes).
+The match plugin ships for two CS2 frameworks, SwiftlyS2 is installed by default.
+See [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes).
 
 Additional Credits:
 

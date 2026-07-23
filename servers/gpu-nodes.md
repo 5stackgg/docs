@@ -8,8 +8,8 @@ produces video:
 - [Live streaming](/features/live-streaming)
 - [Highlights and clip rendering](/features/highlights)
 
-Without a GPU node, the panel still works — matches, stats, and 2D/3D replay all
-run fine — but those video features are unavailable.
+Without a GPU node, the panel still works, matches, stats, and 2D/3D replay all
+run fine, but those video features are unavailable.
 
 ## How it works
 
@@ -22,7 +22,7 @@ how many GPUs are free in the pool.
 ## Adding a GPU node
 
 A GPU node is created the same way as any other
-[game server node](/servers/game-server-nodes/create-game-server-node) — the node
+[game server node](/servers/game-server-nodes/create-game-server-node), the node
 is detected as GPU-capable and can be enabled for streaming, demo playback, and
 rendering.
 
@@ -35,7 +35,7 @@ node can claim one; the page shows how many accounts are available versus how ma
 nodes are registered.
 
 ::: warning
-Use dedicated Steam accounts for the pool, not your personal account — an account
+Use dedicated Steam accounts for the pool, not your personal account. An account
 in use by a render job can't be used to play at the same time.
 :::
 

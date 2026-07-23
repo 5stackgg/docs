@@ -4,7 +4,7 @@
 As of `@5stack/ui@0.1.1` the package exports exactly one symbol: `cn()`. The
 panel's ~47 shadcn-vue components still live inside the web app and have not been
 extracted. You get the design tokens, the Tailwind preset, and the class-merge
-helper — you build your own components on top.
+helper. You build your own components on top.
 
 They are being moved into the package incrementally. Until then, treat this page
 as "how to build components that will match, and migrate cleanly later".
@@ -12,20 +12,20 @@ as "how to build components that will match, and migrate cleanly later".
 
 ## What the package exports today
 
-| Import                       | What it is                                        |
-| ---------------------------- | ------------------------------------------------- |
-| `@5stack/ui`                 | Barrel — currently just `cn`                      |
-| `@5stack/ui/lib/utils`       | `cn` directly                                     |
+| Import                              | What it is                                           |
+| ----------------------------------- | ---------------------------------------------------- |
+| `@5stack/ui`                        | Barrel, currently just `cn`                          |
+| `@5stack/ui/lib/utils`              | `cn` directly                                        |
 | `@5stack/ui/tailwind-plugin-preset` | The preset plugins use ([Styling](/plugins/styling)) |
-| `@5stack/ui/plugin.css`      | Tokens + utilities + scoped base rules            |
-| `@5stack/ui/standalone.css`  | Global preflight, dev entry only                  |
-| `@5stack/ui/tokens.css`      | The design tokens alone (pulled in by plugin.css) |
+| `@5stack/ui/plugin.css`             | Tokens + utilities + scoped base rules               |
+| `@5stack/ui/standalone.css`         | Global preflight, dev entry only                     |
+| `@5stack/ui/tokens.css`             | The design tokens alone (pulled in by plugin.css)    |
 
 ```ts
 import { cn } from "@5stack/ui";
 ```
 
-`cn` is the canonical shadcn class merger — `clsx` for conditionals, then
+`cn` is the canonical shadcn class merger, `clsx` for conditionals, then
 `tailwind-merge` to resolve conflicts so a caller's `p-6` beats a component's
 default `p-4`:
 
@@ -43,7 +43,7 @@ transpiles it, which is why your Tailwind `content` array must include
 
 The panel uses [shadcn-vue](https://www.shadcn-vue.com/) in the **new-york**
 style with base color **zinc**, on top of [reka-ui](https://reka-ui.com)
-primitives. Match that and your components will look native — and will be easy to
+primitives. Match that and your components will look native, and will be easy to
 swap for the official ones later.
 
 The practical approach: copy the component you need from shadcn-vue into your own
@@ -93,13 +93,13 @@ const props = defineProps<{
 </template>
 ```
 
-Accepting a `class` prop and merging it through `cn` is the convention — it is
+Accepting a `class` prop and merging it through `cn` is the convention. It is
 what lets callers override spacing without `!important`.
 
 ### Interactive primitives
 
-For anything with real interaction behavior — dialogs, dropdowns, selects,
-tooltips, tabs, popovers — use **reka-ui** directly rather than hand-rolling it.
+For anything with real interaction behavior, dialogs, dropdowns, selects,
+tooltips, tabs, popovers. Use **reka-ui** directly rather than hand-rolling it.
 It is a shared Federation singleton, so you are using the same instance the panel
 does, and you inherit its accessibility and focus management:
 
@@ -129,14 +129,14 @@ import {
 
 ::: warning Portals escape your scope
 `DialogPortal` teleports content to `document.body`, which is outside your
-`[data-5stack-plugin]` root — and every utility is scoped to that
+`[data-5stack-plugin]` root, and every utility is scoped to that
 [important selector](/plugins/styling#scoping-your-utilities). Put the attribute
 on the portalled content too, or its utilities will not apply.
 :::
 
 ## Icons
 
-`lucide-vue-next` is a shared singleton — use it rather than bundling a second
+`lucide-vue-next` is a shared singleton. Use it rather than bundling a second
 icon set:
 
 ```vue
@@ -152,7 +152,7 @@ import { Sparkles, Users } from "lucide-vue-next";
 Size with `h-*`/`w-*` and color with `text-*`; lucide icons use `currentColor`.
 
 Because lucide publishes on `0.x`, a caret range like `^0.508.0` only permits
-patch drift — it is effectively an exact pin, and it must be bumped in lockstep
+patch drift. It is effectively an exact pin, and it must be bumped in lockstep
 with the panel. See [Module Federation](/plugins/module-federation).
 
 ## Dependencies checklist
@@ -177,8 +177,8 @@ match the panel's versions:
 ::: info
 `class-variance-authority` is a peer dependency of `@5stack/ui` but is not in the
 example plugin, because nothing currently exported from the package uses it.
-The moment you copy in a `cva`-based component — or the official components land
-— you need it. Adding it up front costs nothing.
+The moment you copy in a `cva`-based component, or the official components land
+you need it. Adding it up front costs nothing.
 :::
 
 ## What you cannot import

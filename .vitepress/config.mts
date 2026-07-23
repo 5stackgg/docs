@@ -5,9 +5,16 @@ export default defineConfig({
   title: "5Stack",
   titleTemplate: ":title | 5Stack",
   description:
-    "Counter-Strike Management System — a panel for managing servers, matches, and tournaments.",
+    "Counter-Strike Management System, a panel for managing servers, matches, and tournaments.",
   appearance: "dark",
   cleanUrls: true,
+
+  // Default Shiki theme leans on bright purples that fight the amber/neutral
+  // palette. Vitesse is low-saturation and warm, so code blocks sit inside the
+  // theme instead of clashing with it.
+  markdown: {
+    theme: { light: "vitesse-light", dark: "vitesse-dark" },
+  },
 
   head: [
     ["link", { rel: "icon", href: "/5stack-logo-mini.png" }],
@@ -17,7 +24,7 @@ export default defineConfig({
       "meta",
       {
         property: "og:title",
-        content: "5Stack — The System Behind the Game—Yours",
+        content: "5Stack, The System Behind the Game, Yours",
       },
     ],
     [
@@ -25,7 +32,7 @@ export default defineConfig({
       {
         property: "og:description",
         content:
-          "Counter-Strike Management System — a panel for managing servers, matches, and tournaments.",
+          "Counter-Strike Management System, a panel for managing servers, matches, and tournaments.",
       },
     ],
     ["meta", { property: "og:site_name", content: "5Stack" }],
@@ -46,7 +53,8 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Getting Started", link: "/getting-started" },
-      { text: "Common Issues", link: "/common-issues/debug-script" },
+      { text: "Features", link: "/features/" },
+      { text: "Troubleshooting", link: "/common-issues/debug-script" },
       {
         text: "Roadmap",
         link: "https://github.com/orgs/5stackgg/projects/14/views/2",
@@ -110,21 +118,50 @@ export default defineConfig({
         link: "/",
         items: [
           {
-            text: "User Features",
+            text: "Play",
             items: [
               { text: "Quick Play & Matchmaking", link: "/quick-play" },
+              { text: "Draft Lobbies", link: "/draft-lobbies" },
               { text: "Matches", link: "/matches" },
               { text: "Map Veto Format", link: "/map-veto" },
+              { text: "Scrim Finder", link: "/scrim-finder" },
+            ],
+          },
+          {
+            text: "Compete",
+            items: [
               { text: "Tournaments & Brackets", link: "/tournaments" },
-              { text: "Teams, Lobbies & Chat", link: "/social" },
+              { text: "Leagues", link: "/leagues" },
+              { text: "Events", link: "/events" },
+              { text: "Competitive Seasons", link: "/seasons" },
+            ],
+          },
+          {
+            text: "Match Review & Media",
+            items: [
               { text: "Match Replay (2D & 3D)", link: "/match-replay" },
               { text: "In-Browser Demo Playback", link: "/demo-playback" },
               { text: "Highlights", link: "/highlights" },
               { text: "Live Streaming", link: "/live-streaming" },
-              { text: "Stats & Leaderboards", link: "/stats-and-leaderboards" },
-              { text: "External Matches", link: "/external-matches" },
-              { text: "Steam Presence", link: "/steam-presence" },
               { text: "Demos", link: "/demos" },
+            ],
+          },
+          {
+            text: "Stats",
+            items: [
+              { text: "Stats & Leaderboards", link: "/stats-and-leaderboards" },
+              { text: "Match Analysis", link: "/match-analysis" },
+              { text: "Performance Rating", link: "/performance-rating" },
+              { text: "External Matches", link: "/external-matches" },
+            ],
+          },
+          {
+            text: "Community & Platform",
+            items: [
+              { text: "Teams, Lobbies & Chat", link: "/social" },
+              { text: "Steam Presence", link: "/steam-presence" },
+              { text: "Moderation & Sanctions", link: "/moderation" },
+              { text: "News", link: "/news" },
               { text: "API Keys", link: "/api-keys" },
               { text: "Languages", link: "/languages" },
             ],
@@ -200,9 +237,11 @@ export default defineConfig({
               { text: "Port Forwarding", link: "/ports" },
               { text: "Tailscale Integration", link: "/tailscale" },
               {
-                text: "Plugin Runtimes",
+                text: "Game Plugins",
                 link: "/plugin-runtimes",
-                items: [{ text: "Custom Plugins", link: "/custom-plugins" }],
+                items: [
+                  { text: "Custom Game Plugins", link: "/custom-plugins" },
+                ],
               },
               { text: "Version Pinning", link: "/version-pinning" },
               {
@@ -217,27 +256,23 @@ export default defineConfig({
             link: "/gpu-nodes",
           },
           {
-            text: "Third PartyDedicated Servers",
+            text: "Third-Party Dedicated Servers",
             base: "/servers/dedicated-servers",
             link: "/",
             items: [
               {
-                text: "Plugin Configuration",
+                text: "Game Plugin Configuration",
                 link: "/plugin-configuration",
               },
             ],
           },
           {
-            text: "CPU Pinning",
-            link: "/cpu-pinning",
-          },
-          {
-            text: "CPU Governance",
-            link: "/cpu-governance",
-          },
-          {
-            text: "Low Latency Kernel",
-            link: "/low-latency-kernel",
+            text: "Performance Tuning",
+            items: [
+              { text: "CPU Pinning", link: "/cpu-pinning" },
+              { text: "CPU Governance", link: "/cpu-governance" },
+              { text: "Low Latency Kernel", link: "/low-latency-kernel" },
+            ],
           },
           {
             text: "Steam Datagram Relay (SDR)",
@@ -246,7 +281,7 @@ export default defineConfig({
         ],
       },
       {
-        text: "Plugin Development",
+        text: "5Stack Plugin Development",
         base: "/plugins",
         link: "/",
         items: [

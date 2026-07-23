@@ -97,7 +97,7 @@ For even better low-latency performance, consider setting your [CPU Governor](./
 
 ## Reverting to Standard Kernel
 
-If needed, you can switch back to the standard kernel:
+If needed. You can switch back to the standard kernel:
 
 1. Boot into the standard kernel from GRUB menu
 2. Remove the low-latency kernel:

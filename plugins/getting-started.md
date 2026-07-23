@@ -2,7 +2,7 @@
 
 The fastest path to a working plugin is to copy the
 [example plugin](https://github.com/5stackgg/5stack-example-plugin). It
-is deliberately tiny — one component, one manifest, one Vite config — and it is
+is deliberately tiny, one component, one manifest, one Vite config, and it is
 already wired for everything described in this section.
 
 ```sh
@@ -29,7 +29,7 @@ builds fine and then refuses to mount:
 
 1. `federation({ name: "hello" })` in `vite.config.ts`
 2. `"scope": "hello"` in `public/5stack-plugin.json`
-3. `"slug": "hello"` in the same manifest — this one is the URL segment, and it
+3. `"slug": "hello"` in the same manifest. This one is the URL segment, and it
    only has to be unique, not equal to the scope.
 
 Pick something specific. Federation scopes are a flat global namespace shared by
@@ -58,7 +58,7 @@ npm run dev
 ```
 
 ```ts
-// src/main.ts — the fake user lets you exercise role-gated UI locally
+// src/main.ts, the fake user lets you exercise role-gated UI locally
 createApp(App, {
   user: {
     steam_id: "76561197960265728",
