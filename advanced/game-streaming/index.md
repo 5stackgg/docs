@@ -6,6 +6,7 @@
 
 - At least one [game server node](/servers/game-server-nodes/) with a supported GPU and the relevant Kubernetes runtime installed (see GPU vendor pages below).
 - A Steam account dedicated to the streamer.
+- A native Linux host. **WSL is not supported.**
 
 ## GPU Support
 

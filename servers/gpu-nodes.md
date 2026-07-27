@@ -11,6 +11,13 @@ produces video:
 Without a GPU node, the panel still works, matches, stats, and 2D/3D replay all
 run fine, but those video features are unavailable.
 
+::: warning WSL is not supported
+GPU nodes will not work under **WSL** (Windows Subsystem for Linux). Game
+streaming, highlights/clip rendering, and in-browser demo playback all require a
+native Linux host with direct GPU access. Use a bare-metal or virtualized Linux
+install instead.
+:::
+
 ## How it works
 
 A GPU node runs real CS2 instances to render demos and live observers in a GPU
