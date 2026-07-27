@@ -26,7 +26,7 @@ Pages linked below go deeper on the bigger features.
 
 - **[Tournaments & Brackets](/features/tournaments)**: open or private
   tournaments with multi-stage Single Elimination, Double Elimination, Round
-  Robin, or Swiss formats, group stages, seeding, byes, prizes, trophies, and a
+  Robin, or Swiss formats, group stages, seeding, byes, prizes, awards, and a
   live, embeddable bracket.
 - **[Leagues](/features/leagues)**: seasonal divisions, weekly match play,
   captain-negotiated scheduling, playoffs, and promotion/relegation.

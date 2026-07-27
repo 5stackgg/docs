@@ -312,6 +312,7 @@ export default defineConfig({
             { text: "Components", link: "/components" },
             { text: "Backend & Auth", link: "/backend" },
             { text: "Deploying", link: "/deploying" },
+            { text: "One-Command Install", link: "/installing" },
           ],
         },
         {

@@ -14,7 +14,7 @@ A **social panel** stays docked in the app: your friends list with each friend's
 Elo and online state, plus live [Steam presence](/features/steam-presence), you
 can see what a friend is doing in _other_ games, not just in 5Stack.
 
-Teams get more than a roster. A team page carries its Elo and trophies, its
+Teams get more than a roster. A team page carries its Elo and awards, its
 [league history](/features/leagues), its
 [veto tendencies](/features/match-analysis#team-analytics), and its
 [Scrim Finder](/features/scrim-finder) settings.
