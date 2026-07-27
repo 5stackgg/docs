@@ -1,7 +1,7 @@
 # Tournaments & Brackets
 
 5Stack runs full tournaments end to end, registration, multi-stage brackets,
-scheduling, and trophies, with a live bracket you can embed anywhere.
+scheduling, and awards, with a live bracket you can embed anywhere.
 
 ## Running a tournament
 
@@ -39,7 +39,7 @@ A tournament page is built to be shown off, not just administered:
   in-person events.
 - **Categories** for classifying the event.
 - Tabs for Overview, Teams, Information, Prizes, Match Options, Location,
-  Organizers, Trophies, and Discord.
+  Organizers, Awards, and Discord.
 
 Tournaments can also be grouped under an [Event](/features/events) alongside
 other tournaments, teams, and players, with a shared medal table and media
@@ -103,7 +103,18 @@ stage, teams, and seeds. It can **auto-cycle** through stages and groups on a
 timer and highlight live matches, making it a ready-made overlay for broadcasts
 and venue signage.
 
-## Trophies
+## Awards
 
-Tournaments can award customizable trophies for the top placements and an MVP,
-which count toward the [leaderboard](/features/stats-and-leaderboards).
+Tournaments hand out an award for each of the top placements and an MVP, which
+count toward the [leaderboard](/features/stats-and-leaderboards).
+
+Each placement resolves to an award from the site-wide catalog. Leave it on the
+default and the tournament uses the built-in Champion / Runner-Up / Third Place
+/ MVP awards; pick one of your own and winners receive that instead. Either way
+you can still override the name, silhouette, or artwork for this tournament
+only.
+
+Administrators author the catalog under **Settings → Awards**, where awards can
+also be granted to a player or team by hand — no tournament required. Two role
+settings control who can author awards and who can grant them; tournament
+organizers can always grant awards inside their own tournament.

@@ -94,18 +94,22 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 ### On the panel's Kubernetes cluster
 
-If you are deploying alongside 5Stack itself, a kustomize package dropped into
-the panel repo under `custom/<name>/` can be applied with:
+If you are deploying alongside 5Stack itself, ship a kustomize package and an
+`install` block in your manifest. An operator then installs your plugin straight
+from your repository, in one command:
 
 ```sh
-./custom.sh <name>
+./plugin.sh https://github.com/5stackgg/5stack-example-plugin
 ```
 
-The inventory plugin is laid out this way, two ingresses on one host, `/api` to
-the backend and `/` to the static frontend. Keep the backend a `ClusterIP`
-Service so the ingress is its only route in. Its `k8s/` directory is a working
-template. See also
-[Custom Kubernetes](/advanced/custom-k8s).
+It reads their site's own config — cluster, domain, whether TLS terminates at
+the cluster or in front of it, Postgres credentials — instead of asking them to
+repeat any of it. [One-Command Install](/plugins/installing) is the format, and
+what to lay out where.
+
+If you have a backend, keep it a `ClusterIP` Service so the ingress is its only
+route in, and split paths on a single host: `/api` to the backend, `/` to the
+static frontend. See also [Custom Kubernetes](/advanced/custom-k8s).
 
 ## Register it
 

@@ -34,6 +34,8 @@ into the registration form.
 | `module`          | ✓        | The exposed module path, e.g. `./App`.                                                       |
 | `requiredRole`    |          | `null` for a public page, or a role name to gate visibility.                                 |
 | `profileTabLabel` |          | Also render your plugin as a tab on player profiles, using this label. Omit for no tab.      |
+| `deployments`     |          | The Kubernetes Deployments your plugin is made of, for installers to wait on.                |
+| `install`         |          | Makes your plugin installable onto a 5Stack cluster in one command. See [One-Command Install](/plugins/installing). |
 
 ### `slug`
 

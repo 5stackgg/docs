@@ -62,7 +62,7 @@ The leaderboard ranks players across more than ten categories:
 - **Elo** (with Elo change and win streak)
 - **Best Rating**, **ADR**, **KPR**, **KAST**, and **UDR** (per-map stats)
 - **Best K/D Ratio**, **Win Rate**, and **Headshot %**
-- **Trophies**: Gold / Silver / Bronze finishes and MVP awards
+- **Awards**: Gold / Silver / Bronze finishes and MVP awards
 
 Filter by time window (all-time, 7 days, 30 days) and match type (Competitive,
 Wingman, Duel); per-map categories can also filter by role, and tournament
