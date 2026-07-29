@@ -21,21 +21,37 @@ const props = defineProps<{
     to: string,
     options?: { replace?: boolean; query?: Record<string, unknown> },
   ) => void;
+  navigateApp?: (to: string) => void;
+  notify?: (message: string, kind: "error" | "success") => void;
+  t?: (key: string, named?: Record<string, unknown>) => string;
+  locale?: string;
 }>();
 </script>
 ```
 
-| Prop       | What the host passes                                                 |
-| ---------- | -------------------------------------------------------------------- |
-| `user`     | the authenticated 5stack user, or `null` for guests on a public page |
-| `base`     | where you are mounted, e.g. `/apps/inventory`                        |
-| `path`     | the path _below_ your slug, `/` or `/admin`                          |
-| `query`    | the current query object                                             |
-| `navigate` | `(to, { replace?, query? }) => void`, where `to` is plugin-relative  |
+| Prop          | What the host passes                                                 |
+| ------------- | -------------------------------------------------------------------- |
+| `user`        | the authenticated 5stack user, or `null` for guests on a public page |
+| `base`        | where you are mounted, e.g. `/apps/inventory`                        |
+| `path`        | the path _below_ your slug, `/` or `/admin`                          |
+| `query`       | the current query object                                             |
+| `navigate`    | `(to, { replace?, query? }) => void`, where `to` is plugin-relative  |
+| `navigateApp` | moves the **host** router — use it to leave your own screen          |
+| `notify`      | the panel's toast: `(message, "error" \| "success") => void`          |
+| `t`           | the panel's translator: `(key, named?) => string`                     |
+| `locale`      | the language `t` is currently resolving against, e.g. `"en"`         |
 
 Every prop is optional, and they are all absent when you run standalone
 (`npm run dev` with no panel around you). Treat absence as "I am not embedded"
 rather than as an error, the same call sites should work in both modes.
+
+::: warning You cannot import these instead
+`notify` and `t` are passed as functions rather than imported because a remote
+is a **separate module graph**. `useToast` and `vue-i18n` both keep state in
+module scope, so importing your own copy gives you a second, empty instance:
+your toasts push onto a list nothing renders, and your translator knows none of
+the host's messages. It fails silently, which is the worst way for it to fail.
+:::
 
 ::: tip Navigate in your own space
 `navigate("/admin")` becomes `router.push("/apps/<slug>/admin")` on the host
