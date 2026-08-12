@@ -22,6 +22,29 @@ of bans and picks is fully predictable and reproducible from two inputs alone:
    chosen for that map.
 6. The leftover map is the **Decider**. If a **knife round** is enabled, sides on
    the Decider are settled by the knife round rather than a Side pick.
+7. Any extra bans a larger pool requires land **after the picks and before the
+   Decider**. The Decider is always the final step, whatever the pool size.
+
+## When there is nothing to veto
+
+If the map pool holds **exactly** as many maps as the best-of, every map in the
+pool is going to be played and there is no decision to make. The veto is skipped
+entirely and the maps are assigned straight from the pool with alternating
+starting sides — a best-of-3 with a 3-map pool goes directly to the first map.
+
+## Pick timer
+
+Each step has a time limit, set per match by **Veto Pick Timeout** (default **60
+seconds**). Set it to `0` to remove the limit and let the veto wait indefinitely.
+
+If a team runs out of time, the step is made for them:
+
+- a **Ban** or **Pick** takes a random map from those still available
+- a **Side** takes CT or T at random
+
+Auto-taken steps are flagged, so a completed veto shows which steps a team made
+and which ran out of time. The timer restarts on every step, including
+auto-taken ones, so a veto always finishes.
 
 ## Step types
 
