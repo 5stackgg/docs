@@ -353,6 +353,10 @@ export default defineConfig({
               link: "/faceit-integration",
             },
             {
+              text: "Web Push Notifications",
+              link: "/web-push",
+            },
+            {
               text: "HashiCorp Vault",
               link: "/vault",
             },
