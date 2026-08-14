@@ -51,6 +51,14 @@ Tune the match to the occasion: **knife round, overtime** (rounds and bomb timer
 ready-up, default player models, and more. Game-mode presets apply sensible
 defaults in one click.
 
+## Player cameras
+
+A match can **require a webcam** from every player: they connect one from their
+PC or by scanning a QR code with a phone, the server details stay hidden until
+they do, and the match pauses automatically if a feed drops. Officials watch the
+feeds from the panel, and the spectated player's camera can appear on the
+broadcast. See [Player Cameras](/features/player-cameras).
+
 ## Watching live
 
 While a match is live you can follow the score and action in real time, jump in

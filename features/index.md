@@ -19,6 +19,9 @@ Pages linked below go deeper on the bigger features.
   match rules (knife, overtime, pauses, best-of, coaches, and more).
 - **[Scrim Finder](/features/scrim-finder)**: advertise when your team plays,
   set who you'll play, and negotiate scrims without a Discord thread.
+- **[Player Cameras](/features/player-cameras)**: require a webcam from every
+  player, watch the feeds from the panel, auto-pause when one drops, and put the
+  spectated player's camera on the broadcast.
 - **Custom Map Pools**: curated pools for every format (1v1, 2v2, 5v5),
   including workshop maps.
 
@@ -65,8 +68,10 @@ Pages linked below go deeper on the bigger features.
 
 ## Community
 
-- **[Teams, Lobbies & Chat](/features/social)**: teams, friends, parties, and
-  smart, context-aware chat that bridges the web app and in-server.
+- **[Teams, Lobbies & Chat](/features/social)**: teams, friends, parties, direct
+  messages, and smart, context-aware chat that bridges the web app and in-server.
+- **[Voice Chat](/features/voice-chat)**: party and team voice on 5Stack's own
+  relay, with device pickers, a mic check, and voice-activity transmission.
 - **[Steam Presence](/features/steam-presence)**: see what friends are playing,
   in 5Stack and outside it.
 - **[Moderation & Sanctions](/features/moderation)**: bans, mutes, gags, and
@@ -93,6 +98,9 @@ Pages linked below go deeper on the bigger features.
 
 - **Installable app (PWA)**: add 5Stack to your home screen or desktop for an
   app-like experience, with offline-aware caching.
+- **[Push notifications](/advanced/web-push)**: per-category, per-device alerts
+  that reach players when the app isn't open, with no third-party push service to
+  sign up for.
 - **[17 languages](/features/languages)**: the interface *and* the in-game
   plugin are fully localized, with automatic detection of your browser language.
 - **Embeds & popouts**: drop a live, auto-cycling tournament bracket onto a
@@ -126,7 +134,7 @@ Pages linked below go deeper on the bigger features.
 
 Several features are optional and can be switched on or off instance-wide from
 **Settings → Application**: matchmaking, leagues, seasons, events, news, the
-Scrim Finder, plugins, and linked accounts.
+Scrim Finder, voice chat, plugins, and linked accounts.
 
 ::: tip Rendering features need a GPU
 Highlights, in-browser demo playback, and live streaming are all rendered on a

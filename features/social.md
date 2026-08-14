@@ -37,6 +37,29 @@ who's currently in the room.
 5Stack chat bridges the **web app and in-server**, so conversations stay
 connected whether players are in the browser or in the game.
 
+Every conversation you're in, match, team, lobby, tournament, or organizers,
+becomes a **tab** in the chat rail, with an unread badge that counts from the
+moment you sign in rather than from the moment you open the panel.
+
+## Direct messages
+
+Message a friend one-to-one from their **player page** or straight from your
+friends list. A direct message opens as its own chat tab, showing the person's
+avatar instead of a channel icon.
+
+Direct messages are limited to **accepted friends** in both directions, so
+nobody can be cold-messaged, and an incoming message opens its tab without
+yanking you out of the conversation you're reading. They're also kept far longer
+than room chatter, 30 days rather than the shared chat TTL, because a
+conversation you can't scroll back through isn't much of a conversation.
+
+## Voice chat
+
+Talk to your party in a lobby, or to your team on the match page, with
+[voice chat](/features/voice-chat) built into the panel: device pickers, a mic
+check you can run before anyone hears you, voice-activity or open-mic
+transmission, and noise suppression.
+
 ## Connect Discord
 
 Link your Discord account to 5Stack to unlock the bot, create matches, manage
@@ -50,3 +73,10 @@ lobbies, get match updates, and have your roles synced, without leaving Discord.
 Chat and match sounds are context-aware: they automatically quiet down when
 you're **in a game** or the tab is **hidden**, so you're never spammed mid-round.
 You can pick your own notification sounds and set the volume.
+
+**Settings → Notification Preferences** decides what reaches you and where.
+Categories, matches, chat, invites, tournaments, scrims, leagues, teams, events,
+seasons, account, and news, can be muted individually on the in-app alert bell,
+and turned on per device as [web push notifications](/advanced/web-push) that
+arrive even when 5Stack isn't open. **Quiet hours** keep push silent during a
+window you set; those notifications still land in the alert bell.

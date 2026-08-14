@@ -93,6 +93,7 @@ export default defineConfig({
             { text: "Matches", link: "/matches" },
             { text: "Map Veto Format", link: "/map-veto" },
             { text: "Scrim Finder", link: "/scrim-finder" },
+            { text: "Player Cameras", link: "/player-cameras" },
           ],
         },
         {
@@ -131,6 +132,7 @@ export default defineConfig({
           base: "/features",
           items: [
             { text: "Teams, Lobbies & Chat", link: "/social" },
+            { text: "Voice Chat", link: "/voice-chat" },
             { text: "Steam Presence", link: "/steam-presence" },
             { text: "Moderation & Sanctions", link: "/moderation" },
             { text: "News", link: "/news" },
