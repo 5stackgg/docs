@@ -23,6 +23,9 @@ The Stream Deck is the broadcaster's control panel:
 - **Spectator grid**: CT/T player slots fed by live game state; click a slot to
   spectate that player.
 - **Autodirector** toggle for automatic spectator camera work.
+- **Player webcams inside the spectator slots**, when the match requires them, so
+  the box you read to pick a target is the box you click. See
+  [Player Cameras](/features/player-cameras).
 - GPU availability and active stream count so you know your capacity.
 
 ## Scoreboard overlay
@@ -33,6 +36,13 @@ every map in the series. It has a compact mode for small windows.
 
 Streams play over **WebRTC (WHEP)** for ultra-low latency, and you can **pop a
 match out** into its own chromeless window to drag onto a second monitor.
+
+## Face cams
+
+If a match [requires player cameras](/features/player-cameras), the camera of the
+player currently being spectated is composited onto the stream through the
+existing overlay, no second capture, no extra encoder, and nothing for the
+broadcaster to wire up.
 
 ## Picture-in-picture
 

@@ -43,4 +43,5 @@ Roles are assigned from the [player directory](/features/admin/roles-and-players
   performance, backups, and the render queue.
 
 The admin controls for [demo settings](/features/demos), [highlights](/features/highlights),
-and [streaming](/features/live-streaming) are covered on those feature pages.
+[streaming](/features/live-streaming), [player cameras](/features/player-cameras),
+and [voice chat](/features/voice-chat) are covered on those feature pages.

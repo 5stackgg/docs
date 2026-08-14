@@ -93,6 +93,7 @@ features:
 - [Competitive Seasons](/features/seasons) Elo resets and season-scoped leaderboards
 - [Map Veto](/features/map-veto) deterministic pick/ban for any pool and best-of
 - [Custom Map Pools](/features/admin/matchmaking) per format, workshop maps included
+- [Player Cameras](/features/player-cameras) required webcams, watched live, on the stream
 
 </div>
 <div>
@@ -110,6 +111,7 @@ features:
 **Community & operations**
 
 - [Teams, Lobbies & Chat](/features/social) chat that bridges web and in-server
+- [Voice Chat](/features/voice-chat) party and team voice, on your own relay
 - [Moderation & Sanctions](/features/moderation) bans, mutes, gags, VAC detection
 - [News](/features/news) first-party announcements from inside the panel
 - [Monitoring](/features/admin/system) CPU, memory, logs, and database health

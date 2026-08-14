@@ -32,3 +32,10 @@ link their own Steam match history from their personal settings.
 ## Chat
 
 Set the chat **message TTL**, how long chat messages are retained (seconds).
+
+## Web Push
+
+Whether push notifications are active, how many devices are subscribed, and where
+the signing keys came from, plus a **regenerate keys** action for the case where a
+private key leaks (it unsubscribes every device). Nothing to sign up for and no
+third-party provider, see [Web Push Notifications](/advanced/web-push).
