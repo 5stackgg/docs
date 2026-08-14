@@ -355,6 +355,10 @@ export default defineConfig({
               link: "/faceit-integration",
             },
             {
+              text: "TURN Relay",
+              link: "/turn-server",
+            },
+            {
               text: "Web Push Notifications",
               link: "/web-push",
             },
