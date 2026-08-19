@@ -9,7 +9,8 @@ For a web app that runs inside the panel, see
 
 5Stack can install CS2 server plugins onto your Game Server Nodes for you: pick
 one from the directory, and every node downloads the release, checks it against
-the digest the registry published, and unpacks it into its own plugin store.
+the digest the registry published, and unpacks it into the node's plugin
+directory.
 
 It is on by default; the registry it reads from is configured under
 **Settings → Application → Plugin Directory**.
@@ -49,8 +50,8 @@ reach out to your nodes. Each node then converges to that list on its own:
    runs — the newest release, or the exact version if one is pinned,
 3. the node downloads anything missing, **verifies the SHA-256**, and checks
    every path in the archive before a byte is written,
-4. it unpacks it into `/opt/5stack/plugin-store/<slug>/<version>/`, deleting the
-   version it replaced,
+4. it unpacks it into `/opt/5stack/custom-plugins/`, deleting the version it
+   replaced and recording which files belong to it,
 5. it removes any managed plugin that is no longer wanted, and reports back
    everything it now has.
 
@@ -121,7 +122,7 @@ not go looking. Two things are worth knowing:
 ## Loading
 
 ::: tip Installing is not loading
-A plugin in the store is available but dormant. Nothing loads it until a
+An installed plugin is on the node but dormant. Nothing loads it until a
 [Game Mode](/features/admin/game-modes) selects it and a server starts. That is
 what lets one node host a competitive match and a fun match at the same time.
 :::
@@ -145,6 +146,35 @@ and applies to ranked and matchmaking servers too.
 Use it for plugins that observe. Anything that changes how the game plays does
 not belong on a ranked server.
 :::
+
+### Plugins that need Valve's server guidelines off
+
+Both frameworks ship with `FollowCS2ServerGuidelines` on, and while it is on
+they refuse the calls a plugin makes to change what a player sees — custom HUDs,
+scoreboard text, skins and agents in place of the default models. A plugin that
+cannot work without those calls says so in its registry entry, and the directory
+badges it **Needs guidelines off**.
+
+The panel never turns them off on the strength of that alone. The plugin's page
+carries a **Turn off Valve's server guidelines** switch, off until you set it,
+and it applies to that plugin only: servers whose mode does not load it keep
+booting compliant. Left off, the plugin still installs and loads — the parts
+that change what a player sees simply do nothing.
+
+::: danger This can get your Steam GSLTs banned
+Per Valve, running outside their official
+[server guidelines](https://blog.counter-strike.net/index.php/server_guidelines/)
+can trigger **every** Game Server Login Token on the server owner's Steam
+account to be banned — not just the one the offending server used. It is the
+same trade-off as
+[showing 5stack ranks in-game](/features/admin/matchmaking), which flips the
+same framework setting.
+:::
+
+The switch is a statement of intent, like installing: the next server to start
+with that plugin in its mode picks it up. Servers already running are not
+touched — the setting lives in the framework's own config and is read once, at
+boot.
 
 ## Runtimes
 
@@ -179,11 +209,17 @@ An install either tracks the newest release or sits on one version:
 
 | Path | What |
 | --- | --- |
-| `/opt/5stack/plugin-store/<slug>/<version>/` | Managed installs, laid out relative to `game/csgo`; only the current version is kept |
-| `/opt/5stack/custom-plugins/` | Hand-managed files, mirrored onto every server on the node ([Custom Game Plugins](/servers/game-server-nodes/custom-plugins)) |
+| `/opt/5stack/custom-plugins/` | Both managed installs and hand-managed files, laid out relative to `game/csgo` ([Custom Game Plugins](/servers/game-server-nodes/custom-plugins)) |
+| `/opt/5stack/custom-plugins/.5stack-plugins/` | Which files belong to which managed plugin, and at what version |
 | `/opt/5stack/servers/<server id>/` | A single dedicated server's own files |
 
-Nothing in the plugin store is loaded on its own. At boot the server links only
-the plugins its mode asked for, and anything hand-placed in `custom-plugins`
-wins a collision — so a file you put there by hand still overrides the managed
-copy.
+Managed installs land in the directory operators already use rather than a store
+of their own: it is where a plugin writes its own config at runtime, and it
+needs no extra mount for a game server to see it. Ownership is recorded in
+`.5stack-plugins` instead of being inferred from where a file sits.
+
+That record is what makes installing different from loading. At boot the server
+links this directory into its own tree, leaving out the files the index
+attributes to a managed plugin the mode did not ask for. Anything hand-placed is
+in no manifest, so it is never left out — which is exactly how `custom-plugins`
+behaved before plugins were managed at all.
