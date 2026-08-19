@@ -22,8 +22,12 @@ When matchmaking is enabled you can turn on the Elo rank system:
 - **Enable ranks for tournaments**
 
 ::: warning
-Ranked play has implications around Valve's rules, review the in-app warning
-before enabling.
+Showing ranks in-game means the server boots with `FollowCS2ServerGuidelines`
+off, and Valve's position is that this can ban every GSLT on the server owner's
+Steam account. Review the in-app warning before enabling.
+
+The same switch exists per plugin for
+[game plugins that cannot work with the guidelines on](/servers/game-server-nodes/game-plugins).
 :::
 
 ## Lineups & player models

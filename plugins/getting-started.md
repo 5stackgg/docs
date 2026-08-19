@@ -122,7 +122,7 @@ role check is never sufficient on its own.
 npm run build   # -> dist/remoteEntry.js in assets/, plus dist/5stack-plugin.json
 ```
 
-Host `dist/`, then in the panel go to **Settings → Application → Plugins →
+Host `dist/`, then in the panel go to **Settings → Application → Panel Plugins →
 Add**, paste your base URL, press **Detect**, toggle **Enabled**, and save. Make
 sure the **Plugins** master switch is on.
 

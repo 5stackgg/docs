@@ -113,7 +113,7 @@ static frontend. See also [Custom Kubernetes](/advanced/custom-k8s).
 
 ## Register it
 
-In the panel, go to **Settings → Application → Plugins**.
+In the panel, go to **Settings → Application → Panel Plugins**.
 
 1. Make sure the **Plugins** master switch is enabled.
 2. **Add**, paste your base URL (e.g. `https://myplugin.example.com`).

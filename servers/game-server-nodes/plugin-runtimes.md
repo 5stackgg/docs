@@ -8,13 +8,17 @@ If you're looking to build a web app that runs inside the panel, see
 
 5Stack ships its match plugin for **two different CS2 plugin frameworks**. Both implement the same match logic, knife rounds, ready-up, overtime, map veto, backups, stats, and both talk to the panel over the same API. What differs is the framework they load into, and therefore which third-party plugins and gamedata files they understand.
 
-|                  | SwiftlyS2                                                                       | CounterStrikeSharp                                              |
-| ---------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| Image            | `ghcr.io/5stackgg/swiftly-game-server`                                          | `ghcr.io/5stackgg/game-server`                                  |
-| Source           | [5stackgg/swiftly-game-server](https://github.com/5stackgg/swiftly-game-server) | [5stackgg/game-server](https://github.com/5stackgg/game-server) |
-| Loads via        | SwiftlyS2                                                                       | Metamod → CounterStrikeSharp                                    |
-| Addons directory | `addons/swiftlys2`                                                              | `addons/counterstrikesharp`                                     |
-| Default          | ✅ Yes                                                                          | No                                                              |
+|                  | SwiftlyS2                              | CounterStrikeSharp                     |
+| ---------------- | -------------------------------------- | -------------------------------------- |
+| Image            | `ghcr.io/5stackgg/game-server-sw`      | `ghcr.io/5stackgg/game-server-css`     |
+| Source           | `apps/swiftly`                         | `apps/counterstrikesharp`              |
+| Loads via        | SwiftlyS2                              | Metamod → CounterStrikeSharp           |
+| Addons directory | `addons/swiftlys2`                     | `addons/counterstrikesharp`            |
+| Default          | ✅ Yes                                 | No                                     |
+
+Both live in the same repository,
+[5stackgg/game-server](https://github.com/5stackgg/game-server), one app per
+framework over a shared core.
 
 ::: tip
 **SwiftlyS2 is the default.** New installs run it unless you pick otherwise. CounterStrikeSharp remains fully supported and is the right choice if you depend on existing CSS plugins.
@@ -51,7 +55,7 @@ Each image pins the framework version it was built against:
 
 You don't need to manage these yourself; they come with the image.
 
-Each framework has its **own plugin release history**, and the two number their releases independently, `v0.0.42` of the SwiftlyS2 plugin is unrelated to `v0.0.42` of the CounterStrikeSharp plugin. The panel tracks both, and the **Plugin Version** dropdown on a node only offers releases from the runtime you have selected. See [Version Pinning](/servers/game-server-nodes/version-pinning).
+Each framework has its **own plugin release history**, and the two number their releases independently, `v0.0.42` of the SwiftlyS2 plugin is unrelated to `v0.0.42` of the CounterStrikeSharp plugin. They share one repository, so releases are tagged `sw-v0.0.42` and `css-v0.0.42` to keep them apart; the image tag stays bare, since the image name already says which is which. The panel tracks both, and the **Plugin Version** dropdown on a node only offers releases from the runtime you have selected. See [Version Pinning](/servers/game-server-nodes/version-pinning).
 
 A node pinned to a plugin version stays on the framework it was pinned under, even if you later switch the deployment-wide runtime. Clear the pin to move that node onto the selected runtime.
 

@@ -37,6 +37,8 @@ Roles are assigned from the [player directory](/features/admin/roles-and-players
   and full light/dark theming.
 - **[Servers & Regions](/features/admin/servers)**: server types, automatic CS2
   updates and version pinning, match server controls, tuning, and regions.
+- **[Game Modes](/features/admin/game-modes)**: the plugins, cvars and launch
+  parameters that make a match play differently, and which modes are ranked.
 - **[Integrations](/features/admin/integrations)**: Discord, external match
   imports (Valve/FACEIT), analytics, and chat.
 - **[System & Monitoring](/features/admin/system)**: metrics, logs, database

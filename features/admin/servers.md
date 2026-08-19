@@ -60,6 +60,12 @@ both the SwiftlyS2 and CounterStrikeSharp runtimes. See
 [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) and
 [Custom Game Plugins](/servers/game-server-nodes/custom-plugins).
 
+For plugins from the directory, you say what should be installed and every node
+converges to it on its own. See
+[Game Plugins](/servers/game-server-nodes/game-plugins), and
+[Game Modes](/features/admin/game-modes) for choosing which ones a given match
+or community server actually loads.
+
 ## Server tuning
 
 - **CPU pinning**: enable it and set CPUs per server ([CPU Pinning](/servers/cpu-pinning)).

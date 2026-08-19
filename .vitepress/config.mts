@@ -59,7 +59,7 @@ export default defineConfig({
         text: "Docs",
         link: "/getting-started",
         activeMatch:
-          "^/(install|servers|plugins|advanced|community|getting-started|updating|uninstall)",
+          "^/(install|servers|plugins|advanced|community|getting-started|updating|uninstall|faq)",
       },
       { text: "Features", link: "/features/", activeMatch: "^/features" },
       {
@@ -148,6 +148,7 @@ export default defineConfig({
             { text: "Roles & Players", link: "/roles-and-players" },
             { text: "Matchmaking & Ranks", link: "/matchmaking" },
             { text: "Servers & Regions", link: "/servers" },
+            { text: "Game Modes", link: "/game-modes" },
             { text: "Branding & Theming", link: "/branding" },
             { text: "Integrations", link: "/integrations" },
             { text: "System & Monitoring", link: "/system" },
@@ -160,6 +161,7 @@ export default defineConfig({
           text: "Getting Started",
           items: [
             { text: "Overview", link: "/getting-started" },
+            { text: "Hosting FAQ", link: "/faq" },
             {
               base: "/install",
               text: "Install",
@@ -261,6 +263,7 @@ export default defineConfig({
                   text: "Game Plugins",
                   link: "/plugin-runtimes",
                   items: [
+                    { text: "Installing Plugins", link: "/game-plugins" },
                     { text: "Custom Game Plugins", link: "/custom-plugins" },
                   ],
                 },
@@ -302,7 +305,7 @@ export default defineConfig({
           ],
         },
         {
-          text: "5Stack Plugin Development",
+          text: "Panel Plugin Development",
           base: "/plugins",
           items: [
             { text: "Overview", link: "/" },

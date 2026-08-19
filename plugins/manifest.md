@@ -4,7 +4,7 @@
 project's `public/` directory so Vite copies it to `dist/5stack-plugin.json`,
 where it is served from the root of your build.
 
-An admin pastes your base URL into **Settings → Application → Plugins →
+An admin pastes your base URL into **Settings → Application → Panel Plugins →
 Detect**, the panel fetches the manifest, and every field below is auto-filled
 into the registration form.
 
