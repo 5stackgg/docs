@@ -18,9 +18,10 @@ remote. The panel loads it at runtime and mounts it on a native route,
 - **No panel rebuild.** Plugins live in a database registry. An admin adds a URL;
   the panel picks it up.
 
-::: warning Panel plugins, not game plugins
+::: warning Panel Plugins, not Game Plugins
 This section is about extending **the panel's web UI**. If you are looking to run
 SwiftlyS2 or CounterStrikeSharp plugins on a game server, see
+[Game Plugins](/servers/game-server-nodes/game-plugins),
 [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) and
 [Custom Game Plugins](/servers/game-server-nodes/custom-plugins) instead.
 :::
@@ -31,7 +32,7 @@ SwiftlyS2 or CounterStrikeSharp plugins on a game server, see
    Federation remote. The build emits `dist/assets/remoteEntry.js`.
 2. You ship a manifest, `5stack-plugin.json`, at the root of that same build.
 3. You host `dist/` somewhere the panel's users can reach.
-4. An admin pastes your URL into **Settings → Application → Plugins**, hits
+4. An admin pastes your URL into **Settings → Application → Panel Plugins**, hits
    **Detect**, and enables it.
 5. The panel writes a row into its plugin registry. Every connected
    client picks the new entry up over a live subscription, renders a sidebar

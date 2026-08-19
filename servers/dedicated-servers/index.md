@@ -9,8 +9,11 @@ You can setup dedicated servers in three different ways:
 The 5Stack Game Server Plugin ships for two CS2 frameworks. Pick one, then download its
 latest release and follow that framework's install guide:
 
-- **SwiftlyS2** (default), [Releases](https://github.com/5stackgg/swiftly-game-server/releases) · [SwiftlyS2 docs](https://github.com/swiftly-solution/swiftlys2)
-- **CounterStrikeSharp**: [Releases](https://github.com/5stackgg/game-server/releases) · [CounterStrikeSharp docs](https://docs.cssharp.dev/docs/guides/getting-started.html)
+- **SwiftlyS2** (default): [Releases](https://github.com/5stackgg/game-server/releases) (`sw-v*`) · [SwiftlyS2 docs](https://github.com/swiftly-solution/swiftlys2)
+- **CounterStrikeSharp**: [Releases](https://github.com/5stackgg/game-server/releases) (`css-v*`) · [CounterStrikeSharp docs](https://docs.cssharp.dev/docs/guides/getting-started.html)
+
+Both build out of one repository, so that releases list carries both: tags are
+prefixed `sw-` for SwiftlyS2 and `css-` for CounterStrikeSharp.
 
 See [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) for how the two differ.
 
@@ -22,14 +25,14 @@ The server must be started with `-usercon`, and `-ip 0.0.0.0` to allow remote rc
 
 Here's an example Docker Compose file for running a Counter-Strike dedicated server.
 Both runtime images take the same environment variables and scripts, so swap
-`swiftly-game-server` for `game-server` if you want CounterStrikeSharp instead:
+`game-server-sw` for `game-server-css` if you want CounterStrikeSharp instead:
 
 ```
 version: '3.8'
 
 services:
   update-server:
-    image: ghcr.io/5stackgg/swiftly-game-server:latest
+    image: ghcr.io/5stackgg/game-server-sw:latest
     container_name: update-server
     command: ["/opt/scripts/update.sh"]
     volumes:
@@ -37,7 +40,7 @@ services:
       - /opt/5stack/serverfiles:/serverdata/serverfiles
     restart: no
   dev-cs-server:
-    image: ghcr.io/5stackgg/swiftly-game-server:latest
+    image: ghcr.io/5stackgg/game-server-sw:latest
     container_name: dev-cs-server
     environment:
       - DEV_SERVER=true

@@ -2,6 +2,14 @@
 
 5Stack Game Node Server containers support custom plugins for both supported frameworks. To set up custom plugins. There is a special folder located at `/opt/5stack/custom-plugins` on your Game Server Node.
 
+::: tip There is a managed path for this now
+Dropping files here still works and still applies to **every** server on the node.
+If the plugin you want is in the directory, [installing it](/servers/game-server-nodes/game-plugins)
+gets you version tracking, digest-checked downloads, and per-match selection via
+[Game Modes](/features/admin/game-modes) instead. A file placed here by hand
+still wins over a managed copy of the same path.
+:::
+
 Any files placed in `/opt/5stack/custom-plugins` are mirrored into `<install-dir>/game/csgo` when the game server starts, preserving their directory structure. So lay your files out exactly as they would sit inside `game/csgo`.
 
 ::: warning
