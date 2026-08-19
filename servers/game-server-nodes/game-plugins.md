@@ -39,6 +39,44 @@ Syncing happens automatically every 30 minutes. A registry that fails to load,
 or comes back empty, leaves the last good catalog in place rather than emptying
 the directory.
 
+## When the catalog does not have it
+
+The registry is a curated list, and CS2 has more plugins than it carries. If the
+one you want is not in the directory, **Add a plugin** takes a release URL and
+turns it into an entry of your own:
+
+- a **repository** — `https://github.com/owner/repo` — resolves to the newest
+  Linux archive of its latest release, the same choice the registry build makes;
+- a **release** — `.../releases/tag/v1.2.0` — pins that release instead;
+- a **direct link** to a `.zip` is taken as-is, and you supply the slug and
+  version yourself, because nothing in the URL reliably says what they are.
+
+You always pick the framework: a CounterStrikeSharp build unpacks perfectly well
+under SwiftlyS2 and then never loads, and nothing inside the archive says which
+one it was built for.
+
+The panel downloads the archive once and records its SHA-256, so every node
+verifies its own download against a digest the same way it does for a
+catalogued plugin. From there it installs, versions, and loads exactly like a
+registry entry — modes select it, nodes converge to it, the directory shows its
+coverage. It is marked **Custom** so it is clear nobody reviewed it.
+
+::: danger Nobody reviewed this one
+A game plugin runs inside the `cs2` process on your machines. Installing from
+the directory means a 5Stack maintainer at least looked at the entry; adding one
+by URL means you are vouching for it yourself.
+:::
+
+Adding the same slug again with a newer release adds a version rather than a
+second entry — that is how you update one. A registry sync never touches your
+entries: it will not overwrite one, prune one, or replace it if the catalog
+later publishes a plugin under the same slug. **Remove from catalog**, on the
+plugin's page, deletes it once it is uninstalled from every node.
+
+If you find yourself adding several, point **Registry URL**
+[at your own fork of the registry](#the-directory) instead — one index every
+panel you run can read, rather than the same URLs typed into each of them.
+
 ## Installing
 
 Pressing **Install** records that this deployment wants the plugin. It does not
