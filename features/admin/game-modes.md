@@ -50,17 +50,47 @@ yourself is never replaced by a managed one.
 
 ### Console variables
 
-The cvar block is exec'd **after** the match type's config, so anything you set
-here beats the competitive defaults:
+The cvar block is exec'd **last**, after the match type's config, the global
+config and any plugin's own cvars, so anything you set here beats all of them:
 
 ```
 mp_freezetime 3
 mp_respawn_immunitytime 2
 ```
 
+The full order a server applies, each layer beating the one above it:
+
+| Order | Layer |
+| --- | --- |
+| 1 | The match type — Competitive, Wingman, Duel |
+| 2 | LAN tuning, on a LAN region |
+| 3 | [Global](#global-configuration) |
+| 4 | Each loading [game plugin's](/servers/game-server-nodes/game-plugins#configuration) own cvars |
+| 5 | The game mode's block, above |
+
 On workshop maps CS2 silently drops a handful of cvars from an exec'd config.
 5Stack re-sends those directly, and a value set in a mode wins over the same
 value in the type config — the same order they would have applied in.
+
+## Global configuration
+
+A cvar that should apply to **every** match, whatever its type, belongs in the
+**Global** tab under **Settings → Application → Game Type Configs**, beside LAN,
+Competitive, Wingman and Duel.
+
+It is a layer rather than a type: it is exec'd on top of whichever type config
+the match already got, so it is the one place to put something cross-cutting
+instead of pasting it into three configs and keeping them in step.
+
+Global is deliberately unscoped — it is the "every match" layer, and a global
+with exceptions is just a type config with extra steps. To narrow something to
+particular matches, put it on a [game plugin](/servers/game-server-nodes/game-plugins#load-without-a-game-mode)
+or in a game mode instead.
+
+::: tip Nothing ships in it
+Global starts empty and has no shipped default — **Revert to Defaults** on that
+tab clears it rather than restoring anything.
+:::
 
 ## Where a mode is used
 
@@ -111,9 +141,9 @@ having to remember to switch anything off.
 Matchmaking never sets a mode on the matches it creates, so a queued match is
 competitive by construction.
 
-The one exception is a plugin marked
-[**Load on every match**](/servers/game-server-nodes/game-plugins#load-on-every-match),
-which is loaded by every server regardless of mode, ranked included.
+The one exception is a plugin whose
+[**Ranked Matches** switch](/servers/game-server-nodes/game-plugins#load-without-a-game-mode)
+is on, which every ranked server loads regardless of mode.
 
 ## Runtime compatibility
 

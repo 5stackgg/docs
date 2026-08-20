@@ -165,25 +165,72 @@ An installed plugin is on the node but dormant. Nothing loads it until a
 what lets one node host a competitive match and a fun match at the same time.
 :::
 
-### Load on every match
+### Load without a game mode
 
-Each installed plugin has a **Load on every match** switch on its directory
-page. Turn it on and every server the deployment starts loads the plugin,
-whether or not a mode selects it.
+Each installed plugin's directory page has three switches saying which kinds of
+match load it on their own, whether or not a mode selects it:
 
-That is what it is for: a stats collector or an admin tool is not a game mode,
-and the only way to get one onto every server used to be hand-placing the files
-in `custom-plugins` — the exact thing the catalog replaces.
+| Switch | Covers |
+| --- | --- |
+| **Ranked Matches** | Anything counting toward ranking — the queue or a draft lobby alike |
+| **Tournament Matches** | Matches played as part of a tournament bracket, ranked or not |
+| **Custom Matches** | Everything else: matches that count toward nothing |
 
-::: danger This is the one setting that reaches ranked play
-Everything else about game plugins stops at the edge of matchmaking: a Ranked
-server cannot carry a game mode at all, and matchmaking never sets one on the
-matches it creates. **Load on every match** deliberately steps over that line
-and applies to ranked and matchmaking servers too.
+The buckets do not overlap. A match is sorted into exactly one of them, and a
+ranked tournament game is a **tournament** game — that switch is the more
+specific statement, so it wins. "Ranked" is about the match counting toward
+ranking, not about matchmaking having created it.
 
-Use it for plugins that observe. Anything that changes how the game plays does
-not belong on a ranked server.
+That is what they are for: a stats collector or an admin tool is not a game
+mode, and the only way to get one onto every server used to be hand-placing the
+files in `custom-plugins` — the exact thing the catalog replaces.
+
+All three start **off**. Installing a plugin puts it on your nodes; it does not
+start running it on matches. Until you turn one on, or a game mode selects the
+plugin, nothing loads it.
+
+::: warning A game mode still wins
+A mode that names the plugin loads it regardless of these switches. Picking a
+mode is an explicit choice about one match; these are a blanket setting.
 :::
+
+::: danger Ranked Matches reaches competitive play
+"Ranked" here means the match counts toward ranking — a queued match and a draft
+lobby playing for Elo alike. It is the broadest of the three: a match is ranked
+unless a game mode made it unranked or a bracket made it a tournament game.
+
+That is exactly why it is a switch of its own rather than part of a single
+"every match" flag.
+:::
+
+### Configuration
+
+Some plugins are configured with console variables rather than a config file,
+and those have nowhere to live: a match type config is shared by every match of
+that type, and a [Game Mode](/features/admin/game-modes) only covers matches
+that select it.
+
+Each installed plugin's page has a **Configuration** box for exactly that. What
+you write there is exec'd after the match type's config and after the
+[Global config](/features/admin/game-modes#global-configuration), on servers
+that load the plugin **and nowhere else**. A plugin whose registry entry
+declares its cvars offers to insert them for you, so you are filling in values
+rather than remembering names.
+
+```
+invsim_url "https://inventory.example.gg"
+invsim_apikey "inv_…"
+```
+
+::: tip One place, not three
+This replaces pasting a plugin's cvars into Competitive, Wingman and Duel
+separately, which is how a rotated API key ends up half-updated.
+:::
+
+The cvars follow the plugin: they are exec'd wherever it loads, and nowhere
+else. A plugin kept out of competitive play by its
+[load switches](#load-without-a-game-mode) does not carry its configuration
+there either — it is not loaded at all, rather than loaded unconfigured.
 
 ### Plugins that need Valve's server guidelines off
 
