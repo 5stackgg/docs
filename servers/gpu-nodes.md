@@ -7,6 +7,7 @@ produces video:
 - [In-browser demo playback](/features/demo-playback)
 - [Live streaming](/features/live-streaming)
 - [Highlights and clip rendering](/features/highlights)
+- [Utility lineup previews](/features/utility-library#preview-renders)
 
 Without a GPU node, the panel still works, matches, stats, and 2D/3D replay all
 run fine, but those video features are unavailable.
@@ -21,8 +22,8 @@ install instead.
 ## How it works
 
 A GPU node runs real CS2 instances to render demos and live observers in a GPU
-pod. Each render job (a demo session, a live stream, or a highlight render) boots
-a pod, does its work, and frees the GPU again. The **GPU Nodes** admin page shows
+pod. Each render job (a demo session, a live stream, a highlight render, or a
+lineup preview) boots a pod, does its work, and frees the GPU again. The **GPU Nodes** admin page shows
 the node roster with live GPU/VRAM usage, what each node is currently doing, and
 how many GPUs are free in the pool.
 
