@@ -94,6 +94,7 @@ export default defineConfig({
             { text: "Map Veto Format", link: "/map-veto" },
             { text: "Scrim Finder", link: "/scrim-finder" },
             { text: "Player Cameras", link: "/player-cameras" },
+            { text: "Utility Library & Practice", link: "/utility-library" },
           ],
         },
         {

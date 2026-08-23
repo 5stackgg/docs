@@ -46,4 +46,6 @@ Roles are assigned from the [player directory](/features/admin/roles-and-players
 
 The admin controls for [demo settings](/features/demos), [highlights](/features/highlights),
 [streaming](/features/live-streaming), [player cameras](/features/player-cameras),
-and [voice chat](/features/voice-chat) are covered on those feature pages.
+[voice chat](/features/voice-chat), and the
+[utility library and practice servers](/features/utility-library) are covered on
+those feature pages.

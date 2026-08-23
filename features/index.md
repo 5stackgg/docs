@@ -22,6 +22,10 @@ Pages linked below go deeper on the bigger features.
 - **[Player Cameras](/features/player-cameras)**: require a webcam from every
   player, watch the feeds from the panel, auto-pause when one drops, and put the
   spectated player's camera on the broadcast.
+- **[Utility Library & Practice](/features/utility-library)**: a lineup library
+  for every map, built from throws recorded in game and grenades mined out of
+  your own demos, with one-click practice servers, scored drills, team executes,
+  and a ranked plan of what to learn next.
 - **Custom Map Pools**: curated pools for every format (1v1, 2v2, 5v5),
   including workshop maps.
 
@@ -137,6 +141,7 @@ Several features are optional and can be switched on or off instance-wide from
 Scrim Finder, voice chat, plugins, and linked accounts.
 
 ::: tip Rendering features need a GPU
-Highlights, in-browser demo playback, and live streaming are all rendered on a
-**GPU node**. See [GPU Nodes](/servers/gpu-nodes).
+Highlights, in-browser demo playback, live streaming, and utility lineup
+previews are all rendered on a **GPU node**. See
+[GPU Nodes](/servers/gpu-nodes).
 :::

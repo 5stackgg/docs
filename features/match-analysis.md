@@ -72,6 +72,17 @@ than guessing at them.
 From either mode you can jump straight into
 [2D playback or the 3D replay](/features/match-replay).
 
+### Utility vs Lineups
+
+Every grenade thrown on the map, matched against the
+[utility library](/features/utility-library) by where it was thrown from and
+where it landed: how many throws matched a saved lineup, how many matched a
+mined meta spot, and how many landed. The same tab lists every grenade in the
+demo, so a throw you liked can be saved as a lineup of your own.
+
+A throw is matched by its start and end points, so these are throws that _look
+like_ the lineup, not proof the lineup was the one being called.
+
 ### Team stats
 
 A per-team KPI panel with **round win %, pistol win %, opening win %, trade %,
@@ -105,7 +116,7 @@ sit up top, and you can **pin another player** to compare.
 
 ## Team analytics
 
-Team pages carry two things you won't find in most panels.
+Team pages carry three things you won't find in most panels.
 
 ### Veto tendencies
 
@@ -123,6 +134,12 @@ side shown so you know how much to trust it.
 
 It's an estimate derived from historical tendencies, not a guarantee, the app
 says so too, but for prep it beats a whiteboard.
+
+### Utility lineups
+
+**Utility Lineups** shows which saved lineups this roster's grenades looked like
+in real matches, per map: players, throws, landed, and land rate. See the
+[Utility Library](/features/utility-library).
 
 ## Where the data comes from
 
