@@ -109,19 +109,57 @@ state, and lineups gain a **Load me in** action.
 The practice plugin ships in the server image for both runtimes. `.help` lists
 everything:
 
-| Command                                                                 | Does                                               |
-| ----------------------------------------------------------------------- | -------------------------------------------------- |
-| `.save <name>`                                                          | Saves the throw you just made as a lineup          |
-| `.load <query>`                                                         | Teleports you to a matching lineup                 |
-| `.next` / `.prev`                                                       | Walks the last search                              |
-| `.rethrow`                                                              | Back to the lineup you loaded                      |
-| `.last` / `.back <n>`                                                   | Back to a throw you made                           |
-| `.list` / `.reload` / `.delete`                                         | Manage your library from in game                   |
-| `.drill [count] [worst]` / `.skip`                                      | Drills your book, three throws each, and scores it |
-| `.playbook` / `.run` / `.playbook stop`                                 | Runs the loaded execute on its timings             |
-| `.bloom`                                                                | Outlines where the loaded smoke lands              |
-| `.pos save <name>` / `.pos <name>`                                      | Saved positions                                    |
-| `.spawn <n>`, `.noclip`, `.god`, `.timer`, `.solo`, `.ghosts`, `.clear` | Practice conveniences                              |
+| Command                                                                 | Does                                                        |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `.save [name]`                                                          | Saves the throw you just made. Skip the name and the map names it |
+| `.load <query>`                                                         | Teleports you to a matching lineup                          |
+| `.next` / `.prev`                                                       | Walks the last search — or moves a drill to the next lineup  |
+| `.rethrow`                                                              | Back to the lineup you loaded                               |
+| `.last` / `.back <n>`                                                   | Back to a throw you made                                    |
+| `.list` / `.reload` / `.delete`                                         | Manage your library from in game                            |
+| `.edit`                                                                 | Rename the loaded lineup, describe it, change who can see it |
+| `.drill`                                                                | Reps the lineup you are standing on until you stop it       |
+| `.drill [count] [worst]` / `.skip`                                      | Drills your book, three throws each, and scores it          |
+| `.playbook` / `.run` / `.playbook stop`                                 | Runs the loaded execute on its timings                      |
+| `.bloom`                                                                | Outlines where the loaded smoke lands                       |
+| `.pos save <name>` / `.pos <name>`                                      | Saved positions                                             |
+| `.spawns` / `.spawn <n>`                                                | Shows the competitive spawns, and teleports to one          |
+| `.noclip`, `.god`, `.timer`, `.solo`, `.ghosts`, `.colors`, `.clear`    | Practice conveniences                                       |
+
+#### On-screen panels
+
+Servers with the HUD addon mounted get clickable panels instead of centre text.
+They fall back to the old text on any server without it, so nothing is lost by
+not having it.
+
+| Command  | Does                                                                     |
+| -------- | ------------------------------------------------------------------------ |
+| `.menu`  | The lineup picker — scope, side and type filters, sixteen scrolling rows  |
+| `.map`   | A minimap of the map's landing spots; click one to see and load its throws |
+| `.hud`   | Swaps the panels back to centre text for you alone                       |
+| `.here`  | Narrows the list to lineups you can throw from where you stand           |
+
+The guidance panel names the place a throw lands, tells you which way to look in
+words rather than only in colour, and shows how many of your throws have landed
+while drilling. During an execute a second panel lists who throws what and when,
+with your own steps in colour and everyone else's greyed.
+
+#### Mounting the HUD
+
+The panels are Panorama, which means the files have to reach the player's game
+rather than the server's. CS2 has no server-to-client file transfer, so the only
+route is the Workshop: publish the addon, then name its id in
+[AddonsManager](https://github.com/SwiftlyS2-Plugins/AddonsManager) on the
+practice servers.
+
+Players do not subscribe to anything. The server tells a connecting client which
+id it needs and Steam delivers it — one download and one reconnect on a player's
+first join, then never again.
+
+Practice servers only. A one-time download is a fair price for somebody who came
+to drill; it is not something to ask ten people for before a knife round. And
+because everything degrades to the centre text it replaced, a server without the
+addon loses the panels and nothing else.
 
 Several players can practise in one server without their throws crossing: a
 projectile names its own owner, so nothing is keyed on "whoever threw last".
