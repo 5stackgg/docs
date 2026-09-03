@@ -16,7 +16,7 @@ Live performance across your infrastructure:
 ## System logs
 
 Tail live logs for any service, api, web, game-server-node, demo-parser, hasura,
-typesense, timescaledb, redis, minio, mediamtx, with follow and timestamp
+typesense, timescaledb, redis, rustfs, mediamtx, with follow and timestamp
 toggles. Per-**match** server logs are available from the match's server tab (see
 [Match server controls](/features/admin/servers#match-server-controls)).
 

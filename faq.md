@@ -29,7 +29,7 @@ git clone https://github.com/5stackgg/5stack-panel; cd 5stack-panel; ./install.s
 ```
 
 That installs [K3s](https://docs.k3s.io) (a lightweight Kubernetes
-distribution), the database, S3-compatible storage (MinIO by default), and the
+distribution), the database, S3-compatible storage (RustFS by default), and the
 panel itself. See [What is Installed?](/install/what-is-installed) for the full
 inventory, and [Configuration Options](/install/command-line-arguments) for the
 flags the installer accepts.
@@ -97,7 +97,7 @@ servers, chat — runs fine without one.
 
 ## Where do demos get stored, and can I use my own storage?
 
-Demos and backups go to S3-compatible storage. The install ships MinIO running
+Demos and backups go to S3-compatible storage. The install ships RustFS running
 inside the cluster, but you can point it at any S3 provider instead — see
 [Bring Your Own S3](/advanced/s3/), including a
 [Backblaze](/advanced/s3/backblaze) walkthrough.

@@ -3,8 +3,8 @@
 The 5Stack Panel relies on several open-source software components for its operation:
 
 - [Hasura GraphQL Engine](https://hasura.io/)
-- [Minio](https://min.io/)
 - [Redis](https://redis.io/)
+- [RustFS](https://rustfs.com/)
 - [TimescaleDB](https://www.timescale.com/)
 - [Typesense](https://typesense.org/)
 
