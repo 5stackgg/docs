@@ -8,7 +8,7 @@ and [stats](/features/stats-and-leaderboards).
 ## How demos flow
 
 1. The server records the demo and uploads it automatically when the map ends.
-2. It's stored in S3-compatible storage (local MinIO by default, or your own
+2. It's stored in S3-compatible storage (local RustFS by default, or your own
    provider. See [Bring Your Own S3](/advanced/s3/)).
 3. 5Stack parses it to extract rounds, kills, utility, positions, and stats.
 
