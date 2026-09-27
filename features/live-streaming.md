@@ -74,7 +74,8 @@ and no per-viewer vendor cost.
   HLS, and H.265 falls back to H.264 if the GPU lacks NVENC HEVC).
 - **Playcast**: enable CS2's GOTV broadcast (Playcast) format so spectators
   connect to relay infrastructure instead of the game server, increasing viewer
-  capacity while reducing load on the match server.
+  capacity while reducing load on the match server. For big audiences, serve
+  viewers from Cloudflare with the [edge relay](/advanced/playcast-edge-relay).
 
 Live streaming renders on a [GPU node](/servers/gpu-nodes); make sure at least one
 node has streaming enabled and a Steam account available in the pool.
