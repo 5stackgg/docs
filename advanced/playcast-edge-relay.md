@@ -10,14 +10,22 @@ The edge relay is a small Cloudflare Worker that you put on your relay domain. G
 
 ## Deploy it
 
-The worker lives in the [api repository](https://github.com/5stackgg/api) under `cloudflare-workers/playcast-relay/`. From a checkout, deploy it as a route on your relay domain:
+Your relay domain is already in the panel's config (`RELAY_DOMAIN`), so from the directory you installed the panel in (`5stack-panel`), run:
+
+```bash
+./playcast-relay.sh
+```
+
+The script checks that the relay domain goes through Cloudflare, deploys the worker onto it as a route, and waits until it answers there. It needs Node.js (for `npx wrangler`); the first time, wrangler opens a browser to sign in to Cloudflare. On a machine without a browser, export a `CLOUDFLARE_API_TOKEN` with the **Workers Scripts: Edit** and **Workers Routes: Edit** permissions first.
+
+Then, in the Cloudflare dashboard, open the worker's route and set its **request limit failure mode** to **Fail open**. If the daily Workers limit is ever reached, requests then skip the worker and go straight to your panel instead of failing.
+
+To deploy it by hand instead, run this from the `5stack-panel` directory, with your relay domain:
 
 ```bash
 npx wrangler deploy --config cloudflare-workers/playcast-relay/wrangler.toml \
   --route "tv.example.com/*"
 ```
-
-Then, in the Cloudflare dashboard, open the worker's route and set its **request limit failure mode** to **Fail open**. If the daily Workers limit is ever reached, requests then skip the worker and go straight to your panel instead of failing.
 
 ## Check that it is active
 
