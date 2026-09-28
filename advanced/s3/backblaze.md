@@ -27,11 +27,11 @@ It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and 
 2. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.
 3. **The DNS record.** If the hostname has no record yet, it tells you what to add: an `AAAA` record pointing at `100::` with the proxy on (orange cloud). The address is only a placeholder, because the worker answers every request itself. It links to your domain's DNS page and checks again once you have added it.
 4. **Deploying.** It shows the hostname and bucket, then deploys the worker, stores the bucket keys as worker secrets and adds its routes. Routes the worker already has on other hostnames are kept, so links that still use an older hostname keep working.
-5. **Pointing the panel at it.** It sets the panel's **Cloudflare Worker URL** (Settings → Application → Demo settings) to the new hostname, asking first if it was already set to another one.
+5. **Pointing the panel at it.** It saves the hostname as `CLOUDFLARE_WORKER_DOMAIN` in `overlays/config/api-config.env`, asking first if the panel was using a different one, and applies it straight away. Every demo, clip and media download link is built from it.
 
-Run it again at any time to update the worker.
+Run it again at any time to update the worker. **Settings → Application → Demo settings** shows the URL the panel is using.
 
-If your secrets live in Vault, the script can't read the panel's Hasura admin secret and asks you to set the **Cloudflare Worker URL** yourself instead, printing the exact value.
+If your secrets live in Vault, the change takes effect the next time you run `./update.sh`.
 
 ## Caching
 
