@@ -11,7 +11,7 @@ The deploy script reads the bucket from the panel's own S3 configuration, so set
 - `overlays/config/s3-config.env`: `S3_BUCKET` and `S3_ENDPOINT` (whatever your bucket lists under "Endpoint", e.g. `s3.us-east-005.backblazeb2.com`)
 - `overlays/local-secrets/s3-secrets.env`: `S3_ACCESS_KEY` and `S3_SECRET`
 
-If your secrets live in Vault, the script asks for the keys instead.
+If your secrets live in Vault, the script reads the keys from your cluster instead. Either way it checks them with Backblaze before deploying anything, and asks you for them if Backblaze rejects them.
 
 ## 2. Deploy
 
@@ -27,11 +27,18 @@ It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and 
 2. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.
 3. **The DNS record.** If the hostname has no record yet, it tells you what to add: an `AAAA` record pointing at `100::` with the proxy on (orange cloud). The address is only a placeholder, because the worker answers every request itself. It links to your domain's DNS page and checks again once you have added it.
 4. **Deploying.** It shows the hostname and bucket, then deploys the worker, stores the bucket keys as worker secrets and adds its routes. Routes the worker already has on other hostnames are kept, so links that still use an older hostname keep working.
-5. **Pointing the panel at it.** It saves the hostname as `CLOUDFLARE_WORKER_DOMAIN` in `overlays/config/api-config.env`, asking first if the panel was using a different one, and applies it straight away. Every demo, clip and media download link is built from it.
+5. **Checking it.** It reads a file through the worker to make sure it can reach your bucket.
+6. **Pointing the panel at it.** It saves the hostname as `CLOUDFLARE_WORKER_DOMAIN` in `overlays/config/api-config.env`, asking first if the panel was using a different one, and applies it straight away, or offers to run `./update.sh` when it can't. Every demo, clip and media download link is built from it.
+7. **Smart Tiered Cache.** It checks whether it is on for your domain. Signed in with an API token, it can turn it on for you; signed in through the browser or a device code, it links you to the setting, because that sign-in can't change cache settings.
 
-Run it again at any time to update the worker. **Settings → Application → Demo settings** shows the URL the panel is using.
+Run it again at any time to update the worker.
 
-If your secrets live in Vault, the change takes effect the next time you run `./update.sh`.
+## Check that it works
+
+Go to **Settings → Application → Demos**:
+
+- **Cloudflare delivery** shows the worker as **Online** when it answers and Backblaze accepts its keys. It shows **Offline** when the worker isn't answering or Backblaze rejects its keys, which breaks every download that isn't cached yet; run the script again with the keys the panel uses. A worker deployed before these checks shows **Needs attention** until you run the script again.
+- **Storage check** writes a test file to your bucket, reads it back in your browser, and checks the worker, showing each step's result.
 
 ## Caching
 
