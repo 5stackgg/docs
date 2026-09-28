@@ -27,7 +27,7 @@ Run it again at any time to update the worker.
 
 ## Check that it is active
 
-Go to **Settings → Application → Streaming**. With **Playcast** on, the **Edge relay (Cloudflare)** section checks your relay domain: it shows **Active** as soon as the worker answers there. The worker answers `https://<relay domain>/health`; your panel's own relay does not, so an answer means Cloudflare is already sending the traffic through it.
+Go to **Settings → Application → Streaming**. With **Playcast** on, the **Edge relay (Cloudflare)** section checks your relay domain: it shows **Online** as soon as the worker answers there, and **Not set up** otherwise. The worker answers `https://<relay domain>/health`; your panel's own relay does not, so an answer means Cloudflare is already sending the traffic through it.
 
 ## Removing it
 

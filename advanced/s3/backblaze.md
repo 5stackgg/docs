@@ -31,7 +31,14 @@ It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and 
 6. **Pointing the panel at it.** It saves the hostname as `CLOUDFLARE_WORKER_DOMAIN` in `overlays/config/api-config.env`, asking first if the panel was using a different one, and applies it straight away, or offers to run `./update.sh` when it can't. Every demo, clip and media download link is built from it.
 7. **Smart Tiered Cache.** It checks whether it is on for your domain. Signed in with an API token, it can turn it on for you; signed in through the browser or a device code, it links you to the setting, because that sign-in can't change cache settings.
 
-Run it again at any time to update the worker. **Settings → Application → Demo settings** shows the URL the panel is using.
+Run it again at any time to update the worker.
+
+## Check that it works
+
+Go to **Settings → Application → Demos**:
+
+- **Cloudflare delivery** shows the worker as **Online** when it answers and Backblaze accepts its keys. It shows **Offline** when the worker isn't answering or Backblaze rejects its keys, which breaks every download that isn't cached yet; run the script again with the keys the panel uses. A worker deployed before these checks shows **Needs attention** until you run the script again.
+- **Storage check** writes a test file to your bucket, reads it back in your browser, and checks the worker, showing each step's result.
 
 ## Caching
 
