@@ -351,6 +351,10 @@ export default defineConfig({
               ],
             },
             {
+              text: "Playcast Edge Relay",
+              link: "/playcast-edge-relay",
+            },
+            {
               text: "Custom Kubernetes",
               link: "/custom-k8s",
             },
