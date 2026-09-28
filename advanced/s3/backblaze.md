@@ -27,18 +27,17 @@ It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and 
 2. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.
 3. **The DNS record.** If the hostname has no record yet, it tells you what to add: an `AAAA` record pointing at `100::` with the proxy on (orange cloud). The address is only a placeholder, because the worker answers every request itself. It links to your domain's DNS page and checks again once you have added it.
 4. **Deploying.** It shows the hostname and bucket, then deploys the worker, stores the bucket keys as worker secrets and adds its routes. Routes the worker already has on other hostnames are kept, so links that still use an older hostname keep working.
+5. **Pointing the panel at it.** It sets the panel's **Cloudflare Worker URL** (Settings → Application → Demo settings) to the new hostname, asking first if it was already set to another one.
 
 Run it again at any time to update the worker.
 
-## 3. Update the panel
-
-Go to **Settings → Application → Demo settings** and set the **Cloudflare Worker URL** to your worker's hostname (e.g. `https://cf.<your-domain>`). The script prints the exact value at the end.
+If your secrets live in Vault, the script can't read the panel's Hasura admin secret and asks you to set the **Cloudflare Worker URL** yourself instead, printing the exact value.
 
 ## Caching
 
 Edge caching is enabled in the worker by default, `cf.cacheEverything` plus a `Cache-Control: public, max-age=2592000, immutable` response header. Clip/demo objects are UUID-keyed so they're safe to cache for the full 30-day window Cloudflare allows on the Free tier. The first request to a clip warms the edge cache; subsequent viewers (including `<video>` Range seeks) are served from Cloudflare without touching B2.
 
-## 4. Enable Tiered Cache (recommended)
+## 3. Enable Tiered Cache (recommended)
 
 Cloudflare's edge cache is per-datacenter. Without Tiered Cache, a clip viewed first from London is still a cold miss in Tokyo and re-fetches from B2. Tiered Cache lets edges pull from each other before going to origin, so each clip is fetched from B2 once globally instead of once per region.
 
