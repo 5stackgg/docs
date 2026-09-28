@@ -16,16 +16,14 @@ Your relay domain is already in the panel's config (`RELAY_DOMAIN`), so from the
 ./playcast-relay.sh
 ```
 
-The script checks that the relay domain goes through Cloudflare, deploys the worker onto it as a route, and waits until it answers there. It needs Node.js (for `npx wrangler`); the first time, wrangler opens a browser to sign in to Cloudflare. On a machine without a browser, export a `CLOUDFLARE_API_TOKEN` with the **Workers Scripts: Edit** and **Workers Routes: Edit** permissions first.
+It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and walks you through the rest:
 
-Then, in the Cloudflare dashboard, open the worker's route and set its **request limit failure mode** to **Fail open**. If the daily Workers limit is ever reached, requests then skip the worker and go straight to your panel instead of failing.
+1. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.
+2. **Checking your relay domain.** It finds the domain in your Cloudflare account and checks that the relay domain is proxied (orange cloud) and that Cloudflare can reach your panel through it. Anything that needs changing, such as the proxy toggle or an SSL/TLS mode of Flexible, is explained with a link to the page in the Cloudflare dashboard, and it checks again once you have changed it.
+3. **Deploying.** It deploys the worker and adds the route `<relay domain>/*`, set to **Fail open**: if the daily Workers limit is ever reached, requests skip the worker and go straight to your panel instead of failing.
+4. **Checking it.** It waits until the worker answers on your relay domain.
 
-To deploy it by hand instead, run this from the `5stack-panel` directory, with your relay domain:
-
-```bash
-npx wrangler deploy --config cloudflare-workers/playcast-relay/wrangler.toml \
-  --route "tv.example.com/*"
-```
+Run it again at any time to update the worker.
 
 ## Check that it is active
 
