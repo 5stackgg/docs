@@ -2,7 +2,7 @@
 
 Web Push lets 5stack notify players on their phone or desktop **when the app isn't open** — a match going live, an invite, a scrim request, a new message.
 
-It is enabled out of the box and needs no configuration. Players turn it on per device under **Settings → Notification Preferences**, where they can also mute individual categories and set **quiet hours** — a window in which push stays silent while the notifications still land in the in-app alert bell. Application settings → **Integrations → Web Push** shows whether it's active and how many devices are subscribed.
+It is enabled out of the box and needs no configuration. Players turn it on per device under **Settings → Notifications**, where they can also mute individual categories and set **quiet hours** — a window in which push stays silent while the notifications still land in the in-app alert bell. Application settings → **Integrations → Web Push** shows whether it's active and how many devices are subscribed.
 
 ## No service, no keys to buy
 

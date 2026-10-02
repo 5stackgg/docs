@@ -74,9 +74,13 @@ Chat and match sounds are context-aware: they automatically quiet down when
 you're **in a game** or the tab is **hidden**, so you're never spammed mid-round.
 You can pick your own notification sounds and set the volume.
 
-**Settings → Notification Preferences** decides what reaches you and where.
-Categories, matches, chat, invites, tournaments, scrims, leagues, teams, events,
-seasons, account, and news, can be muted individually on the in-app alert bell,
-and turned on per device as [web push notifications](/advanced/web-push) that
-arrive even when 5Stack isn't open. **Quiet hours** keep push silent during a
-window you set; those notifications still land in the alert bell.
+**Settings → Notifications** lists every kind of notification 5Stack can send
+you, grouped by category with an example of each, and decides where each one
+reaches you. Each kind can be muted on the in-app alert bell (your own account
+and safety notices always show), and each category can be turned on as
+[web push notifications](/advanced/web-push) that arrive even when 5Stack isn't
+open. Push choices are saved even before you turn push on for a device.
+**Quiet hours** keep push silent during a window you set; those notifications
+still land in the alert bell. The same page holds the browser tab flash and
+sound settings, and each notification in the bell has a menu to turn its kind
+off, with Undo.
