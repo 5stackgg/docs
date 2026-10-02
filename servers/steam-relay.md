@@ -8,25 +8,46 @@ Game server nodes are automatic, and no configuration is needed. For more inform
 
 ## Dedicated Servers Setup
 
-To configure Steam Datagram Relay, modify the `game/csgo/gameinfo_branchspecific.gi` file and
+To configure Steam Datagram Relay, edit `game/csgo/gameinfo_branchspecific.gi` and add two settings to it:
+
+- `"net_p2p_listen_dedicated" "1"` inside the existing `ConVars` block
+- a new `NetworkSystem` block with `"CreateListenSocketP2P" "2"`
+
+::: warning Do not replace the file
+Keep everything Valve ships in this file. It sets the server's `SteamAppId` to `730`, and replacing it with an empty file breaks the server.
+:::
+
+The file should end up looking like this:
 
 ```
-echo '"GameInfo"
+"GameInfo"
 {
-    // this file is intentionally empty for generating depot signatures
-    FileSystem
-    {
-      EmptyFileSystemValue 1
-    }
+	FileSystem
+	{
+		ForceFixedAppIds	1
+		SteamAppId			730
+		BreakpadAppId			2347771
+		BreakpadAppId_Tools		2347779
+	}
 
-    ConVars
-    {
-      "net_p2p_listen_dedicated" "1"
-    }
+	Panorama
+	{
+		"PreprocessResources"	  "1"
+	}
 
-    NetworkSystem
-    {
-      "CreateListenSocketP2P" "2"
-    }
+	ConVars
+	{
+		"net_p2p_listen_dedicated" "1"
+		"cl_usesocketsforloopback" "0"
+	}
+
+	NetworkSystem
+	{
+		"CreateListenSocketP2P" "2"
+	}
 }
 ```
+
+A CS2 update can overwrite this file. If relay stops working after an update, add the two settings again.
+
+To check that relay is on, run `net_p2p_listen_dedicated` in the server console. It should print `1`.
