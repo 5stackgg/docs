@@ -69,3 +69,36 @@ services:
 ```
 
 After a Counter-Strike update. You will need to run `docker-compose run --rm update-server` to download and install the latest version of the game.
+
+## Hibernation
+
+CS2 can put an empty server to sleep with `sv_hibernate_when_empty 1`, which stops it
+ticking until somebody connects. A 5Stack server used to need that turned off, because a
+sleeping server stopped reporting to the panel and showed as offline. From plugin versions
+`sw-v0.0.96` and `css-v0.0.441` it no longer does:
+
+- a hibernating server keeps reporting to the panel and still answers RCON
+- when it is given a match it wakes itself, changes map and sets the password before
+  anyone connects
+- it stays awake for as long as it has a match, and may hibernate again once the match is
+  gone
+
+The container still starts with hibernation off. Turn it on with one more environment
+variable:
+
+```
+    environment:
+      - HIBERNATE_WHEN_EMPTY=true
+```
+
+A server you run yourself with the plugin follows whatever its own `server.cfg` sets.
+
+::: warning
+Older plugin versions go quiet while the server hibernates. Update the plugin, or keep
+`sv_hibernate_when_empty 0`.
+:::
+
+::: tip
+This has been run on SwiftlyS2. The CounterStrikeSharp plugin carries the same changes but
+has seen less testing.
+:::
