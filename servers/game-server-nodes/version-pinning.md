@@ -40,8 +40,13 @@ On screens narrower than the full table layout, the **CS2 Build** and **Plugin V
 Pinning sets the node's **target** build; it does not move the node on its own. If the node is running a different build than the one you pinned, a yellow update button appears next to the dropdown, with the tooltip **Update to {version}**. Click it to start the update.
 
 - The node must be **Online** for the update button to be clickable.
-- While the update runs, the column is replaced by a spinner and **Updating to {version}**. Click **Show Update Logs** to follow along.
+- While the update runs, the column is replaced by a spinner, the update's live progress (for example a download percentage) and **Updating to {version}**. Click **Show Update Logs** to follow along.
 - Rolling _back_ to an older build works exactly the same way, pin it, then run the update.
+
+If an update fails, a red icon appears in its place, with **Update Failed** and
+how long ago in its tooltip. Click it to open the logs, which are kept for 24
+hours. The icon clears when the next update starts. Administrators also get a
+**Game Update Failed** notification naming the node.
 
 If a node has no CS2 installed yet, you'll see an **Install CS2** button instead of the dropdown.
 
@@ -51,7 +56,7 @@ The **Plugin Version** column controls which 5Stack game server plugin the node 
 
 The dropdown only lists releases for the [plugin runtime](/servers/game-server-nodes/plugin-runtimes) you have selected. SwiftlyS2 and CounterStrikeSharp number their releases independently. A pin remembers the runtime it was made under, so a pinned node stays on that framework even if you switch the deployment-wide runtime later. Clear the pin to move it.
 
-Each version shows when it was published, and, where the plugin declares a minimum, a green **Supports: {build_id}+** line telling you the oldest CS2 build it works with. Use that to match a plugin to whatever build you pinned above.
+Each version shows when it was published, and, where the plugin declares a minimum, a green **Supports: {build_id}+** line telling you the oldest CS2 build it works with. Use that to match a plugin to whatever build you pinned above. Every plugin release now carries that minimum; it is raised when a CS2 update breaks the plugin's gamedata.
 
 If the node's current plugin can't run against its current CS2 build, a red **Plugin version not supported** icon appears next to the dropdown.
 
@@ -67,4 +72,4 @@ When 5Stack detects a new CS2 build it marks it as current, notifies administrat
 - **Nodes pinned to the build they're already on** are skipped, and stay where they are.
 - **Nodes pinned to a build they're not on yet** are moved to their pinned build.
 
-The **CS2 Version Information** strip at the top of the Game Server Nodes page always shows the current build and when it was last updated.
+The **CS2 build** strip at the top of the Game Server Nodes page always shows the current version, its build id and when it was released.

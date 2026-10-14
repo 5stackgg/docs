@@ -19,15 +19,20 @@ Your relay domain is already in the panel's config (`RELAY_DOMAIN`), so from the
 It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and walks you through the rest:
 
 1. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.
-2. **Checking your relay domain.** It finds the domain in your Cloudflare account and checks that the relay domain is proxied (orange cloud) and that Cloudflare can reach your panel through it. Anything that needs changing, such as the proxy toggle or an SSL/TLS mode of Flexible, is explained with a link to the page in the Cloudflare dashboard, and it checks again once you have changed it.
-3. **Deploying.** It deploys the worker and adds the route `<relay domain>/*`, set to **Fail open**: if the daily Workers limit is ever reached, requests skip the worker and go straight to your panel instead of failing.
-4. **Checking it.** It waits until the worker answers on your relay domain.
+2. **Checking your relay domain.** It finds the domain in your Cloudflare account (the zone must be **Active**, so its nameservers must already point at Cloudflare) and checks that the relay domain is proxied (orange cloud) and that Cloudflare can reach your panel through it. Anything that needs changing, such as the proxy toggle or an SSL/TLS mode of Flexible, is explained with a link to the page in the Cloudflare dashboard; press Enter to check again once you have changed it, or type `skip` to carry on anyway.
+3. **Deploying.** After you confirm, it deploys the worker and adds the route `<relay domain>/*`, set to **Fail open**: if the daily Workers limit is ever reached, requests skip the worker and go straight to your panel instead of failing. If that route already belongs to another worker, it stops and tells you to remove it first.
+4. **Checking it.** It waits up to two minutes for the worker to answer on your relay domain.
 
 Run it again at any time to update the worker.
 
 ## Check that it is active
 
-Go to **Settings → Application → Streaming**. With **Playcast** on, the **Edge relay (Cloudflare)** section checks your relay domain: it shows **Online** as soon as the worker answers there, and **Not set up** otherwise. The worker answers `https://<relay domain>/health`; your panel's own relay does not, so an answer means Cloudflare is already sending the traffic through it.
+Go to **Settings → Application → Streaming**. With **Playcast** on, the **Edge relay (Cloudflare)** section checks your relay domain and shows when it last checked, with a **Check again** button:
+
+- **Online**: "Playcast viewers are served from Cloudflare's cache."
+- **Not set up**: "Playcast viewers are served by this server." A **Setup guide** link leads here.
+
+The worker answers `https://<relay domain>/health` with its name; your panel's own relay does not, so an answer means Cloudflare is already sending the traffic through it.
 
 ## Removing it
 
@@ -37,5 +42,7 @@ Delete the route (or the worker) in the Cloudflare dashboard. Traffic goes strai
 
 - Anything that is not a read, such as game servers uploading the broadcast, is passed straight to your panel.
 - `/sync` is cached for 3 seconds, like Valve's reference relay.
-- Fragments are cached under the broadcast they belong to. Fragment numbers start over when a new map starts a new broadcast, so viewers are never served an earlier map's data.
+- Fragments are cached under the broadcast they belong to, which the panel names on every `/sync`. Fragment numbers start over when a new map starts a new broadcast, so viewers are never served an earlier map's data.
 - The start of a broadcast, and anything the panel does not have yet, is never cached.
+
+The panel's own relay keeps each broadcast in Redis rather than in the API's memory, so restarting the API doesn't interrupt a live broadcast, and more than one API replica can serve it. A game server can only upload the broadcast of its own match.

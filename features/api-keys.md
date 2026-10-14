@@ -6,12 +6,15 @@ overlays.
 
 ## Managing your keys
 
-- **Create** a key with a label so you remember what it's for.
-- See each key's **created** date and **last-used** time at a glance.
-- **Revoke** a key any time.
+Keys live under **Settings → API Keys**.
 
-Treat a key like a password, anyone with it can act through the API as you. Copy
-it when it's created and store it somewhere safe.
+- **Add API Key** with a label so you remember what it's for.
+- See each key's **Created** date and **Last Used** time at a glance.
+- **Delete API Key** to revoke one at any time. Anything using it loses access.
+
+Treat a key like a password: anyone with it can act through the API as you. The
+key is only shown once, when it's created, so copy it then and store it
+somewhere safe.
 
 ## Using the API
 

@@ -1,25 +1,42 @@
 # Matchmaking & Ranks
 
-These settings control Quick Play / matchmaking, the Elo rank system, lineups,
-and the map pools and server configs that matches run with.
+These settings control matchmaking, the Elo rank system, draft lobbies, and the
+map pools and server configs that matches run with. For what players see, see
+[Play & Matchmaking](/features/quick-play).
 
 ## Matchmaking
 
-- **Enable matchmaking**: master toggle.
-- **Match types**: enable Competitive, Wingman, and/or Duel.
-- **Minimum role to access matchmaking**: from User up to Administrator.
-- **Max acceptable latency**: the latency ceiling for matchmaking (ms).
-- **Auto-cancel queue timeout**: how long a queue waits before cancelling
-  (minutes; default 15).
-- **Live match timeout**: how long a live match can run before it's force-ended
-  (minutes; default 180).
+Under **Settings → Application → Matchmaking**:
 
-## 5Stack Ranks
+- **Matchmaking**: the master switch. The rest of this section appears once
+  it's on.
+- **Match types**: turn matchmaking on or off for **Competitive**, **Wingman**,
+  **Duel**, and **Rush** individually. Only enabled types appear on the Play
+  page.
+- **Minimum Role Allowed to Join Matchmaking**: from User up to Administrator.
+- **Maximum Acceptable Latency**: players above this ping to a server are
+  filtered out when picking the best server for a match. It is also the top of
+  each player's own latency slider.
+- **Auto Cancel Duration**: cancels a match that hasn't gone live (still picking
+  players, in veto, or waiting for check-in or a server) after this many
+  minutes. Default 15. Matches and tournaments can override it.
+- **Live Match Timeout**: a safety net that cancels a live match after this many
+  minutes if it never finishes. Default 180. Matches and tournaments can
+  override it.
+- **Veto Pick Timer**: the default seconds each team gets per
+  [veto](/features/map-veto#pick-timer) step on newly created matches. Default
+  60; `0` turns the timer off by default.
 
-When matchmaking is enabled you can turn on the Elo rank system:
+Matchmaking never mixes LAN and online regions: on a LAN, players choose one or
+the other, and the server refuses a queue or match whose regions mix them.
 
-- **Enable ranks for matches**
-- **Enable ranks for tournaments**
+## 5stack Ranks
+
+When matchmaking is enabled you can send each player's 5Stack Elo to the server
+so the plugin can display ranks in-game:
+
+- **Show ranks in regular matches**
+- **Show ranks in tournament matches**
 
 ::: warning
 Showing ranks in-game means the server boots with `FollowCS2ServerGuidelines`
@@ -30,18 +47,35 @@ The same switch exists per plugin for
 [game plugins that cannot work with the guidelines on](/servers/game-server-nodes/game-plugins).
 :::
 
-## Lineups & player models
+## Draft lobbies & player models
 
-- **Minimum role to add players without an invite**: from User up to Match Organizer.
-- **Enforce default player models**: force standard models in matches.
+- **Draft Lobby Invites**: **Minimum Role to Add Players to Lineup Without
+  Invite** decides who can put a player straight into a
+  [draft lobby](/features/draft-lobbies) lineup. Below that role, the player
+  gets an invite they must accept.
+- **Player Models**: force the default player models for every player in a
+  match.
 
 ## Map pools
 
-- **Auto-update map pools**: keep pools in sync with the official map list.
-- **Create / edit pools** per format (1v1, 2v2, 5v5). Assign pools per playlist,
-  queue, or event.
+**Settings → Application → Map Pools** has one pool per match type
+(**Competitive**, **Wingman**, **Duel**, and **Rush**). Edit a pool to choose
+its maps.
 
-## Game type configs
+- **Available Maps** lists every map with whether it is **Active Duty**, which
+  modes it is available in, and its workshop ID. **Add New Map** adds an
+  official or workshop map.
+- **Automatic Update Map Pools** keeps the pools in step with Valve's active
+  duty list as maps are added or removed.
+- Deleted maps move to **Deleted Maps**: they're hidden from every pool and
+  picker, but matches already played on them keep their history. **Restore**
+  brings one back as it was.
 
-Edit the server config file applied for each game type, **LAN, Competitive,
-Wingman, Duel**, with defaults you can load and restore.
+Matches and tournaments can still pick a custom pool of their own.
+
+## Game Type Configs
+
+Edit the server config applied for each game type, **Competitive**, **Wingman**,
+**Duel**, and **Rush**, plus the **LAN** and **Global** layers exec'd on top of
+whichever one a match uses, with defaults you can load and restore. See
+[Game Modes](/features/admin/game-modes#global-configuration) for the exec order.

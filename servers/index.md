@@ -25,10 +25,22 @@ Each game server node should have around 150 GB of available disk space. This sp
 
 ## What is a Dedicated Server
 
-A [dedicated server](./dedicated-servers/) is a standalone server that runs independently from a Kubernetes cluster. Here are the advantages of running a dedicated server:
+A dedicated server is a server that stays up, rather than being started for one
+match. It can run in two places:
 
-- Full control over server configuration and plugins
-- Freedom to choose any hosting provider or self-host
+- **On one of your game server nodes**, where 5Stack builds, updates and
+  restarts it for you, and can move it to another node with its files. See
+  [Dedicated Servers on Game Server Nodes](./game-server-nodes/dedicated-servers).
+- **Anywhere else**, as an [external server](./dedicated-servers/) you run
+  yourself with the 5Stack plugin installed. Here are the advantages:
+  - Full control over server configuration and plugins
+  - Freedom to choose any hosting provider or self-host
+
+A dedicated server is either a **Ranked Server** that hosts matches, a
+**Practice Server**, or a [community server](./dedicated-servers/community-servers)
+for open play: a Valve preset or one of your game modes, listed on the **Public
+Servers** page, with its own map rotation, plugins, access list and player
+stats.
 
 ## Should I Use Dedicated Servers or Game Server Nodes?
 

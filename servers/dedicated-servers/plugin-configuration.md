@@ -7,9 +7,16 @@ two runtimes use different file names **and different formats**:
 - **CounterStrikeSharp**: `<server_path>/game/csgo/addons/counterstrikesharp/configs/plugins/FiveStack/FiveStack.json`
 
 The easiest way to get the config is from the panel: open your dedicated server's
-page, and under **Server Plugin Config** pick your runtime and press **Show Config**.
-It generates the file contents, including the server's API password, in the correct
-format for the selected runtime, ready to copy and paste.
+page, go to the **Settings** tab, and under **Server Plugin Config** pick your runtime
+and press **Show Config**. It generates the file contents, including the server's API
+password, in the correct format for the selected runtime, ready to copy and paste.
+The Settings tab is administrator-only.
+
+::: tip Community servers use a different plugin
+This page is for the match plugin, which a **Ranked Server** runs. A community server
+(a Valve preset) runs the [Player Management plugin](./player-management) instead, with
+its own config file.
+:::
 
 ## SwiftlyS2 (`config.jsonc`)
 
@@ -51,13 +58,21 @@ container. You can configure it entirely through environment variables instead.
 
 ## Match Configuration Files
 
-Once the plugin has been added. It will download the following configuration files and store them in the cfg directory at `<game-directory>/csgo/cfg`:
+Once the plugin has been added. It will download any of the following configuration
+files that are missing and store them in the cfg directory at `<game-directory>/csgo/cfg`:
 
-- 5stack.base.cfg
+- 5stack.competitive.cfg
+- 5stack.wingman.cfg
+- 5stack.duel.cfg
+- 5stack.rush.cfg
+- 5stack.lan.cfg
 - 5stack.warmup.cfg
 - 5stack.knife.cfg
-- 5stack.live.cfg
 
-The base config is always executed first, followed by either the warmup, knife, or live config depending on the current phase of the match.
+The match type's config (competitive, wingman, duel or rush) is executed first, then
+the LAN config on a LAN region, then the layers the panel sends, such as the
+[Global](/features/admin/game-modes#global-configuration) config, game plugin cvars
+and the game mode's cvars. Warmup and the knife round exec their own configs on top.
 
-These configs can be modified to suit your needs.
+These configs can be modified to suit your needs. A file that already exists is never
+downloaded again.

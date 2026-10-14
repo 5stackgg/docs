@@ -2,9 +2,30 @@
 
 You can setup dedicated servers in three different ways:
 
-1. Using a game server node via the panel. [Learn more game server nodes](../game-server-nodes/)
+1. Using a game server node via the panel. [Learn more about dedicated servers on game server nodes](../game-server-nodes/dedicated-servers)
 2. Using the plugin which will require manual upload of the plugin and configuration of the game server. [Learn more about using the plugin](./plugin-configuration.md)
 3. Using the container which will require a Docker installation and a Docker Compose file. [Learn more about using game server container](#using-the-container)
+
+The last two are **external servers**: in the panel's dedicated server form,
+pick **External Server** under **Where It Runs** and enter the server's host,
+**Game Port** and **TV Port**. Once it exists, the server's page shows the
+config to copy onto the machine.
+
+## Which plugin does it need?
+
+That depends on what the server plays:
+
+| Server | Plugin to install |
+| --- | --- |
+| **Ranked Server** | The 5Stack match plugin, below. See [Game Plugin Configuration](./plugin-configuration) |
+| **Valve Modes** (a [community server](./community-servers)) | The [Player Management plugin](./player-management), which enforces bans, mutes, gags and access lists and reports players for the server's stats |
+
+**Custom Presets** (game modes) need a game server node, because 5Stack installs
+the mode's plugins onto the server. The same goes for
+[map rotation](./map-rotation) and per-server plugins. An external community
+server still gets [access lists](./access), player management and stats.
+
+## The match plugin
 
 The 5Stack Game Server Plugin ships for two CS2 frameworks. Pick one, then download its
 latest release and follow that framework's install guide:
@@ -70,6 +91,20 @@ services:
 
 After a Counter-Strike update. You will need to run `docker-compose run --rm update-server` to download and install the latest version of the game.
 
+### A community server from the container
+
+The container defaults to a Ranked server with the match plugin. For a
+[community server](./community-servers), swap the match plugin for the Player
+Management plugin, which is in the same image and reads the same `API_DOMAIN`,
+`SERVER_ID` and `SERVER_API_PASSWORD` variables:
+
+```
+    environment:
+      - SERVER_TYPE=Casual
+      - INSTALL_5STACK_PLUGIN=false
+      - INSTALL_PLAYER_MANAGEMENT_PLUGIN=true
+```
+
 ## Hibernation
 
 CS2 can put an empty server to sleep with `sv_hibernate_when_empty 1`, which stops it
@@ -83,8 +118,23 @@ sleeping server stopped reporting to the panel and showed as offline. From plugi
 - it stays awake for as long as it has a match, and may hibernate again once the match is
   gone
 
-The container still starts with hibernation off. Turn it on with one more environment
-variable:
+From `sw-v0.0.97` and `css-v0.0.442` the match plugin also tells the panel when the server
+is asleep, and the server's page shows **Hibernating** instead of a warning. The
+[Player Management plugin](./player-management) a community server runs keeps syncing while
+the server sleeps, but does not report hibernation, so a community server never shows as
+**Hibernating**.
+
+Which servers may hibernate:
+
+| Server | Hibernates? |
+| --- | --- |
+| On-demand match servers | Never |
+| Practice servers | Never: they are always started with hibernation off |
+| Ranked servers | Off, unless the container is started with `HIBERNATE_WHEN_EMPTY=true`. The panel never sets it on servers it runs on a node |
+| Community servers | Whatever their own `cfg/server.cfg` says. 5Stack seeds that file on first boot with `sv_hibernate_when_empty 1`; on a node, edit it from the server's **Files** |
+
+So a container left on its default `SERVER_TYPE=Ranked` starts with hibernation off. Turn
+it on with one more environment variable:
 
 ```
     environment:

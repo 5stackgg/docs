@@ -7,20 +7,35 @@ The 5Stack Panel relies on several open-source software components for its opera
 - [RustFS](https://rustfs.com/)
 - [TimescaleDB](https://www.timescale.com/)
 - [Typesense](https://typesense.org/)
+- [MediaMTX](https://github.com/bluenviron/mediamtx), the WebRTC relay for live streams and player cameras
+- [coturn](https://github.com/coturn/coturn), a TURN relay, only when you set a `TURN_DOMAIN`
 
 5Stack includes its own components:
 
 - [5Stack Web](https://github.com/5stackgg/web)
 - [5Stack Api](https://github.com/5stackgg/api)
+- [5Stack Demo Parser](https://github.com/5stackgg/demo-parser)
 - [5Stack Game Server](https://github.com/5stackgg/game-server) (both the SwiftlyS2 and CounterStrikeSharp builds)
 - [5Stack Game Server Node Connector](https://github.com/5stackgg/game-server-node-connector)
 
 The match plugin ships for two CS2 frameworks, SwiftlyS2 is installed by default.
 See [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes).
 
+Both game server images also carry 5Stack's other server plugins, which 5Stack
+loads only where they are needed:
+
+- the [Player Management plugin](/servers/dedicated-servers/player-management),
+  on community servers,
+- the utility practice plugin, on practice servers (SwiftlyS2 image).
+
+The SwiftlyS2 image also ships
+[AddonsManager](https://github.com/SwiftlyS2-Plugins/AddonsManager), which
+serves the Steam Workshop addons that game plugins need.
+
 Additional Credits:
 
 - [SwiftlyS2](https://github.com/swiftly-solution/swiftlys2)
 - [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp)
+- [Metamod:Source](https://github.com/alliedmodders/metamod-source)
 - [K3s](https://k3s.io/)
 - [Kustomize](https://kustomize.io/)
