@@ -165,8 +165,8 @@ until they would have expired.
 
 ## Match chat log
 
-Once a match has ended, match organizers and above get a **Chat Log** tab on
-the match page. It keeps every match and team chat line, from the web and the
+Once a match has ended, moderators and above get a **Chat Log** tab on the
+match page. It keeps every match and team chat line, from the web and the
 game, for **7 days** after the match ends, well past the live rooms' own
 retention.
 
@@ -178,6 +178,8 @@ retention.
 - A per-map filter, following the map picked on the match page.
 
 If you played in the match, team chat is hidden from you and the tab says so.
+The same goes for a moderator on either team's roster, or on any team in the
+same tournament.
 A very long match's log is capped at 5000 lines, and an amber warning marks a
 log that was cut short.
 

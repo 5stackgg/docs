@@ -129,7 +129,7 @@ while each new match status still gets its popup.
 - Players who queued together are marked **Queued together**.
 - The tabs hold the scoreboard and analysis. See
   [Match Analysis](/features/match-analysis).
-- Once a match has ended, match organizers and staff get a **Chat Log** tab
+- Once a match has ended, moderators and above get a **Chat Log** tab
   with its all-chat and team chat. See
   [Match chat log](/features/chat#match-chat-log).
 

@@ -14,8 +14,8 @@ below it:
 | **User** | Default for everyone who signs in |
 | **Verified User** | Trusted players |
 | **Streamer** | Can broadcast / spectate demos |
-| **Moderator** | Can sanction players, moderate chat, use RCON, and manage players on community servers |
-| **Match Organizer** | Can run matches, review a finished match's chat log, and access the organizers chat |
+| **Moderator** | Can sanction players, moderate chat, review a finished match's chat log, use RCON, and manage players on community servers |
+| **Match Organizer** | Can run matches and access the organizers chat |
 | **Tournament Organizer** | Can run tournaments |
 | **Administrator** | Full access, including all settings |
 

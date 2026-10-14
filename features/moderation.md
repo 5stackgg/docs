@@ -138,10 +138,8 @@ can:
 - use the **RCON** console on match and community servers. A player who
   organizes a match without the Moderator role sees "RCON is for moderators"
   in its place, and keeps the server reboot and veto override,
-- manage the players on community servers, with kick and sanction actions.
-
-Reviewing a finished match's [chat log](/features/chat#match-chat-log) needs
-Match Organizer.
+- manage the players on community servers, with kick and sanction actions,
+- review a finished match's [chat log](/features/chat#match-chat-log).
 
 ## Public and community servers
 
