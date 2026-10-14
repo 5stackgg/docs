@@ -4,7 +4,7 @@ Rating, ADR, and K/D tell you _how well_ a match went. They don't tell you _what
 to work on_. The Performance Rating breaks a player down into three areas, scores
 each out of 100, and points at the weakest one.
 
-Find it on the **Performance** tab of any player profile.
+Find it on the **Breakdown** tab of any player profile.
 
 ## How it's scored
 
@@ -19,13 +19,29 @@ relative to the people you actually play with, not an abstract benchmark.
 | **Utility**     | Grenade impact, flash assists, how much you blind enemies, and HE/molotov damage per nade.                      |
 
 ::: tip Utility is provisional
-Utility is marked **provisional** in the app. On current data it doesn't cleanly
+Utility is marked **Provisional** in the app. On current data it doesn't cleanly
 separate skill the way aim and positioning do, so it's shown but flagged rather
 than quietly treated as gospel.
 :::
 
+Each score is labelled **Elite** (80 and up), **Good** (60 and up), **Average**
+(40 and up), or **Subpar**.
+
 Players without enough games yet aren't rated, the breakdown unlocks once
-there's a meaningful sample.
+there's a meaningful sample: a match needs at least 10 rounds to be scored, and
+a player needs 30 rounds before they're ranked against the pool.
+
+## Ranges and seasons
+
+The Breakdown follows the profile's range:
+
+- The three **area scores** average your per-match scores over the range: the
+  last 30 matches on **L30**, or every match inside **7D**, **90D**, a season,
+  or a custom range.
+- The **individual metrics** and **Focus Areas** rank your whole history
+  against everyone else's. When the range is a [season](/features/seasons),
+  they rank that season instead, against everyone with at least 30 rounds in
+  it.
 
 ## The underlying metrics
 
@@ -85,6 +101,10 @@ a flatter line is better, and you're labelled **Rock Solid**, **Steady**, or
 Pin another player and the whole breakdown renders side by side, both overall
 areas and the individual metrics, so you can see exactly where you differ rather
 than just who has the bigger rating.
+
+With seasons on, you can compare against **yourself in an earlier season**
+instead, and the metrics on that side are ranked within that season's pool. See
+[Season compare](/features/seasons#season-compare).
 
 ## The in-app stats guide
 

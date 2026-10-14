@@ -5,7 +5,9 @@ bundles the things that have to change together:
 
 - the **plugins** the server loads, and the order it loads them in,
 - a block of **console variables**, exec'd after the match type's config,
-- and optional **launch parameters**.
+- optional **launch parameters**,
+- and, for community servers, the [Valve Game Mode](#valve-game-mode) the
+  server starts on.
 
 Modes are created under **Settings → Application → Game Modes**. They need
 [Game Plugins](/servers/game-server-nodes/game-plugins) turned on first — a mode
@@ -13,30 +15,46 @@ has nothing to load without them.
 
 ## What ships with it
 
-Two starter modes are seeded on every boot, so a fresh install has something
-to pick besides Competitive:
+Four starter modes are created once, so a fresh install has something to pick
+besides Competitive:
 
-| Mode | Wraps | Only exists for |
-| --- | --- | --- |
-| **Retakes** | [B3none/cs2-retakes](https://github.com/B3none/cs2-retakes) | CounterStrikeSharp |
-| **Deathmatch** | [NockyCZ/CS2-Deathmatch](https://github.com/NockyCZ/CS2-Deathmatch) | CounterStrikeSharp |
+| Mode           | Wraps                                                                         | Valve Game Mode |
+| -------------- | ----------------------------------------------------------------------------- | --------------- |
+| **Deathmatch** | [ianlucas/cs2-ss2-deathmatch](https://github.com/ianlucas/cs2-ss2-deathmatch) | Deathmatch      |
+| **Retakes**    | [a2Labs-cc/SwiftlyS2-Retakes](https://github.com/a2Labs-cc/SwiftlyS2-Retakes) | Custom          |
+| **1v1 Arenas** | [shmitzas/K4-Arenas-Upkeep](https://github.com/shmitzas/K4-Arenas-Upkeep)     | Custom          |
+| **Chaos**      | [LCrew/S2-CSRoll](https://github.com/LCrew/S2-CSRoll)                         | Competitive     |
 
-Both are unranked out of the box, and each wires itself to its catalog plugin as
-soon as the registry has synced — on a very first boot they exist with no
-plugins and pick them up on a later pass.
+Each wires itself to its catalog plugin as soon as the registry has synced. On a
+very first boot they exist with no plugins and pick them up on a later pass.
+A mode that already selects plugins is left alone.
 
-::: warning Both need CounterStrikeSharp
-These are third-party projects, and the maintained ones are all built for
-CounterStrikeSharp. On a SwiftlyS2 deployment — the default — neither will
-install, and selecting one is refused by name rather than silently starting a
-server with nothing loaded. See
-[Runtime compatibility](#runtime-compatibility) and
-[Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes).
+::: warning All four need SwiftlyS2
+Every starter plugin is built for SwiftlyS2, the default runtime. On a
+CounterStrikeSharp deployment none of them installs, and selecting one of these
+modes is refused by name rather than silently starting a server with nothing
+loaded. See [Runtime compatibility](#runtime-compatibility).
 :::
 
-Editing them is safe. The name and description are re-applied on every boot, but
-**Enabled**, **Safe for competitive play** and the cvar block are left alone once
-you have touched them, and modes you created yourself are never touched.
+They are yours from then on: edit them freely, and a mode you delete stays
+deleted.
+
+::: tip Upgrading from an earlier version
+Earlier versions seeded **Deathmatch** and **Retakes** with CounterStrikeSharp
+plugins. Those modes are kept, and the catalog entries they select (`deathmatch`
+and `retakes`) now point at the SwiftlyS2 plugins above.
+:::
+
+Arenas keeps its ladder in a database (SQLite by default). Chaos is not
+**Verified** in the catalog, and it ships a Workshop addon that players download
+when they join; see
+[Workshop addons](/servers/game-server-nodes/game-plugins#workshop-addons).
+
+### The official mode
+
+**Utility Practice** is marked **Official 5Stack**: utility practice servers run
+on it, so it cannot be deleted, disabled or renamed. Its cvars are yours to
+edit.
 
 ## Creating one
 
@@ -60,23 +78,53 @@ mp_respawn_immunitytime 2
 
 The full order a server applies, each layer beating the one above it:
 
-| Order | Layer |
-| --- | --- |
-| 1 | The match type — Competitive, Wingman, Duel |
-| 2 | LAN tuning, on a LAN region |
-| 3 | [Global](#global-configuration) |
-| 4 | Each loading [game plugin's](/servers/game-server-nodes/game-plugins#configuration) own cvars |
-| 5 | The game mode's block, above |
+| Order | Layer                                                                                         |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 1     | The match type — Competitive, Wingman, Duel, Rush                                             |
+| 2     | LAN tuning, on a LAN region                                                                   |
+| 3     | [Global](#global-configuration)                                                               |
+| 4     | Each loading [game plugin's](/servers/game-server-nodes/game-plugins#configuration) own cvars |
+| 5     | The game mode's block, above                                                                  |
 
-On workshop maps CS2 silently drops a handful of cvars from an exec'd config.
-5Stack re-sends those directly, and a value set in a mode wins over the same
+That order is for matches. A community server has no match, so it gets a
+shorter one; see [On a community server](#on-a-community-server).
+
+On workshop maps CS2 drops a handful of "workshop-disallowed" cvars from an
+exec'd config. 5Stack starts CS2 servers with
+`-disable_workshop_command_filtering` so they are kept, and the match plugin
+also re-sends them directly, with a value set in a mode winning over the same
 value in the type config — the same order they would have applied in.
+
+### Valve Game Mode
+
+**Valve Game Mode** is the CS2 game mode a community server running this mode
+starts on: **Custom** (the default), Casual, Competitive, Wingman, Retakes, Rush,
+Arms Race or Deathmatch.
+
+It matters for plugins built on one of Valve's modes. The Deathmatch plugin
+changes CS2's own deathmatch rules, which stock Custom never runs, so on Custom
+everyone spawns at their team's spawn. Matches ignore it: they keep their own
+match type.
+
+### On a community server
+
+A [community server](/servers/dedicated-servers/community-servers) running a
+mode has no match to exec the layers above, so they are written into the
+**Valve Game Mode's** server config instead, which CS2 execs on every map load.
+That is also what keeps them across a map rotation. In order, last wins:
+
+1. each loading plugin's own cvars,
+2. the game mode's block,
+3. the server's own plugin cvars, set per server.
+
+The Global config and the match type configs are not applied there. Changing a
+mode's cvars reaches a running community server the next time it restarts.
 
 ## Global configuration
 
 A cvar that should apply to **every** match, whatever its type, belongs in the
-**Global** tab under **Settings → Application → Game Type Configs**, beside LAN,
-Competitive, Wingman and Duel.
+**Global** tab under **Settings → Application → Game Type Configs**, beside
+Competitive, Wingman, Duel, Rush and LAN.
 
 It is a layer rather than a type: it is exec'd on top of whichever type config
 the match already got, so it is the one place to put something cross-cutting
@@ -94,33 +142,38 @@ tab clears it rather than restoring anything.
 
 ## Where a mode is used
 
-| Surface | How |
-| --- | --- |
-| A custom match | **Game Mode** on the match options form |
-| A draft lobby | the same field, on the lobby's options |
-| A community server | a mode set on the server itself, shown as a badge on the Community Servers page |
+| Surface            | How                                                                                                                        |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| A custom match     | **Game Mode** on the match options form                                                                                    |
+| A draft lobby      | the same field, when creating a draft room. Only modes with **Offer in draft lobbies** on are listed                       |
+| A community server | **Custom Presets** on the dedicated server form. The mode's name shows on the server's card on the **Public Servers** page |
 
 Setting a mode on a long-lived server changes it for everyone on that server, so
 the server is recreated to pick the plugins up. On-demand match servers get a
 fresh pod per match anyway, so there is nothing to restart.
 
-## Unranked modes
+**Enabled** controls whether a mode can be picked at all. A disabled mode is
+kept, but cannot be picked for a match, server or draft room.
 
-Every mode has a **Safe for competitive play** switch, off by default. A mode
-without it is unranked, and that is a much narrower statement than it sounds
-like.
+## Custom modes are unranked
+
+A match with **any** custom mode never counts toward ELO or the stats
+leaderboards. It plays under third-party plugins, so it is unranked
+unconditionally, whatever the mode's settings say.
 
 An unranked match is a completely real match. It plays on a real server, and
 stats, demos and round data are all recorded and shown exactly as they always
 are. The only difference is that it does not move anybody's ELO, and it is left
 out of the stats leaderboards.
 
-::: tip The decision is frozen when the match is created
-Whether a match counts is written onto the match itself at creation, not worked
-out later from the mode. Flipping a mode's switch changes what happens next, and
-never rewrites whether matches played months ago counted.
+The **Offer in draft lobbies** switch, off by default, only decides whether lobby
+hosts can pick the mode when creating a draft room. It does not make a mode
+ranked.
 
-A match with no mode at all counts, as it always did.
+::: tip Written onto the match
+Whether a match counts is written onto the match itself, and follows its mode
+only until the match goes **Live**, when the mode is locked. A match with no
+mode at all counts, as it always did.
 :::
 
 ### Ranked servers

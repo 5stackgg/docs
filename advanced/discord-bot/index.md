@@ -2,6 +2,26 @@
 
 5Stack includes a Discord bot that can be used to manage your server and provide additional functionality.
 
+## What it does
+
+The bot creates 5Stack matches from the players sitting in a Discord voice channel:
+
+| Command        | Creates                                                                |
+| -------------- | ---------------------------------------------------------------------- |
+| `/competitive` | A Competitive match                                                    |
+| `/wingman`     | A Wingman match                                                        |
+| `/duel`        | A Duel match                                                           |
+| `/rush`        | A Rush match                                                           |
+| `/link`        | Not a match: links your Discord account to 5Stack for stat tracking    |
+
+The match commands take the players from the voice channel you're in, or the one you pick with `team-selection`, which needs enough people for the format (10 for Competitive, 4 for Wingman, 2 for Duel, 6 for Rush). Lineups are random unless you turn on `captains` (optionally naming `captain-1` and `captain-2`), in which case the captains pick. Other options set `knife`, `overtime`, the `map` or a `custom-map-pool`, and `mr` (MR3, MR8, MR12 or MR15).
+
+The bot then opens a thread for the match, runs the map veto with buttons, posts match status updates, and makes a voice channel for each team and moves the players into them.
+
+Tournaments can use the bot for voice too: with a **Discord Server ID** under a tournament's **Voice Channels** settings, it creates channels for tournament matches and moves players into their team's channel when a match begins.
+
+What gets posted to your Discord as notifications is configured separately; see [Integrations](/features/admin/integrations#discord).
+
 ## Guide
 
 First. You need to create a new application in the [Discord Developer Portal](https://discord.com/developers/applications).
@@ -11,7 +31,7 @@ First. You need to create a new application in the [Discord Developer Portal](ht
 
 2. Installation Tab
 
-   Only allow Guild Installs and set Intsall link to `none`
+   Only allow Guild Installs and set Install link to `none`
 
    ![Installation Tab](./discord-installation.png)
 

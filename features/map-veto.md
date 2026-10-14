@@ -76,10 +76,14 @@ pool is going to be played and there is no decision to make. The veto is skipped
 entirely and the maps are assigned straight from the pool with alternating
 starting sides — a best-of-3 with a 3-map pool goes directly to the first map.
 
+**Rush** matches never run a map veto: they are always a single map.
+
 ## Pick timer
 
-Each step has a time limit, set per match by **Veto Pick Timeout** (default **60
-seconds**). Set it to `0` to remove the limit and let the veto wait indefinitely.
+Each step has a time limit, set per match by **Veto Pick Timer**. New matches
+start with the instance default from **Settings → Application → Matchmaking**
+(**60 seconds** unless an admin changes it). Set it to `0` to remove the limit
+and let the veto wait indefinitely.
 
 If a team runs out of time, the step is made for them:
 
@@ -89,6 +93,10 @@ If a team runs out of time, the step is made for them:
 Auto-taken steps are flagged, so a completed veto shows which steps a team made
 and which ran out of time. The timer restarts on every step, including
 auto-taken ones, so a veto always finishes.
+
+When it's a player's turn and they're on another page, a **Map Veto** (or
+**Region Veto**) toast tells them so, with a button straight back to the match.
+See [Matches](/features/matches#your-turn-wherever-you-are).
 
 ## Step types
 

@@ -21,12 +21,35 @@ speaking indicator, and a count of how many people are talking out of how many
 are connected. Muting keeps your connection up and simply stops sending audio,
 so nobody sees you drop and rejoin.
 
+Each person in the call has their own **Player volume** fader, and **Silence
+this player for you only** mutes them for you alone; nobody else's call
+changes.
+
+## The Voice app
+
+The call lives on in the **Voice** app on the [hub dock](/features/social#the-hub)
+after you leave the page you joined from, so you can browse the rest of 5Stack
+while you talk. The dock icon turns green while you're in a call and shows how
+many people are in it; with no call and nothing to join, it's greyed out.
+
+- **In a call**, the app shows everyone in the channel, and lists the other
+  channels you could be in under **Switch to**. Switching moves you without
+  hanging up first.
+- **Not in a call**, it lists **Where you can talk**: your party, and your team
+  in a match you're playing, ready to join.
+- While you're in a call, a bar with your status, **Mute** and **Leave call**
+  sits under every other app in the hub.
+
+If the call is running in another browser tab, the app says so, and mute and
+leave still work from where you are.
+
 ## Voice settings
 
-The **gear sits on every place you can join a channel** — the party hub, the
+The **gear sits on every place you can join a channel** — the Party app, the
 match panel, a draft room — and opens the same settings each time. There's one
 set of audio settings, not one per surface: pick your devices once and they
-apply to whatever channel you're in next, remembered across sessions.
+apply to whatever channel you're in next, remembered across sessions. The same
+settings have their own page under **Settings → Voice & Audio**.
 
 They also open **before** you join, so you can get your setup right while nobody
 can hear you. Your microphone is only opened while the dialog is up, and
@@ -47,6 +70,21 @@ What's in there:
   **Always Transmit**.
 - **Noise suppression**, applied to the live track, so toggling it doesn't
   interrupt the call.
+
+### Settings → Voice & Audio
+
+The settings page adds two things the gear doesn't:
+
+- **Player Levels**: everyone you've turned down or silenced, from every channel
+  you've been in, with **Reset** for one and **Reset all**. Kept so you can undo
+  it without waiting to run into them in a call again.
+- **Reset to defaults** puts the microphone, output, input mode, sensitivity and
+  noise suppression back. Player levels are left alone.
+
+Voice settings are **saved on this device**, not on your 5Stack account: every
+computer you play from keeps its own microphone, output, sensitivity and player
+levels, because it's the hardware that changes. The microphone on your
+[camera feed](/features/player-cameras) uses the same settings.
 
 ## Video calls
 
@@ -77,7 +115,7 @@ Under **Settings → Application → Cameras & Microphones**:
 
 - **Lobby Voice Chat**: turn voice on or off instance-wide. It's on by default.
 - **Video Calls**: allow cameras in voice channels, on by default wherever
-  voice is. This only decides whether the control is *offered* — turning a
+  voice is. This only decides whether the control is _offered_ — turning a
   camera on is always the player's own deliberate act. Split into **party
   lobbies** and **matches and draft rooms**, so you can drop the match one if
   your players run tight on CPU: a tile grid decodes alongside the live

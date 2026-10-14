@@ -5,7 +5,11 @@ teams negotiating their own times, and promotion and relegation at the end.
 
 5Stack runs one league per instance, made of **divisions** (the ladder) and
 **seasons** (each run through it). Admins enable it from
-**Settings → Application → Leagues**.
+**Settings → Application → League**.
+
+Under the hood, each division's season runs on the same engine as a
+[tournament](/features/tournaments): its bracket, matches, and stats open on the
+tournament page, with **Back to League** to return to the season.
 
 ## How a season works
 
@@ -60,15 +64,15 @@ any teams below the minimum roster size.
 
 `Setup → Registration Open → Registration Closed → Live → Playoffs → Finished`
 (with `Canceled` available throughout). Admins drive this from the season's
-manage tab: open/close/reopen registration, start the season, cancel, or delete
-it.
+header: open/close/reopen registration, start the season, cancel, or delete it.
+Season settings live on the admin **Settings** tab.
 
 ## Registration
 
 Captains register a team and select the **season roster**, split into starters
 and substitutes, with the minimum enforced up front.
 
-Admins then work the **registrations** table:
+Admins then work the registrations on the season's **Teams** tab:
 
 - **Assign a division**: required before approving.
 - **Approve**, **waitlist**, or **decline** (with an optional reason the team
@@ -91,6 +95,10 @@ its own negotiation:
 Teams get both a **week-by-week schedule** and a **calendar** (month or agenda
 view) showing what's agreed, what's awaiting them, what's live, and what's
 already played, plus a "needs you" count so nothing quietly slips.
+
+Regular tournaments can use the same propose, accept, and counter flow on their
+bracket cards by turning on
+[Negotiated Scheduling](/features/tournaments#negotiated-match-times).
 
 ## Standings, playoffs, and movements
 

@@ -27,8 +27,9 @@ ways in:
 
 - **Use this computer**: opens the camera page in a popup on the machine they're
   already on.
-- **Scan the QR code**: publishes from a phone instead, which is how most players
-  will do it — the phone becomes the camera and the PC stays untouched.
+- **Scan this code with your phone**: publishes from a phone instead, which is
+  how most players will do it — the phone becomes the camera and the PC stays
+  untouched.
 
 The camera page previews before it publishes. The feed starts local-only, so a
 player can pick a device, frame themselves, and only then connect — one
@@ -39,7 +40,7 @@ permission prompt, no dead air:
 - **Reframe** the shot: scroll or pinch to zoom, drag to re-centre. The crop is
   applied to the **published** feed, not just the local preview, and is
   remembered per camera.
-- **Hide the preview** mid-match to give the resources back. The camera stays on
+- **Hide preview** mid-match to give the resources back. The camera stays on
   and stays published.
 - Permission denied, no camera, or a camera already in use each explain
   themselves in place, with a retry.
@@ -70,13 +71,15 @@ administrators keep full access so the feature can be exercised end to end.
 
 - **Watch Cameras** on the match page opens the grid, and doubles as the summary
   — it carries a live count like _7 of 10 live_.
-- Each tile shows the player the way the rest of the app does, with a
-  **connected / stalled / not connected** state. A quiet grid means everything is
+- Each tile shows the player the way the rest of the app does, with a **Live**,
+  **Stalled**, or **Not connected** state. A quiet grid means everything is
   fine; only a problem tile draws the eye.
-- **Listen to a player** from any tile without starting a call.
+- **Listen to mic** from any tile to hear a player without starting a call.
 - **Video call** a player from their tile. Their camera page shows you in a small
   picture-in-picture, so you can talk to them face to face — an actual check that
-  a person is there, which no automated test of a video feed can give you.
+  a person is there, which no automated test of a video feed can give you. A
+  phone held upright shows in full on the call tile rather than cropped to a
+  landscape box.
 - **Camera dots** on the lineup rows give organizers per-player state at a glance
   without opening the grid.
 - On the [Stream Deck](/features/live-streaming#stream-deck), player cameras

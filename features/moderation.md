@@ -7,69 +7,150 @@ apart.
 
 ## Sanction types
 
-| Sanction    | Effect                           |
-| ----------- | -------------------------------- |
-| **Ban**     | No participation in any activity |
-| **Mute**    | Can't use voice                  |
-| **Gag**     | Can't use text chat              |
-| **Silence** | Muted _and_ gagged               |
+| Sanction    | Effect                                                             |
+| ----------- | ------------------------------------------------------------------ |
+| **Ban**     | No participation in any activity                                   |
+| **Mute**    | Can't use voice chat in game                                       |
+| **Gag**     | Can't use text chat in game, or in group chat rooms on the website |
+| **Silence** | Muted _and_ gagged                                                 |
+| **Warning** | A note on the player's record. Never enforced, never expires       |
 
 Each sanction carries a **reason** and a **duration**: 15 minutes, 30 minutes, 1
 hour, 1 day, 1 week, 1 month, or **permanent**.
 
-Sanctions **sync across matches and servers**, a player gagged from the panel
-is gagged in game, and a ban applies wherever they try to play.
+Sanctions **sync across matches and servers**: a player gagged from the panel is
+gagged in game, and a ban applies wherever they try to play. Match servers
+enforce them through the match plugin, and community servers through the
+[Player Management plugin](/servers/dedicated-servers/player-management).
+
+A gag also covers website chat: in match, team, lobby, draft, tournament and
+organizer rooms a gagged player gets a read-only composer. Direct messages
+aren't affected.
+
+::: tip Valve's report mute doesn't follow players into matches
+CS2 can mute a player for everyone based on reports from games elsewhere. 5Stack
+match servers clear that mute, so the only mute that applies in a match is one a
+5Stack moderator issued.
+:::
+
+### Warnings
+
+A **warning** puts a note on a player's record without restricting anything. It
+needs a reason, has no duration, and never counts as an active sanction. The
+player is notified ("You received a warning"), and only they and moderators can
+see it; other players and signed-out visitors can't. Warnings never reach
+Discord or the player's teammates. On the record they show an amber
+**On record** marker.
 
 ## Applying and managing sanctions
 
-Sanction a player from the [player directory](/features/admin/roles-and-players),
-their profile, or directly from a live match's player list.
+Moderators and above can sanction a player from:
 
-A player's sanction history shows every sanction with its type, reason, who
-issued it, and when it expires. Active sanctions can be **edited**, set an end
-time to lift one early, or clear the date to make it permanent, or **removed**
-outright. Expired sanctions are kept as history and can't be edited; issue a new
-one instead.
+- their **profile**: **⋮ → Sanctions** opens their record with
+  **Sanction Player**,
+- a **chat message**: **Moderate {name}** in the message menu, mildest first
+  (see [Chat](/features/chat#moderation)),
+- a community server's **Players** tab and recent players list.
 
-Country bans are handled separately, and the player directory can filter by
-country-ban status.
+A player's record shows every sanction with its type, reason, who issued it,
+and when it expires, plus any [Steam bans](#steam-ban-detection) and abandoned
+matches. Active sanctions can be **edited** (**End Sanction**: set when it
+lifts, set a past time to end it now, or clear the date to make it permanent) or
+**removed**. Expired sanctions are kept as history and can't be edited; issue a
+new one instead. Removing a sanction removes that one row only.
+
+In the [player directory](/features/admin/roles-and-players), match organizers
+and above can filter by **Banned**, **Gagged** and **Muted**, and by a
+**Minimum Sanctions** count.
+
+## Who gets told
+
+- A **banned** player who has signed in before is notified, with the reason.
+- A **warned** player is notified.
+- Players who shared a completed match with a banned player in the last 6
+  months are told about **bans only**, under **Banned teammates**, which they
+  can turn off (see [Notifications](/features/notifications#banned-teammates)).
+- Administrators get a **Player Banned** notice when a banned player has ever
+  played on a lineup.
+
+## Automatic sanctions
+
+**Settings → Application → Sanctions** decides how 5Stack punishes what it can
+detect on its own. Each source counts occurrences inside a window and applies
+the matching step of an escalation ladder.
+
+| Source                 | What counts                                                        | Shipped default                                                                                    |
+| ---------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| **Match Abandon**      | A player left or never connected to a match they were rostered for | Every abandon counts for 7 days: 10 min, 1 h, 2 h, 4 h, 8 h, 16 h, then 32 h. **Bars matchmaking** |
+| **VAC / Game Ban**     | Steam reports a VAC ban on the account                             | A permanent platform ban                                                                           |
+| **Tournament No-Show** | A team missed a required tournament check-in                       | The third inside 30 days, and each after it: 7 days. **Bars tournaments**                          |
+
+For each source you set:
+
+- **Sanction after**: how many occurrences are free before the first sanction.
+- **Counting window (days)**: how far back occurrences count. 0 never decays.
+- **Escalation ladder**: one duration per occurrence. The last step repeats
+  forever, and a step of 0 is permanent.
+- **What it bars**: **Bars matchmaking** (queueing and draft lobbies), **Bars
+  tournaments** (joining a tournament roster or the free agent pool), or **Bars
+  both**.
+
+The defaults reproduce what 5Stack did before the page existed, and reading the
+page changes nothing; only an edit does. A tournament no-show is only checked on
+the way in, so a player already in a running bracket keeps their place.
 
 ## Abandoned matches
 
 Players who abandon matches accumulate a record of it on their profile, visible
 alongside their sanctions, so repeat offenders are obvious rather than anecdotal.
 An abandoned-match record can be removed by a moderator if it was recorded
-unfairly.
+unfairly. One abandon is only ever counted once.
 
 ## Steam ban detection
 
-5Stack checks players' Steam accounts for **VAC and game bans** and
-automatically creates a sanction when it finds one, with a link through to the
-ban on Steam. A **VAC badge** surfaces on the player's profile. You don't have to
-watch for it manually.
+5Stack checks players' Steam accounts for **VAC and game bans**: on sign-in,
+when a player is first seen, after every match they finish, and on an hourly
+sweep that re-checks everyone who played in the last 6 months at most once a
+day. A **VAC ban** creates a platform ban automatically, with a link through to
+the ban on Steam. Game bans are recorded and shown, but don't ban anyone on
+their own. A badge on the player's profile shows either kind (red for VAC,
+orange for a game ban), and the profile's record lists the counts.
 
-See [Integrations](/features/admin/integrations) for the Steam match history
-connection this shares.
+Administrators are never auto-banned. If you remove an automatic ban (for
+example, a VAC ban from a game other than CS2), 5Stack won't put it back for the
+same Steam ban.
+
+**Scan Steam Bans** under **Settings → Application → Players** re-checks every
+player who has been on a lineup. Whether a VAC ban bans the whole platform or
+only part of it is the **VAC / Game Ban** source above.
 
 ## The Moderator role
 
 **Moderator** sits between Streamer and Match Organizer in the
 [role hierarchy](/features/admin/#roles-access-control). It exists so you can
-hand someone the tools to police chat and servers without giving them the ability
-to run matches, change settings, or touch infrastructure.
+hand someone the tools to police chat and servers without giving them the
+ability to run matches, change settings, or touch infrastructure. Moderators
+can:
+
+- issue, edit and remove sanctions,
+- delete messages in group chat rooms, and still see blocked players' lines
+  there (see [Blocking](/features/social#blocking-players)),
+- use the **RCON** console on match and community servers. A player who
+  organizes a match without the Moderator role sees "RCON is for moderators"
+  in its place, and keeps the server reboot and veto override,
+- manage the players on community servers, with kick and sanction actions.
+
+Reviewing a finished match's [chat log](/features/chat#match-chat-log) needs
+Match Organizer.
 
 ## Public and community servers
 
 The **Public Servers** page lists every dedicated server your instance offers for
-open play, including **LAN servers**, with live player counts and capacity, so
-players can jump into whatever is busy.
+open play, with live player counts and capacity, so players can jump into
+whatever is busy.
 
-Moderators get a **Manage** link through to the server, where **Player
-Management** shows who's currently connected and lets you act on them over RCON.
-
-::: warning Live enforcement on public servers
-Kicks work today. Live **mute/gag enforcement on public servers** is still a work
-in progress. It needs a new 5Stack public-server plugin, and mutes and gags will
-apply automatically once it ships. Full sanction enforcement already works on
-5Stack-run matches.
-:::
+Moderators manage each server from its page: who is connected, sanctions and
+kicks, and who is allowed in. Bans, mutes and gags are enforced live by the
+[Player Management plugin](/servers/dedicated-servers/player-management); see
+[Community Servers](/servers/dedicated-servers/community-servers) and
+[Restricted Servers](/servers/dedicated-servers/access).

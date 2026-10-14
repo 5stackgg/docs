@@ -50,19 +50,19 @@ features:
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 3v18"/><path d="M17 7.5h4"/><path d="M17 16.5h4"/></svg>
     title: Rewatch It In Your Browser
-    details: 2D radar replay and a full 3D fly-through in the browser, or a real GOTV-style demo render<span class="gpu-mark">*</span> streamed from a GPU node. No CS2 install, no demo download.
+    details: Every map rebuilt in your browser, top-down or in 3D, with CS2's own smokes and every bullet, or a real GOTV-style demo render<span class="gpu-mark">*</span> streamed from a GPU node. No CS2 install, no demo download.
     link: /features/match-replay
     linkText: Match Replay
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>
     title: Broadcast Without OBS <span class="gpu-mark">*</span>
-    details: Stream matches straight from the panel over WebRTC, with a Stream Deck, scoreboard overlays, a public watch hub, and picture-in-picture.
+    details: Stream matches straight from the panel over WebRTC, with a Stream Deck, your own broadcast HUDs, a Watch page with a live stage, and a floating player.
     link: /features/live-streaming
     linkText: Live Streaming
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12H3"/><path d="M16 6H3"/><path d="M12 18H3"/><path d="m16 12 5 3-5 3v-6Z"/></svg>
     title: Highlights, Automatically <span class="gpu-mark">*</span>
-    details: Multikills, clutches, and knife rounds are detected and rendered into clips the moment a match ends. Includes an in-app editor for cutting your own.
+    details: Every player's best round is rendered into a clip once a match's demo is processed, and ranked into top plays. Includes an in-app editor for cutting your own.
     link: /features/highlights
     linkText: Highlights & Clips
   - icon: |
@@ -110,7 +110,8 @@ features:
 
 **Community & operations**
 
-- [Teams, Lobbies & Chat](/features/social) chat that bridges web and in-server
+- [Friends, Teams & the Hub](/features/social) a floating hub for friends, party and voice
+- [Chat](/features/chat) reactions, GIFs, message requests, in-game relay
 - [Voice Chat](/features/voice-chat) party and team voice, on your own relay
 - [Moderation & Sanctions](/features/moderation) bans, mutes, gags, VAC detection
 - [News](/features/news) first-party announcements from inside the panel
@@ -133,7 +134,7 @@ features:
 
 **Brand it**
 
-Your name, your logo, your login page, and full light/dark theming, so it reads
+Your name, your logo, your login page, and your own color theme, so it reads
 as your organization's platform, not someone else's.
 
 [Branding & Theming →](/features/admin/branding)

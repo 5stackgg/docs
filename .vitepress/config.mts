@@ -88,13 +88,14 @@ export default defineConfig({
           text: "Play",
           base: "/features",
           items: [
-            { text: "Quick Play & Matchmaking", link: "/quick-play" },
+            { text: "Play & Matchmaking", link: "/quick-play" },
             { text: "Draft Lobbies", link: "/draft-lobbies" },
             { text: "Matches", link: "/matches" },
             { text: "Map Veto Format", link: "/map-veto" },
             { text: "Scrim Finder", link: "/scrim-finder" },
             { text: "Player Cameras", link: "/player-cameras" },
-            { text: "Utility Library & Practice", link: "/utility-library" },
+            { text: "Utility Library", link: "/utility-library" },
+            { text: "Practice Servers", link: "/practice-servers" },
           ],
         },
         {
@@ -132,7 +133,9 @@ export default defineConfig({
           text: "Community & Platform",
           base: "/features",
           items: [
-            { text: "Teams, Lobbies & Chat", link: "/social" },
+            { text: "Friends, Teams & the Hub", link: "/social" },
+            { text: "Chat", link: "/chat" },
+            { text: "Notifications", link: "/notifications" },
             { text: "Voice Chat", link: "/voice-chat" },
             { text: "Steam Presence", link: "/steam-presence" },
             { text: "Moderation & Sanctions", link: "/moderation" },
@@ -213,6 +216,11 @@ export default defineConfig({
             { text: "Unable to Log In", link: "/unable-to-login" },
             { text: "System Not Updating", link: "/system-not-updating" },
             { text: "RCON Commands Fail", link: "/rcon-fails" },
+            { text: "Game Server Crashes", link: "/game-server-crashes" },
+            {
+              text: "Player Management Not Detected",
+              link: "/player-management-not-detected",
+            },
             {
               text: "Game Node Server",
               items: [
@@ -270,7 +278,7 @@ export default defineConfig({
                 },
                 { text: "Version Pinning", link: "/version-pinning" },
                 {
-                  text: "Dedicated Servers on Game Node Server",
+                  text: "Dedicated Servers on Game Server Nodes",
                   link: "/dedicated-servers",
                 },
                 { text: "Offline Support", link: "/offline-support" },
@@ -281,10 +289,14 @@ export default defineConfig({
               link: "/gpu-nodes",
             },
             {
-              text: "Third-Party Dedicated Servers",
+              text: "Dedicated Servers",
               base: "/servers/dedicated-servers",
               link: "/",
               items: [
+                { text: "Community Servers", link: "/community-servers" },
+                { text: "Player Management", link: "/player-management" },
+                { text: "Restricted Servers", link: "/access" },
+                { text: "Map Rotation", link: "/map-rotation" },
                 {
                   text: "Game Plugin Configuration",
                   link: "/plugin-configuration",

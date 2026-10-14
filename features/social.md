@@ -1,86 +1,145 @@
-# Teams, Lobbies & Chat
+# Friends, Teams & the Hub
 
-5Stack is built around playing with other people, teams, friends, parties, and
-chat that follows you across the app and into the server.
+5Stack is built around playing with other people: friends, parties, teams, chat
+and voice, all reachable from the hub without leaving the page you're on.
 
-## Teams & friends
+## The hub
 
-Create and manage teams, build out your friends list, and invite friends straight
-into lobbies and matches. Your **Steam friends** are synced in automatically, so
-the people you already play with show up without manual adding, and presence
-indicators show who's around right now.
+On desktop the hub is a **floating dock** on the right edge of the screen. Each
+icon is an app. Resting the pointer on an icon opens it beside the dock, a click
+opens it straight away, and moving away puts it back. The page underneath never
+changes width.
 
-A **social panel** stays docked in the app: your friends list with each friend's
-Elo and online state, plus live [Steam presence](/features/steam-presence), you
-can see what a friend is doing in _other_ games, not just in 5Stack.
+| App         | What it holds                                                                     | Badge                                                                                 |
+| ----------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Inbox**   | Invites, reminders and every other [notification](/features/notifications)        | Red: how many are waiting on you                                                      |
+| **Party**   | Your party's seats, invites, party voice, and the mode picker to queue            | Red for party invites; a dot while you're in a party; the search clock while queueing |
+| **Voice**   | The [voice channel](/features/voice-chat) you're in, or the channels you can join | How many are in your call; green while you're in one                                  |
+| **Friends** | Your friends, and **Others**: everyone else who is online                         | Red for friend requests, otherwise how many friends are online                        |
+| **Chat**    | Every [chat](/features/chat) conversation and room you're in                      | Unread messages                                                                       |
+| **Matches** | Your recent games: wins, losses, win rate and most-played maps                    |                                                                                       |
 
-Teams get more than a roster. A team page carries its Elo and awards, its
-[league history](/features/leagues), its
+The pin at the bottom (**Keep the hub open**) holds it open, and a pinned hub
+makes room for itself instead of floating over the page. An unpinned hub also
+closes on Escape or a click elsewhere. Moving the pointer away doesn't close it
+while you have a half-typed message in it. While you're in a voice call, a bar
+with **Mute** and **Leave call** sits under every other app.
+
+### Conversation shortcuts
+
+Your most recently active conversations sit under **Chat** on the dock: up to
+three people and two rooms by default. Right-click a shortcut to **Pin to the
+dock**, **Remove until a new message**, or **Never show on the dock**.
+Right-click **Chat** to set how many people and rooms the dock shows (0 to 5
+each) and to bring hidden chats back. These choices are saved per browser, since
+dock space depends on the screen.
+
+Match and party rooms aren't shortcuts: the match page and the Party app are
+their homes.
+
+### On a phone
+
+The grid button in the top bar opens the hub, with a red badge for unread chat
+and notifications. The hub slides in over a dimmed page; swipe right to close it.
+
+## Friends
+
+Your **Steam friends** sync in (**Sync Friends**), so the people you already
+play with show up without adding them by hand. The **Friends** app lists each
+friend's online state, what they're doing in 5Stack ("In a match", "In a lobby",
+"In draft lobby"), and, with [Steam Presence](/features/steam-presence), what
+they're doing in CS2 outside 5Stack. From a friend's row you can invite them to
+your lobby or draft room, join them, message them, or remove or block them.
+Players in **Others** can be sent a
+[message request](/features/chat#message-requests) from their row.
+
+When a friend comes online the dock tells you: one arrival shows their face on
+the **Friends** icon ("{name} just came online"), several show the count, and
+the list marks them **Just came online** until you've looked.
+
+A player's profile has **Add as friend** (then **Requested**, which you can
+cancel), **Message**, and a **⋮** menu with **Block** and any staff actions you
+have.
+
+## Teams
+
+Create and manage teams and invite friends straight into them. A team page
+carries its Elo and awards, its [league history](/features/leagues), its
 [veto tendencies](/features/match-analysis#team-analytics), and its
 [Scrim Finder](/features/scrim-finder) settings.
 
-## Lobbies & parties
+A team that is short of five starters reminds anyone who can invite to it, in
+the [Inbox](/features/notifications#the-inbox).
 
-Group up in a lobby to chat, queue, or create matches together. A party has a
-**captain** who drives ready-up and team decisions, and stays together through
-matchmaking (see [Quick Play & Matchmaking](/features/quick-play)).
+The owner can't leave their own team. Ownership is handed to another player on
+the roster first, by the owner or by staff, and the new owner becomes a roster
+Admin.
 
-For structured pick-up games, captains drafting, snake pick order, substitute
-waitlists. See [Draft Lobbies](/features/draft-lobbies).
+## Parties & lobbies
 
-## Chat that follows you
+Group up in a party to chat, talk, and queue together. The **Party** app shows
+your seats, invites and an **Invite** button for each open seat, **Join party
+voice**, and the queue: the captain picks the mode and starts the search, and
+everyone sees the search clock and the ready-up.
 
-A floating chat widget keeps match comms visible without alt-tabbing, minimize or
-expand it any time. Match chat shows the live score, a link to the full match, and
-who's currently in the room.
+A party has a **captain** who drives ready-up and team decisions, and stays
+together through matchmaking (see [Quick Play & Matchmaking](/features/quick-play)).
 
-5Stack chat bridges the **web app and in-server**, so conversations stay
-connected whether players are in the browser or in the game.
+For structured pick-up games, with captains drafting, snake pick order and
+substitute waitlists, see [Draft Lobbies](/features/draft-lobbies).
 
-Every conversation you're in, match, team, lobby, tournament, or organizers,
-becomes a **tab** in the chat rail, with an unread badge that counts from the
-moment you sign in rather than from the moment you open the panel.
+## Chat and voice
 
-## Direct messages
-
-Message a friend one-to-one from their **player page** or straight from your
-friends list. A direct message opens as its own chat tab, showing the person's
-avatar instead of a channel icon.
-
-Direct messages are limited to **accepted friends** in both directions, so
-nobody can be cold-messaged, and an incoming message opens its tab without
-yanking you out of the conversation you're reading. They're also kept far longer
-than room chatter, 30 days rather than the shared chat TTL, because a
-conversation you can't scroll back through isn't much of a conversation.
-
-## Voice chat
+Every match, team, lobby, draft, tournament and organizer room, plus direct
+messages, is in the **Chat** app, and match chat is relayed to and from the game
+server. See [Chat](/features/chat) for reactions, edits, attachments, GIFs and
+message requests.
 
 Talk to your party in a lobby, or to your team on the match page, with
-[voice chat](/features/voice-chat) built into the panel: device pickers, a mic
-check you can run before anyone hears you, voice-activity or open-mic
-transmission, and noise suppression.
+[voice chat](/features/voice-chat) built into the panel.
+
+## Blocking players
+
+**Block** is in a player's profile **⋮** menu, the player menu anywhere their
+name appears, and their row in your friends list. Blocking someone:
+
+- removes your friendship, and cancels every pending invite between you,
+- stops either of you inviting, friending or adding the other to a lobby, team,
+  draft, match, tournament, league or event roster ("You can't do that with this
+  player."),
+- closes direct messages both ways,
+- hides their messages and reactions from you in every chat room, right away
+  and on every device.
+
+Staff adding players, and players joining something themselves, aren't stopped
+by a block. Moderators and above still see a blocked player's lines in group
+rooms, marked **Blocked**, so blocking can't hide abuse from them. In-game chat
+can't be filtered per player.
+
+**Settings → Blocked Players** lists everyone you've blocked, with **Unblock**.
+Unblocking doesn't restore the friendship. The same page holds the
+[Message requests](/features/chat#message-requests) switch.
 
 ## Connect Discord
 
-Link your Discord account to 5Stack to unlock the bot, create matches, manage
-lobbies, get match updates, and have your roles synced, without leaving Discord.
-(Admins configure what the bot does; see
-[Integrations](/features/admin/integrations#discord) and the
-[Discord Bot](/advanced/discord-bot/) guide.)
+Link your Discord account to 5Stack so the matches you play through the
+[Discord bot](/advanced/discord-bot/) track your stats. Admins configure what
+the bot and the Discord notifications do; see
+[Integrations](/features/admin/integrations#discord).
 
-## Smart notifications
+## Notifications
 
-Chat and match sounds are context-aware: they automatically quiet down when
-you're **in a game** or the tab is **hidden**, so you're never spammed mid-round.
-You can pick your own notification sounds and set the volume.
+Invites, match turns, reminders and messages reach you in the Inbox, as toasts,
+as push notifications, by flashing the browser tab, and with sounds. See
+[Notifications](/features/notifications).
 
-**Settings → Notifications** lists every kind of notification 5Stack can send
-you, grouped by category with an example of each, and decides where each one
-reaches you. Each kind can be muted on the in-app alert bell (your own account
-and safety notices always show), and each category can be turned on as
-[web push notifications](/advanced/web-push) that arrive even when 5Stack isn't
-open. Push choices are saved even before you turn push on for a device.
-**Quiet hours** keep push silent during a window you set; those notifications
-still land in the alert bell. The same page holds the browser tab flash and
-sound settings, and each notification in the bell has a menu to turn its kind
-off, with Undo.
+## Getting around
+
+- **Back returns lists to where you left them.** Players, Matches, Teams,
+  Leaderboard and Highlights come back on the page of results you left, and
+  Teams keeps its search, sort and filters too. The lists inside team,
+  tournament, league, event and award pages do the same.
+- **Empty sections stay out of the navigation.** Tournaments, Events, News and
+  Highlights only appear in the navigation once there's something in them.
+  Players who can create tournaments, events or news posts still see those
+  links, so they can add the first one.

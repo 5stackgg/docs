@@ -117,13 +117,13 @@ Since nodes converge on their own clocks, "installed" is a fraction: how many
 online nodes report the plugin against how many should have it. The directory
 shows one of:
 
-| State | What it means |
-| --- | --- |
-| **Installed** | Every online node reports it on disk |
-| **Partial** | Some nodes have it, some do not |
-| **Pending** | Asked for, but no node has reported it yet — nothing has converged since you asked, or no node is online to converge |
-| **Failed** | A node reported the install as failed; the error is kept on that node's row |
-| **Manual** | Nobody asked for it, but it is there anyway: someone dropped it in by hand |
+| State         | What it means                                                                                                        |
+| ------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Installed** | Every online node reports it on disk                                                                                 |
+| **Partial**   | Some nodes have it, some do not                                                                                      |
+| **Pending**   | Asked for, but no node has reported it yet — nothing has converged since you asked, or no node is online to converge |
+| **Failed**    | A node reported the install as failed; the error is kept on that node's row                                          |
+| **Manual**    | Nobody asked for it, but it is there anyway: someone dropped it in by hand                                           |
 
 Only enabled nodes that are **Online** or **Not Accepting New Matches** count
 toward the target.
@@ -170,11 +170,11 @@ what lets one node host a competitive match and a fun match at the same time.
 Each installed plugin's directory page has three switches saying which kinds of
 match load it on their own, whether or not a mode selects it:
 
-| Switch | Covers |
-| --- | --- |
-| **Ranked Matches** | Anything counting toward ranking — the queue or a draft lobby alike |
-| **Tournament Matches** | Matches played as part of a tournament bracket, ranked or not |
-| **Custom Matches** | Everything else: matches that count toward nothing |
+| Switch                 | Covers                                                              |
+| ---------------------- | ------------------------------------------------------------------- |
+| **Ranked Matches**     | Anything counting toward ranking — the queue or a draft lobby alike |
+| **Tournament Matches** | Matches played as part of a tournament bracket, ranked or not       |
+| **Custom Matches**     | Everything else: matches that count toward nothing                  |
 
 The buckets do not overlap. A match is sorted into exactly one of them, and a
 ranked tournament game is a **tournament** game — that switch is the more
@@ -203,6 +203,11 @@ That is exactly why it is a switch of its own rather than part of a single
 "every match" flag.
 :::
 
+On a [community server](/servers/dedicated-servers/community-servers), which
+hosts no match, a plugin loads by default when **Tournament Matches** or
+**Custom Matches** is on. Each community server can also switch a plugin
+**On** or **Off** for itself under **Settings → Plugins**.
+
 ### Configuration
 
 Some plugins are configured with console variables rather than a config file,
@@ -210,12 +215,18 @@ and those have nowhere to live: a match type config is shared by every match of
 that type, and a [Game Mode](/features/admin/game-modes) only covers matches
 that select it.
 
-Each installed plugin's page has a **Configuration** box for exactly that. What
-you write there is exec'd after the match type's config and after the
+Each installed plugin's page has a **Configuration** box for exactly that.
+**Edit configuration** opens an editor with up to three tabs:
+
+| Tab             | What it edits                                                                                                                                             |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Settings**    | A form for the console variables the plugin's registry entry lists, with each one's description and default                                               |
+| The config file | The plugin's JSON config file, as a form when the registry describes it, or as JSON. Named after the file, for example **Weapon rotation** for Deathmatch |
+| **Advanced**    | The raw cvar block                                                                                                                                        |
+
+What you set is exec'd after the match type's config and after the
 [Global config](/features/admin/game-modes#global-configuration), on servers
-that load the plugin **and nowhere else**. A plugin whose registry entry
-declares its cvars offers to insert them for you, so you are filling in values
-rather than remembering names.
+that load the plugin **and nowhere else**.
 
 ```
 invsim_url "https://inventory.example.gg"
@@ -230,7 +241,62 @@ separately, which is how a rotated API key ends up half-updated.
 The cvars follow the plugin: they are exec'd wherever it loads, and nowhere
 else. A plugin kept out of competitive play by its
 [load switches](#load-without-a-game-mode) does not carry its configuration
-there either — it is not loaded at all, rather than loaded unconfigured.
+there either — it is not loaded at all, rather than loaded unconfigured. On a
+community server they are written into the server's Valve game mode config, which
+CS2 runs on every map load.
+
+#### Descriptions and defaults
+
+The registry only names a plugin's cvars. What each one does and what it
+defaults to is read from a real server: when a dedicated server or a match server
+running the plugin comes online, the panel asks it over RCON and records the
+answers. Until then the form says **Descriptions and defaults show up once a
+server running this plugin comes online.** A value your own config sets is
+never recorded as the plugin's default, and cvars that look like secrets never
+get one.
+
+#### Config files
+
+A plugin that reads a JSON file gets a config file tab. **Customize** starts
+from the file the plugin ships with; **Use the Plugin's File** goes back to it.
+**View in Repo** opens the shipped file at the installed release, and **Open on
+Node** opens it in a node's file browser.
+
+Your file is written to every server that loads the plugin, at the path the
+registry names. Where the plugin finds its file through a cvar (Deathmatch's
+`dm_modes_file`), 5Stack points that cvar at the written file on those servers
+only.
+
+#### Cvars the plugin overrides
+
+Some plugins set console variables themselves on every map load, after every
+config has run. Deathmatch, for one, sets over a hundred. The plugin's page lists
+them under **Set by the plugin on every map**, and warns when your configuration
+sets one, since the value would be overwritten.
+
+#### One server only
+
+A community server can layer its own settings over the plugin page's with
+**Configure for This Server**. See
+[Community Servers](/servers/dedicated-servers/community-servers#plugins).
+
+### Workshop addons
+
+CS2 cannot send files from a server to a player, so a plugin's custom models,
+sounds or HUD layouts have to reach players as Steam Workshop addons. A plugin
+that needs them lists them in its registry entry, and its page shows them under
+**Workshop addons**.
+
+The SwiftlyS2 image ships
+[AddonsManager](https://github.com/SwiftlyS2-Plugins/AddonsManager). Every
+server that loads such a plugin serves exactly the addons its plugins list, and
+players download them from the Workshop while they connect. Nothing to install
+or configure.
+
+::: warning SwiftlyS2 only
+CounterStrikeSharp servers start without the addons and log why. The plugin
+still loads; whatever needed the addon does not show.
+:::
 
 ### Plugins that need Valve's server guidelines off
 
@@ -292,11 +358,11 @@ An install either tracks the newest release or sits on one version:
 
 ## Where the files live
 
-| Path | What |
-| --- | --- |
-| `/opt/5stack/custom-plugins/` | Both managed installs and hand-managed files, laid out relative to `game/csgo` ([Custom Game Plugins](/servers/game-server-nodes/custom-plugins)) |
-| `/opt/5stack/custom-plugins/.5stack-plugins/` | Which files belong to which managed plugin, and at what version |
-| `/opt/5stack/servers/<server id>/` | A single dedicated server's own files |
+| Path                                          | What                                                                                                                                              |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/opt/5stack/custom-plugins/`                 | Both managed installs and hand-managed files, laid out relative to `game/csgo` ([Custom Game Plugins](/servers/game-server-nodes/custom-plugins)) |
+| `/opt/5stack/custom-plugins/.5stack-plugins/` | Which files belong to which managed plugin, and at what version                                                                                   |
+| `/opt/5stack/servers/<server id>/`            | A single dedicated server's own files                                                                                                             |
 
 Managed installs land in the directory operators already use rather than a store
 of their own: it is where a plugin writes its own config at runtime, and it

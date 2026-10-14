@@ -5,9 +5,12 @@ lot more than a scoreboard. This is what's in there, and where to find it.
 
 ## The match page
 
-Across the top: the scoreline with both lineups, a **round-by-round strip**
-showing survivors and the win reason for each round, and an **auto-playing
-highlight queue** ("Up Next") ranked by multikill for that match.
+Across the top: the scoreline with both lineups and a **round-by-round strip**
+showing survivors and the win reason for each round. Once the match has
+[highlights](/features/highlights), they join the header on one stage: the
+featured clip plays inline and moves on to the next by itself, with an **Up
+next** list ranked by top plays. Your own team is marked with an amber ring in
+the header and in the stat tables.
 
 Below that, an analysis tab for each way of looking at the game. Use the **map
 filter** to look at one map or the whole series.
@@ -29,15 +32,26 @@ columns you care about, your column set is remembered.
 
 ### Economy
 
-A **round economy** timeline of each team's start-of-round money across the map,
-annotated with who won each round, so eco calls, force-buys, and broken
-economies are visible at a glance.
+A **Round Economy** chart of the money each team took into every round across
+the map, annotated with who won each round, so eco calls, force-buys, and broken
+economies are visible at a glance. Bands mark eco money (under $5,000) and full
+buys (over $20,000), pistol rounds start at $800 a player, and a round whose
+starting money isn't known, such as the first round of an overtime half, is left
+as a gap rather than guessed.
 
-Alongside it, the **Buy Type Breakdown** classifies every round into pistol /
-eco / force / full and reports win rate across six matchups:
+Alongside it, the **Buy Type Breakdown** classifies each round by the money the
+team started it with, into pistol / eco / force / full (a round whose starting
+money isn't known is left out), and reports win rate across six matchups:
 
 `Pistol v Pistol` · `Full v Full` · `Full v Eco` · `Full v Force` ·
 `Eco v Full` · `Force v Full`
+
+### Team stats
+
+On the **Economy** tab, a per-team KPI panel with **round win %, pistol win %,
+opening win %, trade %, 5v5 and 4v5 win rates, UDR, and flash assists per
+round**, split by **CT and T side**, plus the team's **buy mix** and rounds won
+from each buy type.
 
 ### Clutches
 
@@ -58,7 +72,7 @@ behind each detection shown.
 
 ### Map Analysis
 
-Positional analysis rendered over the map radar, in two modes:
+Positional analysis drawn over a top-down map, in two modes:
 
 **Heatmap**, plot **kills, deaths, utility, or utility damage**, rendered as a
 true heat intensity or as individual dots. Filter by side, player, round window,
@@ -69,8 +83,8 @@ and utility type (HE / Molotov / Smoke / Flash / Decoy), and draw grenade
 by side, team, and player, so you can see setups and default positions rather
 than guessing at them.
 
-From either mode you can jump straight into
-[2D playback or the 3D replay](/features/match-replay).
+From either mode, the **2D** and **3D** buttons open the
+[replay](/features/match-replay) of the map in that view.
 
 ### Utility vs Lineups
 
@@ -82,12 +96,6 @@ demo, so a throw you liked can be saved as a lineup of your own.
 
 A throw is matched by its start and end points, so these are throws that _look
 like_ the lineup, not proof the lineup was the one being called.
-
-### Team stats
-
-A per-team KPI panel with **round win %, pistol win %, opening win %, trade %,
-5v5 and 4v5 win rates, UDR, and flash assists per round**, split by **CT and T
-side**, plus the team's **buy mix** and rounds won from each buy type.
 
 ## Player profiles
 

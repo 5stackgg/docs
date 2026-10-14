@@ -5,7 +5,13 @@ turns it into a schedule: your team advertises when it plays and who it will
 play, opponents challenge you, and 5Stack hosts the resulting match.
 
 It lives on your team page under the **Scrim Finder** tab, and the public board
-is at **/scrims**.
+is at **/scrims**. The tab carries a count of the requests waiting on your team.
+
+The [Play page](/features/quick-play#more-ways-to-play) has a **Scrims** card
+too: how many teams are looking for a scrim today, **Find a scrim** to open the
+board, and **Post availability** if you manage a team. A team page you can
+manage nudges you to **Set up scrims** while the team isn't open to them, and
+other teams' pages have a **Request Scrim** button.
 
 ## Advertise your team
 
@@ -15,8 +21,8 @@ that tab controls who finds you and what they can ask for:
 - **Regions**: where you're willing to play.
 - **Maps**: pick from official, workshop, or active-duty pools. Opponents see
   your list before they challenge.
-- **Accepted Elo range**: a slider over 5Stack team Elo. Teams outside the range
-  don't see you as a match.
+- **Accepted ELO Range**: a slider over 5Stack team Elo. Teams outside the
+  range don't see you as a match.
 - **Notes**: free text for anything a challenger should know: server
   preferences, anti-cheat requirements, voice, language.
 
@@ -33,7 +39,7 @@ The grid then does the math for you:
   lengths actually fit inside it. If BO3 doesn't fit, the grid tells you exactly
   how much more you need to paint to unlock it.
 - Opponents can only propose start times inside your availability, unless you
-  enable **allow requests outside these hours**, or leave the grid empty entirely
+  enable **Allow requests outside these hours**, or leave the grid empty entirely
   (which means "ask any time").
 
 ## Finding opponents
@@ -42,7 +48,7 @@ The **/scrims** board lists every team that's open, with their Elo, regions,
 maps, and availability. Narrow it down with:
 
 - **Region** and **map** filters
-- An **Elo range** slider
+- An **ELO range** slider
 - Free-text search by team name
 - Sorting by name, Elo, or **reliability**, how dependably a team actually shows
   up for the scrims it agrees to
@@ -79,9 +85,10 @@ opens up for scrims.
 
 ## Calendar subscription
 
-**Subscribe to Scheduled Matches** gives you a calendar (ICS) URL. Drop it into
-Google Calendar, Apple Calendar, or Outlook and your team's scheduled scrims show
-up alongside everything else.
+**Subscribe to Matches**, beside your team's next match on the team page,
+gives you a calendar (ICS) URL. Drop it into Google Calendar, Apple Calendar, or
+Outlook and every match the team plays, scrims, league fixtures, and
+tournaments, shows up alongside everything else.
 
 ::: tip Admins
 The Scrim Finder can be switched on or off instance-wide from
