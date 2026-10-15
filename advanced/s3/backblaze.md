@@ -45,12 +45,12 @@ Go to **Settings → Application → Demos**:
 
 ## Signed clip links
 
-Once the panel signs them, the worker refuses a clip, clip thumbnail or utility lineup file without a signed, unexpired link, and only people who may see a clip get one. Links expire: 7–14 days for a public clip or lineup, 6–12 hours for anything else. Share a clip's page (`/clips/<id>`), not its file link: the page always hands out a fresh link.
+Once the panel signs them, the worker refuses a clip, clip thumbnail or utility lineup file without a signed, unexpired link, and only people who may see a clip get one. Links expire: 1–2 years for a public clip or lineup, so embeds keep working, and 6–12 hours for anything else. Share a clip's page (`/clips/<id>`), not its file link: the page always hands out a fresh link.
 
 - **Re-run `./backblaze-proxy.sh` after every panel update, every rollback, and every change to `S3_SECRET`.** Each run decides again whether the worker requires signed links; updating or rolling back the panel doesn't touch the worker.
 - **One worker, several panels.** All panels on the same Cloudflare account and bucket share the `5stack` worker. Update every one of them before running the script from any of them: once the worker requires signed links, a panel that doesn't sign them loses its clips.
 - **Turning it off** (answering yes when a panel doesn't sign) affects every panel on the worker: their private clips can be downloaded by anyone with the link until the script turns it back on.
-- **Revocation isn't instant.** A clip made private keeps the links already handed out working until they expire.
+- **Revocation isn't instant.** A clip or lineup made private keeps the links already handed out working until they expire, up to two years for one that was public.
 
 ## Changing the bucket keys
 
