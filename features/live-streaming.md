@@ -51,6 +51,20 @@ for ten minutes after. Hover it for:
   broadcast keeps running for everyone else.
 - Volume, and full screen (`F`; `M` mutes).
 
+### Players' Twitch POVs
+
+When [Twitch is set up](/features/admin/integrations#twitch), players can link
+their channel (see [Linked accounts](/features/social#linked-accounts)). While a
+match is live and its server is online, any of its players streaming on a
+linked channel in the Counter-Strike category show up in the match's stream
+picker as **{name} POV**, after the organizer's streams, with their avatar and a
+red dot. A POV plays in the match's player like any other Twitch stream, can be
+pinned as the floating overlay, and drops out when the player stops streaming.
+
+POVs keep the same rule as the game stream: nobody playing or coaching a live
+match sees anyone's POV from it, and with **Require Sign-In to View Live
+Streams** on, signed-out visitors see none. Practice sessions never show POVs.
+
 ### Match caption
 
 When there's no picture yet, or the stream has ended, the player shows the match

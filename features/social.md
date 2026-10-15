@@ -16,7 +16,7 @@ changes width.
 | **Party**   | Your party's seats, invites, party voice, and the mode picker to queue            | Red for party invites; a dot while you're in a party; the search clock while queueing |
 | **Voice**   | The [voice channel](/features/voice-chat) you're in, or the channels you can join | How many are in your call; green while you're in one                                  |
 | **Friends** | Your friends, and **Others**: everyone else who is online                         | Red for friend requests, otherwise how many friends are online                        |
-| **Chat**    | Every [chat](/features/chat) conversation and room you're in                      | Unread messages                                                                       |
+| **Chat**    | Every [chat](/features/chat) conversation and room you're in                      | Red for direct messages and tags of you; white for other new messages in rooms        |
 | **Matches** | Your recent games: wins, losses, win rate and most-played maps                    |                                                                                       |
 
 The pin at the bottom (**Keep the hub open**) holds it open, and a pinned hub
@@ -28,8 +28,10 @@ with **Mute** and **Leave call** sits under every other app.
 ### Conversation shortcuts
 
 Your most recently active conversations sit under **Chat** on the dock: up to
-three people and two rooms by default. Right-click a shortcut to **Pin to the
-dock**, **Remove until a new message**, or **Never show on the dock**.
+three people and two rooms by default, and a team's room shows the team's logo.
+Right-click a shortcut to mute it or choose what it notifies you about (see
+[Muting a room](/features/chat#muting-a-room)), **Pin to the dock**, **Remove
+until a new message**, or **Never show on the dock**.
 Right-click **Chat** to set how many people and rooms the dock shows (0 to 5
 each) and to bring hidden chats back. These choices are saved per browser, since
 dock space depends on the screen.
@@ -39,8 +41,10 @@ their homes.
 
 ### On a phone
 
-The grid button in the top bar opens the hub, with a red badge for unread chat
-and notifications. The hub slides in over a dimmed page; swipe right to close it.
+The grid button in the top bar opens the hub. Its badge is red for
+notifications, friend requests, direct messages and tags of you, and white when
+only other chat is unread. The hub slides in over a dimmed page; swipe right to
+close it.
 
 ## Friends
 
@@ -71,6 +75,10 @@ carries its Elo and awards, its [league history](/features/leagues), its
 A team that is short of five starters reminds anyone who can invite to it, in
 the [Inbox](/features/notifications#the-inbox).
 
+Every team has a permanent [team chat](/features/chat#team-chat) for its roster
+and owner, pinned to their chat rail and opened from **Team Chat** on the team
+page. The team's owner and roster Admins moderate it, not site staff.
+
 The owner can't leave their own team. Ownership is handed to another player on
 the roster first, by the owner or by staff, and the new owner becomes a roster
 Admin.
@@ -92,8 +100,8 @@ substitute waitlists, see [Draft Lobbies](/features/draft-lobbies).
 
 Every match, team, lobby, draft, tournament and organizer room, plus direct
 messages, is in the **Chat** app, and match chat is relayed to and from the game
-server. See [Chat](/features/chat) for reactions, edits, attachments, GIFs and
-message requests.
+server. See [Chat](/features/chat) for @tags, muting a room, reactions, edits,
+attachments, GIFs and message requests.
 
 Talk to your party in a lobby, or to your team on the match page, with
 [voice chat](/features/voice-chat) built into the panel.
@@ -109,23 +117,46 @@ name appears, and their row in your friends list. Blocking someone:
   player."),
 - closes direct messages both ways,
 - hides their messages and reactions from you in every chat room, right away
-  and on every device.
+  and on every device, and stops their @tags reaching you,
+- hides their [news comments](/features/news#comments), and the replies under
+  them.
 
 Staff adding players, and players joining something themselves, aren't stopped
 by a block. Moderators and above still see a blocked player's lines in group
-rooms, marked **Blocked**, so blocking can't hide abuse from them. In-game chat
-can't be filtered per player.
+rooms other than team chat, marked **Blocked**, so blocking can't hide abuse
+from them. In-game chat can't be filtered per player.
 
 **Settings → Blocked Players** lists everyone you've blocked, with **Unblock**.
 Unblocking doesn't restore the friendship. The same page holds the
 [Message requests](/features/chat#message-requests) switch.
 
-## Connect Discord
+## Linked accounts
 
-Link your Discord account to 5Stack so the matches you play through the
-[Discord bot](/advanced/discord-bot/) track your stats. Admins configure what
-the bot and the Discord notifications do; see
-[Integrations](/features/admin/integrations#discord).
+**Settings → Linked Accounts** connects your other accounts to 5Stack.
+
+- **Discord**: **Link Discord** connects your Discord account, so the matches
+  you play through the [Discord bot](/advanced/discord-bot/) track your stats
+  and the bot can move you into your team's voice channel. **Unlink Discord**
+  removes it. The card shows once the bot is set up, or while you're linked.
+  Admins configure what the bot and the Discord notifications do; see
+  [Integrations](/features/admin/integrations#discord).
+- **Twitch**: **Link Twitch** signs you in with Twitch, which proves the channel
+  is yours. **Unlink Twitch** removes it. The card shows once an administrator
+  has [set Twitch up](/features/admin/integrations#twitch).
+
+While you're live on a linked Twitch channel in the Counter-Strike category:
+
+- your profile shows **Live · {count}** in its header and a card with the
+  stream's preview: click it to play the stream on the profile, or **Open on
+  Twitch**. Offline, the header links your channel instead,
+- the Players list marks you **Live**, and can filter to **Live on Twitch**,
+- the match you're playing lists your stream as **{name} POV** (see
+  [Live Streaming](/features/live-streaming#players-twitch-povs)).
+
+While you're playing or coaching a live match, nobody in it sees your Twitch,
+live or not, and you don't see theirs. With **Require Sign-In to View Live
+Streams** on, signed-out visitors don't see the Twitch of anyone in a live
+match.
 
 ## Notifications
 

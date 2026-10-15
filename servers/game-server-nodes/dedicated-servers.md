@@ -22,12 +22,12 @@ installed, or no free server slots.
 
 Choose **CS2** or **CS:GO**, then one of:
 
-| Choice              | What it is                                                                                    |
-| ------------------- | --------------------------------------------------------------------------------------------- |
-| **Ranked Server**   | A fully managed server matchmaking and matches can use. Runs the 5Stack match plugin          |
-| **Practice Server** | Hosts utility practice sessions. Runs the practice plugin and is never used for matchmaking   |
-| **Valve Modes**     | A Valve preset: `Competitive`, `Casual`, `Wingman`, `Deathmatch`, `ArmsRace` or `Retake`      |
-| **Custom Presets**  | One of your [Game Modes](/features/admin/game-modes), with the plugins 5Stack installs for it |
+| Choice              | What it is                                                                                         |
+| ------------------- | -------------------------------------------------------------------------------------------------- |
+| **Ranked Server**   | A fully managed server matchmaking and matches can use. Runs the 5Stack match plugin               |
+| **Practice Server** | Hosts utility practice sessions. Runs the practice plugin and is never used for matchmaking        |
+| **Valve Modes**     | A Valve preset: `Competitive`, `Casual`, `Wingman`, `Deathmatch`, `ArmsRace`, `Retake` or `Custom` |
+| **Custom Presets**  | One of your [Game Modes](/features/admin/game-modes), with the plugins 5Stack installs for it      |
 
 Everything except Ranked and Practice is a
 [community server](/servers/dedicated-servers/community-servers). Custom
@@ -35,8 +35,9 @@ presets need a node, because the mode's plugins are installed onto the server.
 CS:GO servers run Valve presets only.
 
 A server starts on the Valve game mode its choice maps to, so a Deathmatch
-preset boots CS2's own deathmatch rules. A custom mode boots on the mode's
-**Valve Game Mode**.
+preset boots CS2's own deathmatch rules. The `Custom` preset boots CS2's Custom
+game type, where a workshop map's own scripts run the game. A custom mode boots
+on the mode's **Valve Game Mode**.
 
 ### Name and Access
 

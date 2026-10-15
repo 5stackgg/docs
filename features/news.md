@@ -37,6 +37,42 @@ role.
 Links to a post unfurl in Discord, Slack, X, and other apps as a card with the
 cover image and teaser.
 
+## Comments
+
+Every post takes comments in a **Comments** section under it for **7 days**
+after it's published, and says how long it stays open ("Open for {count} more
+days"). After that the comments stay up but are read-only: "Comments are
+closed. Posts take comments for 7 days after they're published."
+
+- **Verified Users** and above can comment, reply and **+1**. Everyone else can
+  read; signed-out visitors see "Sign in to join the conversation."
+- Comments are plain text, up to 2,000 characters. The newest come first, 20 at
+  a time (**Show More Comments**), and new ones appear without a refresh.
+- Replies go one level deep, oldest first: a reply to a reply joins the same
+  thread, and still notifies the player it answers.
+- **+1** a comment to back it. You can't +1 your own.
+- You can edit your own comment for **10 minutes** after posting it, and delete
+  it at any time. A deleted comment that has replies leaves "This comment was
+  deleted." so the replies keep their place.
+- **Copy Link** in a comment's menu links straight to it.
+- Banned and gagged players can't comment. Each player can post 3 comments a
+  minute and 30 a day.
+- You don't see comments from players you've blocked, or the replies under
+  them.
+
+When someone replies to your comment you're notified in the Inbox and by push
+(**Replies to your comments**, under **Comment replies** in
+[notification settings](/features/notifications#what-you-ll-get)). Deleting or
+hiding the reply takes its Inbox notification back.
+
+### Moderating comments
+
+Moderators and above can **Hide…** any comment, with an optional reason.
+Readers see "Removed by staff." in its place and its replies stay where they
+are; staff still see it, marked **Hidden** with who hid it and why, and
+**Restore** brings it back. Moderators can also delete any comment, which then
+reads "Removed by staff." if it has replies.
+
 ## Writing
 
 Article authoring is built in:

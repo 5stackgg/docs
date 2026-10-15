@@ -91,7 +91,7 @@ export default defineConfig({
             { text: "Play & Matchmaking", link: "/quick-play" },
             { text: "Draft Lobbies", link: "/draft-lobbies" },
             { text: "Matches", link: "/matches" },
-            { text: "Map Veto Format", link: "/map-veto" },
+            { text: "Map Veto", link: "/map-veto" },
             { text: "Scrim Finder", link: "/scrim-finder" },
             { text: "Player Cameras", link: "/player-cameras" },
             { text: "Utility Library", link: "/utility-library" },

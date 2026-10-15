@@ -1,8 +1,8 @@
 # Matchmaking & Ranks
 
-These settings control matchmaking, the Elo rank system, draft lobbies, and the
-map pools and server configs that matches run with. For what players see, see
-[Play & Matchmaking](/features/quick-play).
+These settings control matchmaking, veto scouting, the Elo rank system, draft
+lobbies, and the map pools and server configs that matches run with. For what
+players see, see [Play & Matchmaking](/features/quick-play).
 
 ## Matchmaking
 
@@ -29,6 +29,20 @@ Under **Settings → Application → Matchmaking**:
 
 Matchmaking never mixes LAN and online regions: on a LAN, players choose one or
 the other, and the server refuses a queue or match whose regions mix them.
+
+## Veto scouting
+
+**Veto scouting**, on the same page, has a switch each for **Competitive**,
+**Wingman**, and **Duel**. While it's on, a map veto in a match of that type
+shows each side's record on every map, the other side's usual bans and picks,
+and their likely next move. See
+[Veto scouting](/features/map-veto#veto-scouting).
+
+- Every mode is on until you switch it off.
+- A switch covers every match of that type, not just matchmaking: draft rooms,
+  tournaments, and scheduled matches too. It doesn't depend on the
+  **Matchmaking** switch.
+- Rush has no veto, so it has no switch.
 
 ## 5stack Ranks
 

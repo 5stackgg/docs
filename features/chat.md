@@ -11,11 +11,12 @@ browser and the game server.
 | Room                 | Who's in it                                         | Messages kept for (default) |
 | -------------------- | --------------------------------------------------- | --------------------------- |
 | **Match chat**       | Both teams in a match                               | 1 hour                      |
-| **Team chat**        | One lineup in a match                               | 1 hour                      |
+| **Match team chat**  | One lineup in a match                               | 1 hour                      |
+| **Team chat**        | A team's roster and its owner                       | 30 days                     |
 | **Queue chat**       | Your matchmaking lobby                              | 1 hour                      |
 | **Draft lobby chat** | Everyone in a [draft room](/features/draft-lobbies) | 1 hour                      |
 | **Tournament chat**  | A tournament's teams, free agents and organizers    | 7 days                      |
-| **Organizers chat**  | Match Organizers and above                          | 24 hours                    |
+| **Organizers chat**  | Match Organizers and above                          | 90 days                     |
 | **Direct messages**  | Two players                                         | 365 days                    |
 
 Retention is set per kind of room by an administrator under
@@ -31,6 +32,26 @@ nobody is cut off mid-conversation. The chat header shows an amber
 tournament page has a **Chat Room** button beside its tabs, with the room's
 unread count.
 
+The organizers' room goes by the role you hold now: a player who drops below
+Match Organizer stops receiving its messages straight away.
+
+## Team chat
+
+Every team has a permanent chat room. It's pinned to your chat rail for each
+team you're on, and the team's page has a **Team Chat** button with its unread
+count.
+
+- Only the team's roster, benched players included, and its owner can read it.
+  An invited player joins once they accept. Site staff who aren't on the team
+  can't open it.
+- The owner and the roster's Admins can delete anyone's message there. Site
+  moderation doesn't reach the room: there's no **Moderate {name}**, and its
+  edits and deletes aren't kept for moderators.
+- Leave the team and the room closes. It says "You're no longer on {team}" and
+  leaves your rail when you switch to another room.
+- The header counts who's here out of the whole team
+  (**{here} of {total} here**).
+
 ## The chat rail
 
 Every conversation you're in is a tab on the rail of the **Chat** app. Drag tabs
@@ -38,9 +59,18 @@ to reorder them (on a touch screen, long-press first), and **Remove from bar**
 takes one off. **Pop out to window** opens the conversation in its own window
 for a second monitor.
 
-Unread badges count from the moment you sign in. **Match and team chat never
-count toward unread**: in-game chat is relayed into those rooms line by line,
-and you have already read it in the game.
+Right-click a room on the rail to mute it or choose what it notifies you about
+(see [Muting a room](#muting-a-room)). Resting on a room shows its name, how
+many messages in it tag you, and whether it's muted.
+
+Unread badges count from the moment you sign in. **Match and match team chat
+never count toward unread**: in-game chat is relayed into those rooms line by
+line, and you have already read it in the game. A message there that tags you
+still counts.
+
+Opening a room shows its latest 200 messages. Scroll to the top to load the ones
+before them, back to the oldest the room still keeps; the top of the list then
+says **No older messages**.
 
 The participant list links every player to their profile.
 
@@ -51,6 +81,7 @@ The participant list links every player to their profile.
   **Send** for the last 200.
 - **Up arrow** in an empty box edits your last message.
 - Typing `/gif` offers a GIPHY search (see [GIFs](#attachments-and-gifs)).
+- Typing `@` tags a player (see [Tagging players](#tagging-players)).
 
 In a match, the box switches between **Everyone** ("Both teams — also shown in
 game chat") and **Your team** ("Your lineup only — not shown in game chat").
@@ -58,6 +89,50 @@ game chat") and **Your team** ("Your lineup only — not shown in game chat").
 filters to **All**, **Everyone** or **Team**.
 
 Each player can send 5 messages every 3 seconds, across every room.
+
+## Tagging players
+
+In any room except a direct message, type `@` to tag someone. A
+**Players to tag** list offers the room's members with their avatar and team,
+and marks organizers **Organizer**. Keep typing to narrow it, use the arrow keys
+to move through it, **Enter** or **Tab** to pick, and **Esc** to close it.
+Writing out a member's full name after an `@` tags them too.
+
+- Only members of the room can be tagged, and a message can tag up to **10
+  players**.
+- Tags show in amber. A message that tags you is lit with an amber bar until
+  you've seen it in the room; after that, only your name stays highlighted.
+- A room where you're tagged shows a red badge with an **@** on the rail, on its
+  dock shortcut and on the **Chat** icon.
+- Being tagged sends you a push, even from match chat (see
+  [Notifications](/features/notifications#chat)).
+- Editing a message keeps the tags whose names are still in it and never adds
+  new ones, so nobody is notified twice.
+- A player you've blocked can't tag you: the tag is dropped for you, and nothing
+  is pushed.
+
+## Muting a room
+
+Right-click a room on the chat rail or a chat shortcut on the dock, or open the
+**⋯** menu in a room's header (the bell, in a popped-out window):
+
+- **Mute room** (**Mute conversation** for a direct message): **For 15
+  minutes**, **For 1 hour**, **For 8 hours**, **For 24 hours**, or **Until I
+  turn it back on**. While it's muted the menu offers **Unmute room** instead,
+  with when the mute ends.
+- **Notify me about**: **All messages** (the default), **Only @tags**, or
+  **Nothing**. Direct messages don't have this, since there's nobody to tag.
+
+A muted room sends no push, sound or tab flash for its messages. Its unread
+count turns grey and drops out of the **Chat** icon's count, and the room
+carries a crossed-out bell on the rail and on its dock shortcut. A tag of you
+still gets through, in red, unless the room is set to **Nothing**, which
+silences tags too and counts them as ordinary messages. **Only @tags** keeps the
+room's unread count but only alerts you for tags.
+
+These choices are saved to your account, so a room muted on one device is quiet
+on every other, and a timed mute ends by the server's clock rather than your
+device's. Nobody else can see what you've muted.
 
 ## Reactions
 
@@ -79,8 +154,8 @@ cancels. An edited message shows **(edited)**, with the edit time on hover.
 Only messages sent from the website can be edited or deleted this way. Lines
 that came from the game can't.
 
-Every edit and delete in a group room is recorded, so an abusive message can't
-be edited away.
+Every edit and delete in a group room other than team chat is recorded, so an
+abusive message can't be edited away.
 
 ## Attachments and GIFs
 
@@ -89,10 +164,11 @@ also paste files or drag them onto the conversation.
 
 - Up to **4 files** per message: PNG, JPEG, WebP or GIF images, and MP4, WebM
   or MOV videos.
-- Works in queue, draft, tournament, organizers and direct chat. **Match and
-  team chat stay text-only.**
+- Works in queue, draft, tournament, organizers, team and direct chat. **Match
+  and match team chat stay text-only.**
 - Uploads start straight away, and **Send** says what it's waiting for.
-- Images show inline, videos open in a lightbox, and GIFs play inline.
+- Images show inline, videos open in a lightbox, and GIFs play inline. They run
+  the full width of the message, under the sender's avatar.
 
 Administrators set the largest file size and each player's daily upload
 allowance. Files are only served to people who can open the room. They are
@@ -148,10 +224,12 @@ relayed.
 
 ## Moderation
 
-Moderators and above get a moderation menu on every message in group rooms:
+Moderators and above get a moderation menu on every message in group rooms
+other than team chat:
 
 - **Moderate {name}** issues a warning, gag, mute, silence or ban on the author
-  without leaving chat (see [Moderation & Sanctions](/features/moderation)).
+  without leaving chat (see [Moderation & Sanctions](/features/moderation)). It
+  only appears on messages from players whose role is below yours.
 - **Delete Message** removes the line for everyone, after a confirm that quotes
   it. Each delete is recorded with who deleted it.
 
@@ -161,7 +239,7 @@ own messages, but not add or edit. Direct messages aren't moderated: a gag
 doesn't apply there, and the moderation menu doesn't appear.
 
 A deleted message's files are hidden from the room but kept for moderators
-until they would have expired.
+until they would have expired. In team chat they're deleted straight away.
 
 ## Match chat log
 
@@ -187,5 +265,6 @@ log that was cut short.
 
 Chat never adds to the [Inbox](/features/notifications#the-inbox). New messages
 can reach you as a push, a flashing browser tab and a sound, and each of those
-is set under **Settings → Notifications**. See
+is set under **Settings → Notifications**. A room's own mute and **Notify me
+about** level apply on top (see [Muting a room](#muting-a-room)). See
 [Notifications](/features/notifications#chat).

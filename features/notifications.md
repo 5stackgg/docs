@@ -76,21 +76,21 @@ connected to a match server.
 Every kind of notification, grouped, with a **Bell** switch and a **Push**
 switch. Push is switched per group; the bell can be switched per kind.
 
-| Group                                     | Includes                                                                   | Push by default                   |
-| ----------------------------------------- | -------------------------------------------------------------------------- | --------------------------------- |
-| **Matches**                               | Match alerts, imported matches, stats ready, clips ready                   | On                                |
-| ↳ **Match found**                         | Matchmaking found your match                                               | On, rings                         |
-| ↳ **Match chat**                          | Messages in a match's room, including chat relayed from the game           | **Off**                           |
-| ↳ **Admin calls**                         | An admin wants to talk to you over your match camera                       | On, rings                         |
-| **Invites**                               | Team, tournament, tournament registration and draft invites                | On                                |
-| **Account**                               | Your name changes, warnings, sanctions and awards                          | On                                |
-| **Banned teammates**                      | A player you've played with in the last 6 months was banned                | On                                |
-| **Chat**                                  | New messages in a conversation, lobby or tournament room                   | On                                |
-| **Tournaments**                           | New tournaments, reminders and check-in                                    | On                                |
-| **Leagues**                               | Scheduling proposals and roster warnings                                   | On                                |
-| **Scrims**                                | Scrim requests, schedule changes and alerts                                | On                                |
-| **Teams, events, seasons, utility, news** | Team suggestions, event reminders, season ends, practice invites, articles | On                                |
-| **Staff**                                 | Support requests, abandons and name-change requests; server and job status | Moderation on, infrastructure off |
+| Group                                     | Includes                                                                                    | Push by default                   |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------- |
+| **Matches**                               | Match alerts, imported matches, stats ready, clips ready                                    | On                                |
+| ↳ **Match found**                         | Matchmaking found your match                                                                | On, rings                         |
+| ↳ **Match chat**                          | Messages in a match's room, including chat relayed from the game                            | **Off**                           |
+| ↳ **Admin calls**                         | An admin wants to talk to you over your match camera                                        | On, rings                         |
+| **Invites**                               | Team, tournament, tournament registration and draft invites                                 | On                                |
+| **Account**                               | Your name changes, warnings, sanctions and awards                                           | On                                |
+| **Banned teammates**                      | A player you've played with in the last 6 months was banned                                 | On                                |
+| **Chat**                                  | New messages in a conversation, lobby or tournament room                                    | On                                |
+| **Tournaments**                           | New tournaments, reminders and check-in                                                     | On                                |
+| **Leagues**                               | Scheduling proposals and roster warnings                                                    | On                                |
+| **Scrims**                                | Scrim requests, schedule changes and alerts                                                 | On                                |
+| **Teams, events, seasons, utility, news** | Team suggestions, event reminders, season ends, practice invites, articles, comment replies | On                                |
+| **Staff**                                 | Support requests, abandons and name-change requests; server and job status                  | Moderation on, infrastructure off |
 
 A few kinds can't be switched off in the bell: your own name-change decisions,
 bans and warnings are always shown ("Always shown: it's about your account").
@@ -128,6 +128,15 @@ entries. A chat push is only sent if you haven't already seen the message:
   yet.
 - [Message requests](/features/chat#message-requests) and players you've blocked
   never push.
+- A room you've muted, or set to **Only @tags** or **Nothing**, only pushes what
+  that setting lets through (see [Muting a room](/features/chat#muting-a-room)).
+
+A message that [tags you](/features/chat#tagging-players) is pushed as "{name}
+mentioned you", with the room's name. Tags are pushed under **Chat**, so a tag
+in match chat reaches you even with **Match chat** off. One player's tags push
+you at most once every 5 minutes, and the same words only once an hour; anything
+more from them arrives like any other message in the room. When a burst is
+collapsed into a summary, it says how many of the messages mention you.
 
 **Match chat** is a separate switch and is **off by default**: in-game chat is
 relayed into the match room line by line, and you've already read it in the

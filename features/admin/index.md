@@ -14,7 +14,7 @@ below it:
 | **User** | Default for everyone who signs in |
 | **Verified User** | Trusted players |
 | **Streamer** | Can broadcast / spectate demos |
-| **Moderator** | Can sanction players, moderate chat, review a finished match's chat log, use RCON, and manage players on community servers |
+| **Moderator** | Can sanction players below their role, moderate chat and news comments, review a finished match's chat log, use RCON, and manage players on community servers |
 | **Match Organizer** | Can run matches and access the organizers chat |
 | **Tournament Organizer** | Can run tournaments |
 | **Administrator** | Full access, including all settings |
@@ -44,8 +44,8 @@ Roles are assigned from a player's profile; see
 - **[Game Modes](/features/admin/game-modes)**: the plugins, cvars and launch
   parameters that make a match play differently, and which modes are ranked.
 - **[Integrations](/features/admin/integrations)**: Discord notifications,
-  match imports (Valve/FACEIT), Steam Presence, chat retention, attachments and
-  GIFs, web push, and analytics.
+  Twitch linking, match imports (Valve/FACEIT), Steam Presence, chat retention,
+  attachments and GIFs, web push, and analytics.
 - **[System & Monitoring](/features/admin/system)**: metrics, logs, database
   performance, backups, and the render queue.
 
