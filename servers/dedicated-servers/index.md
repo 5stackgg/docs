@@ -39,7 +39,8 @@ prefixed `sw-` for SwiftlyS2 and `css-` for CounterStrikeSharp.
 See [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) for how the two differ.
 
 ::: warning
-The server must be started with `-usercon`, and `-ip 0.0.0.0` to allow remote rcon
+The server must be started with `-usercon`, and `-ip 0.0.0.0` to allow remote rcon, and
+with `-allow_round_backup_files` so rounds can be restored. See [Round backups](#round-backups).
 :::
 
 ## Using the Container
@@ -104,6 +105,24 @@ Management plugin, which is in the same image and reads the same `API_DOMAIN`,
       - INSTALL_5STACK_PLUGIN=false
       - INSTALL_PLAYER_MANAGEMENT_PLUGIN=true
 ```
+
+## Round backups
+
+The match plugin saves a backup file for every round. Restoring a match to an earlier
+round, after a crash or from the match page, loads one of those files. Since the
+[CS2 update of 14 October 2026](https://www.counter-strike.net/news/updates), the game only
+writes and loads them when the server is started with `-allow_round_backup_files`. Without
+it matches still play, but there is nothing to restore.
+
+| Server | What to do |
+| --- | --- |
+| Match servers the panel starts | Nothing, the game server image passes the flag |
+| Dedicated servers on a [game server node](../game-server-nodes/dedicated-servers) | Restart the server once so it starts on the updated image |
+| The container | Pull the latest image (`docker-compose pull`) and recreate the container |
+| A server you run yourself with the plugin | Add `-allow_round_backup_files` to its launch options |
+
+A community server that only runs the [Player Management plugin](./player-management)
+doesn't take round backups and doesn't need it.
 
 ## Hibernation
 
