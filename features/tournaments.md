@@ -35,17 +35,19 @@ organizers, **Manage** with the **Tournament status** menu beside it.
 
 Below it, five tabs:
 
-| Tab          | What it shows                                                                                                                                  |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Overview** | Prize pool, teams, format, start, and location at a glance; the awards podium, MVP, and stage standings; prizes; **About**; **Match Settings** |
-| **Bracket**  | Every stage's bracket (shown once stages exist, or to organizers)                                                                              |
-| **Matches**  | Every match in the tournament as a full row, filtered **Live**, **Upcoming**, **Results**, or **All**                                          |
-| **Teams**    | **My Team**, the **Roster** of entered teams (**All**, **Ready**, **Needs Players**), and the **Free Agents** pool                             |
-| **Stats**    | The tournament's **Player leaderboard**                                                                                                        |
+| Tab          | What it shows                                                                                                                           |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Overview** | Prize pool, teams, format, start, and location at a glance; the podium, MVP, and stage standings; prizes; **About**; **Match Settings** |
+| **Bracket**  | Every stage's bracket (shown once stages exist, or to organizers)                                                                       |
+| **Matches**  | Every match in the tournament as a full row, filtered **Live**, **Upcoming**, **Results**, or **All**                                   |
+| **Teams**    | **My Team**, the **Roster** of entered teams (**All**, **Ready**, **Needs Players**), and the **Free Agents** pool                      |
+| **Stats**    | The tournament's **Player leaderboard**                                                                                                 |
 
 **Matches** and **Stats** appear once the tournament is live. Above the tabs,
 the page shows whatever needs your attention first: an invite to accept, the
-entry requirements you do or don't meet, and the check-in panel.
+entry requirements you do or don't meet, and the check-in panel. An owner with
+several teams entered switches between them there, and the check-in panel and
+**My Team** follow the one picked.
 
 ### Tournament chat
 
@@ -78,6 +80,11 @@ Tournament**, **Resume Tournament**, **Reset to Setup**, **Cancel Tournament**,
 and **Delete Tournament**. An action that can't run yet says why, for example
 that the start time has passed, the bracket is full, or there is no stage.
 
+A tournament without check-in that is still open for registration at its start
+time starts on its own then, as long as it has enough teams: registration
+closes, free agents are drafted, and the bracket is seeded. One left open more
+than 15 minutes past its start waits for an organizer to start it.
+
 **Match rules** also holds:
 
 - **Auto Start**: schedule tournament matches automatically, or leave each one
@@ -94,8 +101,8 @@ that the start time has passed, the bracket is full, or there is no stage.
 Teams can self-register while registration is open, or organizers can add them
 with **Add Team**, as many as they need. Organizations can enter their own
 teams, and co-organizers can be added as **organizer teams** rather than one
-person at a time. A team owner can enter only one team per tournament, and a
-player can be on only one roster in it.
+person at a time. A team owner can enter several of their teams in the same
+tournament, but a player can be on only one roster in it.
 
 Once a bracket is seeded, a **roster lock** kicks in: a team's roster can't drop
 below the minimum lineup size, so a withdrawal can't silently break a live
@@ -162,17 +169,29 @@ player already in a running bracket keeps their place.
 Turn on **Require check-in** and teams must confirm they're attending before the
 bracket is seeded.
 
-- **Who checks in?**: **Captains** (the captain confirms for the whole team),
-  **Every player** (the team is in once a full starting lineup confirms;
-  substitutes don't have to), or **Organizer only** (players can't check
-  themselves in; organizers **Mark present**).
+- **Who checks in?**: **Captains** (the captain, or a team admin who plays on
+  the team, confirms for the whole team), **Every player** (the team is in once
+  a full starting lineup confirms; substitutes don't have to), or **Organizer
+  only** (players can't check themselves in; organizers **Mark present**).
 - **Window opens**: 15–240 minutes before start (default 60).
 - **Window closes**: 5–60 minutes before start (default 15). The window always
   stays open at least 5 minutes.
 
 A timeline previews the window against the start time. Once the window opens,
 the start time and both offsets lock, because teams are already acting on that
-schedule. A team that registers during the window is checked in automatically.
+schedule.
+
+A team is checked in by someone who plays on it, never by an owner managing it
+from outside, so an owner with several teams entered leaves each one's
+check-in to its captain. Everyone else, including an owner who doesn't play on
+the team, sees _Waiting for Alex to check in_. A team's captain is always
+someone on its tournament roster: if the team's own captain isn't on it, the
+captaincy goes to the owner when they play, otherwise a team admin, otherwise a
+starter. Organizers can mark any team present.
+
+A team that registers during the window is checked in automatically when
+whoever registers it could check it in (its captain or a team admin who plays
+on it), or when an organizer adds it.
 
 Teams that still need to check in get a notification when the window opens
 and a reminder 5 minutes before it closes, and a countdown sits at the top of
@@ -326,18 +345,46 @@ Once the tournament is live, the **Overview** shows each stage's standings,
 marked **LIVE · PROVISIONAL** until it finishes. When it finishes, the podium
 and the MVP join them.
 
+The podium is 1st, 2nd, and 3rd from the last stage, with the players who
+played for each team, and it shows whether or not the tournament hands out
+awards (headed **Standings** instead of **Awards** when it doesn't). A
+single-elimination final without a third-place match puts both semifinal
+losers on 3rd, and a last stage played in several groups has no podium. The
+final stage's standings, a team's placement badge, the tournament's cards, and
+its **Quick look** follow the same placements, so a shared 3rd reads 3rd for
+both teams everywhere.
+
 Hover the MVP label for **How the MVP is chosen**: the player on the winning
 team with the highest average impact across every match of the tournament.
 Impact rates each match from 0.80 to 1.20, from (kills + assists) / deaths
 compared to the team and share of the team's damage. The card shows the MVP's
-average impact, matches played, and the next best player. An MVP hand-picked by
-the organizer says so, with the organizer's note. Any other awards granted in
-the tournament are listed under the MVP.
+average impact, matches played, and the next best player. An MVP the organizers
+picked reads **Picked by the organizers**, and its card shows their note and
+who the automatic pick was. Any other awards granted in the tournament are
+listed under the MVP.
 
 The **Stats** tab ranks every player in the tournament in a **Player
 leaderboard**: **Rating**, **ADR**, kills, deaths, assists, **K/D**, and
 **HS%**, with totals for matches, rounds, players, and the top rating. It fills
 in as matches finish.
+
+### Picking the MVP
+
+The MVP is picked automatically when the tournament finishes, and organizers
+can change it under **Manage → Prizes & awards → Tournament MVP**. **Change
+MVP** (or **Pick MVP** when there is none) lists the winning team's players who
+played, best average impact first, with the automatic pick marked
+**Suggested**. Add an optional note of up to 140 characters and **Confirm
+MVP**: the new MVP gets the award and its notification, and the player it
+replaces loses the MVP award but keeps their 1st place medal.
+
+- **I'll pick the MVP myself** stops the automatic pick for this tournament:
+  it has no MVP until an organizer picks one. Turned on after the finish, it
+  keeps the MVP already given.
+- Organizers can't pick themselves; an administrator can.
+- **History** lists every MVP the tournament has had, and who picked each.
+- There is only an MVP once the tournament has finished and when awards are
+  on, and it is picked here rather than granted under **Manual Awards**.
 
 ## Discord
 
@@ -350,6 +397,13 @@ are moved into their team's channel when a match begins. See
 
 Tournaments hand out an award for each of the top placements and an MVP, which
 count toward the [leaderboard](/features/stats-and-leaderboards).
+
+Placement medals go to the placing team's players who actually played in the
+tournament, not to everyone on its roster. A match that finished with nothing
+recorded for the team, such as a result set by hand after a crash, counts
+everyone in its lineup; a forfeit counts nobody, and a team whose every match
+was a forfeit keeps everyone. When both semifinal losers share 3rd, no Third
+Place award is handed out automatically; an organizer can grant one by hand.
 
 Each placement resolves to an award from the site-wide catalog. Leave it on the
 default and the tournament uses the built-in Champion / Runner-Up / Third Place

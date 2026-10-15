@@ -113,7 +113,8 @@ on a phone your pick becomes a bar pinned to the bottom of the screen.
   current one.
 - Team slots carry their pick number, open slots read **Pick 4**, the slot on
   the clock pulses, and a new pick flashes and is announced to screen readers.
-- A **coin flip** decides which captain picks first.
+- Team 1's captain makes the first pick: with **Top 2 by Rank** that's the
+  higher-rated captain, and with **Host & Next Highest** the host.
 - When a captain runs out of time, the highest-rated player still in the pool
   is picked for them, ties going to whoever joined first. The captain on the
   clock is told who that will be ahead of time, and the pick is marked
@@ -134,7 +135,8 @@ on a phone your pick becomes a bar pinned to the bottom of the screen.
 - **Copy Invite Link** pulls people in directly, and you can invite friends
   straight from the room.
 - **Edit Settings** changes the room's settings, and **Cancel Draft** closes the
-  room for everyone, after a confirmation.
+  room for everyone, after a confirmation. A room opened with **Host a room**
+  keeps its format, mode, and match settings when you edit it.
 
 ### Substitutes and the sub queue
 
@@ -155,6 +157,11 @@ server is provisioned, veto runs, and from there it's an ordinary 5Stack match,
 demo, [stats](/features/stats-and-leaderboards),
 [replay](/features/match-replay), and [highlights](/features/highlights) all
 included.
+
+The veto runs in the room on the same
+[veto board](/features/map-veto#the-veto-board) as the match page, with
+[veto scouting](/features/map-veto#veto-scouting) where it's on. After the last
+pick the room reads **Match starting** until it hands over to the match page.
 
 If no server region has a server available, the room says so and won't start
 until one comes online.

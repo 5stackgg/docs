@@ -108,9 +108,24 @@ So you don't miss it:
   [urgent](/features/notifications#urgent-alerts), which vibrates and stays on
   screen until it is answered or expires.
 - A hidden browser tab flashes its title and icon until you look at it.
+- Screen readers hear the dialog's title, what to do, and the seconds left as
+  they count down.
+
+The countdown, like your time in queue, runs on the server's clock, so a device
+whose clock is wrong still shows the right time.
+
+If everyone is ready but the match can't be created, every party goes back to
+where it was in the queue, except one that can no longer queue, which is told
+why and dropped. When the server refuses the match outright, every party is
+told why and leaves the queue, rather than being matched into the same refusal
+again.
 
 Once everyone is ready, the Matchmaking section turns into the match: its
 status, map, score, a link to the match page, and the connect details.
+
+If you're in more than one match at once, the match-ready popup and the hub
+follow the one that needs you first: a live match, then one in veto, then one
+waiting for check-in, then for a server.
 
 **Match & Draft Room Popup**, under **Matchmaking settings**, controls the popup
 (and the redirect) when your match or draft room is ready. Turn it off and you

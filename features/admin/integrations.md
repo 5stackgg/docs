@@ -29,6 +29,28 @@ scans, name-change requests, match assistance calls and abandons. Player
 notifications (invites, chat, awards, sanctions, warnings) never are.
 :::
 
+## Twitch
+
+**Twitch** lets players link their Twitch channel, so their stream shows on
+their profile, in the Players list and as a POV on the matches they play (see
+[Linked accounts](/features/social#linked-accounts)). Players link by signing in
+with Twitch, which proves the channel is theirs.
+
+1. Register an application in the Twitch developer console (**Open the Twitch
+   developer console**).
+2. Add the **OAuth Redirect URL** shown on the page, exactly as shown, to the
+   application's OAuth Redirect URLs. It is
+   `https://<your web domain>/auth/twitch/callback`.
+3. Enter the application's **Client ID** and **Client Secret**, and save.
+
+Everything Twitch stays hidden until both are set. A saved secret can't be shown
+again; enter a new one to replace it, or **Remove Secret** to turn Twitch off.
+The keys are read on every call, so changing them needs no restart.
+
+5Stack checks every linked channel once a minute. Only a stream in the
+Counter-Strike category counts as live, and a channel Twitch hasn't confirmed as
+live in the last 10 minutes stops showing as live.
+
 ## External matches
 
 **Match Imports** brings Valve and FACEIT matches into 5Stack:
@@ -55,14 +77,19 @@ friends' live CS2 status. See [Steam Presence](/features/steam-presence#setup-ad
 **Room Retention** is how long, in seconds, messages are kept in each kind of
 room. 0 drops them immediately.
 
-| Room                   | Default  |
-| ---------------------- | -------- |
-| Match chat             | 1 hour   |
-| Team chat              | 1 hour   |
-| Matchmaking lobby chat | 1 hour   |
-| Draft lobby chat       | 1 hour   |
-| Tournament chat        | 7 days   |
-| Organizer chat         | 24 hours |
+| Room                   | Default |
+| ---------------------- | ------- |
+| Match chat             | 1 hour  |
+| Match team chat        | 1 hour  |
+| Matchmaking lobby chat | 1 hour  |
+| Draft lobby chat       | 1 hour  |
+| Tournament chat        | 7 days  |
+| Organizer chat         | 90 days |
+| Team chat              | 30 days |
+
+Each field spells its value out underneath as a duration, such as "90 days".
+Organizer chat used to default to 24 hours; an instance still on that default
+moved to 90 days, and a value you chose yourself was kept.
 
 - **Direct Messages**: **Keep direct messages for (days)**. Default 365; 0 keeps
   them forever.

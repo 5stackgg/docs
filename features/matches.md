@@ -65,10 +65,16 @@ changes it, and a match or tournament can override it.
 
 - **Map veto**: an interactive pick/ban flow; once a map is chosen, teams pick
   their **CT / T side**. The exact ban/pick sequence is generated deterministically
-  from the pool size and best-of. See [Map Veto Format](/features/map-veto) for
-  the full rules and worked examples.
+  from the pool size and best-of. See [Map Veto](/features/map-veto) for the
+  full rules and worked examples.
 - **Region veto**: teams can veto server regions so neither side is forced onto
   unfavorable latency.
+- **Veto board**: both vetoes run on one board that lays out the whole order of
+  play, and stays up while the match server starts. See
+  [The veto board](/features/map-veto#the-veto-board).
+- **Veto scouting**: during a Competitive, Wingman, or Duel map veto, the board
+  shows each side's record on every map and the other side's usual bans and
+  picks. See [Veto scouting](/features/map-veto#veto-scouting).
 
 A match is played on the LAN or online, never both. Turn on **LAN Match** and
 the region list holds only LAN regions, with no region veto; the server refuses
@@ -127,6 +133,8 @@ while each new match status still gets its popup.
   its header in the scoreboard and stat tabs gets the same amber rail as your
   own row.
 - Players who queued together are marked **Queued together**.
+- After a map veto, the header keeps the veto's order of play, under **Veto**,
+  for the rest of the match.
 - The tabs hold the scoreboard and analysis. See
   [Match Analysis](/features/match-analysis).
 - Once a match has ended, moderators and above get a **Chat Log** tab
@@ -196,6 +204,18 @@ winner._, or _This also clears the match winner._
 
 Once the deciding map is won, players are free straight away: they can queue
 or join another game while the last map's TV delay and demo upload finish.
+
+### Forfeits and surrenders
+
+A match won by a forfeit or a surrender keeps that status, **Forfeit** or
+**Surrendered**, and counts as a result everywhere a finished match does: it
+shows its winner, counts toward the leaderboards, and can't be canceled or
+started again.
+
+A match nobody played, such as a forfeit at check-in or a winner set by hand
+before any map went live, only changes the Elo of its no-shows, the players
+recorded as having [abandoned](/features/moderation#abandoned-matches) it.
+Everyone who turned up, on either side, keeps their rating.
 
 ## Watching live
 

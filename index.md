@@ -91,7 +91,7 @@ features:
 - [Scrim Finder](/features/scrim-finder) availability grids, Elo gates, counter-offers
 - [Events](/features/events) medal tables and media galleries for a LAN weekend
 - [Competitive Seasons](/features/seasons) Elo resets and season-scoped leaderboards
-- [Map Veto](/features/map-veto) deterministic pick/ban for any pool and best-of
+- [Map Veto](/features/map-veto) deterministic pick/ban for any pool and best-of, with veto scouting
 - [Custom Map Pools](/features/admin/matchmaking) per format, workshop maps included
 - [Player Cameras](/features/player-cameras) required webcams, watched live, on the stream
 

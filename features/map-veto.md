@@ -1,4 +1,4 @@
-# Map Veto Format
+# Map Veto
 
 5Stack uses a deterministic, tournament-standard ban/pick algorithm to turn a map
 pool into a playable series. The same rules apply to every match, so the sequence
@@ -12,6 +12,10 @@ The order follows Valve's
 generalised so it holds for any pool size and any best-of, not just the 7-map
 best-of-1 and best-of-3 the rulebook spells out. Where 5Stack departs from it, it
 says so below.
+
+Players make the veto on the [veto board](#the-veto-board), which can also show
+[veto scouting](#veto-scouting): each side's record on every map and the other
+side's usual bans and picks.
 
 ## The rules
 
@@ -90,13 +94,87 @@ If a team runs out of time, the step is made for them:
 - a **Ban** or **Pick** takes a random map from those still available
 - a **Side** takes CT or T at random
 
-Auto-taken steps are flagged, so a completed veto shows which steps a team made
-and which ran out of time. The timer restarts on every step, including
-auto-taken ones, so a veto always finishes.
+Auto-taken steps are marked **Auto**, so a completed veto shows which steps a
+team made and which ran out of time. The timer restarts on every step,
+including auto-taken ones, so a veto always finishes.
 
 When it's a player's turn and they're on another page, a **Map Veto** (or
 **Region Veto**) toast tells them so, with a button straight back to the match.
 See [Matches](/features/matches#your-turn-wherever-you-are).
+
+## The veto board
+
+Map and region vetoes run on one board, on the match page and in a
+[draft room](/features/draft-lobbies). It keeps the same height from the first
+step to the last, so the page doesn't jump between turns.
+
+- A status line names whose turn it is (**Your turn** when it's yours) and the
+  step, such as **Ban a map**, **Pick a map**, or **Pick your starting side on
+  Mirage**, with the step count and the time left.
+- Under it, the order of play lays out every step of the veto, made or still to
+  come, with the team each belongs to. On a phone it becomes one row per team.
+- Each map shows what happened to it: who banned it, or its number in the
+  series (**Map 2**, **Decider · Map 3**) and who picked it.
+- On your turn, click a map, then confirm with the button that names it, such
+  as **Ban Mirage**. From the keyboard, the arrow keys browse, **Enter**
+  chooses, and **Esc** clears.
+- A side step splits the picked map into **Start CT** (**Defend first**) and
+  **Start T** (**Attack first**).
+- In a region veto, each region shows your ping to it.
+
+When the match still needs its server started, the board stays up after the
+last step, reading **Waiting for a server**, **Server booting**, then **Server
+ready** with the first map and, for players, the side they start on. Then the
+maps move into the match page's map cards, and the order of play moves into
+the match header, under **Veto**, for the rest of the match. In a draft room
+the board stays on **Match starting** until the room hands over to the match
+page.
+
+## Veto scouting
+
+During a map veto the board can show what each side has done before, so a ban
+or pick is made knowing the other side's record and habits. It's on by default
+for **Competitive**, **Wingman**, and **Duel** matches, wherever they come from:
+matchmaking, a draft room, a tournament, or **Schedule Match**. An admin can
+switch it off per mode, see
+[Veto scouting](/features/admin/matchmaking#veto-scouting). Rush has no veto, so
+it has no scouting.
+
+The history depends on who is playing:
+
+| Side     | Map record                                           | Bans and picks                       |
+| -------- | ---------------------------------------------------- | ------------------------------------ |
+| A team   | The team's results in its recent vetoed matches      | The team's recent vetoes             |
+| A pickup | Its players' own results on each map, added together | The captain's past vetoes as captain |
+
+A side is a team when it plays as one of the instance's saved teams; any other
+side is a pickup. The veto being made is never part of the history.
+
+What the board adds:
+
+- **Edge**: each open map, and each map that will be played, shows the gap in
+  win rate between the sides. As a player it reads from your side: `+12` when
+  your win rate there is 12 points higher than theirs, `−12` when it's lower. A
+  spectator sees the stronger side's crest beside the number. Win rates within
+  5 points read `+0`, and a map where either side has fewer than 3 games reads
+  `—`.
+- **Win rate on** _map_: on your turn, the map you point at or select opens
+  with each side's wins, losses, and win rate there (**You** for your own
+  side).
+- **Usually bans** / **Usually picks**: a map the other side banned in at least
+  half of its vetoes, or picked in at least 40% of them. Hover for the count,
+  such as _Team A ban it in 6 of 9 vetoes_.
+- **Likely ban** / **Likely pick**: while the other side is on the clock, the
+  open map it has banned (or picked) most often, once that's at least 30% of
+  its vetoes.
+
+Players see the other side's habits, and spectators see both sides'. A habit
+needs at least 3 past vetoes behind it. If the history can't be loaded, the
+veto runs the same without it.
+
+Veto scouting reads the same recorded vetoes as a team page's
+[veto tendencies and veto simulator](/features/match-analysis#veto-tendencies),
+but on the board itself, during the veto, and for pickups as well as teams.
 
 ## Step types
 

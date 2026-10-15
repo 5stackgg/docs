@@ -12,6 +12,8 @@ name and narrow the list with the filters:
 - **Elo Range**: slider.
 - **Filter by Country**.
 - **Played Matches**, **Online** and **Registered**.
+- **Live on Twitch**, once [Twitch](/features/admin/integrations#twitch) is set
+  up. Players who are live carry a **Live** tag in the list.
 
 Match organizers and above also get:
 
@@ -52,7 +54,8 @@ notification, which can also be posted to Discord.
 ## Sanctions
 
 Moderators and above can **warn**, **ban**, **mute**, **gag** and **silence**
-players from their profile, from chat, or from a community server's player list.
+players whose role is below their own, from their profile, from chat, or from a
+community server's player list.
 Sanctions sync across matches and servers, VAC bans on Steam create bans
 automatically, and abandons and tournament no-shows escalate on their own.
 
@@ -78,4 +81,6 @@ These run automatically when needed; only trigger them by hand if you have to.
 ## Organizers chat
 
 **Match Organizers** and above get an **Organizers chat** room for coordinating
-events out of public view. See [Chat](/features/chat).
+events out of public view. It keeps 90 days of history by default, and goes by
+the role a player holds now: someone demoted below Match Organizer stops
+receiving it straight away. See [Chat](/features/chat).

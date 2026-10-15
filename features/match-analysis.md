@@ -143,6 +143,11 @@ side shown so you know how much to trust it.
 It's an estimate derived from historical tendencies, not a guarantee, the app
 says so too, but for prep it beats a whiteboard.
 
+During the veto itself, [veto scouting](/features/map-veto#veto-scouting) puts
+the same kind of history on the veto board: each side's record on every map,
+the other side's usual bans and picks, and its likely next move. It works for
+pickups too, from the players' own games and the captain's past vetoes.
+
 ### Utility lineups
 
 **Utility Lineups** shows which saved lineups this roster's grenades looked like

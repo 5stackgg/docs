@@ -7,13 +7,13 @@ apart.
 
 ## Sanction types
 
-| Sanction    | Effect                                                             |
-| ----------- | ------------------------------------------------------------------ |
-| **Ban**     | No participation in any activity                                   |
-| **Mute**    | Can't use voice chat in game                                       |
-| **Gag**     | Can't use text chat in game, or in group chat rooms on the website |
-| **Silence** | Muted _and_ gagged                                                 |
-| **Warning** | A note on the player's record. Never enforced, never expires       |
+| Sanction    | Effect                                                                              |
+| ----------- | ----------------------------------------------------------------------------------- |
+| **Ban**     | No participation in any activity                                                    |
+| **Mute**    | Can't use voice chat in game                                                        |
+| **Gag**     | Can't use text chat in game, in group chat rooms on the website, or comment on news |
+| **Silence** | Muted _and_ gagged                                                                  |
+| **Warning** | A note on the player's record. Never enforced, never expires                        |
 
 Each sanction carries a **reason** and a **duration**: 15 minutes, 30 minutes, 1
 hour, 1 day, 1 week, 1 month, or **permanent**.
@@ -25,7 +25,8 @@ enforce them through the match plugin, and community servers through the
 
 A gag also covers website chat: in match, team, lobby, draft, tournament and
 organizer rooms a gagged player gets a read-only composer. Direct messages
-aren't affected.
+aren't affected. Gagged and banned players can't comment on
+[news posts](/features/news#comments) either.
 
 ::: tip Valve's report mute doesn't follow players into matches
 CS2 can mute a player for everyone based on reports from games elsewhere. 5Stack
@@ -62,6 +63,17 @@ new one instead. Removing a sanction removes that one row only.
 In the [player directory](/features/admin/roles-and-players), match organizers
 and above can filter by **Banned**, **Gagged** and **Muted**, and by a
 **Minimum Sanctions** count.
+
+### Who can act on whom
+
+Sanctioning a player, editing or removing one of their sanctions, and kicking
+them from a community server all need a role strictly above theirs. Nobody acts
+on an equal, administrators included, so nobody can lift their own sanction
+either. On a profile or a server's player list the buttons stay but are
+disabled, and say why on hover or tap ("Only someone with a role above this
+player's can do this."). In chat, **Moderate {name}** only appears on messages
+from players below you. 5Stack's own automatic sanctions, such as VAC bans and
+abandon penalties, aren't held to this, but lifting one by hand is.
 
 ## Who gets told
 
@@ -132,9 +144,11 @@ hand someone the tools to police chat and servers without giving them the
 ability to run matches, change settings, or touch infrastructure. Moderators
 can:
 
-- issue, edit and remove sanctions,
+- issue, edit and remove sanctions on players whose role is below theirs,
 - delete messages in group chat rooms, and still see blocked players' lines
-  there (see [Blocking](/features/social#blocking-players)),
+  there (see [Blocking](/features/social#blocking-players)). A team's own chat
+  is moderated by the team, not by staff,
+- hide, restore and delete [news comments](/features/news#moderating-comments),
 - use the **RCON** console on match and community servers. A player who
   organizes a match without the Moderator role sees "RCON is for moderators"
   in its place, and keeps the server reboot and veto override,
