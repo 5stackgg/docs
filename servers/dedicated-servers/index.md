@@ -108,21 +108,21 @@ Management plugin, which is in the same image and reads the same `API_DOMAIN`,
 
 ## Round backups
 
-The match plugin saves a backup file for every round. Restoring a match to an earlier
-round, after a crash or from the match page, loads one of those files. Since the
+CS2 saves a backup file for every round, and the match plugin restores a match to an
+earlier round from them, after a crash or from the match page. Since the
 [CS2 update of 14 October 2026](https://www.counter-strike.net/news/updates), the game only
 writes and loads them when the server is started with `-allow_round_backup_files`. Without
 it matches still play, but there is nothing to restore.
 
+Only **Ranked** and **Competitive** servers need it. Other modes don't restore rounds and
+start without it.
+
 | Server | What to do |
 | --- | --- |
 | Match servers the panel starts | Nothing, the game server image passes the flag |
-| Dedicated servers on a [game server node](../game-server-nodes/dedicated-servers) | Restart the server once so it starts on the updated image |
-| The container | Pull the latest image (`docker-compose pull`) and recreate the container |
-| A server you run yourself with the plugin | Add `-allow_round_backup_files` to its launch options |
-
-A community server that only runs the [Player Management plugin](./player-management)
-doesn't take round backups and doesn't need it.
+| Ranked and Competitive dedicated servers on a [game server node](../game-server-nodes/dedicated-servers) | Restart the server once so it starts on the updated image |
+| The container | Pull the latest image (`docker-compose pull`) and recreate the container. It passes the flag when `SERVER_TYPE` is `Ranked` (the default) or `Competitive` |
+| A Ranked or Competitive server you run yourself with a plugin | Add `-allow_round_backup_files` to its launch options |
 
 ## Hibernation
 
