@@ -21,17 +21,20 @@ From the directory you installed the panel in (`5stack-panel`), run:
 ./backblaze-proxy.sh
 ```
 
+Run it where `kubectl` reaches the panel: on the panel's server, as root on a k3s install (`/etc/rancher/k3s/k3s.yaml` is readable only by root), or anywhere `KUBECONFIG` points at the panel. It asks the panel's database whether clip links are signed.
+
 It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and walks you through the rest:
 
 1. **The hostname.** The worker gets a hostname of its own on a domain you have on Cloudflare, `cf.<your domain>` by default. It can't share one of the panel's hostnames: the worker takes over `/demo*`, `/clips*`, `/news*`, `/maps*` and `/events*` on it, and on your demos domain that would break the panel's own demo uploads.
 2. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.
 3. **The DNS record.** If the hostname has no record yet, it tells you what to add: an `AAAA` record pointing at `100::` with the proxy on (orange cloud). The address is only a placeholder, because the worker answers every request itself. It links to your domain's DNS page and checks again once you have added it.
-4. **Deploying.** It shows the hostname and bucket, then deploys the worker, stores the bucket keys as worker secrets and adds its routes. Routes the worker already has on other hostnames are kept, so links that still use an older hostname keep working.
-5. **Checking it.** It reads a file through the worker to make sure it can reach your bucket.
-6. **Pointing the panel at it.** It saves the hostname as `CLOUDFLARE_WORKER_DOMAIN` in `overlays/config/api-config.env`, asking first if the panel was using a different one, and applies it straight away, or offers to run `./update.sh` when it can't. Every demo, clip and media download link is built from it.
-7. **Smart Tiered Cache.** It checks whether it is on for your domain. Signed in with an API token, it can turn it on for you; signed in through the browser or a device code, it links you to the setting, because that sign-in can't change cache settings.
+4. **Signed clip links.** It asks the panel's database whether its API signs clip and lineup file links with the bucket keys the worker gets, and asks Cloudflare whether the worker requires signed links now. It turns them on once the panel signs them, warning that every panel using the worker must already sign them. Once they are on, it keeps them on when it can't reach the panel, and turns them off only if you answer yes to a question that defaults to no. With nobody there to answer, it deploys nothing. See [Signed clip links](#signed-clip-links).
+5. **Deploying.** It shows the hostname and bucket, then deploys the worker, stores the bucket keys as worker secrets and adds its routes. Routes the worker already has on other hostnames are kept, so links that still use an older hostname keep working.
+6. **Checking it.** It reads a file through the worker to make sure it can reach your bucket.
+7. **Pointing the panel at it.** It saves the hostname as `CLOUDFLARE_WORKER_DOMAIN` in `overlays/config/api-config.env`, asking first if the panel was using a different one, and applies it straight away, or offers to run `./update.sh` when it can't. Every demo, clip and media download link is built from it.
+8. **Smart Tiered Cache.** It checks whether it is on for your domain. Signed in with an API token, it can turn it on for you; signed in through the browser or a device code, it links you to the setting, because that sign-in can't change cache settings.
 
-Run it again at any time to update the worker.
+Run it again at any time to update the worker, and after every panel update, rollback or change to `S3_SECRET` (see [Signed clip links](#signed-clip-links)).
 
 ## Check that it works
 
@@ -39,6 +42,24 @@ Go to **Settings → Application → Demos**:
 
 - **Cloudflare delivery** shows the worker as **Online** when it answers and Backblaze accepts its keys. It shows **Offline** when the worker isn't answering or Backblaze rejects its keys, which breaks every download that isn't cached yet; run the script again with the keys the panel uses. A worker deployed before these checks shows **Needs attention** until you run the script again.
 - **Storage check** writes a test file to your bucket, reads it back in your browser, and checks the worker, showing each step's result.
+
+## Signed clip links
+
+Once the panel signs them, the worker refuses a clip, clip thumbnail or utility lineup file without a signed, unexpired link, and only people who may see a clip get one. Links expire: 7–14 days for a public clip or lineup, 6–12 hours for anything else. Share a clip's page (`/clips/<id>`), not its file link: the page always hands out a fresh link.
+
+- **Re-run `./backblaze-proxy.sh` after every panel update, every rollback, and every change to `S3_SECRET`.** Each run decides again whether the worker requires signed links; updating or rolling back the panel doesn't touch the worker.
+- **One worker, several panels.** All panels on the same Cloudflare account and bucket share the `5stack` worker. Update every one of them before running the script from any of them: once the worker requires signed links, a panel that doesn't sign them loses its clips.
+- **Turning it off** (answering yes when a panel doesn't sign) affects every panel on the worker: their private clips can be downloaded by anyone with the link until the script turns it back on.
+- **Revocation isn't instant.** A clip made private keeps the links already handed out working until they expire.
+
+## Changing the bucket keys
+
+The worker keeps its own copy of `S3_ACCESS_KEY` and `S3_SECRET`: it reads B2 with them and checks signed clip links with a key derived from `S3_SECRET`. After changing them in `overlays/local-secrets/s3-secrets.env` or Vault:
+
+1. Run `./update.sh` so the API restarts with them.
+2. Run `./backblaze-proxy.sh`, giving it the same keys.
+
+Until the second step, the worker refuses the links the API signs with the new `S3_SECRET`. If the script sees that the keys don't match the API's, it says so and doesn't turn signed links on.
 
 ## Caching
 
