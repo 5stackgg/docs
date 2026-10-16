@@ -1,8 +1,8 @@
 # Browser Extension
 
-The **5Stack** extension for Chrome imports matches from FACEIT and Leetify into
-your panel from the page you are looking at. The match does not have to be
-yours: open anyone's FACEIT room or Leetify profile and bring their matches in.
+The **5Stack** extension for Chrome imports your FACEIT and Leetify matches into
+your panel from the page you are looking at. Its icon shows how many of your
+recent matches are not in 5Stack yet.
 
 Every import gets the full 5Stack treatment, the same as any other
 [external match](/features/external-matches): scoreboard,
@@ -20,7 +20,11 @@ and [stats](/features/stats-and-leaderboards).
 
 ## Importing
 
-Click the icon on any of these pages:
+Imports are for matches you played. Other players' matches still show whether
+they are in 5Stack, but only an administrator can import them.
+
+Click the icon on a FACEIT or Leetify tab. On any page that is not a particular
+match or player, it lists your own recent matches. It also works on:
 
 | Page | What it lists |
 | --- | --- |
