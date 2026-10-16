@@ -62,9 +62,11 @@ The extension uses settings the panel already has:
 
 - **Allow CS2 match imports** must be on, see
   [Integrations](/features/admin/integrations#external-matches).
-- FACEIT imports also need **FACEIT import** on and a FACEIT Data API key, see
-  [FACEIT Integration](/advanced/faceit-integration). The FACEIT Downloads API
-  approval is not needed: the demo comes from the player's own FACEIT login.
+- FACEIT imports also need a FACEIT Data API key, see
+  [FACEIT Integration](/advanced/faceit-integration), which the panel uses to
+  check each demo link. The FACEIT Downloads API approval is not needed, and
+  the **FACEIT import** switch only runs the automatic poller: the extension's
+  demos come from the player's own FACEIT login.
 - Valve imports need the Steam game coordinator, as share codes do.
 
 Before downloading a FACEIT demo, the panel checks the link against FACEIT's own
