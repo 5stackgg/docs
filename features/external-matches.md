@@ -41,6 +41,11 @@ When external imports and FACEIT are enabled, your FACEIT matches import
 automatically too. See [FACEIT Integration](/advanced/faceit-integration) for the
 details, including how per-match FACEIT ranks are captured.
 
+## From FACEIT or Leetify in your browser
+
+The [5Stack browser extension](/features/browser-extension) imports the matches
+on whatever FACEIT or Leetify page you are looking at, yours or anyone else's.
+
 ## Upload a demo
 
 Administrators can upload a CS2 `.dem` by hand from **Upload a demo** above the
