@@ -1,6 +1,6 @@
-# Browser Extension Privacy Policy
+# Match Importer Privacy Policy
 
-This policy covers the **5Stack** browser extension.
+This policy covers **5Stack Match Importer**, the 5Stack browser extension.
 
 ## What it reads
 

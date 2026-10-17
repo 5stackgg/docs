@@ -43,9 +43,9 @@ details, including how per-match FACEIT ranks are captured.
 
 ## From FACEIT or Leetify in your browser
 
-The [5Stack browser extension](/features/browser-extension) imports the matches
-from the FACEIT or Leetify page you are looking at, and counts the ones you
-have not imported yet.
+The [5Stack Match Importer](/features/browser-extension) browser extension
+imports the matches from the FACEIT or Leetify page you are looking at, and
+counts the ones you have not imported yet.
 
 ## Upload a demo
 

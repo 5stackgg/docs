@@ -127,7 +127,7 @@ export default defineConfig({
             { text: "Match Analysis", link: "/match-analysis" },
             { text: "Performance Rating", link: "/performance-rating" },
             { text: "External Matches", link: "/external-matches" },
-            { text: "Browser Extension", link: "/browser-extension" },
+            { text: "Match Importer", link: "/browser-extension" },
           ],
         },
         {
