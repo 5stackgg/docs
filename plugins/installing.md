@@ -28,6 +28,7 @@ domain that isn't theirs. So the installer reads:
 | `.5stack-env.config` → `KUBECONFIG` | which cluster |
 | `.5stack-env.config` → `REVERSE_PROXY` | **whether your plugin needs its own certificate** |
 | `overlays/config/api-config.env` → `WEB_DOMAIN` | their domain, so your host defaults to `<prefix>.<their domain>` |
+| `overlays/config/api-config.env` → `AUTH_COOKIE_DOMAIN` | with `WEB_DOMAIN`, which origins your backend should trust, if you asked |
 | the cluster's Postgres secret | your `DATABASE_URL`, if you asked for one |
 | the node label | which node a node-bound plugin already lives on |
 
@@ -83,6 +84,7 @@ installer will tell the operator to host your build themselves.
 | `install.domain.file` | | The env file to write it to, repo-relative. |
 | `install.domain.prefix` | | Subdomain to default to. Defaults to your `slug`. |
 | `install.database.var` / `.file` | | Ask for a Postgres URL and write it here. Its presence is the opt-in. |
+| `install.panel.file` | | Write the panel's `WEB_DOMAIN` and `AUTH_COOKIE_DOMAIN` here, on every run, so your backend can allow credentials to the same origins the API does. A panel beside your host (`panel.example.com` next to `myplugin-panel.example.com`) is not a parent of it, so this is the only way your backend can tell it is the panel. |
 | `install.node.label` | | Node label your workloads pin to. Its presence means "this plugin is node-bound" and the operator gets asked which node. |
 | `deployments` | | Top-level, already part of the manifest. What to wait on after applying. |
 
