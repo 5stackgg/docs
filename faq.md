@@ -14,6 +14,12 @@ It's built and maintained by one developer.
 [Sponsoring](https://github.com/sponsors/lukepolo) is what keeps the CS2 plugin
 updates, GPU rendering work, and the roadmap moving.
 
+## What license is 5Stack under?
+
+The GNU AGPL v3, with two added terms: keep the "Powered by 5Stack" credit,
+and do not present a changed version as the official 5Stack. You can run it for
+any purpose, including events you charge for. See [License](/license).
+
 ## Is there a hosted or managed version I can buy?
 
 No. 5Stack is self-hosted only, and there's no SaaS tier or managed offering.
