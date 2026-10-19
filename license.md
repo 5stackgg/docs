@@ -5,8 +5,12 @@ connector, browser extension and inventory plugin are licensed under the
 [GNU Affero General Public License v3](https://www.gnu.org/licenses/agpl-3.0.html)
 (AGPL). The game server plugins are licensed under the
 [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html),
-because CounterStrikeSharp and SwiftlyS2 require it. Versions published
-before October 2026 remain under the MIT License.
+because CounterStrikeSharp and SwiftlyS2 only let their plugins use the GPL
+or MIT.
+
+Earlier versions of the panel, API, web app, node connector, browser
+extension, inventory plugin, game server and these docs were released under
+the MIT License and remain under it.
 
 Each repository's `NOTICE` file holds the exact terms.
 
@@ -19,10 +23,12 @@ Each repository's `NOTICE` file holds the exact terms.
 ## What you must do
 
 - Keep the **Powered by 5Stack** credit, with its link to
-  [5stack.gg](https://5stack.gg), on the sign-in page and the Licenses page.
+  [5stack.gg](https://5stack.gg), where the panel shows its legal notices:
+  the **Licenses** page, linked from the sign-in page and the profile menu.
 - If you change 5Stack and people use your changed version over the
   network, offer them its source code under the AGPL.
-- Don't present a changed version as the official 5Stack.
+- Don't present a changed version as the official 5Stack. The license gives
+  no rights to the 5Stack name or logo beyond the credit.
 
 ## Plugins
 
@@ -47,9 +53,9 @@ running the streamer needs a
 
 ## Third-party software
 
-5Stack is built on many open-source projects. Every panel lists the
-licenses of the packages it ships on its **Licenses** page, and each
-repository credits its dependencies in `NOTICE`.
+5Stack is built on many open-source projects. Every panel's **Licenses**
+page links to the licenses of the packages the web app ships, and each
+repository credits the software it uses in its `NOTICE` file.
 
 ## Contributing
 

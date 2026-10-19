@@ -44,3 +44,8 @@ THIRD-PARTY SOFTWARE
 
 The site is built with VitePress (https://vitepress.dev) and Vue
 (https://vuejs.org), both MIT License.
+
+
+The Oxanium font in public/fonts is Copyright 2019 The Oxanium Project
+Authors (https://github.com/sevmeyer/oxanium) and is licensed under the
+SIL Open Font License 1.1 (public/fonts/Oxanium-OFL.txt).

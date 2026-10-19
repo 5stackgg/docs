@@ -16,9 +16,10 @@ updates, GPU rendering work, and the roadmap moving.
 
 ## What license is 5Stack under?
 
-The GNU AGPL v3, with two added terms: keep the "Powered by 5Stack" credit,
-and do not present a changed version as the official 5Stack. You can run it for
-any purpose, including events you charge for. See [License](/license).
+The GNU AGPL v3, with added terms: keep the "Powered by 5Stack" credit, do not
+present a changed version as the official 5Stack, and the license gives no
+rights to the 5Stack name or logo beyond that credit. You can run it for any
+purpose, including events you charge for. See [License](/license).
 
 ## Is there a hosted or managed version I can buy?
 
