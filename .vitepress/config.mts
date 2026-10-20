@@ -167,6 +167,7 @@ export default defineConfig({
           items: [
             { text: "Overview", link: "/getting-started" },
             { text: "Hosting FAQ", link: "/faq" },
+            { text: "License", link: "/license" },
             {
               base: "/install",
               text: "Install",
