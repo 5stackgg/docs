@@ -59,9 +59,11 @@ repository credits the software it uses in its `NOTICE` file.
 
 ## Contributing
 
-Contributions are accepted under the terms in each repository's
-`CONTRIBUTING.md`: you keep the copyright in your work, and the maintainer
-may license it under any terms, including commercial ones.
+Contributions to the AGPL, GPL and game streamer repositories are accepted
+under the terms in their `CONTRIBUTING.md`: you keep the copyright in your
+work, and the maintainer may license it under any terms, including
+commercial ones. The MIT repositories and these docs take contributions
+under their own licenses.
 
 ## Other licensing
 
