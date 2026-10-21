@@ -59,8 +59,9 @@ repository credits the software it uses in its `NOTICE` file.
 
 ## Contributing
 
-On your first pull request to a 5Stack repository, a bot asks you to sign a
-short Contributor License Agreement. You keep the copyright in your work.
+Contributions are accepted under the terms in each repository's
+`CONTRIBUTING.md`: you keep the copyright in your work, and the maintainer
+may license it under any terms, including commercial ones.
 
 ## Other licensing
 
