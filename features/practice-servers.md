@@ -322,6 +322,6 @@ edit panel need it.
 
 ::: tip Related
 [Utility Library](/features/utility-library) ·
-[GPU Nodes](/servers/gpu-nodes) ·
+[GPU Nodes](/servers/gpu-nodes/) ·
 [Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes)
 :::

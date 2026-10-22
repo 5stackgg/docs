@@ -1,7 +1,7 @@
 # Live Streaming
 
 5Stack can broadcast a live match straight from the panel, rendered on a
-[GPU node](/servers/gpu-nodes), with observer control, broadcast HUDs, and a
+[GPU node](/servers/gpu-nodes/), with observer control, broadcast HUDs, and a
 public watch page. No OBS or third-party capture required.
 
 ## The Watch page
@@ -167,6 +167,7 @@ Under **Settings → Application → Streaming**:
   (Cloudflare)** status shows whether viewers are served from Cloudflare's
   cache. See [Playcast Edge Relay](/advanced/playcast-edge-relay).
 
-Live streaming renders on a [GPU node](/servers/gpu-nodes); make sure at least one
-node has streaming enabled and a Steam account available in the pool. To set up
-the streamer, see [Game Streaming](/advanced/game-streaming/).
+Live streaming renders on a [GPU node](/servers/gpu-nodes/); make sure at least one
+node has streaming enabled and a Steam account available in the pool. To add
+one, see [Adding a GPU node](/servers/gpu-nodes/#adding-a-gpu-node). For the
+playback domain and ports, see [Game Streaming](/advanced/game-streaming/).

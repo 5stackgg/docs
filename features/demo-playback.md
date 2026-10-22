@@ -1,7 +1,7 @@
 # In-Browser Demo Playback
 
 Demo Playback is a GOTV-style video viewer that runs the actual demo on a
-[GPU node](/servers/gpu-nodes) and streams it back to your browser. Unlike the
+[GPU node](/servers/gpu-nodes/) and streams it back to your browser. Unlike the
 [2D/3D replay](/features/match-replay) (which redraws the round from parsed data),
 this is the real game render, so you get true player POVs, weapon view models,
 and in-game HUD, with no CS2 install required.
@@ -58,7 +58,7 @@ Press **?** for the full list.
 
 ## Admin controls
 
-- Demo playback requires at least one **[GPU node](/servers/gpu-nodes)** with demo
+- Demo playback requires at least one **[GPU node](/servers/gpu-nodes/)** with demo
   playback enabled, plus a Steam account in the pool for the pod to log in with.
 - Playback is available to match organizers and to the **Streamer** role and
   above.

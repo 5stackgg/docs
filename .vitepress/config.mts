@@ -288,7 +288,13 @@ export default defineConfig({
             },
             {
               text: "GPU Nodes",
-              link: "/gpu-nodes",
+              base: "/servers/gpu-nodes",
+              link: "/",
+              items: [
+                { text: "NVIDIA", link: "/nvidia" },
+                { text: "AMD", link: "/amd" },
+                { text: "Intel", link: "/intel" },
+              ],
             },
             {
               text: "Dedicated Servers",
@@ -358,11 +364,6 @@ export default defineConfig({
             {
               text: "Game Streaming",
               link: "/game-streaming/",
-              items: [
-                { text: "NVIDIA", link: "/game-streaming/nvidia" },
-                { text: "AMD", link: "/game-streaming/amd" },
-                { text: "Intel", link: "/game-streaming/intel" },
-              ],
             },
             {
               text: "Playcast Edge Relay",

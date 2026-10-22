@@ -96,7 +96,7 @@ Only for the features that produce video —
 [in-browser demo playback](/features/demo-playback),
 [live streaming](/features/live-streaming), and
 [highlight and clip rendering](/features/highlights). Those run on a
-[GPU node](/servers/gpu-nodes), which needs an **NVIDIA** GPU on a native Linux
+[GPU node](/servers/gpu-nodes/), which needs an **NVIDIA** GPU on a native Linux
 host (WSL will not work).
 
 Everything else — matchmaking, tournaments, stats, the 2D and 3D replays,

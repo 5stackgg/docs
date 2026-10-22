@@ -76,7 +76,7 @@ nothing no longer shows up there as a pending update.
 ## Render queue
 
 The render queue (administrator only) shows every clip and highlight render job
-and its progress. Pair it with [GPU Nodes](/servers/gpu-nodes) to see which node
+and its progress. Pair it with [GPU Nodes](/servers/gpu-nodes/) to see which node
 each job is running on. If renders back up. Check GPU availability and the "pause
 renders during live matches" setting on the
 [Highlights](/features/highlights) page.

@@ -134,7 +134,7 @@ Pages linked below go deeper on the bigger features.
   to hide your real server IPs.
 - **Server Insights**: live CPU / memory / disk, logs, crash reports, CPU
   pinning, low-latency kernel status, and offline alerts that don't cry wolf.
-- **[GPU Nodes](/servers/gpu-nodes)**: power highlights, demo playback, live
+- **[GPU Nodes](/servers/gpu-nodes/)**: power highlights, demo playback, live
   streaming, and utility lineup previews.
 
 ## Platform
@@ -193,5 +193,5 @@ Scrim Finder, voice chat, plugins, and linked accounts.
 ::: tip Rendering features need a GPU
 Highlights, in-browser demo playback, live streaming, and utility lineup
 previews are all rendered on a **GPU node**. See
-[GPU Nodes](/servers/gpu-nodes). The replay stage and Discover run without one.
+[GPU Nodes](/servers/gpu-nodes/). The replay stage and Discover run without one.
 :::

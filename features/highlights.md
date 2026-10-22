@@ -1,7 +1,7 @@
 # Highlights
 
 5Stack turns finished matches into shareable video automatically, and gives you
-an in-app editor to cut your own clips. Both render on a [GPU node](/servers/gpu-nodes).
+an in-app editor to cut your own clips. Both render on a [GPU node](/servers/gpu-nodes/).
 
 ## Automatic highlights
 
@@ -153,7 +153,7 @@ panel, **Highlights From Every Match You Play**, with a **Link Account** button.
 Dismissing it hides it on every device.
 
 ::: tip
-Highlights, clips, and demo playback all share your [GPU nodes](/servers/gpu-nodes).
+Highlights, clips, and demo playback all share your [GPU nodes](/servers/gpu-nodes/).
 If renders are slow or queued, check the GPU pool and the **Pause Highlight
 Renders During Active Match** setting.
 :::

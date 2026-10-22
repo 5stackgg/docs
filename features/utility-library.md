@@ -219,7 +219,7 @@ throw it, and its preview clip playing inline.
 ## Preview clips and stills
 
 A lineup's preview is filmed, not simulated. A render pod on a
-[GPU node](/servers/gpu-nodes#utility-lineup-previews) joins a practice server
+[GPU node](/servers/gpu-nodes/#utility-lineup-previews) joins a practice server
 as a player, and the practice plugin directs the take on the game tick: it
 stands the player on the lineup, frames each shot, snaps the grenade onto the
 recorded physics seed so the flight is exactly the lineup's, chases the grenade
@@ -422,12 +422,12 @@ throws that _look like_ the lineup, not a record of the lineup being called.
 | The meta, and the match/team utility reports  | Parsed demos                                                                                                 |
 | Recorded smokes                               | A smoke saved in a practice server, filmed by a preview render, or mined from a demo parsed with smoke grids |
 | Discover                                      | A practice server slot and the demo parser; no GPU                                                           |
-| Preview clips and stills                      | A [GPU node](/servers/gpu-nodes#utility-lineup-previews)                                                     |
+| Preview clips and stills                      | A [GPU node](/servers/gpu-nodes/#utility-lineup-previews)                                                    |
 | Watching a lineup or an execute in 3D         | A 3D mesh for the map, and WebGL2 in the browser                                                             |
 
 ::: tip Related
 [Practice Servers](/features/practice-servers) ·
 [Match Analysis](/features/match-analysis) ·
 [Match Replay](/features/match-replay) ·
-[GPU Nodes](/servers/gpu-nodes)
+[GPU Nodes](/servers/gpu-nodes/)
 :::
