@@ -221,5 +221,5 @@ One command gets you a full install, Kubernetes, database, storage, and panel.
   <span class="home-footnote-mark">*</span>
   Rendered on a GPU node. In-browser demo playback, highlight rendering, and live
   streaming require an <strong>NVIDIA</strong> GPU
-  (<a href="/servers/gpu-nodes">GPU Nodes</a>).
+  (<a href="/servers/gpu-nodes/">GPU Nodes</a>).
 </p>

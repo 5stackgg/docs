@@ -1,10 +1,13 @@
 # NVIDIA GPU Setup
 
-Game streaming on NVIDIA GPUs needs three things on every node that will run a streamer pod:
+A [GPU node](/servers/gpu-nodes/) with an NVIDIA GPU needs three things:
 
 1. The NVIDIA driver and CUDA userland.
 2. The NVIDIA Container Toolkit (so containerd can expose GPUs into pods).
 3. The Kubernetes `nvidia` overlay applied to your cluster (registers the device plugin so pods can request `nvidia.com/gpu`).
+
+Steps 1 to 4 below cover the first two and run on each GPU node.
+[`setup-gpu-nodes.sh`](/servers/gpu-nodes/#run-the-setup-script) handles the third.
 
 ## 1. Add the NVIDIA Container Toolkit repository
 
@@ -76,4 +79,4 @@ Confirm the runtime was detected:
 grep nvidia /var/lib/rancher/k3s/agent/etc/containerd/config.toml
 ```
 
-You can now continue to the [game streaming setup](/advanced/game-streaming/#install).
+You can now continue to [run the setup script](/servers/gpu-nodes/#run-the-setup-script).
