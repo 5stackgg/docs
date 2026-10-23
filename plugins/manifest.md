@@ -34,6 +34,7 @@ into the registration form.
 | `module`          | ✓        | The exposed module path, e.g. `./App`.                                                       |
 | `requiredRole`    |          | `null` for a public page, or a role name to gate visibility.                                 |
 | `profileTabLabel` |          | Also render your plugin as a tab on player profiles, using this label. Omit for no tab.      |
+| `featured`        |          | `true` to start the nav entry under Play and Watch at the top, instead of in a section.      |
 | `deployments`     |          | The Kubernetes Deployments your plugin is made of, for installers to wait on.                |
 | `install`         |          | Makes your plugin installable onto a 5Stack cluster in one command. See [One-Command Install](/plugins/installing). |
 
@@ -135,6 +136,19 @@ The tab is filtered through the same checks as the nav entry: the plugins master
 switch, the plugin's `enabled` flag, and `requiredRole`. A profile tab is not a
 way around visibility rules.
 :::
+
+### `featured`
+
+By default your nav entry joins the Apps section of the sidebar. With
+`"featured": true` it sits at the top instead, as a button under Play and Watch.
+
+```json
+{ "featured": true }
+```
+
+This only sets the starting point. Detect turns on the **Featured** switch in
+the registration form, and admins can turn it off again for their site. Only
+the boolean `true` counts.
 
 ## Serving it
 
