@@ -33,3 +33,11 @@ After making the configuration changes, follow these steps to apply them:
    ```bash
    systemctl restart k3s-agent
    ```
+
+## Nodes that reserve two cores
+
+Nodes set up before this change also reserve `kube-reserved=cpu=1`, so an 8-core node fits 6 servers instead of 7, and the panel warns about it on the node. To free the extra core, run this on the node while it has no matches:
+
+```bash
+sed -i '/kube-reserved/d' /etc/rancher/k3s/config.yaml && rm -f /var/lib/kubelet/cpu_manager_state && systemctl restart k3s-agent
+```
