@@ -13,10 +13,11 @@ kubelet-arg:
   - "cpu-manager-policy=static"
   - "cpu-manager-reconcile-period=5s"
   - "system-reserved=cpu=1"
-  - "kube-reserved=cpu=1"
 ```
 
 :::
+
+Kubernetes holds one core back from the servers for k3s and the node connector. Every other core can take a server, so an 8-core node fits 7 servers at 1 CPU per server, or 3 at the default of 2.
 
 ## Applying Changes
 
@@ -32,3 +33,11 @@ After making the configuration changes, follow these steps to apply them:
    ```bash
    systemctl restart k3s-agent
    ```
+
+## Nodes that reserve two cores
+
+Nodes set up before this change also reserve `kube-reserved=cpu=1`, so an 8-core node fits 6 servers instead of 7, and the panel warns about it on the node. To free the extra core, run this as root on the node while it has no matches:
+
+```bash
+sed -i '/kube-reserved/d' /etc/rancher/k3s/config.yaml && rm -f /var/lib/kubelet/cpu_manager_state && systemctl restart k3s-agent
+```
