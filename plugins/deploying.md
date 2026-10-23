@@ -119,7 +119,7 @@ In the panel, go to **Settings → Application → Panel Plugins**.
 2. **Add**, paste your base URL (e.g. `https://myplugin.example.com`).
 3. Press **Detect**. The panel fetches `5stack-plugin.json` and fills in the
    name, slug, icon, remote entry, scope, module, required role, and, if you
-   ship one, the player-profile tab label.
+   ship them, the player-profile tab label and the **Featured** switch.
 4. Toggle **Enabled** and save.
 
 The page appears in the sidebar immediately for every connected client, the
