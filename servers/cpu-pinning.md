@@ -13,10 +13,11 @@ kubelet-arg:
   - "cpu-manager-policy=static"
   - "cpu-manager-reconcile-period=5s"
   - "system-reserved=cpu=1"
-  - "kube-reserved=cpu=1"
 ```
 
 :::
+
+The one reserved core runs k3s and the node connector. Every other core can take a server, so an 8-core node runs 7 servers at one CPU each.
 
 ## Applying Changes
 
