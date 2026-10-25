@@ -406,6 +406,12 @@ export default defineConfig({
             {
               text: "Developer",
               link: "/developer",
+              items: [
+                {
+                  text: "Load Testing",
+                  link: "/developer/load-testing",
+                },
+              ],
             },
           ],
         },
