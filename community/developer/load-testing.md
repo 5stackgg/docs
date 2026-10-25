@@ -1,0 +1,79 @@
+# Load Testing
+
+The api repository has a load lab in `load/`. It runs Postgres and Hasura on
+your machine the way a panel runs them, fills them with synthetic data shaped
+like a real install, and has a few hundred virtual users browse the site with
+[k6](https://grafana.com/docs/k6/latest/). Use it to measure a change, such as
+a new subscription or a Hasura setting, before it reaches a real install.
+
+### Requirements
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) with
+  about 12 GB of memory for 200 users (Settings → Resources)
+- The [api](https://github.com/5stackgg/api) repository with `yarn install` done
+- python3
+
+### Quick start
+
+From the api repository:
+
+```bash
+./load/lab up --scale 10 --pg-memory 8GB   # build the stack: about 2 minutes
+./load/lab run baseline --open             # 200 users for about 6 minutes
+./load/lab stop                            # when you're done
+```
+
+`--open` opens k6's live dashboard at `http://localhost:5665`. When the run
+ends, its results are in `load/results/<label>-<time>/`:
+
+- `summary.md`: CPU and memory of Postgres and Hasura, memory per database
+  connection, subscription and query latency, errors, and the most expensive
+  statements;
+- `report.html`: the k6 dashboard, saved (`./load/lab report` opens the
+  latest).
+
+### Commands
+
+| Command                                                                                             | What it does                                                                                           |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `up [--scale N] [--pg-memory 16GB]`                                                                 | Builds a fresh stack, replacing the old one. Scale 1 is the size of the install the data is shaped on. |
+| `start`, `stop`                                                                                     | Starts or stops the stack, keeping its data.                                                           |
+| `status`                                                                                            | Shows the containers, the seed size, the Hasura settings under test and the latest runs.               |
+| `run [label] [--users 200] [--ramp 1m] [--hold 4m] [--prepared on\|off] [--explain 250ms] [--open]` | Runs one measured test.                                                                                |
+| `ab [--users 200] [--open]`                                                                         | Runs prepared statements off, then on, and prints the two side by side.                                |
+| `compare <run> <run>`                                                                               | Prints runs side by side.                                                                              |
+| `report [run]`                                                                                      | Opens a run's k6 report.                                                                               |
+| `down`                                                                                              | Removes the stack and its data.                                                                        |
+
+`yarn load <command>` runs the same commands.
+
+### Finding slow queries
+
+```bash
+./load/lab run hunt --users 1000 --explain 250ms
+```
+
+A run's `summary.md` lists the slowest GraphQL operations as the browser sees
+them, with the pages that send them, and the statements that cost Postgres the
+most, from `pg_stat_statements`. With `--explain`, Postgres also logs the plan
+of every statement slower than the given time, including statements inside
+functions and triggers; the slowest plan of each is in `slow-plans.md`.
+
+### What the virtual users do
+
+Each virtual user is one browser tab. It opens the web app's two websockets
+and the subscriptions every page keeps open, then moves from page to page,
+mostly tournament and match pages, for 4 to 12 minutes. A quarter of the users
+are guests and a tenth are organizers. The operations each page sends were
+recorded from the web app's real pages. Live matches get a new round with its
+kills every 20 seconds.
+
+### Limits
+
+- The api is not running, so its jobs, notifications, presence and game-server
+  traffic are not part of the load.
+- Nine pages are recorded. A real install sends many more distinct statements,
+  so compare runs with each other rather than with a production install.
+
+See `load/README.md` in the api repository for the details, including how to
+record the pages again when the web app changes.
