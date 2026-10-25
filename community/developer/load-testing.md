@@ -18,7 +18,7 @@ a new subscription or a Hasura setting, before it reaches a real install.
 From the api repository:
 
 ```bash
-./load/lab up --scale 10 --pg-memory 8GB   # build the stack: about 25 minutes
+./load/lab up --scale 10 --pg-memory 8GB   # build the stack: about 2 minutes
 ./load/lab run baseline --open             # 200 users for about 6 minutes
 ./load/lab stop                            # when you're done
 ```
@@ -34,18 +34,30 @@ ends, its results are in `load/results/<label>-<time>/`:
 
 ### Commands
 
-| Command                                                                         | What it does                                                                                           |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `up [--scale N] [--pg-memory 16GB]`                                             | Builds a fresh stack, replacing the old one. Scale 1 is the size of the install the data is shaped on. |
-| `start`, `stop`                                                                 | Starts or stops the stack, keeping its data.                                                           |
-| `status`                                                                        | Shows the containers, the seed size, the Hasura settings under test and the latest runs.               |
-| `run [label] [--vus 200] [--ramp 1m] [--hold 4m] [--prepared on\|off] [--open]` | Runs one measured test.                                                                                |
-| `ab [--vus 200] [--open]`                                                       | Runs prepared statements off, then on, and prints the two side by side.                                |
-| `compare <run> <run>`                                                           | Prints runs side by side.                                                                              |
-| `report [run]`                                                                  | Opens a run's k6 report.                                                                               |
-| `down`                                                                          | Removes the stack and its data.                                                                        |
+| Command                                                                                             | What it does                                                                                           |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `up [--scale N] [--pg-memory 16GB]`                                                                 | Builds a fresh stack, replacing the old one. Scale 1 is the size of the install the data is shaped on. |
+| `start`, `stop`                                                                                     | Starts or stops the stack, keeping its data.                                                           |
+| `status`                                                                                            | Shows the containers, the seed size, the Hasura settings under test and the latest runs.               |
+| `run [label] [--users 200] [--ramp 1m] [--hold 4m] [--prepared on\|off] [--explain 250ms] [--open]` | Runs one measured test.                                                                                |
+| `ab [--users 200] [--open]`                                                                         | Runs prepared statements off, then on, and prints the two side by side.                                |
+| `compare <run> <run>`                                                                               | Prints runs side by side.                                                                              |
+| `report [run]`                                                                                      | Opens a run's k6 report.                                                                               |
+| `down`                                                                                              | Removes the stack and its data.                                                                        |
 
 `yarn load <command>` runs the same commands.
+
+### Finding slow queries
+
+```bash
+./load/lab run hunt --users 1000 --explain 250ms
+```
+
+A run's `summary.md` lists the slowest GraphQL operations as the browser sees
+them, with the pages that send them, and the statements that cost Postgres the
+most, from `pg_stat_statements`. With `--explain`, Postgres also logs the plan
+of every statement slower than the given time, including statements inside
+functions and triggers; the slowest plan of each is in `slow-plans.md`.
 
 ### What the virtual users do
 
