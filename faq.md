@@ -43,9 +43,9 @@ flags the installer accepts.
 
 ## What do I need to run the panel?
 
-A Linux server with at least **3 GB** of memory, and a domain you control. See
-[Requirements](/install/requirements) for the details, but the two things that
-catch people out are:
+A Linux server with at least **2 CPU cores and 4 GB** of memory, and a domain
+you control. See [Requirements](/install/requirements) for the details, but the
+two things that catch people out are:
 
 - **Ports.** `80` and `443` for routing, plus `8585` on every 5Stack server for
   the game server node connector. If you can't use 80/443, you can

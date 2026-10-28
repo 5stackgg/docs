@@ -4,9 +4,44 @@ The 5Stack Panel runs on [K3s](https://docs.k3s.io/installation/requirements), a
 
 ## Server Requirements
 
-### Memory `3 GB`
+### Minimum: `2` CPU cores, `4 GB` memory
 
-While the 5Stack Panel is not a resource intensive application, we recommend a minimum of **`3 GB`** of Memory.
+The panel and K3s need about **3.6 GB** before anyone visits. Measured on
+5stack.gg with nobody online:
+
+| What                                                        | Memory at idle |
+| ----------------------------------------------------------- | -------------- |
+| Hasura                                                      | 1.2 GB         |
+| API                                                         | 370 MB         |
+| TimescaleDB                                                 | 250 MB         |
+| Typesense, Redis, web, game server node connector, MediaMTX | 490 MB         |
+| K3s, containerd and the operating system                    | 1.3 GB         |
+
+TimescaleDB grows from there: when it is installed it sizes its cache to the
+server's memory, and fills it as the panel is used. More memory means more of
+the database stays in memory.
+
+### Recommended
+
+| People online at once | CPU cores | Memory |
+| --------------------- | --------- | ------ |
+| Up to 500             | 4         | 8 GB   |
+| Up to 2,000           | 8         | 16 GB  |
+| Up to 3,000           | 12        | 16 GB  |
+
+At 3,000 people the panel used about 4 cores most of the time and up to 8 in
+bursts, and about 8.5 GB of memory.
+
+These numbers come from the [load lab](/community/developer/load-testing),
+where every simulated person browses the whole site, signed in or as a guest,
+while matches play. Real visitors spend more time idle on one page, so treat
+them as a safe upper bound.
+
+Hasura, which serves the site's live data, runs on up to 4 cores. Cores beyond
+that go to the database and the API.
+
+If [game servers](/servers/game-server-nodes/requirements) run on the same
+machine, add their cores and memory on top.
 
 ### Required Ports: `80`, `443`, and `8585`
 
