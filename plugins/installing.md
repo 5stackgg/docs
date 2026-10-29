@@ -65,6 +65,12 @@ installer will tell the operator to host your build themselves.
       "http": "k8s/overlays/http",
       "https": "k8s/overlays/https"
     },
+    "gateway": {
+      "overlays": {
+        "http": "k8s/gateway/http",
+        "https": "k8s/gateway/https"
+      }
+    },
     "certificate": "example-plugin-ssl",
     "domain": {
       "prefix": "hello",
@@ -79,6 +85,7 @@ installer will tell the operator to host your build themselves.
 | --- | --- | --- |
 | `install.overlays.http` | ✓ | Path to the kustomize overlay with no certificate. |
 | `install.overlays.https` | | The cert-manager overlay. Omit if your plugin has no TLS variant; the HTTP one is used either way. |
+| `install.gateway.overlays.http` / `.https` | | The same two installs as Gateway API routes, for panels that route through Traefik. See [Gateway API routes](#gateway-api-routes). |
 | `install.certificate` | | Name of the `Certificate` the https overlay declares. Only used to tell the operator what to watch. |
 | `install.domain.var` | | Env var to write the chosen host into. |
 | `install.domain.file` | | The env file to write it to, repo-relative. |
@@ -175,6 +182,66 @@ Certificate for the same secret, which then fights the one you declared.
 **Ship `.env.example`, not `.env`.** The installer copies any `*.env.example` to
 `*.env` on first install and writes the operator's values into the copy. Gitignore
 the real ones.
+
+### Gateway API routes
+
+Panels route through Traefik and the Gateway API. They still serve a plugin's
+`nginx`-class Ingress, so an Ingress-only plugin keeps working, but a plugin can
+ship the same two installs as routes:
+
+```
+k8s/
+  gateway/http/          # base without its Ingress + an HTTPRoute on the shared Gateway
+  gateway/https/         # base without its Ingress + its own HTTPS listener,
+                         #   Certificate, route, and an HTTP-to-HTTPS redirect
+```
+
+`./plugin.sh` uses `install.gateway` when the panel has the shared Gateway
+(`traefik/traefik-gateway`), and `install.overlays` everywhere else, so keep
+both. On a panel that had your Ingress install, it deletes the Ingresses that
+install renders once every route it applied is accepted with its backends
+resolved; until then the Ingresses stay and keep serving.
+
+Both build on the same base, so the env files and the host replacements stay
+where they are. Drop the Ingress with a delete patch:
+
+```yaml
+# gateway/http/kustomization.yaml
+resources:
+  - ../../base
+  - httproute.yaml
+patches:
+  - patch: |-
+      $patch: delete
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata: { name: example-plugin, namespace: 5stack }
+replacements:
+  - source: { kind: ConfigMap, name: example-plugin-config, fieldPath: data.EXAMPLE_PLUGIN_DOMAIN }
+    targets:
+      - select: { kind: HTTPRoute, name: example-plugin }
+        fieldPaths: [spec.hostnames.0]
+```
+
+The http route attaches to both of the shared Gateway's listeners, because a
+reverse proxy may forward to the node over HTTP on 80 or HTTPS on 443, and it
+always names its host: `websecure` has no hostname of its own, so a route
+without one would answer for every host.
+
+```yaml
+parentRefs:
+  - { name: traefik-gateway, namespace: traefik, sectionName: web }
+  - { name: traefik-gateway, namespace: traefik, sectionName: websecure }
+hostnames:
+  - ${EXAMPLE_PLUGIN_DOMAIN}
+```
+
+The https install gives the plugin its own `Gateway` (class `traefik`) with one
+HTTPS listener on port 8443 for its host, terminating on its `Certificate`,
+attaches the route to that listener, and adds a 308 redirect to HTTPS on the
+shared `web` listener, which is also where cert-manager's HTTP-01 solver
+answers. [The example plugin](https://github.com/5stackgg/5stack-example-plugin)
+has both.
 
 ### 3. Where it lands
 
