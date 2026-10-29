@@ -49,7 +49,7 @@ two things that catch people out are:
 
 - **Ports.** `80` and `443` for routing, plus `8585` on every 5Stack server for
   the game server node connector. If you can't use 80/443, you can
-  [change them](/install/nginx).
+  [change them](/install/ports).
 - **Subdomains.** The panel needs several records pointing at it — the root
   domain plus `api`, `ws`, `demos`, `search`, and `console`. Deeply nested
   domains like `api.deep.example.com` are fine.

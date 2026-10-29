@@ -16,6 +16,10 @@ Use `true` if you front the panel with Nginx or Cloudflare's orange-cloud DNS, `
 
 After saving, re-run `./update.sh` so the new value is applied.
 
+## Forward to HTTPS on 443
+
+Point your proxy at the node over HTTPS on port 443 (or your `HTTPS_PORT`), not plain HTTP on 80. The panel's login cookie is only set over HTTPS, so through port 80 nobody can stay signed in. With `REVERSE_PROXY=true` the node answers 443 with a self-signed certificate of its own, so turn off certificate verification for this upstream if your proxy does it (Nginx doesn't by default).
+
 ## Cloudflare
 
 Cloudflare acts as a reverse proxy when you enable "Proxied" DNS (the orange cloud), and a [Cloudflare Tunnel](/install/cloudflare/tunnel) does the same. Both need `REVERSE_PROXY=true`.

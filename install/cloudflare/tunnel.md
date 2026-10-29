@@ -19,7 +19,6 @@ You can expose your 5Stack installation through a [Cloudflare Tunnel](https://de
 | Domain                     | Service address         |
 | -------------------------- | ----------------------- |
 | `yourdomain.com`           | `https://localhost:443` |
-| `yourdomain.com`           | `http://localhost:80`   |
 | `api.yourdomain.com`       | `https://localhost:443` |
 | `ws.yourdomain.com`        | `https://localhost:443` |
 | `demos.yourdomain.com`     | `https://localhost:443` |
