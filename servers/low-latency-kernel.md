@@ -50,15 +50,29 @@ To undo it, delete `/etc/default/grub.d/99-5stack-low-latency.cfg`, run `sudo up
 
 Older guides, including earlier versions of this one, installed the `linux-lowlatency` kernel. Ubuntu no longer builds it, so 5stack shows a warning on nodes that still run it. Move those nodes to the generic kernel:
 
-1. Install the generic kernel and add the boot option from the section above:
+1. Install the generic kernel, remove every low-latency kernel except the one you are running, and add the boot option from the section above:
 
    ```bash
    sudo apt update
    sudo apt install linux-generic
+   KEEP="-$(uname -r)"
+   sudo apt purge $(dpkg --list | awk '$1 == "ii" && $2 ~ /lowlatency/ {print $2}' | grep -v -- "$KEEP\$")
    echo 'GRUB_CMDLINE_LINUX_DEFAULT="$GRUB_CMDLINE_LINUX_DEFAULT preempt=full"' \
      | sudo tee /etc/default/grub.d/99-5stack-low-latency.cfg
    sudo update-grub
    ```
+
+   The purge also removes the `linux-lowlatency` metapackages, which would otherwise keep installing new low-latency kernels. Do it before rebooting: when a generic and a low-latency kernel have the same version, such as `6.8.0-147`, GRUB lists the low-latency one first and boots it. The kernel you are running stays installed as a fallback until step 3.
+
+   ::: warning GPU nodes
+   If the NVIDIA driver uses prebuilt modules rather than DKMS, the purge removes the low-latency ones. Check before running it:
+
+   ```bash
+   dpkg --list 'linux-modules-nvidia-*-lowlatency' | grep ^ii
+   ```
+
+   For each match without a kernel version in its name, install the `-generic` package of the same name, for example `sudo apt install linux-modules-nvidia-580-open-generic`. A driver built with DKMS (`nvidia-dkms-*`) builds itself for the generic kernel and needs nothing.
+   :::
 
 2. Reboot, then check that you are on the generic kernel:
 
