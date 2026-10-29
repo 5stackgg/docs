@@ -32,8 +32,7 @@ currently doing, and how many GPUs are free in the pool.
 ## Adding a GPU node
 
 1. [Create a game server node](#create-the-node) on the machine with the GPU.
-2. [Install the GPU driver and container runtime](#install-the-gpu-driver) on
-   that node.
+2. [Install the GPU driver](#install-the-gpu-driver) on that node.
 3. [Run `setup-gpu-nodes.sh`](#run-the-setup-script) from your panel install
    directory.
 4. [Add Steam accounts](#steam-account-pool) to the pool on the **GPU Nodes**
@@ -47,13 +46,13 @@ it the same way, on a native Linux host with the GPU installed.
 
 ### Install the GPU driver
 
-Every GPU node needs its vendor's driver and container runtime, so containerd
-can hand the GPU to render pods. Follow the guide for your GPU:
+Every GPU node needs its vendor's driver so render pods can reach the GPU.
+NVIDIA also needs its container runtime. Follow the guide for your GPU:
 
 | Vendor                              | Status                                                                                        |
 | ----------------------------------- | --------------------------------------------------------------------------------------------- |
 | [NVIDIA](/servers/gpu-nodes/nvidia) | Supported                                                                                     |
-| [AMD](/servers/gpu-nodes/amd)       | Not yet supported, [tracking issue #467](https://github.com/5stackgg/5stack-panel/issues/467) |
+| [AMD](/servers/gpu-nodes/amd)       | Supported on Strix Halo, experimental on other Radeon GPUs                                    |
 | [Intel](/servers/gpu-nodes/intel)   | Not yet supported, [tracking issue #468](https://github.com/5stackgg/5stack-panel/issues/468) |
 
 ### Run the setup script
@@ -66,14 +65,15 @@ From your panel install directory, run:
 
 The script will walk you through:
 
-1. **GPU vendor selection**, NVIDIA, AMD, or Intel. AMD and Intel exit early with a link to the tracking issue.
-2. **GPU node selection**, pick which cluster nodes have GPUs (multi-select). The script labels selected nodes with `nvidia-gpu=true` and `5stack-game-streamer=true`. Re-running the script with a different selection will add the labels to newly-selected nodes and remove them from previously-selected nodes.
-3. **Steam credentials**, username and password for a dedicated account the render pods use to download CS2. Asked only when they aren't saved yet.
-4. **Playback domain**, the domain viewers' browsers load [game streams](/advanced/game-streaming/) from (default `hls.<your web domain>`). Asked every run, with the current value as the default.
+1. **GPU vendor selection**, NVIDIA, AMD, or Intel. Intel exits early with a link to the tracking issue.
+2. **GPU node selection**, pick which cluster nodes have GPUs (multi-select). The script labels selected nodes with `5stack-game-streamer=true`, plus `nvidia-gpu=true` on NVIDIA or `5stack-gpu-vendor=amd` on AMD. Re-running the script with a different selection will add the labels to newly-selected nodes and remove them from previously-selected nodes.
+3. **Integrated GPUs** (AMD only), pick which of those nodes should render on the GPU integrated into their CPU. Leave nodes with a discrete Radeon card unticked. See [Integrated GPUs](/servers/gpu-nodes/amd#integrated-gpus).
+4. **Steam credentials**, username and password for a dedicated account the render pods use to download CS2. Asked only when they aren't saved yet.
+5. **Playback domain**, the domain viewers' browsers load [game streams](/advanced/game-streaming/) from (default `hls.<your web domain>`). Asked every run, with the current value as the default.
 
 Your selections are persisted to `.5stack-env.config`, and the script finishes by
-running `update.sh` to apply them, which also deploys the vendor's Kubernetes
-device plugin so pods can request the GPU.
+running `update.sh` to apply them. On NVIDIA, that also deploys the Kubernetes
+device plugin so pods can request the GPU. AMD needs no device plugin.
 
 ::: warning Steam account must NOT have 2FA / Steam Guard
 The render pods log into Steam non-interactively via `steamcmd` to download and run CS2. Steam Guard / Steam Mobile Authenticator will break this, every Job will get stuck waiting for a code that nobody can enter.
@@ -129,8 +129,8 @@ change, or when the queue runs dry. The pod stops after the queue has been
 empty for a little over a minute, or after three lineups in a row fail, so the
 next batch starts with a fresh client.
 
-Each lineup is captured at 1080p and 60 fps, re-encoded with NVENC (x264 when
-NVENC is unavailable) so a shared link plays inline in Discord, with six stills
+Each lineup is captured at 1080p and 60 fps, re-encoded with NVENC on NVIDIA or
+VA-API on AMD (x264 under CPU only, or when Auto can't use the GPU encoder) so a shared link plays inline in Discord, with six stills
 cut from the capture. Track the queue under **System → Render Queue**, on the
 **Utility Lineups** tab.
 

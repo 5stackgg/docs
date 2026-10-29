@@ -133,10 +133,11 @@ Under **Settings → Application → Highlights**:
 | **Bake player chip + outro into highlights**            | On                  |
 | **Minimum kills to generate a highlight**               | Any kill (everyone) |
 | **Always include knife kills**                          | Off                 |
-| **Highlight Codec** (H.264 or H.265 / HEVC)             | H.264               |
-| **Highlight FPS** (30 or 60)                            | 60                  |
-| **Highlight Resolution** (720p or 1080p)                | 1080p               |
 | **Minimum Retention** (days) / **Maximum Storage** (GB) | 1 / 10              |
+
+**Highlight Codec** (H.264 or H.265 / HEVC, default H.264), **Highlight FPS**
+(30 or 60, default 60) and **Highlight Resolution** (720p or 1080p, default
+1080p) are under **Settings → Application → Video Encoding**.
 
 - **Minimum kills** ranges from any kill up to **Aces only (5K)**.
 - **Default visibility for auto-generated highlights** makes them Public or
