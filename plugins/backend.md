@@ -102,8 +102,8 @@ believed.
 ### Optional: forward-auth at the ingress
 
 If you would rather spend the round-trip once at the edge than once per request
-in your process, nginx can call the same endpoint for you and inject the result
-as headers:
+in your process, the ingress can call the same endpoint for you and inject the
+result as headers:
 
 ```yaml
 nginx.ingress.kubernetes.io/auth-url: "http://api.5stack.svc.cluster.local:5585/plugins/authorize"
@@ -116,8 +116,12 @@ nginx.ingress.kubernetes.io/auth-response-headers: "X-5stack-Steam-Id,X-5stack-R
 | `X-5stack-Role`     | Their 5Stack role                  |
 | `X-5stack-Name`     | Their display name, URI-encoded    |
 
+The panel routes through Traefik, which serves Ingresses with
+`ingressClassName: nginx` through its NGINX compatibility provider, so these
+annotations keep working as written.
+
 ::: danger This mode fails open, know what you are signing up for
-These are plain HTTP headers. nginx overwrites them on the way through, so they
+These are plain HTTP headers. The ingress overwrites them on the way through, so they
 are trustworthy _only_ on traffic that actually traversed that ingress. Expose
 the Service any other way, a second ingress without the annotations, a
 NodePort, a LoadBalancer, a port-forward, and `curl -H "X-5stack-Role:
@@ -132,19 +136,19 @@ ingress as its only route in.
 The annotation applies to the whole Ingress object, not per path, and it demands
 a session cookie. Any caller that authenticates some other way, a game server
 holding an API key, a webhook, a cron job, has no cookie to present and gets a
-flat `401` from nginx. Your handler never runs, so nothing in your logs explains
-it, and the reply is an nginx HTML page rather than your own error shape. That
-detail is the fastest way to tell the two apart:
+flat `401` from the ingress. Your handler never runs, so nothing in your logs
+explains it, and the reply has an empty body rather than your own error shape.
+That detail is the fastest way to tell the two apart:
 
 ```console
 $ curl -i https://your-plugin.example.com/api/public-thing
 HTTP/2 401
-<html><head><title>401 Authorization Required</title></head>
+content-length: 0
 ```
 
 If any part of your API serves non-browser clients. Use the cookie check and let
 each route decide, or split the public paths onto a second Ingress with no
-annotations, nginx prefers the longer path match.
+annotations, the longer path match wins.
 :::
 
 ::: warning Never ship a `DEV_STEAM_ID` escape hatch unguarded

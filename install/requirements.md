@@ -47,7 +47,7 @@ machine, add their cores and memory on top.
 
 #### HTTP Ports `80` / `443`
 
-The 5Stack Panel requires ports `80` and `443` to be open and accessible for Kubernetes routing. If it is not possible to use these ports. You can modify the [Nginx configuration](/install/nginx) to listen on different ports.
+The 5Stack Panel requires ports `80` and `443` to be open and accessible for Kubernetes routing. If you can't use these ports, you can [change them](/install/ports).
 
 #### Game Node Connector Port `8585`
 

@@ -22,4 +22,4 @@ The proxy blocks the HTTP challenge Let's Encrypt uses to issue certificates. Ad
 
 ## Ports
 
-Cloudflare's proxy only forwards a [fixed set of ports](https://developers.cloudflare.com/fundamentals/reference/network-ports/). If you [changed the default 80/443 ports](/install/nginx). The proxy will not reach your panel. Use a [Cloudflare Tunnel](/install/cloudflare/tunnel) or DNS-only records instead.
+Cloudflare's proxy only forwards a [fixed set of ports](https://developers.cloudflare.com/fundamentals/reference/network-ports/). If you [changed the default 80/443 ports](/install/ports), the proxy will not reach your panel. Use a [Cloudflare Tunnel](/install/cloudflare/tunnel) or DNS-only records instead.

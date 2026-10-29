@@ -185,7 +185,7 @@ export default defineConfig({
                 },
                 { text: "Cookie Domain", link: "/cookie-domain" },
                 { text: "Reverse Proxy", link: "/reverse-proxy" },
-                { text: "Change Default Ports (80/443)", link: "/nginx" },
+                { text: "Change Default Ports (80/443)", link: "/ports" },
                 {
                   base: "/install/cloudflare",
                   text: "Cloudflare",
