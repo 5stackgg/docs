@@ -1,8 +1,8 @@
 # Competitive Seasons
 
-Seasons give your instance a competitive reset. At the start of each one,
-regular-match Elo returns to **5000**, so the ladder starts fresh and last
-season's grind doesn't lock in the top of the leaderboard forever.
+Seasons give your instance a competitive reset. At the start of each one, Elo
+returns to **5000**, so the ladder starts fresh and last season's grind doesn't
+lock in the top of the leaderboard forever.
 
 Seasons are optional, turn them on from
 **Settings → Application → Seasons**.
@@ -33,7 +33,7 @@ is kept, not destroyed, only that season's per-season stats are cleared.
 ## What's season-scoped
 
 Once seasons are on, Elo and stats are attributed to whichever season a match
-falls into. That flows through the platform:
+falls into, tournament matches included. That flows through the platform:
 
 - **Leaderboards** list every season in their time selector and default to the
   current one.
