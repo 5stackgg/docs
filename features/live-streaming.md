@@ -157,7 +157,8 @@ Under **Settings → Application → Streaming**:
   streams from signed-out visitors, so every viewer is an identifiable account.
   With it on, the stream server itself also refuses players and coaches of a
   live match, which closes the most obvious ghosting route.
-- **Live Stream Codec**: **H.264 (recommended)**, the broadest compatibility and
+- **Live Stream Codec**, now under **Settings → Application → Video Encoding**:
+  **H.264 (recommended)**, the broadest compatibility and
   the lowest-latency WebRTC path everywhere, or **H.265 / HEVC**, ~30% smaller at
   matched quality, but HEVC-over-WebRTC is Safari 17+ only; other browsers fall
   back to HLS, and H.265 falls back to H.264 if the GPU can't encode HEVC.
