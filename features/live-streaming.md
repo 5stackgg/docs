@@ -160,7 +160,7 @@ Under **Settings → Application → Streaming**:
 - **Live Stream Codec**: **H.264 (recommended)**, the broadest compatibility and
   the lowest-latency WebRTC path everywhere, or **H.265 / HEVC**, ~30% smaller at
   matched quality, but HEVC-over-WebRTC is Safari 17+ only; other browsers fall
-  back to HLS, and H.265 falls back to H.264 if the GPU lacks NVENC HEVC.
+  back to HLS, and H.265 falls back to H.264 if the GPU can't encode HEVC.
 - **Playcast**: use CS2's GOTV broadcast (Playcast) format so spectators connect
   to relay infrastructure instead of the game server, increasing viewer capacity
   while reducing load on the match server. With Playcast on, an **Edge relay
