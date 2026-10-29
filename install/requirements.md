@@ -6,8 +6,8 @@ The 5Stack Panel runs on [K3s](https://docs.k3s.io/installation/requirements), a
 
 ### Minimum: `2` CPU cores, `4 GB` memory
 
-The panel and K3s need about **3.6 GB** before anyone visits. Measured on
-5stack.gg with nobody online:
+The panel and K3s need about **3.7 GB** before anyone visits. Measured on
+5stack.gg with nobody online, and RustFS in the load lab:
 
 | What                                                        | Memory at idle |
 | ----------------------------------------------------------- | -------------- |
@@ -15,6 +15,7 @@ The panel and K3s need about **3.6 GB** before anyone visits. Measured on
 | API                                                         | 370 MB         |
 | TimescaleDB                                                 | 250 MB         |
 | Typesense, Redis, web, game server node connector, MediaMTX | 490 MB         |
+| RustFS (file storage)                                       | 90 MB          |
 | K3s, containerd and the operating system                    | 1.3 GB         |
 
 TimescaleDB grows from there: when it is installed it sizes its cache to the
@@ -25,12 +26,13 @@ the database stays in memory.
 
 | People online at once | CPU cores | Memory |
 | --------------------- | --------- | ------ |
-| Up to 500             | 4         | 8 GB   |
+| Up to 1,000           | 4         | 8 GB   |
 | Up to 2,000           | 8         | 16 GB  |
 | Up to 3,000           | 12        | 16 GB  |
 
-At 3,000 people the panel used about 4 cores most of the time and up to 8 in
-bursts, and about 8.5 GB of memory.
+At 1,000 people the panel used about 1.5 cores most of the time and up to 3.5
+in bursts, and about 6 GB of memory. At 3,000, about 4 cores most of the time
+and up to 8 in bursts, and about 8.5 GB.
 
 These numbers come from the [load lab](/community/developer/load-testing),
 where every simulated person browses the whole site, signed in or as a guest,
