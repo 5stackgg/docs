@@ -10,7 +10,7 @@ a new subscription or a Hasura setting, before it reaches a real install.
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) with
   about 12 GB of memory for 200 users (Settings → Resources)
-- The [api](https://github.com/5stackgg/api) repository with `yarn install` done
+- A checkout of the api repository with `yarn install` done
 - python3
 
 ### Quick start

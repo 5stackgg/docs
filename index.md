@@ -200,7 +200,7 @@ One command gets you a full install, Kubernetes, database, storage, and panel.
     <p class="home-maintainer-eyebrow">Built and maintained by one developer, for fun</p>
     <p class="home-maintainer-name">LukePOLO</p>
     <p class="home-maintainer-copy">
-      5Stack is free, open source, and self-hosted. Sponsoring keeps the GPU
+      5Stack is free and self-hosted. Sponsoring keeps the GPU
       rendering, the CS2 plugin updates, and the roadmap moving.
     </p>
     <div class="home-maintainer-actions">
