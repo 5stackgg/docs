@@ -16,11 +16,12 @@ updates, GPU rendering work, and the roadmap moving.
 
 ## What license is 5Stack under?
 
-The panel and the game server plugins are open source, under the AGPL and the
-GPL. The API, web app and the other images are proprietary: you can run them
-for any purpose, including events you charge for, but not copy, modify, resell
-or host them as a service for others, and you must keep the "Powered by 5Stack"
-credit. See [License](/license).
+The panel and the inventory plugin are open source under the AGPL, and the game
+server plugins and their images under the GPL. The API, web app, demo parser,
+node connector and game streamer are proprietary: you can run them for any
+purpose, including events you charge for, but not copy, modify, resell or host
+them as a service for others, and you must keep the "Powered by 5Stack" credit.
+See [License](/license).
 
 ## Is there a hosted or managed version I can buy?
 
