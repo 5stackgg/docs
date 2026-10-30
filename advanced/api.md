@@ -28,5 +28,3 @@ query LiveMatches {
   }
 }
 ```
-
-For additional examples and detailed API usage, visit our [GitHub repository](https://github.com/5stackgg/web).

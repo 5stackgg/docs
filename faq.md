@@ -6,8 +6,8 @@ has an in-app **Help & FAQ** page that covers that side.
 
 ## Is 5Stack free?
 
-Yes. It's free and open source, and you host it yourself, so there's no per-seat
-or per-match cost from the project. You pay for whatever infrastructure you
+Yes. It's free to run, and you host it yourself, so there's no per-seat or
+per-match cost from the project. You pay for whatever infrastructure you
 choose to run it on.
 
 It's built and maintained by one developer.
@@ -16,10 +16,11 @@ updates, GPU rendering work, and the roadmap moving.
 
 ## What license is 5Stack under?
 
-The GNU AGPL v3, with added terms: keep the "Powered by 5Stack" credit, do not
-present a changed version as the official 5Stack, and the license gives no
-rights to the 5Stack name or logo beyond that credit. You can run it for any
-purpose, including events you charge for. See [License](/license).
+The panel and the game server plugins are open source, under the AGPL and the
+GPL. The API, web app and the other images are proprietary: you can run them
+for any purpose, including events you charge for, but not copy, modify, resell
+or host them as a service for others, and you must keep the "Powered by 5Stack"
+credit. See [License](/license).
 
 ## Is there a hosted or managed version I can buy?
 

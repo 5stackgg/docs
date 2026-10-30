@@ -41,5 +41,5 @@ self-hosted panel is run by its own operator.
 
 ## Contact
 
-Questions: open an issue at
-[github.com/5stackgg/5stack-extension](https://github.com/5stackgg/5stack-extension).
+Questions: open an issue on the
+[5Stack Panel issue tracker](https://github.com/5stackgg/5stack-panel/issues).
