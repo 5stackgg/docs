@@ -29,8 +29,9 @@ The open-source parts are:
 - these docs, under
   [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-Earlier versions remain under the licenses they were released under. Each
-repository's `NOTICE` file holds the exact terms.
+Earlier versions remain under the licenses they were released under. Every
+image carries its exact terms in its `LICENSE` and `NOTICE` files, and every
+panel serves the web app's license at `/license.txt`.
 
 ## What you can do
 
@@ -69,7 +70,7 @@ running the streamer needs a
 
 5Stack is built on many open-source projects. Every panel's **Licenses**
 page links to the licenses of the packages the web app ships, and each
-repository credits the software it uses in its `NOTICE` file.
+image credits the software it uses in its `NOTICE` file.
 
 ## Contributing
 
