@@ -1,10 +1,11 @@
 # License
 
 5Stack is free to run, but most of it is not open source. The API, web app,
-demo parser, node connector, browser extension and game streamer are
-proprietary: you may run the published images, unmodified, as part of your
-own 5Stack installation, for any purpose, but you may not copy, modify,
-resell or reverse engineer them, or host them as a service for others.
+demo parser, node connector and game streamer are proprietary: you may run
+the published images, unmodified, as part of your own 5Stack installation,
+for any purpose, but you may not copy, modify, resell or reverse engineer
+them, or host them as a service for others. The browser extension is
+proprietary too: you may use it, unmodified, with any 5Stack site.
 
 The open-source parts are:
 
@@ -28,9 +29,9 @@ The open-source parts are:
 - these docs, under
   [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-Versions released before 30 October 2026 remain under the licenses they were
-released under: the MIT License, and from 19–20 October 2026 the AGPL. Each
-repository's `NOTICE` file holds the exact terms.
+Earlier versions remain under the licenses they were released under. Every
+image carries its exact terms in its `LICENSE` and `NOTICE` files, and every
+panel serves the web app's license at `/license.txt`.
 
 ## What you can do
 
@@ -69,7 +70,7 @@ running the streamer needs a
 
 5Stack is built on many open-source projects. Every panel's **Licenses**
 page links to the licenses of the packages the web app ships, and each
-repository credits the software it uses in its `NOTICE` file.
+image credits the software it uses in its `NOTICE` file.
 
 ## Contributing
 

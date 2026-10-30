@@ -24,7 +24,9 @@ git clone git@github.com:5stackgg/5stack-panel.git ~/code/5stack
 
 ## Running the Development Environment
 
-Run `./dev.sh` to start the development environment.
+Run `./dev.sh` to start the development environment. It also clones the api,
+web and node connector repositories, which are private: ask for access before
+running it.
 
 :::warning
 
