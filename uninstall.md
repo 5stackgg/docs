@@ -74,6 +74,6 @@ EOF
 ```
 
 :::warning
-`/var/lib/5stack` holds the agent's keys and local backups. Copy anything you want
-to keep before you delete it.
+`/var/lib/5stack` holds the agent's state and keys. Copy anything you want to
+keep before you delete it.
 :::

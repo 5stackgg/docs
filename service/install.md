@@ -146,18 +146,13 @@ reverse proxy or the Cloudflare proxy, the domain never resolves to the server's
 own address, so the installer waits instead until the domain reaches the panel
 through the proxy.
 
-## Save the recovery key, claim link and install id
+## Save the recovery key
 
-When the install finishes, the terminal prints the recovery key once, on a line
-starting with `AGE-SECRET-KEY-1`. It also prints the install's claim link and its
-install id, such as `7f3c-91d0-e21a`. Write all three down together somewhere
-safe, such as a password manager.
-
-The recovery key opens your backups. It never leaves your server, so 5Stack
-doesn't have it and can't recover it for you. The setup page doesn't show it
-either. See [Backup & Recovery](/service/backup).
-
-You can show it again later with `sudo 5stack recovery-key show` on the server.
+When the install finishes, the terminal prints the install's claim link, its
+install id, such as `7f3c-91d0-e21a`, and a recovery key on a line starting with
+`AGE-SECRET-KEY-1`. Save the recovery key together with the install id somewhere
+safe, such as a password manager. The key never leaves your server, so 5Stack
+doesn't have it. `sudo 5stack recovery-key show` prints it again on the server.
 
 ## Sign in
 

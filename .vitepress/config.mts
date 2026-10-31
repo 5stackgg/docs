@@ -220,7 +220,6 @@ export default defineConfig({
             { text: "Updates", link: "/updates" },
             { text: "Add a Game Server Node", link: "/game-server-nodes" },
             { text: "Move to a New Server", link: "/new-server" },
-            { text: "Backup & Recovery", link: "/backup" },
             { text: "The 5stack Command", link: "/command" },
             { text: "Diagnostics", link: "/diagnostics" },
           ],

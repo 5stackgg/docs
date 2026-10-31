@@ -9,11 +9,9 @@ checkout and the `install.sh` and `update.sh` scripts:
 - **Update** from the panel's header, when you choose. No SSH, `git pull` or
   `./update.sh`.
 - **Add game server nodes** by typing a short code the node shows.
-- **Back up** the database, secrets and config, encrypted with a recovery key
-  only you hold.
 - **Move** the panel to a new server, game server nodes included.
 
-<ArchitectureDiagram flows="running,install,update,join,migrate,backup" />
+<ArchitectureDiagram flows="running,install,update,join,migrate" />
 
 Pick a flow above the diagram to see which parts it uses, and click a box to see
 what it does.
@@ -34,8 +32,8 @@ passes it along but can't read it.
 
 ## What needs the 5Stack cloud
 
-Installing, updating, adding a game server node, moving to a new server and
-restoring a backup go through the 5Stack cloud. The panel, matches and game
+Installing, updating, adding a game server node and moving to a new server go
+through the 5Stack cloud. The panel, matches and game
 servers that are already running don't depend on it. If `get.5stack.gg` can't be
 reached, they keep working, and only those steps wait.
 

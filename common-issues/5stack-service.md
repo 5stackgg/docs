@@ -119,9 +119,3 @@ The setup page says **This server is already claimed by another Steam account**.
 Sign in with the account that claimed it. A claim changes only through 5Stack
 support, or by root on the server running `sudo 5stack claim reset`. Then claim
 it again with the new account.
-
-## The recovery key doesn't open the backup {#wrong-key}
-
-**This key does not open this backup. 5Stack cannot open it either.** The key
-isn't the one the backup was made with. If you rotated the key, try the old one.
-5Stack can't open the backup or recover the key.

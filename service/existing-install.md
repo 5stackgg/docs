@@ -47,15 +47,14 @@ It doesn't change the checkout, the `.env` files, `update.sh` or `install.sh`.
 Open the claim link `service.sh` printed, and sign in through Steam with your
 account. The panel's current admins stay admins. If the panel has no admin, the
 account that claims it becomes one. Otherwise the claim links the install to your
-5Stack account, for backups and support.
+5Stack account, for support.
 
 ## Save the recovery key
 
-`service.sh` prints the recovery key once, on a line starting with
-`AGE-SECRET-KEY-1`, along with the claim link and the install id. Write all three
-down together somewhere safe. The key opens your backups, and 5Stack doesn't have
-it. `sudo 5stack recovery-key show` prints it again on this server. See
-[Backup & Recovery](/service/backup).
+`service.sh` prints a recovery key on a line starting with `AGE-SECRET-KEY-1`,
+along with the claim link and the install id. Save the recovery key together with
+the install id somewhere safe. The key never leaves your server, so 5Stack doesn't
+have it. `sudo 5stack recovery-key show` prints it again on this server.
 
 ## What changes in the panel
 
@@ -79,5 +78,5 @@ it. `sudo 5stack recovery-key show` prints it again on this server. See
 
 Running `sudo ./service.sh` again upgrades the agent the same way.
 
-`--remove` keeps `/var/lib/5stack`, which holds the agent's keys and local
-backups. Delete it yourself if you no longer need it.
+`--remove` keeps `/var/lib/5stack`, which holds the agent's state and keys.
+Delete it yourself if you no longer need it.

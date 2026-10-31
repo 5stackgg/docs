@@ -34,8 +34,8 @@ const EYEBROW = {
 };
 
 const BOXES = {
-  cloud: { row: "cloud", g: "cloud", x: 314, w: 300, t: "5Stack cloud", s: "get.5stack.gg · releases · codes · backups" },
-  p_agent: { row: "agent", g: "panel", x: 158, w: 256, t: "5stack agent", s: "root service · updates, backups" },
+  cloud: { row: "cloud", g: "cloud", x: 314, w: 300, t: "5Stack cloud", s: "get.5stack.gg · releases · node codes" },
+  p_agent: { row: "agent", g: "panel", x: 158, w: 256, t: "5stack agent", s: "root service · updates, nodes" },
   n_agent: { row: "agent", g: "node", x: 530, w: 158, t: "5stack agent", s: "root service" },
   k3s: { row: "ctl", g: "panel", x: 22, w: 256, t: "k3s server", s: "Kubernetes control plane" },
   n_k3s: { row: "ctl", g: "node", x: 530, w: 158, t: "k3s agent", s: "Kubernetes worker" },
@@ -56,19 +56,19 @@ const BOXES = {
 
 const INFO = {
   cloud: {
-    role: "A 5Stack service at get.5stack.gg. Your servers connect out to it for releases, setup, adding nodes and backups.",
+    role: "A 5Stack service at get.5stack.gg. Your servers connect out to it for releases, setup, adding nodes and moving servers.",
     talks: [
       "Hands out signed releases of the agent and the panel",
       "Serves the setup page during an install",
       "Passes node codes and encrypted join keys between your panel and a new node",
-      "Stores encrypted copies of your backups, which it can't open",
+      "Pairs your old and new server when you move the panel",
     ],
-    note: "It never connects in to your servers, and matches keep running while it is unreachable. Installs, updates, adding nodes and restores need it.",
+    note: "It never connects in to your servers, and matches keep running while it is unreachable. Installs, updates, adding nodes and moves need it.",
   },
   p_agent: {
-    role: "The 5Stack service on your panel server. It installs and updates the panel, approves new game server nodes and makes encrypted backups.",
+    role: "The 5Stack service on your panel server. It installs and updates the panel, approves new game server nodes and moves the panel to a new server.",
     talks: [
-      "5Stack cloud, outgoing only: releases, node codes and encrypted backups",
+      "5Stack cloud, outgoing only: releases, node codes and moves",
       "Kubernetes, to apply releases and dump the database",
       "The API, which passes on what you choose in the panel, such as Update Now or approving a node",
     ],
@@ -162,7 +162,6 @@ const EDGES = [
       update: ["signed release", "ab"],
       join: ["code lookup · encrypted keys", "both"],
       migrate: ["pairs with the new server", "both"],
-      backup: ["encrypted backup", "ba"],
     },
   },
   {
@@ -182,7 +181,6 @@ const EDGES = [
       update: "applies the release",
       join: "one-time join token",
       migrate: "dumps the database",
-      backup: "dumps the database",
     },
   },
   {
@@ -191,7 +189,6 @@ const EDGES = [
     f: {
       update: ["status · drain", "both"],
       join: ["code lookup · approval", "both"],
-      backup: ["requests · results", "both"],
     },
   },
   {
@@ -202,13 +199,12 @@ const EDGES = [
       install: "first sign-in",
       update: "Update Now",
       join: "enters the code",
-      backup: "Backup & Recovery",
     },
   },
   {
     a: ["web", "right"],
     b: ["api", "bottom", -20],
-    f: { running: "", update: "", join: "", backup: "" },
+    f: { running: "", update: "", join: "" },
   },
   { a: ["api", "left"], b: ["hasura", "right"], f: { running: "" } },
   { a: ["hasura", "left"], b: ["tsdb", "right"], f: { running: "" } },
@@ -288,11 +284,6 @@ const FLOWS = {
   migrate: {
     tab: "Move server",
     caption: "Moving to a new server, seen from the old one. The two servers pair through the 5Stack cloud, then the database and demos go straight to the new server over Tailscale. Game nodes get a message to re-join.",
-    select: "p_agent",
-  },
-  backup: {
-    tab: "Backup",
-    caption: "The agent dumps the database, encrypts the backup with your recovery key and keeps a copy with 5Stack, which can't open it.",
     select: "p_agent",
   },
 };

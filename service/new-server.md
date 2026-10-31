@@ -109,4 +109,4 @@ new panel through the proxy, so point your proxy at the new server.
 
 When the move finishes, the old panel stays stopped, not wiped, so its data is
 still there if you need to go back. Its 5Stack install credential is revoked, and
-the new server takes over the install, its claim and its backups.
+the new server takes over the install and its claim.
