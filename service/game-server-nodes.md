@@ -29,7 +29,8 @@ what it does.
    ```
 
    `--panel-key` is your panel's public key. The node uses it to check that the
-   join keys it receives really come from your panel.
+   join keys it receives really come from your panel. The dialog also shows the
+   key's fingerprint under **Panel key**.
 
 3. SSH into the node as a user who can use sudo, and run the command. It installs
    the agent, checks the server can run Tailscale and k3s, and shows a code and a
@@ -37,7 +38,7 @@ what it does.
 
    ```
    ==> Joining a panel
-       In your panel: Game Server Nodes → Add Node, then enter
+       In your panel: Game Server Nodes → Create game server node, then enter this code
        482 913
        key fingerprint 8F2C 19AA 03D1 7E55 · expires in 10:00
    ```
@@ -75,9 +76,12 @@ again for a new code. Nothing was changed on the node.
 
 ## Without --panel-key
 
-If you run the command without `--panel-key`, the node asks you to confirm your
-panel's key once you approve it. Without a terminal to ask on, it refuses. Use
-the command from the **Add Game Server Node** dialog, which includes the key.
+If you run the command without `--panel-key`, the node shows your panel key's
+fingerprint once you approve it and asks
+`Matches the panel key shown in the Add Game Server Node dialog? [y/N]`. Compare it
+with the fingerprint under **Panel key** in the dialog. Without a terminal to ask
+on, the node refuses. The command from the dialog already includes the key, so
+you won't see this question when you use it.
 
 ## Proxmox LXC containers
 
