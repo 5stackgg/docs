@@ -201,7 +201,7 @@ const EDGES = [
       running: "HTTPS",
       install: "first sign-in",
       update: "Update Now",
-      join: "Add Node",
+      join: "enters the code",
       backup: "Backup & Recovery",
     },
   },
@@ -282,7 +282,7 @@ const FLOWS = {
   },
   join: {
     tab: "Add a node",
-    caption: "The node shows a code. You enter it in Add Node, and your panel's agent sends the node its join keys, encrypted, through the 5Stack cloud. The node then joins over Tailscale.",
+    caption: "The node shows a code. You enter it in the panel, and your panel's agent sends the node its join keys, encrypted, through the 5Stack cloud. The node then joins over Tailscale.",
     select: "n_agent",
   },
   migrate: {

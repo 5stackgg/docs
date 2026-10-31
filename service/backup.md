@@ -19,13 +19,14 @@ run `service.sh`. It is printed once, in the terminal, on a line starting with
   restore your panel.
 - **5Stack can't recover it.** The key never leaves your server, so 5Stack
   doesn't have it. Without it, nobody can open your backups.
-- **Show it again** on the server with `sudo 5stack recovery-key show`, or as an
-  admin under **Backup & Recovery** in the panel's settings. Each time it is
-  shown is recorded.
-- **Replace it** with `5stack recovery-key rotate`, then run
-  `sudo 5stack recovery-key show` to see the new key. If the terminal says some
-  backups kept with 5Stack still need the old key, keep the old key until you no
-  longer need those backups.
+- **Show it again** on the server with `sudo 5stack recovery-key show`. As an
+  admin, you can also click **Show** next to **Recovery key** under
+  **Backup & Recovery** in the panel's settings. Each time it is shown is
+  recorded.
+- **Replace it** on the server with `sudo 5stack recovery-key rotate`, then run
+  `sudo 5stack recovery-key show` to see the new key. The panel can't replace it.
+  If the terminal says some backups kept with 5Stack still need the old key, keep
+  the old key until you no longer need those backups.
 
 ## What a backup holds
 
@@ -39,14 +40,18 @@ that server is lost, so are they, which is why a copy is also kept with 5Stack.
 
 ## Nightly backups
 
-By default, the panel backs itself up every night at 03:00 and keeps the newest 7
-backups on the server. While **Keep an encrypted copy with 5Stack** is on, each
-backup is also uploaded to 5Stack.
+By default, the panel backs itself up every night at 03:00, server time, and
+keeps the newest 7 backups on the server. While
+**Keep an encrypted copy with 5Stack** is on, each backup is also uploaded to
+5Stack.
 
-Change these under **Backup & Recovery** in the panel's settings, which also lists
-your backups and where each one is kept.
+Change these under **Backup & Recovery** in the panel's settings: the
+**Nightly backup** switch and its **Time**, and the
+**Keep an encrypted copy with 5Stack** switch.
 
-To make a backup now, run:
+To make a backup now, click **Back Up Now** there. Below it, the page shows the
+last backup: whether one is running, its time and size, or the error if it
+failed. Or, on the server, run:
 
 ```bash
 5stack backup
@@ -90,7 +95,8 @@ If the key is wrong, the terminal says
 1. Point your panel's DNS records at the new server.
 2. Add each game server node again. A restored panel is a new cluster with a new
    panel key, so the nodes can't follow it on their own. On each node, run
-   `5stack leave`, then the command from the panel's **Add Node** dialog. See
+   `5stack leave`, then the command from the panel's
+   **Add Game Server Node** dialog. See
    [Add a Game Server Node](/service/game-server-nodes).
 
 To move a panel whose old server still runs, use

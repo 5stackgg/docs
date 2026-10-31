@@ -61,7 +61,8 @@ it. `sudo 5stack recovery-key show` prints it again on this server. See
 
 - The header update center shows the panel's release and when it updates. See
   [Updates](/service/updates).
-- **Add Node** shows a command and takes a code from the node. See
+- **Create game server node** opens a dialog that shows a command and takes a
+  code from the node. See
   [Add a Game Server Node](/service/game-server-nodes).
 - Game server nodes you added with the install script keep running. The panel
   installs the agent on them for you, without SSH and without re-joining them.

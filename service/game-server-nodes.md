@@ -19,8 +19,10 @@ what it does.
 
 ## Add the node
 
-1. In the panel, go to **Game Server Nodes** and click **Add Node**.
-2. Copy the command the dialog shows. It looks like this:
+1. In the panel, go to **Game Server Nodes** and click
+   **Create game server node**.
+2. Copy the command the **Add Game Server Node** dialog shows. It looks like
+   this:
 
    ```bash
    curl -fsSL https://get.5stack.gg | sudo sh -s -- join --panel-key q7Hc2Lw9Zf0mR1xT…
@@ -40,15 +42,19 @@ what it does.
        key fingerprint 8F2C 19AA 03D1 7E55 · expires in 10:00
    ```
 
-4. Type the code into the **Add Node** dialog and click **Find Server**.
+4. Type the 6-digit code into the dialog and click **Find Server**.
 5. The dialog shows the node's hostname, address, system and key fingerprint.
    Compare the fingerprint with the one on the node's screen.
-   - If they match, choose the node's region and click **Approve**.
+   - If they match, pick the node's region and click **Approve**.
    - If they don't, click **Cancel**. See
      [The fingerprint doesn't match](/common-issues/5stack-service#fingerprint-mismatch).
-6. The panel sends the node its join keys. The node joins your Tailscale network,
-   installs the k3s agent and shows up in the list. Its terminal ends with
-   `Joined`.
+6. The panel sends the node its join keys. The dialog shows the node joining your
+   Tailscale network and installing the k3s agent, until it comes online. The
+   node's terminal ends with `Joined`.
+
+To add a server without the agent, click **Use the install script instead** in
+the dialog. That opens the
+[install script](/servers/game-server-nodes/create-game-server-node) setup.
 
 Anyone who sees a code, on a stream or in a screenshot, could try to use it for a
 different server. Comparing the fingerprint makes sure you approve the server you
@@ -69,10 +75,9 @@ again for a new code. Nothing was changed on the node.
 
 ## Without --panel-key
 
-If you run the command without `--panel-key`, the node shows your panel key's
-fingerprint once you approve it, and asks whether it matches the key in your
-panel's **Add Node** dialog. Without a terminal to ask on, it refuses. Use the
-command from the dialog, which includes the key.
+If you run the command without `--panel-key`, the node asks you to confirm your
+panel's key once you approve it. Without a terminal to ask on, it refuses. Use
+the command from the **Add Game Server Node** dialog, which includes the key.
 
 ## Proxmox LXC containers
 

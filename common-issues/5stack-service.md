@@ -58,7 +58,7 @@ interactive SSH session, not from a script or a provisioning tool.
 A node joining without `--panel-key` also needs a terminal to confirm the panel's
 key. It stops with **without --panel-key this has to ask you to confirm the
 panel's key on a terminal, and there is none here**. Use the command from the
-panel's **Add Node** dialog, which includes `--panel-key`.
+panel's **Add Game Server Node** dialog, which includes `--panel-key`.
 
 ## 5stack commands need sudo {#group}
 
@@ -86,7 +86,7 @@ the one it expects, it refuses, and nothing is changed on the node:
 - **5Stack cloud showed fingerprint ..., but the node's key has .... Do not
   approve this node.**
 - **the answer is signed by panel key ..., not the ... you were given.** Copy the
-  command again from your own panel's **Add Node** dialog.
+  command again from your own panel's **Add Game Server Node** dialog.
 
 ## This panel has no Tailscale address {#no-tailscale}
 

@@ -18,9 +18,6 @@ A full debug bundle, like the one [`./debug.sh`](/common-issues/debug-script)
 makes, is sent only when 5Stack support asks for one while helping you. Player
 data is removed from it the same way.
 
-Every report and debug bundle sent is listed in the panel's settings under
-**Diagnostics**.
-
 ## Turn it off
 
 In the panel's settings, open **Diagnostics** and turn off
