@@ -2,6 +2,10 @@
 
 Use your panel to create and register a new game server node. The panel will generate a one‑line bash install script for you to run on a fresh, supported Linux host (we recommend Ubuntu 22.04+).
 
+::: tip Panels on the 5Stack service
+On a panel that runs the [5Stack service](/service/), **Add Node** gives you a command to run on the node and takes the code it shows. See [Add a Game Server Node](/service/game-server-nodes). The install script on this page works on every panel.
+:::
+
 ## Prerequisites
 
 Before you begin, review the system requirements and networking needs:

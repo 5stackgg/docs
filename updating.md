@@ -1,5 +1,10 @@
 # Updating the 5Stack Panel
 
+::: tip Panels on the 5Stack service
+If your panel runs the [5Stack service](/service/), update it from the panel's
+update center instead. See [Updates](/service/updates).
+:::
+
 Occasionally you may need to update the 5Stack Panel to the latest version.
 Currently, this process requires manual intervention:
 

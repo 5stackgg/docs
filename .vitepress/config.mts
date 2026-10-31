@@ -59,7 +59,7 @@ export default defineConfig({
         text: "Docs",
         link: "/getting-started",
         activeMatch:
-          "^/(install|servers|plugins|advanced|community|getting-started|updating|uninstall|faq)",
+          "^/(install|service|servers|plugins|advanced|community|getting-started|updating|uninstall|faq)",
       },
       { text: "Features", link: "/features/", activeMatch: "^/features" },
       {
@@ -211,10 +211,26 @@ export default defineConfig({
           ],
         },
         {
+          text: "5Stack Service",
+          base: "/service",
+          items: [
+            { text: "Overview", link: "/" },
+            { text: "Install", link: "/install" },
+            { text: "Move an Existing Install", link: "/existing-install" },
+            { text: "Updates", link: "/updates" },
+            { text: "Add a Game Server Node", link: "/game-server-nodes" },
+            { text: "Move to a New Server", link: "/new-server" },
+            { text: "Backup & Recovery", link: "/backup" },
+            { text: "The 5stack Command", link: "/command" },
+            { text: "Diagnostics", link: "/diagnostics" },
+          ],
+        },
+        {
           text: "Troubleshooting",
           base: "/common-issues",
           items: [
             { text: "Debug Script", link: "/debug-script" },
+            { text: "5Stack Service", link: "/5stack-service" },
             { text: "Unable to Log In", link: "/unable-to-login" },
             { text: "System Not Updating", link: "/system-not-updating" },
             { text: "RCON Commands Fail", link: "/rcon-fails" },

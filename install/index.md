@@ -10,6 +10,10 @@ git clone https://github.com/5stackgg/5stack-panel; cd 5stack-panel; ./install.s
 Please ensure you have met the [Requirements](/install/requirements) before you begin installing the 5Stack Panel.
 :::
 
+::: info One-command install
+You can also install the panel as a system service with one command, and update it from the panel afterwards. See [Install with the 5Stack Service](/service/install).
+:::
+
 ## Running the Installation Script
 
 Inside the 5Stack-Panel directory, run the installation script `./install.sh`.

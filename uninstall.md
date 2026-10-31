@@ -57,3 +57,23 @@ rm -rf /opt/5stack
 echo "5Stack uninstall complete."
 EOF
 ```
+
+## The 5Stack service
+
+If the server runs the [5Stack service](/service/), also remove the agent:
+
+```bash
+sudo bash <<'EOF'
+systemctl disable --now 5stack.service 2>/dev/null || true
+rm -f /etc/systemd/system/5stack.service /etc/systemd/system/5stack-rollback.service
+systemctl daemon-reload
+rm -f /usr/local/bin/5stack /usr/local/bin/5stack.prev
+rm -rf /var/lib/5stack /etc/5stack /run/5stack
+groupdel 5stack 2>/dev/null || true
+EOF
+```
+
+:::warning
+`/var/lib/5stack` holds the agent's keys and local backups. Copy anything you want
+to keep before you delete it.
+:::
