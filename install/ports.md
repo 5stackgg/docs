@@ -1,5 +1,10 @@
 # Change the Default Ports
 
+::: info Panels installed before the 5Stack service
+`traefik-config.env` is in the 5Stack-Panel checkout, on panels installed before
+the 5Stack service. Run `./update.sh` there to apply a change.
+:::
+
 The panel serves HTTP on port `80` and HTTPS on port `443`. If another service on the machine already uses them, set different ports in `<INSTALL_DIR>/overlays/config/traefik-config.env`:
 
 ```env
@@ -11,4 +16,4 @@ Then run `./update.sh` to apply them.
 
 Browsers are still sent to the standard ports: the HTTP to HTTPS redirect and every link the panel builds use the bare domain. Put a [reverse proxy](/install/reverse-proxy) or a port forward in front that serves `80` and `443` publicly.
 
-Installs from before the panel moved to Traefik kept these settings in `overlays/config/nginx-config.env`. `update.sh` renames that file for you.
+Installs from before the panel moved to Traefik kept these settings in `overlays/config/nginx-config.env`. An update renames that file for you.

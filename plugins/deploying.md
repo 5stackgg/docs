@@ -102,6 +102,11 @@ from your repository, in one command:
 ./plugin.sh https://github.com/5stackgg/5stack-example-plugin
 ```
 
+::: info Panels installed before the 5Stack service
+`./plugin.sh` runs from the 5Stack-Panel checkout, on panels installed before
+the 5Stack service.
+:::
+
 It reads their site's own config — cluster, domain, whether TLS terminates at
 the cluster or in front of it, Postgres credentials — instead of asking them to
 repeat any of it. [One-Command Install](/plugins/installing) is the format, and

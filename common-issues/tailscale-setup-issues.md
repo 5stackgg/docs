@@ -2,6 +2,13 @@
 
 If you are unable to obtain a Tailscale auth key when adding a new node to the panel, please check the following:
 
+::: info Panels installed before the 5Stack service
+Step 1 is for panels installed before the 5Stack service: the files are in the
+5Stack-Panel checkout. On a panel that runs the service, the Tailscale OAuth
+client comes from the [setup page](/install/#tailscale-for-game-server-nodes),
+and the steps from step 2 on still apply.
+:::
+
 1. **Enviroment Variables**
 
    Open `overlays/config/api-config.env` and ensure the following values are present and correct:

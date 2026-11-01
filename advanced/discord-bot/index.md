@@ -35,6 +35,11 @@ First. You need to create a new application in the [Discord Developer Portal](ht
 
    ![Installation Tab](./discord-installation.png)
 
+::: info Panels installed before the 5Stack service
+`api-config.env` and `discord-secrets.env` are in the 5Stack-Panel checkout, on
+panels installed before the 5Stack service.
+:::
+
 3. Oauth Tab
 
    ![Oauth URL](./discord-oauth.png)
@@ -53,7 +58,7 @@ First. You need to create a new application in the [Discord Developer Portal](ht
 
 5. Update the Panel
 
-See [Update Guide](/updating) for instructions on updating the panel.
+Run `./update.sh` from the checkout to apply the new secrets.
 
 6. Invite the Bot to your Server
 

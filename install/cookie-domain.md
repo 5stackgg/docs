@@ -2,6 +2,11 @@
 
 The cookie domain is the domain that the cookies will be set to. This is used to secure the cookies and prevent cross-site scripting (XSS) attacks. By Default the cookie domain is set to your `WEB_DOMAIN` (e.g. `.5stack.gg`) environment variable.
 
+::: info Panels installed before the 5Stack service
+`api-config.env` is in the 5Stack-Panel checkout, on panels installed before the
+5Stack service. Run `./update.sh` there to apply a change.
+:::
+
 This can be changed by setting the `AUTH_COOKIE_DOMAIN` environment variable which you can set in the `<INSTALL_DIR>/overlays/config/api-config.env` file.
 
 ::: warning

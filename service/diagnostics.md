@@ -1,7 +1,7 @@
 # Diagnostics
 
-A panel on the 5Stack service sends 5Stack crash reports, so problems can be
-found and fixed. It is on by default, and one switch turns it off.
+Your panel sends 5Stack crash reports, so problems can be found and fixed. It is
+on by default, and one switch turns it off.
 
 ## What is sent
 
@@ -14,13 +14,14 @@ addresses, email addresses, chat and player names. Each report is capped at 5 MB
 
 ## Debug bundles
 
-A full debug bundle, like the one [`./debug.sh`](/common-issues/debug-script)
-makes, is sent only when 5Stack support asks for one while helping you. Player
-data is removed from it the same way.
+A full debug bundle, with the same kind of state the
+[debug script](/common-issues/debug-script) collects, is sent only when 5Stack
+support asks for one while helping you. Player data is removed from it the same
+way, and each request is recorded in the install's audit log.
 
 ## Turn it off
 
-In the panel's settings, open **Diagnostics** and turn off
+In the panel, open **Settings → System → Diagnostics** and turn off
 **Send crash reports to 5Stack**. Or, on the panel server, run:
 
 ```bash

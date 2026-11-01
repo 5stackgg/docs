@@ -16,6 +16,11 @@ Your relay domain is already in the panel's config (`RELAY_DOMAIN`), so from the
 ./playcast-relay.sh
 ```
 
+::: info Panels installed before the 5Stack service
+`./playcast-relay.sh` runs from the 5Stack-Panel checkout, on panels installed
+before the 5Stack service.
+:::
+
 It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and walks you through the rest:
 
 1. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.

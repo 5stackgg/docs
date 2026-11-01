@@ -12,6 +12,11 @@ with one command, from your repository, without reading your README.
 Run from their `5stack-panel` checkout. Also accepts an `owner/repo` shorthand,
 or a local directory while you're developing.
 
+::: info Panels installed before the 5Stack service
+`./plugin.sh` runs from the 5Stack-Panel checkout, on panels installed before
+the 5Stack service.
+:::
+
 ```sh
 ./plugin.sh list                  # what's installed
 ./plugin.sh remove hello          # take it back off the cluster
@@ -149,8 +154,8 @@ replacements:
 ```
 
 **Your own `Certificate`, not an entry in the panel's.** The panel rebuilds its
-shared `5stack-ssl` cert from its own overlay on every `./update.sh`, so
-anything a plugin added there is dropped on the next panel update.
+shared `5stack-ssl` cert from its own overlay on every update, so anything a
+plugin added there is dropped on the next panel update.
 
 ```yaml
 # overlays/https/certificate.yaml

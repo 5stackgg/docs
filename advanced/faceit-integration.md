@@ -10,6 +10,11 @@
 
 2. Add the key to your panel secrets
 
+   ::: info Panels installed before the 5Stack service
+   `faceit-secrets.env` is in the 5Stack-Panel checkout, on panels installed
+   before the 5Stack service.
+   :::
+
    Open `INSTALL_DIR/overlays/local-secrets/faceit-secrets.env` and set:
 
    ```env
@@ -18,7 +23,7 @@
 
 3. Update the panel
 
-   See the [Update Guide](/updating) for instructions on applying the new secret.
+   Run `./update.sh` from the checkout to apply the new secret.
 
 ## How it works
 

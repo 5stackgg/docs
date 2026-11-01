@@ -20,6 +20,11 @@ The playback domain is where viewers' browsers load streams from. It defaults to
 panel install directory; it asks for the domain on every run, with the current
 value as the default.
 
+::: info Panels installed before the 5Stack service
+`./setup-gpu-nodes.sh` runs from the 5Stack-Panel checkout, on panels installed
+before the 5Stack service.
+:::
+
 ## Networking
 
 Streams reach viewers through MediaMTX, which runs on the node labelled `5stack-mediamtx=true` using the host's network:

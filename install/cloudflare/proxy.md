@@ -4,7 +4,14 @@ Cloudflare acts as a reverse proxy when you enable **Proxied** DNS (the orange c
 
 ## Tell 5Stack it is behind a proxy
 
-The installer asks whether you're using a reverse proxy. If your DNS records are proxied, answer **yes**, or set it later in `INSTALL_DIR/.5stack-env.config`:
+The [setup page](/install/#answer-on-the-setup-page) asks whether a reverse proxy is in front of the server. If your DNS records are proxied, answer **yes**.
+
+::: info Panels installed before the 5Stack service
+`.5stack-env.config` is in the 5Stack-Panel checkout, on panels installed before
+the 5Stack service. Run `./update.sh` there to apply a change.
+:::
+
+To set it later, edit `INSTALL_DIR/.5stack-env.config`:
 
 ```env
 REVERSE_PROXY=true

@@ -38,7 +38,7 @@ The runtime is a **deployment-wide** choice, not a per-node or per-match one.
 1. Go to **Settings → Application → Servers**.
 2. Under **Plugin Runtime**, pick **SwiftlyS2** or **CounterStrikeSharp**.
 
-The change saves immediately. No redeploy, no `./update.sh`, no restart.
+The change saves immediately. No update, no redeploy, no restart.
 
 New game servers pick up the new image the next time they start. Servers already running keep the image they were created with until they're recycled.
 
@@ -62,6 +62,11 @@ A node pinned to a plugin version stays on the framework it was pinned under, ev
 ## Advanced: custom images
 
 If you build your own plugin image, or mirror the official ones into a private registry, set `SERVER_IMAGE` on the panel API:
+
+::: info Panels installed before the 5Stack service
+`api-config.env` is in the 5Stack-Panel checkout, on panels installed before the
+5Stack service. Run `./update.sh` there to apply a change.
+:::
 
 1. Open `INSTALL_DIR/overlays/config/api-config.env`.
 2. Add the full image reference:

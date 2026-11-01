@@ -13,8 +13,13 @@ The diagram shows the old panel. Click a box to see what it does.
 - The new server meets the [Requirements](/install/requirements) and is fresh:
   not already a panel or a game server node.
 - The old panel has Tailscale set up, as it needs for
-  [game server nodes](/service/game-server-nodes). The two servers move the data
-  directly over your Tailscale network, never through the 5Stack cloud.
+  [game server nodes](/servers/game-server-nodes/create-game-server-node). The
+  two servers move the data directly over your Tailscale network, never through
+  the 5Stack cloud.
+- The old panel runs the 5Stack service, and you have claimed its install. An
+  unclaimed panel can't look up the new server's code. For a panel still on the
+  git checkout, run `git pull && sudo ./service.sh` on it and
+  [claim the install](/service/existing-install#claim-the-install) first.
 - You can change the DNS records for your panel's domain.
 
 ## 1. Start the new server
@@ -31,21 +36,15 @@ installed from the git checkout.
 
 ## 2. Pair the old server
 
-On the old server, run the command that matches it.
-
-If the old panel runs the 5Stack service:
+On the old server, run the `5stack move` command the new server printed:
 
 ```bash
 sudo 5stack move --to QX4-71M --key age1qv3x…
 ```
 
-If the old panel was installed from the git checkout and doesn't run the service
-yet, run this in its 5Stack-Panel directory. It installs the agent first, as
-described in [Move an Existing Install](/service/existing-install):
-
-```bash
-sudo ./service.sh --to QX4-71M --key age1qv3x…
-```
+The new server also prints a `sudo ./service.sh --to … --key …` command, for a
+panel still on the git checkout. Use `5stack move` once you've moved that panel
+onto the service and claimed it, as above.
 
 `--key` is the new server's key. The old server sends its data only to a server
 holding that key, so copy the whole command.
@@ -61,7 +60,7 @@ the number of game server nodes, and how long the panel will be down.
 ## 4. Demos copy while the panel is live
 
 Demos and clips copy from the old server's file storage to the new one while
-players keep playing. If your panel uses [your own S3](/advanced/s3), both
+players keep playing. If your panel uses [your own S3](/advanced/s3/), both
 servers already reach it and this step is skipped.
 
 ## 5. The old panel freezes
@@ -92,7 +91,7 @@ the install script and got the agent from the panel later. You don't need to SSH
 into them.
 
 If a node has no agent, the move tells you to add it to the new panel again. See
-[Add a Game Server Node](/service/game-server-nodes).
+[Add a Game Server Node](/servers/game-server-nodes/create-game-server-node).
 
 ## 8. Point DNS at the new server
 

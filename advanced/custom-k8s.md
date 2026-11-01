@@ -122,6 +122,11 @@ Once you have created the files. You can apply the changes using the following c
 ./custom.sh mysql
 ```
 
+::: info Panels installed before the 5Stack service
+`./custom.sh` runs from the 5Stack-Panel checkout, on panels installed before
+the 5Stack service. The `custom/` folder is in that checkout too.
+:::
+
 ::: info
 To allow the plugin to connect to the database. Use the service name `mysql`.
 :::

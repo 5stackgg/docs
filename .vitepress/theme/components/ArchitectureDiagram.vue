@@ -273,7 +273,7 @@ const FLOWS = {
   },
   update: {
     tab: "Update",
-    caption: "The 5Stack cloud offers a signed release. You pick when in the panel, the panel pauses new matches, and the agent applies the release.",
+    caption: "The 5Stack cloud offers a signed release. You pick when in the panel, and the agent applies it. Only a release that restarts the database, cache, storage or search holds new matches first.",
     select: "p_agent",
   },
   join: {

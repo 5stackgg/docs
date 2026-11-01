@@ -8,6 +8,11 @@ The S3 storage is primarily used for storing match demos and backups. When a mat
 
 ## Configuration
 
+::: info Panels installed before the 5Stack service
+`s3-config.env` and `s3-secrets.env` are in the 5Stack-Panel checkout, on panels
+installed before the 5Stack service. Run `./update.sh` there to apply a change.
+:::
+
 The default configuration uses the in-cluster RustFS, but you can override this by modifying the following files:
 
 1. Update the S3 `S3_ENDPOINT`, `S3_USE_SSL`, `S3_PORT`, and `S3_REGION` configuration in `<INSTALL_DIR>/overlays/config/s3-config.env`:

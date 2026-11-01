@@ -10,6 +10,6 @@ memory** when empty, more once players join. K3s and the game server node
 connector hold back one core and a few hundred MB for themselves. Each node
 also needs around 150 GB of disk for the game files and demo recordings.
 
-## Panel Upgrade
+## Panel Tailscale Setup
 
-Before setting up a Game Server Node, make sure your panel is upgraded as described in the [Panel Install & Upgrade instructions](/servers/game-server-nodes/panel-upgrade).
+Before setting up a Game Server Node, make sure your panel has Tailscale set up. On a panel installed with the 5Stack service, you give the setup page a Tailscale OAuth client, as described in [Tailscale for game server nodes](/install/#tailscale-for-game-server-nodes). For a panel installed before the 5Stack service, see [Panel Upgrade](/servers/game-server-nodes/panel-upgrade).

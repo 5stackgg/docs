@@ -12,6 +12,7 @@ The 5Stack Panel relies on several open-source software components for its opera
 
 5Stack includes its own components:
 
+- The [5Stack service](/service/), which installs and updates everything else
 - 5Stack Web
 - 5Stack API
 - 5Stack Demo Parser

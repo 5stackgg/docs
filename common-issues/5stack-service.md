@@ -58,12 +58,23 @@ interactive SSH session, not from a script or a provisioning tool.
 A node joining without `--panel-key` also needs a terminal to confirm the panel's
 key. It stops with **without --panel-key this has to ask you to confirm the
 panel's key on a terminal, and there is none here**. Use the command from the
-panel's **Add Game Server Node** dialog, which includes `--panel-key`.
+panel's **Create Game Server Node** dialog, which includes `--panel-key`.
 
 ## 5stack commands need sudo {#group}
 
 The installer added you to the `5stack` group, but group changes apply only to
 new logins. Log out and back in, then try again.
+
+Commands that set up a server or change what it trusts always need root, even
+in the group: `install`, `join`, `restore`, `adopt`, `move`, `uninstall`,
+`vault enable` and `vault sync`. Run them with `sudo`.
+
+## Claim this install first {#claim-first}
+
+The panel can't look up a node's code, or a new server's code when you move,
+until its install is claimed. Open the claim link from the install's
+**SAVE THESE NOW** block, or the one `service.sh` printed, and sign in through
+Steam.
 
 ## The node's code expired {#code-expired}
 
@@ -86,7 +97,7 @@ the one it expects, it refuses, and nothing is changed on the node:
 - **5Stack cloud showed fingerprint ..., but the node's key has .... Do not
   approve this node.**
 - **the answer is signed by panel key ..., not the ... you were given.** Copy the
-  command again from your own panel's **Add Game Server Node** dialog.
+  command again from your own panel's **Create Game Server Node** dialog.
 
 ## This panel has no Tailscale address {#no-tailscale}
 
@@ -96,7 +107,7 @@ the panel server with `tailscale status`, then approve the node again.
 ## The LXC container can't run Tailscale and k3s {#lxc}
 
 The node lists what is wrong with the container. See
-[Proxmox LXC containers](/service/game-server-nodes#proxmox-lxc-containers).
+[Proxmox LXC containers](/servers/game-server-nodes/create-game-server-node#proxmox-lxc-containers).
 
 ## Certificates aren't issued yet {#dns-not-pointing}
 

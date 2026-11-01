@@ -77,6 +77,11 @@ Widen it in `TURN_MIN_PORT` / `TURN_MAX_PORT` if you actually run out.
 
 ### 3. Configure
 
+::: info Panels installed before the 5Stack service
+`overlays/coturn/coturn.env` is in the 5Stack-Panel checkout, on panels
+installed before the 5Stack service. Run `./update.sh` there to apply a change.
+:::
+
 Set the domain in `overlays/coturn/coturn.env`:
 
 ```bash

@@ -21,6 +21,11 @@ From the directory you installed the panel in (`5stack-panel`), run:
 ./backblaze-proxy.sh
 ```
 
+::: info Panels installed before the 5Stack service
+`./backblaze-proxy.sh` runs from the 5Stack-Panel checkout, on panels installed
+before the 5Stack service. The config files in step 1 are in that checkout too.
+:::
+
 Run it where `kubectl` reaches the panel: on the panel's server, as root on a k3s install (`/etc/rancher/k3s/k3s.yaml` is readable only by root), or anywhere `KUBECONFIG` points at the panel. It asks the panel's database whether clip links are signed.
 
 It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and walks you through the rest:

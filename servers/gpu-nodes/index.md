@@ -57,6 +57,11 @@ NVIDIA also needs its container runtime. Follow the guide for your GPU:
 
 ### Run the setup script
 
+::: info Panels installed before the 5Stack service
+`./setup-gpu-nodes.sh` runs from the 5Stack-Panel checkout, on panels installed
+before the 5Stack service.
+:::
+
 From your panel install directory, run:
 
 ```bash

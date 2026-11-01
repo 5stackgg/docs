@@ -64,7 +64,7 @@ export default defineConfig({
       { text: "Features", link: "/features/", activeMatch: "^/features" },
       {
         text: "Troubleshooting",
-        link: "/common-issues/debug-script",
+        link: "/common-issues/5stack-service",
         activeMatch: "^/common-issues",
       },
       {
@@ -180,7 +180,7 @@ export default defineConfig({
                 },
                 { text: "What is Installed?", link: "/what-is-installed" },
                 {
-                  text: "Configuration Options",
+                  text: "Installer Options",
                   link: "/command-line-arguments",
                 },
                 { text: "Cookie Domain", link: "/cookie-domain" },
@@ -203,10 +203,16 @@ export default defineConfig({
               ],
             },
             {
-              text: "Game Server Node Setup",
-              link: "/servers/game-server-nodes/panel-upgrade",
+              text: "Upgrade an Existing Panel",
+              link: "/service/existing-install",
+            },
+            {
+              text: "Add Game Server Nodes",
+              link: "/servers/game-server-nodes/create-game-server-node",
             },
             { text: "Updating", link: "/updating" },
+            { text: "Move to a New Server", link: "/service/new-server" },
+            { text: "Backups and Recovery", link: "/service/backups" },
             { text: "Uninstall", link: "/uninstall" },
           ],
         },
@@ -214,12 +220,7 @@ export default defineConfig({
           text: "5Stack Service",
           base: "/service",
           items: [
-            { text: "Overview", link: "/" },
-            { text: "Install", link: "/install" },
-            { text: "Move an Existing Install", link: "/existing-install" },
-            { text: "Updates", link: "/updates" },
-            { text: "Add a Game Server Node", link: "/game-server-nodes" },
-            { text: "Move to a New Server", link: "/new-server" },
+            { text: "How It Works", link: "/" },
             { text: "The 5stack Command", link: "/command" },
             { text: "Diagnostics", link: "/diagnostics" },
           ],
@@ -228,8 +229,8 @@ export default defineConfig({
           text: "Troubleshooting",
           base: "/common-issues",
           items: [
-            { text: "Debug Script", link: "/debug-script" },
             { text: "5Stack Service", link: "/5stack-service" },
+            { text: "Debug Script", link: "/debug-script" },
             { text: "Unable to Log In", link: "/unable-to-login" },
             { text: "System Not Updating", link: "/system-not-updating" },
             { text: "RCON Commands Fail", link: "/rcon-fails" },
@@ -272,16 +273,16 @@ export default defineConfig({
               link: "/",
               items: [
                 {
-                  text: "Panel Upgrade",
-                  link: "/panel-upgrade",
-                },
-                {
-                  text: "Create Game Server Node",
+                  text: "Add a Game Server Node",
                   link: "/create-game-server-node",
                   items: [
                     { text: "Requirements", link: "/requirements" },
                     { text: "What is Installed?", link: "/what-is-installed" },
                   ],
+                },
+                {
+                  text: "Panel Upgrade",
+                  link: "/panel-upgrade",
                 },
                 { text: "Port Forwarding", link: "/ports" },
                 { text: "Tailscale Integration", link: "/tailscale" },
