@@ -42,7 +42,23 @@ the panel is installed on, not on a game server node.
 
 ## The setup link expired {#setup-link-expired}
 
-Setup links last 30 minutes. Run the install command again for a new one.
+A setup link stays open while the setup page is open, and closes 30 minutes
+after. Run the install command again for a new one.
+
+## A setup check fails {#setup-check-failed}
+
+The setup page and the terminal show why each answer failed. Fix it and the
+server checks it again. A refused Steam key, a missing or wrong hostname,
+Tailscale credentials that don't work, and S3 keys or buckets that don't work
+stop the install. The rest only warn. See
+[Confirm in the terminal](/install/#confirm-in-the-terminal).
+
+- **DNS.** Point each hostname it lists at the server's address, or pick the
+  proxy you use in **How visitors reach this server**.
+- **S3 backup bucket.** Create a second bucket named like yours plus
+  `-db-backups`, in the same account. See [Storage](/install/#storage).
+- **Tailscale policy managed in GitOps.** An API token can't edit it. Add the tag
+  owner in your repository and use an OAuth client instead.
 
 ## The setup page says the server keys don't match {#setup-keys-mismatch}
 
@@ -65,9 +81,40 @@ panel's **Create Game Server Node** dialog, which includes `--panel-key`.
 The installer added you to the `5stack` group, but group changes apply only to
 new logins. Log out and back in, then try again.
 
-Commands that set up a server or change what it trusts always need root, even
-in the group: `install`, `join`, `restore`, `adopt`, `move`, `uninstall`,
-`vault enable` and `vault sync`. Run them with `sudo`.
+Commands that set up a server, change its config or what it trusts, or run its
+scripts always need root, even in the group: `install`, `join`, `restore`,
+`adopt`, `move`, `uninstall`, `ui`, `run`, `nodes remove`, `vault enable`,
+`vault sync`, and `config set`, `unset`, `import`, `tailscale` and `apply`. Run
+them with `sudo`, or pick them in the [`5stack` menu](/service/command#the-menu),
+which offers to run them with sudo. See [Command Reference](/service/cli).
+
+## 5stack menu needs a terminal {#menu-terminal}
+
+The menu opens only in an interactive terminal. Over SSH from a script, use
+`ssh -t`, or run the command itself. `5stack help` lists them.
+
+## Nothing was started, or nothing was changed {#busy}
+
+The panel runs one thing at a time: an update, a move, an uninstall, a
+`5stack run` script or a config change. Another one stops with a message such
+as **an update is applying on this panel, so nothing was started**. Run it again
+once that finishes.
+
+## Ignored .5stack-env.config keys {#ignored-keys}
+
+`5stack status` warns **ignored .5stack-env.config keys this agent doesn't
+know**. The panel's scripts read `.5stack-env.config` as shell, so the service
+writes only the keys it knows into it. It keeps the others but doesn't use them.
+If a newer panel needs one, update the agent. `5stack config list` marks them
+ignored.
+
+## The checkout's config differs {#checkout-differs}
+
+On a panel [upgraded with service.sh](/service/existing-install), an update or a
+config change warns **the checkout's config differs from the 5Stack service's**.
+You edited an env file in the checkout, and updates apply the service's copy.
+Run `sudo 5stack config import` to take your edits, or the next update ignores
+them.
 
 ## Claim this install first {#claim-first}
 

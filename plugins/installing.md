@@ -6,20 +6,16 @@ your plugin so an operator can install it **onto the 5Stack cluster itself**
 with one command, from your repository, without reading your README.
 
 ```sh
-./plugin.sh https://github.com/5stackgg/5stack-example-plugin
+sudo 5stack run plugin.sh https://github.com/5stackgg/5stack-example-plugin
 ```
 
-Run from their `5stack-panel` checkout. Also accepts an `owner/repo` shorthand,
-or a local directory while you're developing.
-
-::: info Panels installed before the 5Stack service
-`./plugin.sh` runs from the 5Stack-Panel checkout, on panels installed before
-the 5Stack service.
-:::
+The operator runs it on the panel server, or picks **Plugins** in the
+[`5stack` menu](/service/command#the-menu). It also accepts an `owner/repo`
+shorthand, or the absolute path of a local directory while you're developing.
 
 ```sh
-./plugin.sh list                  # what's installed
-./plugin.sh remove hello          # take it back off the cluster
+sudo 5stack run plugin.sh list           # what's installed
+sudo 5stack run plugin.sh remove hello   # take it back off the cluster
 ```
 
 ## Why it doesn't ask questions
@@ -43,7 +39,8 @@ decides which of your two installs to apply.
 
 Every value can still be overridden: `--domain`, `--node`, `--database-url`,
 `--kubeconfig`, `--tls` / `--no-tls`. `--dry-run` prints the manifests and
-applies nothing. `-y` takes every default, for unattended installs.
+applies nothing. `sudo 5stack run --yes plugin.sh …` takes every default, for
+unattended installs.
 
 Re-running upgrades in place. The plugin's code is replaced; its `.env` files —
 the operator's domain, their database password — are kept.
@@ -106,7 +103,7 @@ never asked about nodes, and one with no `install.panel` is never handed the
 panel's domains. Only claim what you actually need.
 
 ::: tip Node label naming
-Use `5stack-<slug>`. That's what the panel's `./custom.sh` derives from a
+Use `5stack-<slug>`. That's what the panel's `custom.sh` derives from a
 `custom/<slug>/` directory, so a plugin installed either way lands on the same
 node.
 :::
@@ -115,7 +112,7 @@ node.
 
 ```
 k8s/
-  kustomization.yaml     # shim pointing at overlays/http, for ./custom.sh
+  kustomization.yaml     # shim pointing at overlays/http, for custom.sh
   base/                  # everything, HTTP-only, with the env files
   overlays/http/         # base, unchanged — TLS terminated upstream
   overlays/https/        # base + Certificate + tls patch — cert-manager
@@ -201,7 +198,7 @@ k8s/
                          #   Certificate, route, and an HTTP-to-HTTPS redirect
 ```
 
-`./plugin.sh` uses `install.gateway` when the panel has the shared Gateway
+`plugin.sh` uses `install.gateway` when the panel has the shared Gateway
 (`traefik/traefik-gateway`), and `install.overlays` everywhere else, so keep
 both. On a panel that had your Ingress install, it deletes the Ingresses that
 install renders once every route it applied is accepted with its backends
@@ -250,10 +247,11 @@ has both.
 
 ### 3. Where it lands
 
-Plugins are installed into the panel's `custom/<slug>/`, which is the same place
-`./custom.sh` deploys from. Nothing is hidden: an operator can edit the package
-and re-apply it by hand, and `./plugin.sh custom/<slug>` re-runs the install from
-what's on disk.
+Plugins are installed into the panel's `custom/<slug>/`, which is
+`/etc/5stack/custom/<slug>/` on the panel server and the same place `custom.sh`
+deploys from. Nothing is hidden: an operator can edit the package and re-apply
+it by hand, and `sudo 5stack run plugin.sh custom/<slug>` re-runs the install
+from what's on disk.
 
 ## A worked example
 

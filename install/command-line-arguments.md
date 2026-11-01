@@ -29,14 +29,18 @@ curl -fsSL https://get.5stack.gg | sudo sh -s -- join --panel-key <key> --channe
 
 ## Setup answers
 
-The installer asks for the panel domain, whether the DNS is on Cloudflare,
-whether a reverse proxy is in front of the server, the Steam Web API key and the
-Tailscale OAuth client, on the setup page or in the terminal. See
-[Install](/install/#answer-on-the-setup-page).
+The installer asks for the panel domain, how visitors reach the server, the
+Steam Web API key, Tailscale, security updates, performance settings and
+storage, on the setup page or in the terminal, and checks each answer on the
+server. See [Install](/install/#answer-on-the-setup-page).
 
-Use the reverse proxy answer for Nginx, the
-[Cloudflare proxy](/install/cloudflare/proxy), or a
-[Cloudflare Tunnel](/install/cloudflare/tunnel).
+For how visitors reach the server, pick the Cloudflare proxy or Tunnel for the
+[Cloudflare proxy](/install/cloudflare/proxy) or a
+[Cloudflare Tunnel](/install/cloudflare/tunnel), and your own reverse proxy for
+Nginx or Caddy.
+
+To change the proxy, keys or storage after the install, use
+`sudo 5stack config`. See [Command Reference](/service/cli#config).
 
 The installer asks its questions on the server's terminal, so run it from an
 interactive SSH session, not from a script.

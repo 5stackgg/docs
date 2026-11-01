@@ -73,33 +73,24 @@ Open on that node:
 
 The relay range is deliberately narrow so this stays a short firewall rule. It
 also caps how many calls can be relayed at once, which is a limit worth having.
-Widen it in `TURN_MIN_PORT` / `TURN_MAX_PORT` if you actually run out.
+Widen it with `TURN_MIN_PORT` / `TURN_MAX_PORT` if you actually run out.
 
 ### 3. Configure
 
-::: info Panels installed before the 5Stack service
-`overlays/coturn/coturn.env` is in the 5Stack-Panel checkout, on panels
-installed before the 5Stack service. Run `./update.sh` there to apply a change.
-:::
-
-Set the domain in `overlays/coturn/coturn.env`:
+On the panel server, set the domain, or pick **Config → TURN relay** in the
+[`5stack` menu](/service/command#the-menu):
 
 ```bash
-TURN_DOMAIN=turn.example.com
+sudo 5stack config set TURN_DOMAIN=turn.example.com
 ```
 
-Then run the updater:
-
-```bash
-./update.sh
-```
-
-That's it. The shared secret is generated for you on first run, and the API
-starts handing out relay credentials automatically.
+It shows the change, asks, and applies the panel again. That's it. The shared
+secret is generated for you on first run, and the API starts handing out relay
+credentials automatically.
 
 ## Settings
 
-All in `overlays/coturn/coturn.env`:
+Each is set with `sudo 5stack config set <SETTING>=<value>`:
 
 | Setting | Default | What it does |
 | --- | --- | --- |
@@ -109,8 +100,8 @@ All in `overlays/coturn/coturn.env`:
 | `TURN_MIN_PORT` | `50000` | Start of the relay range. |
 | `TURN_MAX_PORT` | `50200` | End of the relay range. |
 
-The shared secret lives separately, in
-`overlays/local-secrets/coturn-secrets.env`, and is generated on first run.
+The shared secret, `TURN_SECRET`, is kept with the panel's other secrets and is
+generated on first run.
 
 ## How credentials work
 
@@ -125,8 +116,8 @@ nothing to keep in sync.
 
 ## Turning it off
 
-Blank out `TURN_DOMAIN` and re-run `./update.sh`. The relay stops being
-deployed, and calls fall back to connecting directly.
+Blank out the domain with `sudo 5stack config set TURN_DOMAIN=`. The relay
+stops being deployed, and calls fall back to connecting directly.
 
 An already-running relay pod isn't deleted for you — remove it with
 `kubectl delete deployment coturn -n 5stack` if you want it gone. Left alone it
@@ -160,7 +151,7 @@ kubectl logs -n 5stack deployment/coturn | head
 | `advertising <public> for <host>` | Working as intended behind NAT. |
 | `host is publicly addressable at <ip>` | Working as intended with a public IP. |
 | `<domain> did not resolve; no external-ip set` | DNS isn't there yet. Candidates will be wrong until it is. |
-| `TURN_SECRET is empty; refusing to start an open relay` | The secret didn't generate. Re-run `./update.sh`. |
+| `TURN_SECRET is empty; refusing to start an open relay` | The secret didn't generate. Run `sudo 5stack config apply`. |
 
 To confirm the API is handing out credentials, sign in and open
 `https://api.example.com/voice/ice-servers`. With no relay configured you'll see

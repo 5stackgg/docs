@@ -13,6 +13,11 @@ run:
   [Move to a New Server](/service/new-server).
 - **Back up** the panel into one encrypted file. See
   [Backups and Recovery](/service/backups).
+- **Change settings** with `5stack config`, and run the panel's scripts with
+  `5stack run`, with no git checkout. See [Command Reference](/service/cli).
+
+On the server, `5stack` on its own opens a menu of all of this. See
+[The 5stack Command](/service/command).
 
 <ArchitectureDiagram flows="running,install,update,join,migrate" />
 

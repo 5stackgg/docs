@@ -11,6 +11,8 @@ On the server, run:
 sudo 5stack uninstall
 ```
 
+Or pick **Uninstall** in the [`5stack` menu](/service/command#the-menu).
+
 It asks you to type the server's hostname to confirm. It removes, in this order:
 k3s and its data, the 5Stack systemd drop-ins and helper scripts, the k3s config
 and the Tailscale sysctl file, Tailscale, `/opt/5stack`, the install's
@@ -46,7 +48,8 @@ stops reporting.
 
 You can also do this from the panel: remove the node on the
 **Game Server Nodes** page with **Also uninstall 5Stack from the server** turned
-on. See [Remove a node](/servers/game-server-nodes/create-game-server-node#remove-a-node).
+on, or run `sudo 5stack nodes remove <name>` on the panel server. See
+[Remove a node](/servers/game-server-nodes/create-game-server-node#remove-a-node).
 
 ## Without the 5stack command
 

@@ -99,13 +99,8 @@ If you are deploying alongside 5Stack itself, ship a kustomize package and an
 from your repository, in one command:
 
 ```sh
-./plugin.sh https://github.com/5stackgg/5stack-example-plugin
+sudo 5stack run plugin.sh https://github.com/5stackgg/5stack-example-plugin
 ```
-
-::: info Panels installed before the 5Stack service
-`./plugin.sh` runs from the 5Stack-Panel checkout, on panels installed before
-the 5Stack service.
-:::
 
 It reads their site's own config — cluster, domain, whether TLS terminates at
 the cluster or in front of it, Postgres credentials — instead of asking them to

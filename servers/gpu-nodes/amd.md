@@ -42,13 +42,8 @@ to set up in K3s and no kernel parameter to add.
 
 ## 2. Run the setup script
 
-::: info Panels installed before the 5Stack service
-`./setup-gpu-nodes.sh` runs from the 5Stack-Panel checkout, on panels installed
-before the 5Stack service.
-:::
-
-[Run `setup-gpu-nodes.sh`](/servers/gpu-nodes/#run-the-setup-script) from your
-panel install directory and pick **AMD**. The script labels each selected node
+[Run `sudo 5stack run setup-gpu-nodes.sh`](/servers/gpu-nodes/#run-the-setup-script)
+on the panel server and pick **AMD**. The script labels each selected node
 `5stack-gpu-vendor=amd` and `5stack-game-streamer=true`, and removes
 `nvidia-gpu` from it, since a node carrying both stays on the NVIDIA path.
 
@@ -77,16 +72,16 @@ memory reserved for it in the BIOS. The rest of what it uses comes from system
 RAM, which CS2 also uses. Render pods default to a 16 GiB memory limit and an
 8 GiB request.
 
-::: info Panels installed before the 5Stack service
-`api-config.env` is in the 5Stack-Panel checkout, on panels installed before the
-5Stack service. Run `./update.sh` there to apply a change.
-:::
+To change that on AMD nodes, set both as whole numbers with `Mi` or `Gi`, with
+the request no larger than the limit:
 
-To change that on AMD nodes, set both
-`GAME_STREAMER_AMD_MEMORY_LIMIT` and `GAME_STREAMER_AMD_MEMORY_REQUEST` in
-`overlays/config/api-config.env` as whole numbers with `Mi` or `Gi` (for example
-`24Gi` and `12Gi`, with the request no larger than the limit), then run
-`./update.sh`. Any other value is ignored: the API logs a warning and keeps the
+```bash
+sudo 5stack config set GAME_STREAMER_AMD_MEMORY_LIMIT=24Gi GAME_STREAMER_AMD_MEMORY_REQUEST=12Gi
+```
+
+It shows the change, asks, and applies the panel again. The limit is also
+**Config → AMD GPU memory** in the [`5stack` menu](/service/command#the-menu). A
+request larger than the limit is ignored: the API logs a warning and keeps the
 defaults.
 
 If something else on the machine also uses the integrated GPU heavily, viewers

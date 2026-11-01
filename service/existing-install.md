@@ -39,6 +39,23 @@ Once the agent is installed, it takes over the panel:
 
 It leaves the checkout and its `.env` files in place.
 
+## Change settings with 5stack config
+
+From now on, updates apply the config and secrets the 5Stack service keeps, not
+the checkout's `.env` files. Change a setting with `5stack config`, and run the
+panel's scripts with `5stack run`:
+
+```bash
+sudo 5stack config set REVERSE_PROXY=true
+sudo 5stack run plugin.sh list
+```
+
+`config set` writes the change into the checkout too, so the two stay the same.
+If you edit an env file in the checkout yourself, run
+`sudo 5stack config import` to take the edit, or the next update ignores it.
+Updates warn when the checkout differs. See
+[Command Reference](/service/cli#config).
+
 ## Claim the install
 
 Open the claim link `service.sh` printed, and sign in through Steam with your
@@ -58,6 +75,7 @@ prints it again on this server. See [Backups and Recovery](/service/backups).
 ## What changes in the panel
 
 - Updates come from the panel. See [Updating](/updating).
+- Settings change with `5stack config`, not by editing the checkout. See above.
 - **Create game server node** opens a dialog that shows a command and takes a
   code from the node. See
   [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node).

@@ -12,4 +12,4 @@ also needs around 150 GB of disk for the game files and demo recordings.
 
 ## Panel Tailscale Setup
 
-Before setting up a Game Server Node, make sure your panel has Tailscale set up. On a panel installed with the 5Stack service, you give the setup page a Tailscale OAuth client, as described in [Tailscale for game server nodes](/install/#tailscale-for-game-server-nodes). For a panel installed before the 5Stack service, see [Panel Upgrade](/servers/game-server-nodes/panel-upgrade).
+Before setting up a Game Server Node, make sure your panel has Tailscale set up. You give the setup page a Tailscale API token or OAuth client, as described in [Tailscale for game server nodes](/install/#tailscale-for-game-server-nodes). For a panel without Tailscale, see [Panel Upgrade](/servers/game-server-nodes/panel-upgrade).

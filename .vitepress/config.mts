@@ -222,6 +222,7 @@ export default defineConfig({
           items: [
             { text: "How It Works", link: "/" },
             { text: "The 5stack Command", link: "/command" },
+            { text: "Command Reference", link: "/cli" },
             { text: "Diagnostics", link: "/diagnostics" },
           ],
         },

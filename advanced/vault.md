@@ -80,6 +80,29 @@ Vault is sealed or can't be reached. The 5Stack service checks every minute.
 Once Vault is back, the panel recovers by itself: it syncs the secrets again and,
 if that isn't enough, restarts External Secrets once.
 
+To see Vault's health on the panel server, run:
+
+```bash
+5stack vault status
+```
+
+It shows whether Vault answers and is unsealed, which secrets aren't syncing and
+why, and when the agent last checked. The **Vault** item in the
+[`5stack` menu](/service/command#the-menu) shows the same.
+
+If the secrets still don't sync after Vault is unsealed, sign External Secrets in
+to Vault again and resync every secret:
+
+```bash
+sudo 5stack run fix-vault.sh
+```
+
+## Changing a secret
+
+On a Vault install, change secrets in Vault. `sudo 5stack config set` refuses a
+secret and names its Vault path. Settings that aren't secrets change with
+`5stack config` as on any panel. See [Command Reference](/service/cli#config).
+
 ## Panels installed before the 5Stack service
 
 A panel that already used Vault keeps it when you

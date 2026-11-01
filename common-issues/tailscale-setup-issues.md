@@ -2,25 +2,29 @@
 
 If you are unable to obtain a Tailscale auth key when adding a new node to the panel, please check the following:
 
-::: info Panels installed before the 5Stack service
-Step 1 is for panels installed before the 5Stack service: the files are in the
-5Stack-Panel checkout. On a panel that runs the service, the Tailscale OAuth
-client comes from the [setup page](/install/#tailscale-for-game-server-nodes),
-and the steps from step 2 on still apply.
-:::
+1. **Panel settings**
 
-1. **Enviroment Variables**
+   On the panel server, check that these are present and correct:
 
-   Open `overlays/config/api-config.env` and ensure the following values are present and correct:
+   ```bash
+   5stack config get TAILSCALE_CLIENT_ID
+   5stack config get TAILSCALE_NODE_IP
+   5stack config get TAILSCALE_NET_NAME
+   ```
+
    - `TAILSCALE_CLIENT_ID` ([OAuth Settings](https://login.tailscale.com/admin/settings/oauth))
    - `TAILSCALE_NODE_IP` ([Machines](https://login.tailscale.com))
    - `TAILSCALE_NET_NAME` ([DNS Settings](https://login.tailscale.com/admin/dns))
 
-   Open `overlays/local-secrets/tailscale-secrets.env` and confirm:
-   - `TAILSCALE_SECRET_ID` is set
+   A panel set up on the setup page keeps its OAuth client in the 5Stack
+   service, so `TAILSCALE_CLIENT_ID` can be empty there, and the panel still
+   adds game server nodes.
+
+   To set or replace the OAuth client, run `sudo 5stack config tailscale`. It
+   checks the client with Tailscale before it saves anything.
 
    :::info
-   You cannot view your secret after it has been created. If you lose your secret. You will need to generate a new OAuth client (see step 4).
+   You cannot view your secret after it has been created. If you lose your secret, generate a new OAuth client (see step 3) and run `sudo 5stack config tailscale` again.
    :::
 
 2. **Tag / Access Controls / Auto Approvers**

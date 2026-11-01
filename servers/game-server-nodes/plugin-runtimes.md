@@ -61,20 +61,12 @@ A node pinned to a plugin version stays on the framework it was pinned under, ev
 
 ## Advanced: custom images
 
-If you build your own plugin image, or mirror the official ones into a private registry, set `SERVER_IMAGE` on the panel API:
+If you build your own plugin image, or mirror the official ones into a private registry, set `SERVER_IMAGE` to the full image reference on the panel server, or pick **Config → Game server image** in the [`5stack` menu](/service/command#the-menu):
 
-::: info Panels installed before the 5Stack service
-`api-config.env` is in the 5Stack-Panel checkout, on panels installed before the
-5Stack service. Run `./update.sh` there to apply a change.
-:::
-
-1. Open `INSTALL_DIR/overlays/config/api-config.env`.
-2. Add the full image reference:
-
-```sh
-SERVER_IMAGE=registry.example.com/my-org/my-game-server:latest
+```bash
+sudo 5stack config set SERVER_IMAGE=registry.example.com/my-org/my-game-server:latest
 ```
 
-3. Run `./update.sh`.
+It shows the change, asks, and applies the panel again. `sudo 5stack config unset SERVER_IMAGE` goes back to the Plugin Runtime setting.
 
 `SERVER_IMAGE` **overrides the Plugin Runtime setting**. While it is set, the selector in Settings is disabled and shows a note saying the runtime is managed by the environment. Version pinning still applies, replacing the image tag with `:v{version}`.

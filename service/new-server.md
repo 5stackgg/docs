@@ -13,7 +13,8 @@ The diagram shows the old panel. Click a box to see what it does.
 - The new server meets the [Requirements](/install/requirements) and is fresh:
   not already a panel or a game server node.
 - The old panel has Tailscale set up, as it needs for
-  [game server nodes](/servers/game-server-nodes/create-game-server-node). The
+  [game server nodes](/servers/game-server-nodes/create-game-server-node). If it
+  doesn't, add it with `sudo 5stack config tailscale` on the old server. The
   two servers move the data directly over your Tailscale network, never through
   the 5Stack cloud.
 - The old panel runs the 5Stack service, and you have claimed its install. An

@@ -27,6 +27,14 @@ channel. Under **When to update**, pick one:
   live. If matches are still live, it tries again in the next window. It never
   pauses a busy server.
 
+On the panel server, `5stack update-policy` sets the same thing:
+
+```bash
+5stack update-policy idle --window 03:00-06:00
+```
+
+Use `manual`, `scheduled --window <start>-<end>` or `idle --window <start>-<end>`.
+
 ## Update now
 
 When a release is waiting for you, the update center in the panel's header shows
@@ -53,8 +61,19 @@ On the panel server, run:
 ```
 
 It applies the newest release on your channel straight away, by the same rules
-as **Update Now**. It needs no sudo once you are in the `5stack` group. See
-[The 5stack Command](/service/command).
+as **Update Now**. It needs no sudo once you are in the `5stack` group. You can
+also pick **Updates** in the [`5stack` menu](/service/command#the-menu).
+
+To schedule it instead, like **Pick a time**, give a time:
+
+```bash
+5stack update --at 03:00
+```
+
+`03:00` is the next time that clock time comes round on the server. An ISO time
+such as `2026-11-02T03:00:00Z` works too, and `--version <version>` picks another
+release. When the time comes, it runs like an update scheduled in the panel. See
+[Command Reference](/service/cli#updates).
 
 ## What players see
 

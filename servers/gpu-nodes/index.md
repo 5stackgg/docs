@@ -57,16 +57,14 @@ NVIDIA also needs its container runtime. Follow the guide for your GPU:
 
 ### Run the setup script
 
-::: info Panels installed before the 5Stack service
-`./setup-gpu-nodes.sh` runs from the 5Stack-Panel checkout, on panels installed
-before the 5Stack service.
-:::
-
-From your panel install directory, run:
+On the panel server, run:
 
 ```bash
-./setup-gpu-nodes.sh
+sudo 5stack run setup-gpu-nodes.sh
 ```
+
+Or pick **GPU node setup** in the [`5stack` menu](/service/command#the-menu). It
+runs the script from the installed release, with the panel's config.
 
 The script will walk you through:
 
@@ -76,9 +74,10 @@ The script will walk you through:
 4. **Steam credentials**, username and password for a dedicated account the render pods use to download CS2. Asked only when they aren't saved yet.
 5. **Playback domain**, the domain viewers' browsers load [game streams](/advanced/game-streaming/) from (default `hls.<your web domain>`). Asked every run, with the current value as the default.
 
-Your selections are persisted to `.5stack-env.config`, and the script finishes by
-running `update.sh` to apply them. On NVIDIA, that also deploys the Kubernetes
-device plugin so pods can request the GPU. AMD needs no device plugin.
+The 5Stack service keeps your selections, and the script finishes by applying
+the panel again. On NVIDIA, that also deploys the Kubernetes device plugin so
+pods can request the GPU. AMD needs no device plugin. Like an update, the apply
+holds new matches and waits for live ones first if it has to restart something.
 
 ::: warning Steam account must NOT have 2FA / Steam Guard
 The render pods log into Steam non-interactively via `steamcmd` to download and run CS2. Steam Guard / Steam Mobile Authenticator will break this, every Job will get stuck waiting for a code that nobody can enter.

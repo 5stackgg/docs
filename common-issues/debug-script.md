@@ -1,22 +1,18 @@
 # Debugging the 5Stack Panel
 
-If requested to debug the 5Stack Panel, run the debug script:
-
-::: info Panels installed before the 5Stack service
-`./debug.sh` runs from the 5Stack-Panel checkout, on panels installed before the
-5Stack service. On a panel that runs the service, 5Stack support asks the panel
-for a debug bundle instead. See
-[Diagnostics](/service/diagnostics#debug-bundles).
-:::
-
-1. Navigate to the installation directory.
-2. Execute
+If 5Stack support asks you to debug the panel, run the debug script on the panel
+server:
 
 ```bash
-./debug.sh
+sudo 5stack run debug.sh
 ```
 
-This will create an output file in the current directory.
+Or pick **Diagnostics → Debug bundle** in the
+[`5stack` menu](/service/command#the-menu). It saves pod logs, events and
+certificate status to a file and prints where it saved it.
+
+Support can also ask the panel for a debug bundle, with player data removed. See
+[Diagnostics](/service/diagnostics#debug-bundles).
 
 To see what the 5Stack service itself is doing, run `5stack status`, or
 `journalctl -u 5stack -f` on the server.

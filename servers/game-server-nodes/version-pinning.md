@@ -8,13 +8,13 @@ Pinning is configured **per node**. There is no global pin, so you can hold one 
 
 Downloading anything other than the latest build requires an authenticated Steam account, anonymous SteamCMD can only fetch the current build. To pin CS2 builds you must provide Steam credentials:
 
-::: info Panels installed before the 5Stack service
-`steam-secrets.env` is in the 5Stack-Panel checkout, on panels installed before
-the 5Stack service. Run `./update.sh` there to apply a change.
-:::
+On the panel server, run this and type the account name and password when it asks. Both are typed hidden:
 
-1. Open `INSTALL_DIR/overlays/local-secrets/steam-secrets.env` and set the `STEAM_USER` and `STEAM_PASSWORD` values.
-2. Run `./update.sh`.
+```bash
+sudo 5stack config set STEAM_USER= STEAM_PASSWORD=
+```
+
+It shows the change, asks, and applies the panel again.
 
 ::: danger
 You should use an account dedicated to updating servers, as we are unable to provide two-factor authentication automatically.

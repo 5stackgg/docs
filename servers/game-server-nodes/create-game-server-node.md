@@ -13,14 +13,16 @@ what it does.
 - The node meets the [game server node requirements](./requirements.md). It runs
   Linux on x86_64 or arm64, with `curl` and OpenSSL 3 or newer. A fresh Ubuntu
   LTS install is recommended.
-- Your panel has Tailscale set up. You give it a Tailscale OAuth client during
-  [install](/install/#tailscale-for-game-server-nodes).
+- Your panel has Tailscale set up. You give it a Tailscale API token or OAuth
+  client during [install](/install/#tailscale-for-game-server-nodes), or later
+  with `sudo 5stack config tailscale` on the panel server.
 
 ## Add the node
 
 1. In the panel, go to **Game Server Nodes** and click
    **Create game server node**.
-2. Copy the command the dialog shows. It looks like this:
+2. Copy the command the dialog shows. `5stack nodes join-command` on the panel
+   server prints the same one. It looks like this:
 
    ```bash
    curl -fsSL https://get.5stack.gg | sudo sh -s -- join --panel-key q7Hc2Lw9Zf0mR1xT…
@@ -121,6 +123,12 @@ where `CTID` is the container's ID:
 
 4. Restart the container with `pct reboot CTID` and run the command again.
 
+## List the nodes
+
+On the panel server, `5stack nodes list` lists every node in the cluster: whether
+it is Ready, which one is the panel's own, whether it has the agent, and any
+removal in progress.
+
 ## Nodes added the old way
 
 Nodes that joined with the old install script keep working. The panel installs
@@ -136,6 +144,9 @@ On the panel's **Game Server Nodes** page, remove the node. Turn on
 this can take a few minutes, and you can close the dialog while it runs. The node
 is removed from the list once the uninstall finishes. If it fails, the node is
 kept, and you can **Try Again** or **Remove Anyway**.
+
+From the panel server, `sudo 5stack nodes remove <name>` does the same,
+uninstall included. It asks you to type the node's name first.
 
 To remove 5Stack from the node yourself instead, run `sudo 5stack uninstall` on
 it. See [Uninstall](/uninstall).
