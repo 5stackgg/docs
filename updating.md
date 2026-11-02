@@ -27,6 +27,11 @@ channel. Under **When to update**, pick one:
   live. If matches are still live, it tries again in the next window. It never
   pauses a busy server.
 
+A new panel starts on **When idle** from 03:00 to 06:00 server time, so updates
+install automatically overnight when no matches are live. A panel moved over
+from the git checkout starts on **Manual**. The same choice covers the 5Stack
+service itself: on **Manual** it waits for **Update Now** too.
+
 On the panel server, `5stack update-policy` sets the same thing:
 
 ```bash
