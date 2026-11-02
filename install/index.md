@@ -141,8 +141,9 @@ network. Pick one of these on the setup page:
 
   2. Open
      [Trust credentials](https://login.tailscale.com/admin/settings/trust-credentials/add)
-     and add an OAuth client with **Auth Keys** write access, tagged
-     `tag:fivestack`.
+     and add an OAuth client with **Auth Keys** write and **Devices** write
+     (core) access, tagged `tag:fivestack`. Devices write lets the panel
+     remove a game node's device from your tailnet when you remove the node.
   3. Paste its client ID and secret into the setup page. Tailscale shows the
      secret only once.
 - **Skip for now.** No game server node can join until you add it. Add it later
