@@ -73,3 +73,9 @@ On a panel that also runs game servers, use `k3s` instead of `k3s-agent` in step
 ## k3s on a hard drive
 
 k3s keeps its container images in `/var/lib/rancher`. Moving it on a running node means reinstalling k3s, so the node only warns about it. When you set a node up, mount the fast disk, or a folder on it, at `/var/lib/rancher` before you run the join command.
+
+## The panel server
+
+The panel's own server shows an amber warning on its Overview page when the database (`/opt/5stack/timescaledb`), search (`/opt/5stack/typesense`), file storage (`/opt/5stack/minio`), Redis (`/opt/5stack/redis`) or k3s (`/var/lib/rancher/k3s/server`) is on a spinning hard drive. Pages load slower, and matches can be slow to start. It uses the same checks as a game node, so it stays quiet when it can't be sure, such as inside a virtual machine.
+
+These folders hold the panel's data, so the panel only warns about them. Set `/opt/5stack` and `/var/lib/rancher` up on an SSD or NVMe disk before you install the panel.
