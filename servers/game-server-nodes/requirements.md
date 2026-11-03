@@ -10,6 +10,10 @@ memory** when empty, more once players join. K3s and the game server node
 connector hold back one core and a few hundred MB for themselves. Each node
 also needs around 150 GB of disk for the game files and demo recordings.
 
+## Storage
+
+Put CS2's server files and k3s on an SSD or NVMe disk. A hard drive is fine for demo recordings, but on a hard drive CS2 and streams start slower and matches can time out. See [Storage](/servers/game-server-nodes/storage).
+
 ## Panel Upgrade
 
 Before setting up a Game Server Node, make sure your panel is upgraded as described in the [Panel Install & Upgrade instructions](/servers/game-server-nodes/panel-upgrade).
