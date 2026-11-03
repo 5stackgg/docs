@@ -36,8 +36,11 @@ You should see `Kernel driver in use: amdgpu` under your GPU, and a
 - **Cloud and virtual machine kernels** leave the module out. Install it with
   `sudo apt install linux-firmware linux-modules-extra-$(uname -r)`.
 - **Recent GPUs** need a recent kernel. On Ubuntu LTS, install the HWE kernel.
+- **`nomodeset`** on the kernel command line (`cat /proc/cmdline`) stops `amdgpu`
+  from loading. Remove it from `GRUB_CMDLINE_LINUX_DEFAULT` in `/etc/default/grub`
+  and run `sudo update-grub`.
 
-Reboot after either. Unlike [NVIDIA](/servers/gpu-nodes/nvidia), there is nothing
+Reboot after any of these. Unlike [NVIDIA](/servers/gpu-nodes/nvidia), there is nothing
 to set up in K3s and no kernel parameter to add.
 
 ## 2. Run the setup script
