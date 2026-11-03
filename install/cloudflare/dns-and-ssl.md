@@ -16,6 +16,26 @@ If you are using a deeply nested subdomain such as `*.5stack.example.com`, note 
 
 Otherwise, keep 5Stack on a single-level wildcard (`*.example.com`), or keep the deeper names DNS only (grey cloud). Managed setup does the second for you: a name the certificate doesn't cover goes straight to your server.
 
+### Keep every address one level deep
+
+A panel at `panel.example.com` can name its other addresses beside it instead of under it, so the free certificate covers them all:
+
+| Address | Under the panel | One level deep |
+| --- | --- | --- |
+| API | `api.panel.example.com` | `panel-api.example.com` |
+| Live updates | `ws.panel.example.com` | `panel-ws.example.com` |
+| Match relay | `tv.panel.example.com` | `panel-tv.example.com` |
+| Demo uploads | `demos.panel.example.com` | `panel-demos.example.com` |
+| Streams | `hls.panel.example.com` | `panel-hls.example.com` |
+| File storage console | `console.panel.example.com` | `panel-console.example.com` |
+| Search | `search.panel.example.com` | `panel-search.example.com` |
+
+On the setup page, tick **Keep every address one level deep** on the Domain and DNS step. It shows when your panel's domain is below its zone's root, and it's ticked for you when Cloudflare is connected and would otherwise keep those addresses off its proxy. The classic installer asks the same as a yes or no question. Without managed Cloudflare, create DNS records for the names in the last column.
+
+::: warning Sign-in cookie
+The panel and its API then share only `example.com`, so the sign-in cookie is set for all of `example.com`. Every other site on `example.com` receives the panel's sign-in cookie. Pick this only if you trust every site on that domain, or give the panel a domain of its own.
+:::
+
 ## Certificate generation fails behind the Cloudflare proxy
 
 With the orange cloud, Let's Encrypt checks your domain over plain HTTP, through Cloudflare, at `http://yourdomain.com/.well-known/acme-challenge/…`. With SSL/TLS **Full** or **Full (strict)**, Cloudflare passes a plain HTTP request to your server as plain HTTP, and the panel answers the check itself. The panel sends every other plain HTTP request to HTTPS on its own.
