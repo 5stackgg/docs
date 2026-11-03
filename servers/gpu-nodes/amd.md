@@ -74,8 +74,8 @@ RAM, which CS2 also uses. Render pods default to a 16 GiB memory limit and an
 `GAME_STREAMER_AMD_MEMORY_LIMIT` and `GAME_STREAMER_AMD_MEMORY_REQUEST` in
 `overlays/config/api-config.env` as whole numbers with `Mi` or `Gi` (for example
 `24Gi` and `12Gi`, with the request no larger than the limit), then run
-`./update.sh`. Any other value is ignored: the API logs a warning and keeps the
-defaults.
+`./update.sh`. Leave both unset to keep the defaults. Any other value stops the
+API at boot, and its log names the values it rejected.
 
 If something else on the machine also uses the integrated GPU heavily, viewers
 can see short stutters while it saturates the GPU.
