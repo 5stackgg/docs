@@ -212,7 +212,7 @@ export default defineConfig({
             },
             { text: "Updating", link: "/updating" },
             { text: "Move to a New Server", link: "/service/new-server" },
-            { text: "Backups and Recovery", link: "/service/backups" },
+            { text: "Backups", link: "/install/backups" },
             { text: "Uninstall", link: "/uninstall" },
           ],
         },

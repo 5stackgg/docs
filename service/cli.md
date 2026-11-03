@@ -218,13 +218,14 @@ See [HashiCorp Vault](/advanced/vault).
 
 ## Backups and diagnostics
 
-| Command                         | What it does                                                                          |
-| ------------------------------- | ------------------------------------------------------------------------------------- |
-| `5stack backup`                 | Makes an encrypted backup of the panel. See [Backups and Recovery](/service/backups). |
-| `sudo 5stack restore [<file>]`  | Restores a backup, with the recovery key typed on the server.                         |
-| `sudo 5stack recovery-key show` | Prints the recovery key.                                                              |
-| `5stack recovery-key rotate`    | Replaces the recovery key.                                                            |
-| `5stack diagnostics on`, `off`  | Turns crash reports on or off. See [Diagnostics](/service/diagnostics).               |
+| Command                         | What it does                                                                                                                                 |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `5stack backup`                 | Makes a recovery backup of the panel. See [Backups](/install/backups).                                                                       |
+| `5stack backup-policy`          | Sets when nightly recovery backups run (`--nightly on\|off --at HH:MM`), and turns the 5Stack cloud copy on or off (`--cloud-copy on\|off`). |
+| `sudo 5stack restore [<file>]`  | Restores a recovery backup, with the recovery key typed on the server.                                                                       |
+| `sudo 5stack recovery-key show` | Prints the recovery key.                                                                                                                     |
+| `5stack recovery-key rotate`    | Replaces the recovery key.                                                                                                                   |
+| `5stack diagnostics on`, `off`  | Turns crash reports on or off. See [Diagnostics](/service/diagnostics).                                                                      |
 
 ## Moving, leaving and uninstalling
 

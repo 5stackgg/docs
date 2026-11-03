@@ -266,7 +266,7 @@ happens when you answered in the terminal.
 Save the recovery key and the install id together somewhere safe, such as a
 password manager. The key never leaves your server, so 5Stack doesn't have it.
 The installer then asks you to type the key's last 4 characters, to confirm you
-saved it. See [Backups and Recovery](/service/backups).
+saved it. See [Backups](/install/backups#the-recovery-key).
 
 If you chose low latency, the server reboots a minute later.
 
