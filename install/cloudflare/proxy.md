@@ -18,6 +18,8 @@ Let's Encrypt checks your domain over plain HTTP, through Cloudflare. Turn off *
 
 Leave `demos.yourdomain.com` **DNS only** (grey cloud). Game servers upload whole demos there in one request, which can be larger than Cloudflare's 100 MB upload limit on the Free and Pro plans.
 
+Leave `hls.yourdomain.com` **DNS only** too. Cloudflare's CDN terms on the Free, Pro and Business plans don't allow serving video through the proxy; the [stream relay Worker](/install/cloudflare/#streams-and-the-stream-relay-worker) is the way to put streams behind Cloudflare.
+
 ## WebSockets
 
 `ws.yourdomain.com` must be able to upgrade connections. Cloudflare enables WebSockets by default (**Network → WebSockets**); if live match data or chat never connects, confirm it is still on.
