@@ -45,7 +45,7 @@ nvidia-smi
 
 You should see your GPU(s) listed with the driver version.
 
-::: warning Secure Boot
+::: warning Secure Boot {#secure-boot}
 If Secure Boot is enabled, `nvidia-smi` won't load the driver because the kernel module isn't signed by a trusted key. Enroll NVIDIA's Machine Owner Key so the module is accepted:
 
 ```bash
@@ -53,9 +53,11 @@ sudo mokutil --import /var/lib/shim-signed/mok/MOK.der
 ```
 
 You'll be prompted to set a one-time password. Reboot, complete MOK enrollment in the blue MOK Manager screen using that password, then re-run `nvidia-smi`. Alternatively, disable Secure Boot in your firmware.
+
+5Stack warns on the node while Secure Boot keeps the NVIDIA driver from loading.
 :::
 
-## 3. Turn on kernel modesetting
+## 3. Turn on kernel modesetting {#modeset}
 
 Clip renders read frames straight from the GPU, which needs the driver's kernel modesetting. Check it:
 
@@ -76,7 +78,7 @@ sudo update-grub
 sudo reboot
 ```
 
-The check should now print `Y`. Without it, renders still work but fall back to grabbing the X screen, and each clip logs `nvidia-drm modeset is OFF — using ximagesrc`.
+The check should now print `Y`. Without it, renders still work but fall back to grabbing the X screen, and each clip logs `nvidia-drm modeset is OFF — using ximagesrc`. 5Stack also warns on the node while modesetting is off.
 
 ## 4. Install the NVIDIA runtime
 
