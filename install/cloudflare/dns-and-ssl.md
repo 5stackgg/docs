@@ -30,7 +30,12 @@ A panel at `panel.example.com` can name its other addresses beside it instead of
 | File storage console | `console.panel.example.com` | `panel-console.example.com` |
 | Search | `search.panel.example.com` | `panel-search.example.com` |
 
-On the setup page, tick **Keep every address one level deep** on the Domain and DNS step. It shows when your panel's domain is below its zone's root, and it's ticked for you when Cloudflare is connected and would otherwise keep those addresses off its proxy. The classic installer asks the same as a yes or no question. Without managed Cloudflare, create DNS records for the names in the last column.
+When the panel's domain is one level below its zone and the DNS is on Cloudflare, the setup page asks **Which Cloudflare plan is example.com on?** If you connected Cloudflare, it doesn't ask: it moves the addresses when your zone's certificate doesn't cover the deeper names.
+
+- **Free:** every address moves one level deep, and an alert lists the new names. Untick **Keep every address one level deep** to keep them under the panel; they then go straight to your server, without Cloudflare's proxy.
+- **Pro or Higher:** the addresses stay under the panel. You can still tick the checkbox yourself.
+
+A domain at its zone's root never needs this. The classic installer asks the same plan question. Without managed Cloudflare, create DNS records for the names in the last column.
 
 ::: warning Sign-in cookie
 The panel and its API then share only `example.com`, so the sign-in cookie is set for all of `example.com`. Every other site on `example.com` receives the panel's sign-in cookie. Pick this only if you trust every site on that domain, or give the panel a domain of its own.
