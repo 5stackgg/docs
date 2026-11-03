@@ -12,7 +12,7 @@ The orange cloud doesn't need reverse proxy mode. Answer **Straight to this serv
 
 ## Let's Encrypt behind the orange cloud
 
-Let's Encrypt checks your domain over plain HTTP, through Cloudflare. Turn off **Always Use HTTPS** (SSL/TLS → Edge Certificates), and leave `/.well-known/acme-challenge/` out of any Redirect Rule that sends HTTP to HTTPS. The panel sends visitors to HTTPS itself. See [Certificate generation fails behind the Cloudflare proxy](/install/cloudflare/dns-and-ssl#certificate-generation-fails-behind-the-cloudflare-proxy).
+Let's Encrypt checks your domain over plain HTTP, through Cloudflare. Send plain HTTP to HTTPS with a Redirect Rule that leaves `/.well-known/acme-challenge/` out, and turn off **Always Use HTTPS** (SSL/TLS → Edge Certificates), which the rule replaces. The steps are in [Certificate generation fails behind the Cloudflare proxy](/install/cloudflare/dns-and-ssl#certificate-generation-fails-behind-the-cloudflare-proxy).
 
 ## Keep demo uploads off the proxy
 
