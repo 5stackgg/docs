@@ -13,9 +13,9 @@ what it does.
 - The node meets the [game server node requirements](./requirements.md). It runs
   Linux on x86_64 or arm64, with `curl` and OpenSSL 3 or newer. A fresh Ubuntu
   LTS install is recommended.
-- Your panel has Tailscale set up. You give it a Tailscale API token or OAuth
-  client during [install](/install/#tailscale-for-game-server-nodes), or later
-  with `sudo 5stack config tailscale` on the panel server.
+- Your panel has Tailscale set up. You paste a Tailscale access token during
+  [install](/install/#game-server-nodes), or add an OAuth client later with
+  `sudo 5stack config tailscale` on the panel server.
 
 ## Add the node
 

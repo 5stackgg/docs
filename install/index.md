@@ -31,7 +31,7 @@ Have these ready:
 - The Steam account you want as the panel's first admin.
 - Optional: a [Tailscale](https://tailscale.com) account, if you will add
   [game server nodes](/servers/game-server-nodes/). See
-  [Tailscale for game server nodes](#tailscale-for-game-server-nodes).
+  [Game server nodes](#game-server-nodes).
 - Optional: S3 storage for demos and clips, with two buckets. See
   [Storage](#storage).
 
@@ -68,14 +68,17 @@ you close it. If it expires, run the install command again for a new one.
 Open the link from the terminal. Copy the whole line: the part after `#` carries
 your server's key and never reaches 5Stack.
 
-The page shows the server it is setting up and its key fingerprint, such as
-`8F2C 19AA 03D1 7E55`. Check it matches the fingerprint in your terminal.
+The banner at the top shows the server the page is connected to: its hostname,
+IP address and install ID. Hover or tab to **Connected** for its key fingerprint,
+such as `8F2C 19AA 03D1 7E55`, and check it matches the fingerprint in your
+terminal. If the page loses its connection, **Connected** turns to
+**Reconnecting…**.
 
 First, **sign in through Steam**. This claims the server. The Steam account you
 sign in with becomes the panel's first admin, and 5Stack links the install to
 your account.
 
-Then the page walks you through nine steps. Your server checks each answer while
+Then the page walks you through the steps. Your server checks each answer while
 you fill the page in: it looks up your DNS, tries the Steam key, and tests the
 Tailscale and S3 credentials, and the page shows each result as it comes back.
 You can go on past a step that fails and fix it before you send.
@@ -89,17 +92,21 @@ You can go on past a step that fails and fix it before you send.
    Cloudflare. See [Cloudflare](/install/cloudflare/) and
    [Reverse Proxy](/install/reverse-proxy).
 3. **Steam.** Your Steam Web API key. The server checks it with Steam.
-4. **Tailscale, for game server nodes.** Optional. See
-   [Tailscale for game server nodes](#tailscale-for-game-server-nodes).
+4. **Game Server Nodes.** Optional. One Tailscale access token sets up the
+   private network game server nodes join. See
+   [Game server nodes](#game-server-nodes).
 5. **Security updates.** Turns on automatic security updates. See
    [Security updates](#security-updates).
 6. **Performance.** The CPU governor, and a low-latency kernel option. See
    [Performance](#performance).
 7. **Storage.** Keep demos and clips on this server, or put them in S3. See
    [Storage](#storage).
-8. **GPU nodes.** Nothing to answer. It shows what a
-   [GPU node](/servers/gpu-nodes/) adds, and what it needs, so you can add one
-   later.
+8. **GPU nodes.** Only when this server has an NVIDIA or AMD graphics card. It
+   names the card and asks whether to use this server as a
+   [GPU node](/servers/gpu-nodes/) for streaming and clips. It's off unless you
+   choose it. A GPU node also needs a Steam account without Steam Guard, which
+   you add on the GPU Nodes page of your panel. To add a GPU node later, open
+   Game Server Nodes in your panel.
 9. **Review.** Every answer is checked again. Fix anything that fails, then
    click **Send to Server**.
 
@@ -120,42 +127,86 @@ If the page says **Don't continue: the server keys don't match**, the key in you
 link is not the one 5Stack sent. Don't send anything. Press Enter in the terminal
 and answer there instead.
 
-### Tailscale for game server nodes
+### Game server nodes
 
-Game server nodes, GPU nodes included, reach your panel over your own Tailscale
-network. Pick one of these on the setup page:
+Matches run on game server nodes: other machines, near your players or wherever
+you have spare hardware. Your panel stays responsive, and you add capacity by
+adding machines. Each node joins your panel over a private network,
+[Tailscale](https://tailscale.com). The panel sends it matches, players connect
+straight to the node, and adding a node later takes a short code. GPU nodes are
+game server nodes too.
 
-- **Paste a Tailscale API token.** The easiest. Make an access token with a
-  1-day expiry under
-  [Settings → Keys](https://login.tailscale.com/admin/settings/keys). At install,
-  your server adds `tag:fivestack` to your tailnet policy, makes an OAuth client
-  that can only make `tag:fivestack` keys, and revokes the token. It never saves
-  the token.
-- **Use an OAuth client.** Set it up yourself, in about two minutes:
-  1. In the Tailscale admin console, open **Access controls** and add the tag
-     owner:
+The setup page asks for one thing, a temporary Tailscale access token:
 
-     ```json
-     "tagOwners": { "tag:fivestack": ["autogroup:admin"] }
-     ```
+1. In Tailscale's admin, go to
+   [Settings → Keys](https://login.tailscale.com/admin/settings/keys) →
+   **Generate access token**.
+2. Set it to expire in 1 day.
+3. Paste it into the setup page.
 
-  2. Open
-     [Trust credentials](https://login.tailscale.com/admin/settings/trust-credentials/add)
-     and add an OAuth client with **Auth Keys** write and **Devices** write
-     (core) access, tagged `tag:fivestack`. Devices write lets the panel
-     remove a game node's device from your tailnet when you remove the node.
-  3. Paste its client ID and secret into the setup page. Tailscale shows the
-     secret only once.
-- **Skip for now.** No game server node can join until you add it. Add it later
-  on the panel server with `sudo 5stack config tailscale`, which asks for an
-  OAuth client.
+Make the token from an Owner, Admin or Network admin account, so it can edit
+your tailnet policy. Your server checks it while you fill in the page, without
+changing anything. At install, it:
 
-The server checks the token or client before you send: that the token may edit
-your tailnet policy, or that the client can make a `tag:fivestack` key. If your
-tailnet policy is managed in GitOps, the token can't edit it, so use an OAuth
-client and add the tag owner in your repository.
+1. Adds what game nodes need to your
+   [tailnet policy](https://login.tailscale.com/admin/acls/file), only where
+   it's missing, and keeps every other line and comment as it is:
 
-The panel uses the OAuth client to make a single-use key for each node you add.
+   ```json
+   "tagOwners": {
+     "tag:fivestack": ["autogroup:admin"],
+   },
+   "autoApprovers": {
+     "routes": {
+       "10.42.0.0/16": ["tag:fivestack"],
+     },
+   },
+   "grants": [
+     {
+       "src": ["tag:fivestack", "10.42.0.0/16"],
+       "dst": ["tag:fivestack", "10.42.0.0/16"],
+       "ip": ["*"],
+     },
+   ],
+   ```
+
+   `10.42.0.0/16` is the range the panel's pods use. The grant is left out when
+   your policy already lets that traffic through, such as Tailscale's default
+   allow-everything rule.
+2. Makes its own key for adding game nodes, an OAuth client that can only add
+   `tag:fivestack` devices and remove them again, and tests it once by making a
+   single-use key and deleting it. You never make or manage this client.
+3. Deletes the token. If Tailscale doesn't let the token delete itself, the
+   page and the terminal say so: it expires on its own within a day, or delete
+   it under Settings → Keys.
+
+The token is never saved. The panel uses its own key to make a single-use key
+for each node you add.
+
+If your tailnet policy is managed in GitOps, 5Stack doesn't edit it. The page
+shows the lines above: add them in your repository, then press **Check Again**.
+The same happens if Tailscale refuses the edit.
+
+Already have an OAuth client of your own? Open **Advanced** under the token
+field and paste its client ID and secret instead.
+
+#### Use your own OAuth client
+
+Only if you'd rather not paste a token, or for a panel that gets Tailscale later
+with `sudo 5stack config tailscale`:
+
+1. In the Tailscale admin console, open
+   [Access controls](https://login.tailscale.com/admin/acls/file) and add the
+   lines above.
+2. Open
+   [Trust credentials](https://login.tailscale.com/admin/settings/trust-credentials/add)
+   and add an OAuth client with **Auth Keys** write and **Devices** write
+   (core) access, tagged `tag:fivestack`. Devices write lets the panel remove a
+   game node's device from your tailnet when you remove the node.
+3. Paste its client ID and secret. Tailscale shows the secret only once.
+
+**Skip for Now** leaves Tailscale for later; no game server node can join until
+it's set up. Add it later on the panel server with `sudo 5stack config tailscale`.
 
 ### Security updates
 
@@ -196,7 +247,7 @@ are yours. Database backups need an `https` endpoint on port 443. See
 ## Or answer in the terminal
 
 Press Enter in the terminal instead of opening the link. The installer walks you
-through the same nine steps there, and checks each answer as you enter it:
+through the same steps there, and checks each answer as you enter it:
 
 ```
 9 steps. Enter keeps the answer in [brackets]. Type back to return to the step before.
@@ -206,7 +257,7 @@ Panel domain:
 
 - Enter keeps the answer in brackets, and `back` returns to the step before.
 - A failed check asks again. Press Enter to check again, or type `next` to go on
-  and fix it before installing. At the Tailscale step, `skip` skips it, and at
+  and fix it before installing. At the Game Server Nodes step, `skip` skips it, and at
   the storage step, `local` keeps files on this server.
 - Keys and secrets are read without echo and shown masked.
 - The review step checks everything again, sends you back to any step that still
@@ -224,8 +275,9 @@ the Steam key masked, and checks them all again. If nothing failed, it asks
 claimed the install, then press Enter.
 
 These stop the install until you fix them: a Steam key Steam refuses, a
-hostname that is missing or points somewhere else, Tailscale credentials that
-don't work (unless you skipped Tailscale), and S3 keys or buckets that don't
+hostname that is missing or points somewhere else, a Tailscale token or client
+that doesn't work, or a tailnet policy that still needs the 5Stack lines (unless
+you skipped Game Server Nodes), and S3 keys or buckets that don't
 work (unless files stay on the server). Fix them on the page and send again, or
 press Enter and answer in the terminal. Everything else only warns: a missing
 `hls.` record, which only GPU live streams use, less than 200 GB free, a check
