@@ -2,23 +2,29 @@
 
 Cloudflare acts as a reverse proxy when you enable **Proxied** DNS (the orange cloud). Incoming traffic to your domain first passes through Cloudflare before reaching your server, providing DDoS protection and performance benefits.
 
-## Tell 5Stack it is behind a proxy
+With setup managed by 5Stack, all of this page is done for you. See [Which setup do I want?](/install/cloudflare/#which-setup-do-i-want).
 
-The installer asks whether you're using a reverse proxy. If your DNS records are proxied, answer **yes**, or set it later in `INSTALL_DIR/.5stack-env.config`:
+## Keep the panel's own certificates
 
-```env
-REVERSE_PROXY=true
-```
+The orange cloud doesn't need reverse proxy mode. Answer **Straight to this server** on the setup page, as with the grey cloud: the panel keeps getting its own Let's Encrypt certificates, and Cloudflare checks them with SSL/TLS **Full (strict)**.
 
-Re-run `./update.sh` after changing it. See [Reverse Proxy](/install/reverse-proxy) for details.
+[Reverse proxy mode](/install/reverse-proxy) is the alternative, for when something else terminates HTTPS in front of the panel. The panel then serves a certificate of its own and never asks Let's Encrypt, and Cloudflare must be on **Full**, not Full (strict).
 
-## Allow Let's Encrypt through
+## Let's Encrypt behind the orange cloud
 
-The proxy blocks the HTTP challenge Let's Encrypt uses to issue certificates. Add a redirect rule exception for `/.well-known/acme-challenge/*`. See [DNS & SSL](/install/cloudflare/dns-and-ssl#certificate-generation-fails-behind-the-cloudflare-proxy).
+Let's Encrypt checks your domain over plain HTTP, through Cloudflare. Turn off **Always Use HTTPS** (SSL/TLS → Edge Certificates), and leave `/.well-known/acme-challenge/` out of any Redirect Rule that sends HTTP to HTTPS. The panel sends visitors to HTTPS itself. See [Certificate generation fails behind the Cloudflare proxy](/install/cloudflare/dns-and-ssl#certificate-generation-fails-behind-the-cloudflare-proxy).
+
+## Keep demo uploads off the proxy
+
+Leave `demos.yourdomain.com` **DNS only** (grey cloud). Game servers upload whole demos there in one request, which can be larger than Cloudflare's 100 MB upload limit on the Free and Pro plans.
 
 ## WebSockets
 
 `ws.yourdomain.com` must be able to upgrade connections. Cloudflare enables WebSockets by default (**Network → WebSockets**); if live match data or chat never connects, confirm it is still on.
+
+## Bot Fight Mode
+
+Turn **Bot Fight Mode** off (Security → Bots). It challenges the game servers and the 5Stack service when they talk to the panel, and they can't answer a challenge.
 
 ## Ports
 

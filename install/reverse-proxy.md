@@ -22,9 +22,9 @@ Point your proxy at the node over HTTPS on port 443 (or your `HTTPS_PORT`), not 
 
 ## Cloudflare
 
-Cloudflare acts as a reverse proxy when you enable "Proxied" DNS (the orange cloud), and a [Cloudflare Tunnel](/install/cloudflare/tunnel) does the same. Both need `REVERSE_PROXY=true`.
+The orange cloud doesn't need reverse proxy mode: the panel can keep its own Let's Encrypt certificates behind it, and setup managed by 5Stack does exactly that. Use reverse proxy mode with Cloudflare only when you want Cloudflare, or a [Cloudflare Tunnel](/install/cloudflare/tunnel), to be the only thing terminating HTTPS; then set SSL/TLS to **Full**.
 
-Cloudflare has its own setup requirements. See the [Cloudflare](/install/cloudflare/) section.
+See [Which setup do I want?](/install/cloudflare/#which-setup-do-i-want).
 
 ## Nginx Proxy
 
