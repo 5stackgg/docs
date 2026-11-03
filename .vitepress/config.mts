@@ -265,6 +265,7 @@ export default defineConfig({
                   link: "/create-game-server-node",
                   items: [
                     { text: "Requirements", link: "/requirements" },
+                    { text: "Storage", link: "/storage" },
                     { text: "What is Installed?", link: "/what-is-installed" },
                   ],
                 },
