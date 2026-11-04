@@ -18,7 +18,7 @@ export default defineConfig({
 
   head: [
     ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
-    ["link", { rel: "icon", href: "/favicon.ico", sizes: "any" }],
+    ["link", { rel: "icon", href: "/favicon.ico", sizes: "32x32" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "en" }],
     [
