@@ -1,12 +1,12 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
-title: 5Stack | The System Behind the Game. Yours.
+title: 5Stack | Your own CS2 platform, on hardware you control
 titleTemplate: false
 
 hero:
   name: "5Stack"
-  text: The competition layer for Counter-Strike 2
+  text: Your own CS2 platform, on hardware you control
   image:
     src: 5stack-logo.png
     alt: 5Stack Logo

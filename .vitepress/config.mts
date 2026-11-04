@@ -24,7 +24,7 @@ export default defineConfig({
       "meta",
       {
         property: "og:title",
-        content: "5Stack, The System Behind the Game, Yours",
+        content: "5Stack | Your own CS2 platform, on hardware you control",
       },
     ],
     [
