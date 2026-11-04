@@ -8,8 +8,9 @@ hero:
   name: "5Stack"
   text: Your own CS2 platform, on hardware you control
   image:
-    src: 5stack-logo.png
-    alt: 5Stack Logo
+    light: /brand/mark-light.png
+    dark: /brand/mark-dark.png
+    alt: 5Stack
   tagline: "The software between a game server and a league. One self-hosted install runs the whole stack: matchmaking, tournaments, stats, replays, and broadcast."
   actions:
     - theme: brand

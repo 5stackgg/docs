@@ -17,7 +17,8 @@ export default defineConfig({
   },
 
   head: [
-    ["link", { rel: "icon", href: "/5stack-logo-mini.png" }],
+    ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
+    ["link", { rel: "icon", href: "/favicon.ico", sizes: "any" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "en" }],
     [
@@ -40,7 +41,7 @@ export default defineConfig({
       "meta",
       {
         property: "og:image",
-        content: "https://docs.5stack.gg/5stack-logo.png",
+        content: "https://docs.5stack.gg/brand/og-card.png",
       },
     ],
     ["meta", { property: "og:url", content: "https://docs.5stack.gg" }],
