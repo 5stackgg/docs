@@ -109,7 +109,8 @@ than 15 minutes past its start waits for an organizer to start it.
 - **Negotiated Scheduling**: teams agree their own match times instead, see
   [Negotiated match times](#negotiated-match-times).
 - **Allow Substitutes**: let teams roster and field substitutes beyond the
-  starting lineup. It can't be turned off once registration has closed.
+  starting lineup, up to the site's
+  [substitute limit](/features/admin/roles-and-players#teams). It can't be turned off once registration has closed.
 - **Map pool** and **match options**: veto, region (single region or region
   veto), and a TV delay (0–120s) for broadcasts. A change here, such as moving
   the tournament to another region, reaches every stage and every match that

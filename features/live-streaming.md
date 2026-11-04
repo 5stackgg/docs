@@ -92,17 +92,21 @@ player currently being spectated is composited onto the stream through the
 built-in JTs Hud, no second capture, no extra encoder, and nothing for the
 broadcaster to wire up.
 
-## Stream Deck
+## Control Room
 
-The Stream Deck is the broadcaster's control panel, for the **Streamer** role and
-above:
+The **Control Room** (admin navigation → **Media**) is the broadcaster's control
+panel, for the **Streamer** role and above. It's laid out like a TV gallery:
 
-- See all live, in-veto, and waiting matches.
-- **Start broadcasting** a match two ways: **Live** starts a stream with no
-  delay, **TV** starts a delayed TV stream.
-- **Stop** asks you to **Confirm**, so a stray click can't kill a live broadcast.
-  **Reconnect** re-issues the connect to the game server, and **Switch** points
-  the same GPU at another live match.
+- **Program** is what's on air, with its on-air clock. **Preview** has a
+  monitor for every live, in-veto and waiting match; a match that can't go on
+  air yet says why (veto in progress, players checking in, no free GPU).
+- **Take** puts the picked preview on air: **Go live with {match}** takes a
+  free GPU and boots a stream pod (about a minute), and **Switch to {match}**
+  repoints the running pod in a few seconds. **More ways to start** holds
+  **Start as TV (delayed)**.
+- **Stop** asks first (**Stop broadcast** or **Keep streaming**), so a stray
+  click can't kill a live broadcast. **Reconnect** re-issues the connect to the
+  game server.
 - **Spectator grid**: CT/T player slots fed by live game state; click a slot to
   spectate that player.
 - **Auto-director** toggle for automatic spectator camera work, plus X-ray.
@@ -127,7 +131,7 @@ Hud in a horizontal and a vertical layout, and admins can add more:
 - **Set HUD page**: link the HUD's page, for example on cshuds.com, and its
   preview image becomes the HUD's preview.
 - **Make default** picks the HUD every new stream, playback, and highlight
-  starts with. Streamers can still switch per stream from the Stream Deck.
+  starts with. Streamers can still switch per stream from the Control Room.
 
 If an imported HUD fails to load, the stream falls back to the built-in one.
 

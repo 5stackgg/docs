@@ -202,11 +202,5 @@ as push notifications, by flashing the browser tab, and with sounds. See
 
 ## Getting around
 
-- **Back returns lists to where you left them.** Players, Matches, Teams,
-  Leaderboard and Highlights come back on the page of results you left, and
-  Teams keeps its search, sort and filters too. The lists inside team,
-  tournament, league, event and award pages do the same.
-- **Empty sections stay out of the navigation.** Tournaments, Events, News and
-  Highlights only appear in the navigation once there's something in them.
-  Players who can create tournaments, events or news posts still see those
-  links, so they can add the first one.
+The navigation, search, the profile menu and Help & FAQ are covered in
+[Getting Around](/features/navigation).

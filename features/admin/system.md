@@ -20,6 +20,10 @@ typesense, timescaledb, redis, rustfs, mediamtx, with follow and timestamp
 toggles. Per-**match** server logs are available from the match's server tab (see
 [Match server controls](/features/admin/servers#match-server-controls)).
 
+A pod that has restarted says so ("{name} restarted {count} times"), with the
+reason and exit code, and **Previous run** opens the log of the run that
+crashed. Kubernetes can't hand that log over while the pod's node is offline.
+
 ## Database performance
 
 A built-in database dashboard for keeping the backend healthy, covering:
@@ -30,7 +34,10 @@ A built-in database dashboard for keeping the backend healthy, covering:
 - **Index usage** and **storage** sizes.
 - **TimescaleDB** hypertable stats.
 
-Refresh on demand or auto-poll on an adjustable interval.
+Refresh on demand or auto-poll on an adjustable interval. A query's **Query
+details** panel labels its plan, and **Run EXPLAIN ANALYZE** runs it with values
+for its parameters. It runs read-only, is rolled back, and stops after 25
+seconds.
 
 ## Backups
 
@@ -69,13 +76,50 @@ Game servers that crash leave a crash report on their node. See
 
 ## Updates
 
-When a newer image is published for one of the panel's services, administrators
-see **System Update Available** listing the services. A rebuild that changes
-nothing no longer shows up there as a pending update.
+The update button in the header opens a popover for administrators:
+
+- **Needs attention**: the warnings your
+  [game server nodes](/servers/game-server-nodes/managing#warnings-from-the-node)
+  report, one row per kind with how many nodes it covers ("2 nodes need a
+  reboot"), worst first. Each row opens the node, or the list of nodes it
+  covers.
+- **Updates**: when a newer image is published for one of the panel's
+  services, the **Services** that have one, with **Update Now**. A rebuild that
+  changes nothing doesn't show up as a pending update.
+- **Kubernetes**, when a k3s update or node changes are waiting, to run now or
+  schedule. See
+  [Kubernetes updates](/servers/game-server-nodes/managing#kubernetes-updates).
+
+When a new version of the web app is out, every tab left open offers **New
+version** with **Reload**, so nobody keeps running an old build.
+
+## Who changed it
+
+Admin detail views, such as a node's inspector, a GPU node, a region, a
+dedicated server, the Seasons page, system alerts and an award, show when they
+were last changed and by whom ("Updated {time} by {name}").
+
+## Media server
+
+**Media Server**, under **Media** in the admin navigation, shows the live load
+on MediaMTX. Game streams, player cameras, voice and video calls all share one
+instance, so it's everything it is carrying at once:
+
+- **Publishing**, **Paths** and **WebRTC sessions**. A path is one named stream
+  slot, such as one person's microphone or one camera; publishing counts the
+  ones sending media right now; every viewer of a stream is a session.
+- **By feature**: game streams, player cameras, voice, video calls and camera
+  talk-back, with what each received.
+- **Resource usage** of the mediamtx pod, polled every 30 seconds, and a link to
+  its logs.
+
+When the media server can't be reached, the page says so, and its numbers read
+as unknown rather than zero.
 
 ## Render queue
 
-The render queue (administrator only) shows every clip and highlight render job
+The render queue (administrator only, under **Media** in the admin navigation)
+shows every clip and highlight render job
 and its progress. Pair it with [GPU Nodes](/servers/gpu-nodes/) to see which node
 each job is running on. If renders back up. Check GPU availability and the "pause
 renders during live matches" setting on the

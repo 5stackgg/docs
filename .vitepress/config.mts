@@ -146,6 +146,7 @@ export default defineConfig({
             { text: "Friends, Teams & the Hub", link: "/social" },
             { text: "Chat", link: "/chat" },
             { text: "Notifications", link: "/notifications" },
+            { text: "Getting Around", link: "/navigation" },
             { text: "Voice Chat", link: "/voice-chat" },
             { text: "Steam Presence", link: "/steam-presence" },
             { text: "Moderation & Sanctions", link: "/moderation" },
@@ -289,6 +290,7 @@ export default defineConfig({
                   ],
                 },
                 { text: "Version Pinning", link: "/version-pinning" },
+                { text: "Managing Nodes", link: "/managing" },
                 {
                   text: "Dedicated Servers on Game Server Nodes",
                   link: "/dedicated-servers",

@@ -93,6 +93,14 @@ them, switch between them freely, and one save sends everything.
 A server that is switched off saves the change and picks it up when it is
 enabled again.
 
+### GOTV
+
+The **GOTV** switch in **General** lists the server's TV port for anyone who
+can join, so the server pages offer **Watch on GOTV** and **Copy GOTV connect
+command**. On a game server node it turns GOTV on for the server; on an external
+server it only lists the port, and GOTV itself is turned on in the server's own
+config.
+
 ### Plugins
 
 **Plugins** lists every installed [game plugin](/servers/game-server-nodes/game-plugins)

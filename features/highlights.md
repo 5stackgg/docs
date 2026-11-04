@@ -80,10 +80,11 @@ over it; the player remembers your choice. It needs a window at least 640px wide
 | `M`            | Mute                           |
 | `Esc`          | Leave theater mode, then close |
 
-The person who made a clip can rename it, and make it public or private from its
-tile (admins can do this for any clip). **Share** has **Copy link** and
-**Download** (with the file size); admins also get a **Public** switch and
-**Delete clip** there.
+The person who made a clip can rename it. A clip's actions are icons until you
+click one: **Share** has **Copy link** and **Download** (with the file size),
+and the clip's owner and staff (Streamer and above) also get the **Public**
+switch, which lists it in the highlights feed, and **Delete clip**, which asks
+you to click again.
 
 ## Making your own clips
 

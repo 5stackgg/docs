@@ -40,17 +40,17 @@ A season is configured once and mostly stays editable afterwards. Only the
 **match-week count** and **games per week** lock at season start, because they
 define the generated brackets.
 
-| Setting                              | What it controls                                            |
-| ------------------------------------ | ----------------------------------------------------------- |
-| **Signups open / close**             | The registration window                                     |
-| **Season starts**                    | When week 1 begins                                          |
-| **Match weeks** / **games per week** | The length and density of the regular season                |
-| **Roster lock week**                 | When rosters freeze                                         |
-| **Playoff seats**                    | How many teams per division advance                         |
-| **Min roster**                       | Minimum players a team needs to be approved                 |
-| **Best of** / **playoff best of**    | Series length, regular season and playoffs                  |
-| **Default match day & time**         | The fallback for unagreed matchups                          |
-| **Promotion / relegation counts**    | Direct promote, relegation playoff up/down, direct relegate |
+| Setting                              | What it controls                                                                                                          |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| **Signups open / close**             | The registration window                                                                                                   |
+| **Season starts**                    | When week 1 begins                                                                                                        |
+| **Match weeks** / **games per week** | The length and density of the regular season                                                                              |
+| **Roster lock week**                 | When rosters freeze                                                                                                       |
+| **Playoff seats**                    | How many teams per division advance                                                                                       |
+| **Min roster**                       | Minimum players a team needs to be approved. Defaults to the [team roster rules](/features/admin/roles-and-players#teams) |
+| **Best of** / **playoff best of**    | Series length, regular season and playoffs                                                                                |
+| **Default match day & time**         | The fallback for unagreed matchups                                                                                        |
+| **Promotion / relegation counts**    | Direct promote, relegation playoff up/down, direct relegate                                                               |
 
 Each division's **format is chosen automatically from its size**, a full round
 robin when it fits inside the season's rounds; otherwise a Swiss group. A

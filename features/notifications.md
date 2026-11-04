@@ -9,19 +9,32 @@ send and decides where each one reaches you.
 
 The **Inbox** is the bell at the top of the [hub dock](/features/social#the-hub).
 Its badge counts what is waiting on you, and the bell shakes once when something
-new arrives. It holds:
+new arrives. It's split into three sections:
 
-- **Invites** to teams, tournaments and draft rooms, with accept and decline.
-- **League scheduling** proposals waiting on your answer.
+| Section       | What's in it                                                                                    |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| **Needs you** | Anything waiting on your answer: invites, check-in, league scheduling, team reminders           |
+| **Live now**  | Match alerts, and for staff, problems still going on, such as an offline node, until they clear |
+| **Recent**    | Everything else, newest first                                                                   |
+
+- **Invites** to teams, tournaments and draft rooms come with accept and
+  decline.
 - **Team reminders**: a team you can invite to that has fewer than five
   starters shows "{count} of 5 starters" with **Invite Player** and **Dismiss**.
   A short roster can be on purpose, so a dismissal holds until the roster
   shrinks further.
-- **News** posts and [feature spotlights](#feature-spotlights).
-- Everything else, stacked by kind.
+- **Clips of you** is a reel of your new [highlights](/features/highlights),
+  with how many you haven't seen.
+- Several of the same kind stack into one card, such as "Rokkan reviewed 3
+  maps" or "Stats ready for 4 matches", with one button for all of them.
+- **News** posts, [community polls](/features/news#community-polls) and
+  [feature spotlights](#feature-spotlights).
 
-**Dismiss All** and **Delete All Read** clear it out, and the gear in its header
-opens **Notification Settings**. When it's empty it says "You're all caught up".
+The dot on a notification marks it read (**Mark read**), and on one already read
+deletes it, with **Undo** for a moment afterwards. The header has one bulk
+action at a time: **Dismiss All** while anything is unread, then **Delete
+Dismissed** once everything is. The gear opens **Notification Settings**. When
+it's empty it says "You're all caught up".
 
 A notification you can switch off has a **More Actions** menu with **Turn Off
 {kind}**, which stops that kind reaching the Inbox, with **Undo** in case you
@@ -172,3 +185,8 @@ offers push on devices that don't have it yet.
 Push needs no setup and no third-party service; see
 [Web Push Notifications](/advanced/web-push). Only staff notifications are ever
 posted to Discord; see [Integrations](/features/admin/integrations#discord).
+
+**Settings → Application → Notification Gallery** draws every notification
+type with the bell's own components from sample data, so you can see how each
+one looks: unread or read, in the bell or wide, stacked, and with reduced
+motion. Nothing on it reaches players.

@@ -135,6 +135,11 @@ and jump straight to a specific player's rank.
 If [competitive seasons](/features/seasons) are enabled, the time selector also
 lists every season and defaults to the current one.
 
+A player only appears once they've played a minimum number of matches in the
+season or time range being viewed: 3 by default, set under **Settings →
+Application → Players → Leaderboards → Minimum matches**. The Awards, FACEIT and
+Premier boards ignore it.
+
 ### FACEIT and Premier
 
 Two more tabs rank ratings that come from outside 5Stack:

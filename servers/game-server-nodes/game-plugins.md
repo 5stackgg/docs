@@ -23,7 +23,7 @@ ones marked **Verified**, which means a 5Stack maintainer reviewed the entry.
 
 ## The directory
 
-**Plugin Directory**, in the **Platform** group of the left navigation, lists
+**Plugin Directory**, under **Site** in the admin navigation, lists
 everything in the catalog. It is administrator-only: it is where third-party
 code gets chosen to run on your servers, which is not a browsing experience for
 players. Each entry says which runtime it is built for, who wrote it, and

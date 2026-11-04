@@ -79,7 +79,7 @@ Pages linked below go deeper on the bigger features.
   player, top plays on the Watch page, a theater-mode clip player, and an
   in-app clip builder.
 - **[Live Streaming](/features/live-streaming)**: a Watch page with a match
-  ticker and live stage, low-latency WebRTC streams, the Stream Deck, broadcast
+  ticker and live stage, low-latency WebRTC streams, the Control Room, broadcast
   HUDs from your own library, players' Twitch POVs, and a floating player.
 - **[Demos](/features/demos)**: automatic upload, fast parsing, storage,
   retention, download, and reparsing.
@@ -155,6 +155,10 @@ Pages linked below go deeper on the bigger features.
   to hide your real server IPs.
 - **Server Insights**: live CPU / memory / disk, logs, crash reports, CPU
   pinning, low-latency kernel status, and offline alerts that don't cry wolf.
+- **[Managing Nodes](/servers/game-server-nodes/managing)**: a node inspector
+  with warnings you can fix, copy or acknowledge, one-click CPU governor and
+  low-latency tuning, per-node match types and practice servers, and
+  one-node-at-a-time Kubernetes updates.
 - **[GPU Nodes](/servers/gpu-nodes/)**: power highlights, demo playback, live
   streaming, and utility lineup previews.
 
@@ -177,6 +181,11 @@ Pages linked below go deeper on the bigger features.
 - **Embeds & popouts**: drop a live, auto-cycling tournament bracket onto a
   stream or site, and pop replays and broadcasts out into their own windows for a
   second monitor.
+- **[Getting Around](/features/navigation)**: the left navigation with folding
+  sections, pins and plugin apps, a Play / Admin switch for staff, ⌘K search
+  across players, pages, settings and help, a role-aware Help & FAQ with demo
+  match and lobby pages, and built-in Terms of Service and Privacy Policy
+  pages.
 - **Search**: fast player and entity search from anywhere in the app.
 - **[Changelog](/features/news#changelog)**: 5Stack's daily feed of what's
   new, improved and fixed, with search and a marker for what you haven't seen.
