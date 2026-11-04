@@ -86,16 +86,34 @@ than guessing at them.
 From either mode, the **2D** and **3D** buttons open the
 [replay](/features/match-replay) of the map in that view.
 
-### Utility vs Lineups
+### Utility
 
-Every grenade thrown on the map, matched against the
-[utility library](/features/utility-library) by where it was thrown from and
-where it landed: how many throws matched a saved lineup, how many matched a
-mined meta spot, and how many landed. The same tab lists every grenade in the
-demo, so a throw you liked can be saved as a lineup of your own.
+The **Utility** tab draws every grenade from the demo on the map, from where it
+was thrown to where it landed, one map per half (**CT half** and **T half**,
+side by side on a screen 1000px or wider). Each throw is checked against the
+meta: a **meta lineup** is one that 3 or more players throw from the same spot.
+
+| Group            | What it means                                                    |
+| ---------------- | ---------------------------------------------------------------- |
+| **On the spot**  | Thrown from a meta spot and landed where those players land it   |
+| **Off the spot** | Thrown from a meta spot but landed wide, by how far ("{n}u off") |
+| **Off-book**     | "not a lineup anyone else throws"                                |
+
+Each half's summary counts its lineups on the spot and its off-book throws.
+
+- **Zoom**: Ctrl/Cmd + scroll, or **+** / **−**, up to 8×; drag to pan, and
+  **Fit to the throws** frames them all.
+- **Players** filters to one player's throws.
+- **Watch** opens the [2D replay](/features/match-replay) about three seconds
+  before the throw.
+- **Save** keeps a throw as a lineup of your own in the
+  [utility library](/features/utility-library); **Open Lineup** and **See the
+  Meta Spot** go to the lineup or meta spot it matched.
 
 A throw is matched by its start and end points, so these are throws that _look
-like_ the lineup, not proof the lineup was the one being called.
+like_ the lineup, not proof the lineup was the one being called. Where you can
+read the match's [Rokkan review](/features/coach), Rokkan's notes appear on the
+throws it talks about.
 
 ## Player profiles
 

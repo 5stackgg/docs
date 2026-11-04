@@ -58,7 +58,8 @@ and when it expires, plus any [Steam bans](#steam-ban-detection) and abandoned
 matches. Active sanctions can be **edited** (**End Sanction**: set when it
 lifts, set a past time to end it now, or clear the date to make it permanent) or
 **removed**. Expired sanctions are kept as history and can't be edited; issue a
-new one instead. Removing a sanction removes that one row only.
+new one instead. Removing a sanction removes that one row only. Moderators and
+above still see a removed sanction on the record, marked **Removed by {name}**.
 
 In the [player directory](/features/admin/roles-and-players), match organizers
 and above can filter by **Banned**, **Gagged** and **Muted**, and by a
@@ -84,6 +85,68 @@ abandon penalties, aren't held to this, but lifting one by hand is.
   can turn off (see [Notifications](/features/notifications#banned-teammates)).
 - Administrators get a **Player Banned** notice when a banned player has ever
   played on a lineup.
+- Players who [reported](#reporting-a-player) them hear back (**Report
+  reviewed**). Any new sanction, automatic VAC and FACEIT bans included,
+  resolves the open reports against that player and tells the reporters.
+
+## Reporting a player
+
+**Report Player** is in a player's profile **⋮** menu, and in the **⋮** on
+their row of a match scoreboard. A report has a **Reason**:
+
+| Reason       | For                                                 |
+| ------------ | --------------------------------------------------- |
+| **Cheating** | Aimbot, wallhack, triggerbot or scripts             |
+| **Toxicity** | Slurs, harassment or threats in chat or voice       |
+| **Griefing** | Team damage, blocking, throwing rounds or going AFK |
+| **Other**    | Anything else a moderator should see                |
+
+It also names the **Match** you shared, an optional **Round**, and **Details
+(optional)**, up to 500 characters.
+
+- You can report someone you played a 5Stack match with in the last 30 days.
+  Imported matches don't count, and the match must be live, finished, tied,
+  forfeited or surrendered.
+- Administrators can't be reported, and banned players can't report.
+- One open report per player you report, and up to 10 reports a day. The menu
+  then reads **Reported · Pending Review**.
+- The report keeps the reported player's all-chat lines from that match, with
+  the lines around them, up to 40 lines. Team chat is never included.
+
+The reported player never learns who reported them. The reporter always hears
+back with a **Report reviewed** notification: the report led to action, or a
+moderator reviewed it and took none (**Reports acted on** and **Reports with no
+action** in [notification settings](/features/notifications#what-you-ll-get)).
+
+Chat messages are reported from the message itself; see
+[Reporting a message](/features/chat#reporting-a-message).
+
+## The Moderation page
+
+**Moderation** (`/moderation`), under **Administration**, is the queue
+moderators and above work reports from. Its navigation item carries a badge
+while anything is waiting.
+
+| Tab                   | What it holds                                    |
+| --------------------- | ------------------------------------------------ |
+| **Player Reports**    | One case per reported player                     |
+| **Messages**          | Reported chat messages                           |
+| **Done**              | Reports that were resolved or dismissed          |
+| **Removed by Rokkan** | Chat lines Rokkan removed (5stack.gg, see below) |
+
+A player's case lists every report against them, with each reason, reporter and
+round. For each match it shows the player's **Kills on reporters**, **K–D**,
+**HS** and **ADR**, the chat lines the report saved, the match's **Chat Log**,
+and **Open Match**. Close a case with **Dismiss**, with an optional note, or
+act on it with **Warning**, **Gag** or **Ban**. As everywhere, you can only act
+on players whose role is below yours.
+
+A reported message shows the line with **Show Context**, and can be resolved,
+dismissed, sanctioned, or opened in its room (**Open Chat**).
+
+On 5stack.gg, Rokkan also reads group chat and flags messages that break the
+rules into the **Messages** queue; see
+[Chat moderation](/features/chat#rokkan-chat-moderation).
 
 ## Automatic sanctions
 
@@ -115,8 +178,12 @@ the way in, so a player already in a running bracket keeps their place.
 
 Players who abandon matches accumulate a record of it on their profile, visible
 alongside their sanctions, so repeat offenders are obvious rather than anecdotal.
+Match organizers and above see each abandon's occurrence count, the queue
+cooldown it earned, and when that cooldown lifts.
+
 An abandoned-match record can be removed by a moderator if it was recorded
-unfairly. One abandon is only ever counted once.
+unfairly. It stays on the record, marked removed, and stops counting toward the
+cooldown. One abandon is only ever counted once.
 
 ## Steam ban detection
 
@@ -136,6 +203,28 @@ same Steam ban.
 player who has been on a lineup. Whether a VAC ban bans the whole platform or
 only part of it is the **VAC / Game Ban** source above.
 
+### FACEIT cheating bans
+
+With a [FACEIT API key](/advanced/faceit-integration) set, 5Stack also checks
+players for FACEIT bans. A player banned on FACEIT for cheating gets a **Banned
+on FACEIT for cheating** badge on their profile, a **FACEIT Ban** card on their
+record (**View on FACEIT**), and an automatic 5Stack ban, "Auto: FACEIT
+cheating ban", that ends when the FACEIT ban does.
+
+## Recently banned
+
+**Bans**, in the **Community** section of the navigation, opens **Recently
+banned** (`/bans`). Anyone can view it, signed in or not.
+
+- Filter by kind: **VAC ban**, **Game ban** (CS2 Overwatch), **Staff ban**
+  (issued by a moderator), or **Automatic** (for a Steam VAC or FACEIT cheating
+  ban), and search by name.
+- The window is the last 7, 30 or 90 days, 30 by default.
+- Signed in, **Played with me** narrows it to players you shared a match with,
+  either side, or only **Against me** or **On my team**, and **Only matches I
+  lost** keeps the matches you lost.
+- Moderators can lift a ban from its record with **End ban now**.
+
 ## The Moderator role
 
 **Moderator** sits between Streamer and Match Organizer in the
@@ -145,6 +234,10 @@ ability to run matches, change settings, or touch infrastructure. Moderators
 can:
 
 - issue, edit and remove sanctions on players whose role is below theirs,
+- work [player reports](#reporting-a-player) and reported messages on the
+  [Moderation page](#the-moderation-page),
+- read a live match's **Match Chat** on its page, read-only, from check-in
+  through the live map (team chats stay private),
 - delete messages in group chat rooms, and still see blocked players' lines
   there (see [Blocking](/features/social#blocking-players)). A team's own chat
   is moderated by the team, not by staff,

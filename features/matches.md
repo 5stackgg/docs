@@ -36,6 +36,21 @@ match server from **Assign Match Server** in the admin dock's menu, and
 **reboot the server** straight from the match page if something needs a reset
 during setup.
 
+### VAC Off
+
+**Match Options → Server Launch → VAC Off** starts the match's server with
+`-insecure`, for tools that can't run alongside VAC. Match Organizers and above
+can set it on a match, and on a tournament stage's settings. It isn't offered in
+draft rooms.
+
+- Changed during the veto or while live, it applies when someone hits **Reboot
+  Server**.
+- Players see a **VAC Off** badge by **Join Server**, and must add `-insecure`
+  to their own CS2 launch options to join.
+- A dedicated server only takes VAC-off matches when an administrator turns on
+  **VAC Off** in its settings. A server hosted on a game server node restarts
+  with `-insecure`; an external server is only marked as VAC off.
+
 ## Lineups, check-in & substitutes
 
 Each lineup has a captain, and can have **substitutes** (**Number of
@@ -55,11 +70,17 @@ from the [admin dock](#running-a-match). The rule is enforced by the
 server, not just by which buttons the page shows, and anyone outside the
 lineups is refused.
 
+Check-in lives in the match header's scorebug: **Check In**, how many have
+("{ready} of {total} checked in"), and **Set Up Your Camera** first when the
+match [requires cameras](/features/player-cameras).
+
 Check-in has a deadline. With **Match Cancellation** on (the default), the
-match page counts down **Check in within**, and if everyone required hasn't
-checked in before it runs out, the match is canceled automatically. The time
-allowed is the instance's **Auto Cancel Duration**, 15 minutes unless an admin
-changes it, and a match or tournament can override it.
+match page counts down **Check in within**, red for the last 10 seconds, and if
+everyone required hasn't checked in before it runs out, the match is canceled
+automatically. The time allowed is the instance's **Auto Cancel Duration**, 15
+minutes unless an admin changes it, and a match or tournament can override it.
+Organizers can push it back with **They need more time** (see
+[Fix a Problem](#fix-a-problem)).
 
 ## Map & region veto
 
@@ -167,6 +188,9 @@ you.
 | Live     | **Skip Knife** during the knife round, then **Pause Match** / **Resume Match** |
 | Finished | **Set Match Winner**                                                           |
 
+**Pause Match** and **Resume Match** stay in the dock through overtime, and a
+paused map reads **Paused** everywhere it's shown.
+
 **Cancel Match** and **Delete Match** sit beside the main action, and both
 ask first. Tournament bracket matches can't be deleted from the match page.
 
@@ -184,6 +208,73 @@ reparsing need an administrator.
 you pick. **Set Map Winner**, on a map card, asks for confirmation and tells
 you when the change also decides the match: _This also makes Team A the match
 winner._, or _This also clears the match winner._
+
+### Fix a Problem
+
+**Fix a Problem**, in the admin dock, has one button for every fix. **Right
+Now** holds the fixes for the step the match is in, **Any Time** the ones that
+always work, and a line at the bottom says what unlocks later. Each fix opens
+where it happens: a round fix opens the Rounds tab, a veto fix the veto.
+
+Match organizers see it: Match Organizers and above, whoever created the match,
+and the organizers of its tournament. Players don't.
+
+| When     | Fix                                    | What it does                                                                                        |
+| -------- | -------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Check-in | **They need more time**                | 15 more minutes before the match auto-cancels, each click                                           |
+| Veto     | **Undo the Last Step**                 | Takes back the last choice, and that team chooses again                                             |
+| Veto     | **Fix a Mis-pick**                     | Pick the step that went wrong: it and every step after it are done again                            |
+| Veto     | **Redo the Veto**                      | Starts again from the first ban, with every map back in the pool                                    |
+| Veto     | **Ban or Pick for {team}**             | Turns on veto override so you make this step's choice on the board                                  |
+| Veto     | **Give 30 Seconds More**               | Adds time to the team's veto clock                                                                  |
+| Live map | **A round went wrong**                 | Opens the [Rounds tab](#restoring-a-round)                                                          |
+| Live map | **This map has to start over**         | **Restart Map**: back to warmup at 0–0. The rounds played stay restorable until the next round ends |
+| Any time | **The server isn't responding**        | Reboots an on-demand server. Players rejoin the same match                                          |
+| Any time | **The whole match needs a replay**     | **Restart Match**: cancels this attempt and reopens check-in for both teams                         |
+| Any time | **A team can't continue**              | Ends the match now and awards it to the other team                                                  |
+| After    | **The match needs to be played again** | Bracket matches: clears the result and reopens check-in, and the tournament standings update        |
+| After    | **The wrong team got the win**         | Picks the right winner without a replay                                                             |
+| After    | **Stats or the demo look wrong**       | Reads the demos again. The result stays as it is                                                    |
+
+The veto fixes can rewind the veto until map 1 goes live. Restarting or resuming
+a match needs the Match Organizer role or above. A bracket result can't be taken
+back once the next stage was seeded or the next Swiss round paired from it, or
+while a later match that depends on it is being played.
+
+### Restoring a round
+
+While a map is live, organizers get a **Rounds** tab for the current map.
+
+1. Click the round to play again, on the strip or in the list under it. Each
+   player's money, armor and weapons show as they were at its start, with
+   anything different from now in amber. The rounds that would be undone are
+   striped.
+2. **Restore Round {n}** loads it on the server, and the score goes back with
+   it. Restoring round 16 puts both teams at the start of round 16.
+3. The match pauses on the restored round so everyone can get ready, and
+   carries on once the teams ready up in game, or when staff **Resume Match**.
+
+Undone rounds aren't thrown away straight away: until the next round ends they
+wait at the end of the strip, and **Bring Back** goes forward to where you were.
+
+- The restore waits until every player is back on the server.
+- Only while the map is live, never in warmup, the knife round, or once the map
+  is over. Rush matches can't restore rounds.
+- Round 1 has no backup before it; restart the map instead.
+- An organizer playing in the match can't restore rounds, and players in the
+  match never see the money and weapons preview.
+
+### Canceled matches
+
+Match Organizers and above can bring back a canceled match hosted by 5Stack:
+
+- **Pick the match up where it stopped** keeps the veto, the finished maps and
+  the rounds played. A new server is assigned and offers to restore the last
+  round.
+- **The match needs to start over** clears the veto and every map's rounds,
+  then reopens check-in.
+
+Imported matches can't be brought back.
 
 ## Disconnects
 
@@ -220,6 +311,8 @@ Everyone who turned up, on either side, keeps their rating.
 ## Watching live
 
 While a match is live you can follow the score and action in real time, jump in
-to spectate, or [broadcast it](/features/live-streaming). When it's over, the demo
+to spectate, or [broadcast it](/features/live-streaming). Veto picks, rewinds
+and clocks, check-ins, draft picks, seats and captains reach everyone on the
+page as they happen, within about half a second on a self-hosted panel. When it's over, the demo
 is uploaded automatically and turned into [replays](/features/match-replay),
 [highlights](/features/highlights), and [stats](/features/stats-and-leaderboards).

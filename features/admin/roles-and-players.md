@@ -47,9 +47,13 @@ below their new role.
 ## Name changes
 
 When names need approval, a player's new name only shows once an admin approves
-it. The name field tells them so ("An admin approves name changes before they
-show."), and they're notified either way. Staff get a **Name change requests**
-notification, which can also be posted to Discord.
+it. The name field tells them so, and asks for a reason (**Why the new name?**,
+up to 300 characters). A player has one open request at a time. Staff get a
+**Name change requests** notification, which can also be posted to Discord.
+
+Administrators approve or deny a request with an optional **Comment for the
+player**, which is sent back with the decision. The player is notified either
+way.
 
 ## Sanctions
 

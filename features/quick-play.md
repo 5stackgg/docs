@@ -20,7 +20,8 @@ page of empty boxes.
 
 Every mode an admin has enabled appears as a tile. Each tile shows the format,
 how many players are already searching for it, and how many seats your party
-takes:
+takes. Its info icon shows the mode's matchmaking map pool on hover or tap,
+without picking the mode.
 
 | Mode            | Format | Notes                                                               |
 | --------------- | ------ | ------------------------------------------------------------------- |

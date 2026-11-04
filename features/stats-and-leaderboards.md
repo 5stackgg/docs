@@ -21,7 +21,7 @@ Below that, the stats are split into tabs:
 | **Maps**        | Per-map results with CT and T side splits                                                |
 | **Arsenal**     | Kills and damage by weapon                                                               |
 | **Combat**      | Preferred roles, the role radar, opening duels, and clutches                             |
-| **Community**   | Time, sessions, and kills on community servers                                           |
+| **Community**   | Points, time, and stats on public servers; see [Community tab](#community-tab)           |
 
 Installed [plugins](/plugins/) can add their own profile tabs. A player with no
 matches yet still gets the **Community** tab and any plugin tabs.
@@ -157,6 +157,71 @@ each player's Steam ID, so there is nothing to link in 5Stack.
 ::: tip
 Both switches live under **Settings → Application → Match Imports**. See
 [External Matches](/features/external-matches).
+:::
+
+## Public server leaderboard
+
+**Public Servers** has one **Leaderboard** for "Every public server combined".
+Ranked and practice servers are left out, and it lists signed-in 5Stack
+accounts only; players without one still count toward the totals. Each
+[community server](/servers/dedicated-servers/community-servers#stats-and-leaderboards)
+also has a leaderboard of its own.
+
+Pick a period (**This Season**, **This Week** or **All Time**) and a mode, then
+a board:
+
+| Group      | Boards                                                                                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Headline   | **Points**, **Time**, **Kills**, **K/D** (at least 50 kills and deaths combined), **HS %** (at least 50 kills), **Assists**, **MVPs**, **Accuracy** (at least 1,000 shots), **Best Streak** |
+| Utility    | **Trades** (an enemy killed within 5 seconds of them killing a teammate), **Utility Damage**, **Flash Assists**, **Enemies Flashed**                                                        |
+| Kill Types | **Knife Kills**, **Zeus Kills**, **HE Kills**, **Molotov Kills**, **No-Scope Kills**, **Smoke Kills**, **Wallbangs**, **Blind Kills**, **Air Kills**                                        |
+| Objectives | **Bomb Plants**, **Defuses**, **Hostage Rescues**                                                                                                                                           |
+| Weapon     | Kills with one weapon ("{weapon} kills")                                                                                                                                                    |
+
+### Points
+
+Everyone starts at 5000 points and earns or loses them at fixed rates. There is
+no floor.
+
+| Event          | Points | Event              | Points |
+| -------------- | ------ | ------------------ | ------ |
+| Kill           | +8     | No-scope kill      | +15    |
+| Death          | −5     | Kill through smoke | +15    |
+| Headshot       | +5     | Kill while blind   | +5     |
+| Assist         | +5     | Wallbang           | +3     |
+| Round won      | +5     | Knife kill         | +15    |
+| Round lost     | −2     | Zeus kill          | +20    |
+| MVP            | +10    | HE grenade kill    | +30    |
+| Flash assist   | +7     | Molotov kill       | +30    |
+| Team kill      | −10    | Bomb plant         | +10    |
+| Hostage rescue | +15    | Bomb defuse        | +10    |
+
+### Community seasons
+
+Administrators reset everyone's points to 5000 with a community season: for
+every public server at once from the **Seasons** page (**Community seasons** →
+**Start new community season**), or for one server from its own page. While
+competitive seasons are off, **Settings → Application → Server settings** links
+to that section of the Seasons page. A new
+season starts at the next UTC midnight; the very first one starts at once.
+Earlier seasons stay in the history, and the leaderboard can show them. A
+server with seasons of its own counts from those; every other server and the
+combined leaderboard count from the global one.
+
+Community seasons are separate from [competitive seasons](/features/seasons).
+
+### Community tab
+
+A player's **Community** tab shows their **Points**, **K/D**, **HS %**,
+**Assists** and **MVPs** on public servers, and the modes and maps they played.
+**Detailed Stats** adds **Accuracy**, **Best Killstreak**, **Trade Kills**,
+**Utility Damage**, **Flash Assists**, **Enemies Flashed**, **Hits by Body
+Part**, **Kill Types and Objectives**, and **Weapons**.
+
+::: tip
+Public server stats are recorded by the
+[Player Management plugin](/servers/dedicated-servers/player-management). The
+detailed stats and the per-weapon boards need its latest version on the server.
 :::
 
 ## Importing external matches

@@ -167,8 +167,9 @@ also paste files or drag them onto the conversation.
 - Works in queue, draft, tournament, organizers, team and direct chat. **Match
   and match team chat stay text-only.**
 - Uploads start straight away, and **Send** says what it's waiting for.
-- Images show inline, videos open in a lightbox, and GIFs play inline. They run
-  the full width of the message, under the sender's avatar.
+- Images show inline, videos open in a lightbox, and GIFs play inline; click a
+  GIF to see it larger in the lightbox. They run the full width of the message,
+  under the sender's avatar.
 
 Administrators set the largest file size and each player's daily upload
 allowance. Files are only served to people who can open the room. They are
@@ -240,6 +241,47 @@ doesn't apply there, and the moderation menu doesn't appear.
 
 A deleted message's files are hidden from the room but kept for moderators
 until they would have expired. In team chat they're deleted straight away.
+
+Moderators and above can also read a live match's **Match Chat** on the match
+page, read-only, from check-in and the veto through the live map. The teams'
+own chats stay private.
+
+### Reporting a message
+
+Any player can report a line from its **⋯** menu with **Report Message**. Pick a
+**Reason**, **Harassment or hate**, **Threats or personal info**, **Scam or
+spam**, or **Something else**, and **Add details (optional)**.
+
+- The report goes to the [Moderation page](/features/moderation#the-moderation-page),
+  where moderators see the message with the 10 lines around it.
+- Each player can send 10 reports every 10 minutes.
+- A direct message can only be reported by the two people in it.
+
+Admins can turn message reports off with the **Player reports** switch under
+**Settings → Application → Chat Settings**. That switch only covers messages:
+[reporting a player](/features/moderation#reporting-a-player) stays on.
+
+### Blocked words
+
+**Blocked words**, under **Chat Settings**, takes one word or phrase per line.
+They're masked before a message is sent, in every kind of chat. Matching is by
+whole word, ignores case, and catches common letter swaps such as `3` for `e`,
+`@` for `a` and `$` for `s`.
+
+### Rokkan chat moderation
+
+On 5stack.gg, Rokkan also reads group chat in batches and flags messages that
+break the rules (**AI chat moderation**). Direct messages are never scanned.
+
+| Mode            | What Rokkan does                                                 |
+| --------------- | ---------------------------------------------------------------- |
+| **Off**         | Doesn't read chat                                                |
+| **Flag Only**   | Opens a report for moderators and leaves the message up. Default |
+| **Hide Severe** | Removes severe messages and opens a report                       |
+
+A removed line reads "Message removed by Rokkan", and moderators find it under
+**Removed by Rokkan** on the Moderation page. Only moderators hand out
+sanctions.
 
 ## Match chat log
 

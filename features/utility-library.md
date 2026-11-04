@@ -389,8 +389,9 @@ was thrown from and where it landed.
 
 The same matching drives two report surfaces:
 
-- **Utility vs Lineups** on a match, plus a browsable list of every grenade in
-  that map's demo — save one and it becomes a lineup.
+- The match page's [Utility tab](/features/match-analysis#utility): every
+  grenade in that map's demo drawn on the map, on or off the meta spot — save
+  one and it becomes a lineup.
 - **Utility Lineups** on a team page: which saved lineups a roster's grenades
   looked like in real matches, and how often they landed.
 

@@ -76,21 +76,21 @@ connected to a match server.
 Every kind of notification, grouped, with a **Bell** switch and a **Push**
 switch. Push is switched per group; the bell can be switched per kind.
 
-| Group                                     | Includes                                                                                    | Push by default                   |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------- |
-| **Matches**                               | Match alerts, imported matches, stats ready, clips ready                                    | On                                |
-| ↳ **Match found**                         | Matchmaking found your match                                                                | On, rings                         |
-| ↳ **Match chat**                          | Messages in a match's room, including chat relayed from the game                            | **Off**                           |
-| ↳ **Admin calls**                         | An admin wants to talk to you over your match camera                                        | On, rings                         |
-| **Invites**                               | Team, tournament, tournament registration and draft invites                                 | On                                |
-| **Account**                               | Your name changes, warnings, sanctions and awards                                           | On                                |
-| **Banned teammates**                      | A player you've played with in the last 6 months was banned                                 | On                                |
-| **Chat**                                  | New messages in a conversation, lobby or tournament room                                    | On                                |
-| **Tournaments**                           | New tournaments, reminders and check-in                                                     | On                                |
-| **Leagues**                               | Scheduling proposals and roster warnings                                                    | On                                |
-| **Scrims**                                | Scrim requests, schedule changes and alerts                                                 | On                                |
-| **Teams, events, seasons, utility, news** | Team suggestions, event reminders, season ends, practice invites, articles, comment replies | On                                |
-| **Staff**                                 | Support requests, abandons and name-change requests; server and job status                  | Moderation on, infrastructure off |
+| Group                                     | Includes                                                                                                                             | Push by default                   |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+| **Matches**                               | Match alerts, imported matches, stats ready, Rokkan's match reviews and scouting, clips ready                                        | On                                |
+| ↳ **Match found**                         | Matchmaking found your match                                                                                                         | On, rings                         |
+| ↳ **Match chat**                          | Messages in a match's room, including chat relayed from the game                                                                     | **Off**                           |
+| ↳ **Admin calls**                         | An admin wants to talk to you over your match camera                                                                                 | On, rings                         |
+| **Invites**                               | Team, tournament, tournament registration and draft invites                                                                          | On                                |
+| **Account**                               | Your name changes, warnings, sanctions, awards, Career unlocks and rewards, supporter thanks, and the outcome of your player reports | On                                |
+| **Banned teammates**                      | A player you've played with in the last 6 months was banned                                                                          | On                                |
+| **Chat**                                  | New messages in a conversation, lobby or tournament room                                                                             | On                                |
+| **Tournaments**                           | New tournaments, reminders and check-in                                                                                              | On                                |
+| **Leagues**                               | Scheduling proposals and roster warnings                                                                                             | On                                |
+| **Scrims**                                | Scrim requests, schedule changes and alerts                                                                                          | On                                |
+| **Teams, events, seasons, utility, news** | Team suggestions, event reminders, season ends, practice invites, articles, community polls, comment replies                         | On                                |
+| **Staff**                                 | Support requests, abandons and name-change requests; server and job status                                                           | Moderation on, infrastructure off |
 
 A few kinds can't be switched off in the bell: your own name-change decisions,
 bans and warnings are always shown ("Always shown: it's about your account").

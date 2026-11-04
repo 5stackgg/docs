@@ -21,7 +21,9 @@ Pages linked below go deeper on the bigger features.
   [veto scouting](/features/map-veto#veto-scouting) (each map's edge, both
   sides' records, the other side's usual bans and picks), enforced check-in
   with auto-cancel, full match rules (knife, overtime, pauses, best-of, coaches,
-  and more), turn reminders on any page, and a guided admin dock for organizers.
+  VAC Off, and more), turn reminders on any page, and a guided admin dock for
+  organizers with **Fix a Problem**: veto rewinds, round restores, map and
+  match restarts, and picking a canceled match back up.
 - **[Scrim Finder](/features/scrim-finder)**: advertise when your team plays,
   set who you'll play, and negotiate scrims without a Discord thread.
 - **[Player Cameras](/features/player-cameras)**: require a webcam from every
@@ -60,8 +62,12 @@ Pages linked below go deeper on the bigger features.
 
 - **[Match Analysis](/features/match-analysis)**: scoreboard lenses, a
   start-of-round economy chart and buy-type breakdown, clutches, head-to-head,
-  detected roles, heatmaps and movement paths, plus team veto tendencies, a
-  veto simulator, and live veto scouting on the veto board.
+  detected roles, heatmaps and movement paths, every grenade drawn on the map
+  and checked against the meta, plus team veto tendencies, a veto simulator,
+  and live veto scouting on the veto board.
+- **[Coach (Rokkan)](/features/coach)**: on 5stack.gg, an AI coach that reviews
+  every map you play on the 2D replay, tracks your habits across matches,
+  scouts your next tournament or scrim opponent, and coaches the whole team.
 - **[Match Replay (2D & 3D)](/features/match-replay)**: replay any map on a stage
   drawn in your browser, top-down or in 3D, with CS2's real smokes, every
   bullet, fog of war, an auto-director camera, shareable moments, and clip
@@ -84,7 +90,8 @@ Pages linked below go deeper on the bigger features.
   ratings, KAST/ADR, opening duels, clutches, roles, and Elo on tabbed player
   profiles; expand any match into the full lobby; compare against another
   player or your own past season; global leaderboards plus FACEIT and Premier
-  boards for your community.
+  boards for your community, and one points leaderboard across every public
+  server, with community seasons.
 - **[Performance Rating](/features/performance-rating)**: Aim, Positioning, and
   Utility scored out of 100 against every other player, or against one season's
   pool, with focus areas and coaching notes.
@@ -92,12 +99,23 @@ Pages linked below go deeper on the bigger features.
   FACEIT matches, paste a single share code, or upload a demo to get full stats,
   replay, and highlights.
 
+## Cosmetics
+
+- **[Career & the Locker](/features/career)**: every rated match earns XP,
+  levels pay Stacks, and the Locker turns them into banners, frames,
+  nameplates, titles, profile backgrounds and a pinned stat, with a battle pass
+  of level rewards and tournament Prize Boards.
+- **[Inventory & Sticker Crafts](/features/inventory)**: the Inventory panel
+  plugin's skins and loadouts, with Sticker Crafts to lay out a sticker combo
+  on a mat, put it on any gun, and share it in the Craft Store.
+
 ## Community
 
 - **[Friends, Teams & the Hub](/features/social)**: the floating hub dock
   (Inbox, Party, Voice, Friends, Chat, Matches), Steam friend sync with live
-  presence, teams, parties, blocking, and linked Discord and Twitch accounts
-  (live on profiles, in search, and as match POVs).
+  presence, teams with roster history and a country flag, parties, blocking,
+  and linked Discord and Twitch accounts (live on profiles, in search, and as
+  match POVs).
 - **[Chat](/features/chat)**: match, permanent team, lobby, draft, tournament,
   and organizer rooms plus direct messages, with @mentions, per-room mute and
   notify levels, scroll-back history, reactions, 10-minute edits, image and
@@ -109,11 +127,14 @@ Pages linked below go deeper on the bigger features.
 - **[Steam Presence](/features/steam-presence)**: see what friends are playing,
   in 5Stack and outside it.
 - **[Moderation & Sanctions](/features/moderation)**: bans, mutes, gags,
-  silences, and warnings that follow a player everywhere, chat moderation,
-  automatic VAC bans, escalating sanctions for abandons and tournament
-  no-shows, and actions only on players below your own role.
+  silences, and warnings that follow a player everywhere, player and message
+  reports worked as cases on one Moderation page, blocked words, automatic VAC
+  and FACEIT cheating bans, a public Recently banned list, escalating sanctions
+  for abandons and tournament no-shows, and actions only on players below your
+  own role.
 - **[News](/features/news)**: first-party announcements written and published
-  from inside the panel, with comments, +1s, and reply notifications.
+  from inside the panel, with comments, +1s, reply notifications, community
+  polls, and a Discord news channel.
 - **Discord Integration**: create matches from a Discord voice channel, run the
   map veto, and get per-team voice channels with the 5Stack bot.
 
@@ -157,6 +178,8 @@ Pages linked below go deeper on the bigger features.
   stream or site, and pop replays and broadcasts out into their own windows for a
   second monitor.
 - **Search**: fast player and entity search from anywhere in the app.
+- **[Changelog](/features/news#changelog)**: 5Stack's daily feed of what's
+  new, improved and fixed, with search and a marker for what you haven't seen.
 - **[API & personal keys](/features/api-keys)**: generate personal API keys for
   programmatic access to your data.
 - **[5Stack Plugins](/plugins/)**: embed your own web applications as native

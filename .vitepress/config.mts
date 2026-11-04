@@ -113,6 +113,7 @@ export default defineConfig({
           base: "/features",
           items: [
             { text: "Match Replay (2D & 3D)", link: "/match-replay" },
+            { text: "Coach (Rokkan)", link: "/coach" },
             { text: "In-Browser Demo Playback", link: "/demo-playback" },
             { text: "Highlights", link: "/highlights" },
             { text: "Live Streaming", link: "/live-streaming" },
@@ -128,6 +129,14 @@ export default defineConfig({
             { text: "Performance Rating", link: "/performance-rating" },
             { text: "External Matches", link: "/external-matches" },
             { text: "Match Importer", link: "/browser-extension" },
+          ],
+        },
+        {
+          text: "Cosmetics",
+          base: "/features",
+          items: [
+            { text: "Career & the Locker", link: "/career" },
+            { text: "Inventory & Sticker Crafts", link: "/inventory" },
           ],
         },
         {
