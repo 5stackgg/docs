@@ -20,7 +20,7 @@ It shows the change, asks, and applies the panel again.
 You should use an account dedicated to updating servers, as we are unable to provide two-factor authentication automatically.
 :::
 
-Until credentials are set, the **CS2 Build** dropdown is disabled and a warning icon appears next to it reading _"Version pinning is not supported on this server."_
+Until credentials are set, the **Version** dropdown in the node inspector's **CS2** section is disabled, with a **Pinning not supported** link beside it (_"Version pinning is not supported on this server."_).
 
 ::: tip
 Pinning the **plugin version** does not require Steam credentials, that dropdown works on any install.
