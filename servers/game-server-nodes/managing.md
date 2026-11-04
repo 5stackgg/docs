@@ -109,8 +109,11 @@ Its **⋮** menu also has:
 - **Remove CS2**: deletes the CS2 files from the node, after a confirm. Turn
   off **Matchmaking** or **Accepting matches** first. Enabled nodes install CS2
   again when the next CS2 update comes out.
-- **Install CS:GO**, for legacy CS:GO servers, and **Remove CS:GO** once it's
-  installed.
+- **Install CS:GO**, for legacy CS:GO servers. It starts right away, with no
+  confirm, and the toast says **CS:GO is being installed on the node**. It's
+  also in the node row's **⋮** menu. Once CS:GO is installed, the inspector
+  gets its own **CS:GO** section with **Update CS:GO**, the **Update log** and
+  **Remove CS:GO**, which asks first like **Remove CS2**.
 
 The **CS2 build** card at the top of the page shows the current CS2 version and
 when it was released.
