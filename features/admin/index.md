@@ -13,21 +13,58 @@ below it:
 | --- | --- |
 | **User** | Default for everyone who signs in |
 | **Verified User** | Trusted players |
-| **Streamer** | Can broadcast / spectate demos |
+| **Streamer** | Can run broadcasts from the **Control Room** |
 | **Moderator** | Can sanction players below their role, moderate chat and news comments, review a finished match's chat log, use RCON, and manage players on community servers |
 | **Match Organizer** | Can run matches and access the organizers chat |
 | **Tournament Organizer** | Can run tournaments |
 | **Administrator** | Full access, including all settings |
 
 Many features are gated by a **minimum role** rather than a hard admin-only
-switch, for example a minimum role to stream, to spectate, to create matches or
-tournaments, or to connect to password-protected dedicated servers. This lets
+switch, for example a minimum role to stream, to spectate, to watch demos in
+the browser (**Who can watch demos**, Verified User by default), to create
+matches or tournaments, or to connect to password-protected dedicated servers. This lets
 you open features up to trusted players without making them full admins. A few
 areas are strictly **administrator-only**, such as branding, site-wide alerts,
 the render queue, and GPU nodes.
 
 Roles are assigned from a player's profile; see
 [Roles & Players](/features/admin/roles-and-players).
+
+## The Overview page
+
+**Overview** (`/admin`), at the top of the admin pages, is an administrator's
+home. It leads with a verdict, "{count} things need you" or **All clear**
+("Nothing needs you right now."), and lists each problem worst first, such as
+a node that's offline, a failed CS2 update, a Steam pool short of accounts for
+the GPUs, a season that needs an ELO rebuild, or a plugin update. Under
+**Everything else**, each area has a card with its one-line state and
+**Open**: Seasons, Game Server Nodes, Dedicated Servers, GPU Nodes, Render
+Queue, Metrics, Database, Alerts, Plugin Directory and App Settings.
+
+Most areas update the moment they change. Metrics refresh every 30 seconds and
+the database every minute. The same count shows on the **Admin** side of the
+[Play / Admin switch](/features/navigation#play-and-admin).
+
+## Admin navigation
+
+The **Admin** list in the [left navigation](/features/navigation#play-and-admin)
+groups the admin pages. Each shows only to the roles that can open it.
+
+| Group | Pages |
+| --- | --- |
+| _(top)_ | **Overview** (administrators), **[Moderation](/features/moderation#the-moderation-page)** (moderators) |
+| **Competition** | **Awards** (whoever can manage or grant awards), **[Seasons](/features/seasons)** (when seasons are on) |
+| **Servers** | **Game Server Nodes**, **Dedicated Servers**, **Practice Servers** (moderators), **GPU Nodes**, **Regions** |
+| **Media** | **Control Room** (streamers), **Media Server**, **Render Queue** |
+| **Monitoring** | **Metrics**, **Logs**, **Database** |
+| **Site** | **Alerts**, **Plugin Directory** (when game plugins are on), **App Settings** |
+
+Pages without a role noted are for administrators. Two more admin pages are
+reached from elsewhere: **CS2 builds** (`/game-server-nodes/builds`), the
+history behind the CS2 build card on Game Server Nodes, and **Utility Drift**
+(`/utility/drift`), what a map update did to the lineups already saved on it,
+linked from its **Utility drift scans** notification. ⌘K
+[search](/features/navigation#search) finds every page you can open.
 
 ## What admins can configure
 

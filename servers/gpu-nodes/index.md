@@ -131,8 +131,8 @@ next batch starts with a fresh client.
 
 Each lineup is captured at 1080p and 60 fps, re-encoded with NVENC on NVIDIA or
 VA-API on AMD (x264 under CPU only, or when Auto can't use the GPU encoder) so a shared link plays inline in Discord, with six stills
-cut from the capture. Track the queue under **System → Render Queue**, on the
-**Utility Lineups** tab.
+cut from the capture. Track the queue under **Media → Render Queue** in the
+admin navigation, on the **Utility Lineups** tab.
 
 The practice server for a render runs as the game-server job `u-<match id>`,
 and the render pod as `gs-nades-queue`.
@@ -148,6 +148,57 @@ override the game-streamer and game-server images for lineup renders only
 (the server image also applies to Discover). Without them, renders use the
 same images as everything else.
 :::
+
+## Workloads
+
+Each GPU runs one job at a time, and each GPU node has four workload switches,
+under **GPU workloads** in its node control menu on **GPU Nodes** or **Game
+Server Nodes**:
+
+| Workload           | What it takes                                                               |
+| ------------------ | --------------------------------------------------------------------------- |
+| **Live streaming** | Live spectator [streams](/features/live-streaming)                          |
+| **Demo playback**  | On-demand [demo replay](/features/demo-playback)                            |
+| **Highlights**     | Match [highlight](/features/highlights) clips                               |
+| **Rendering**      | [Utility lineup previews](#utility-lineup-previews)                         |
+
+A node that is switched off (**Enabled** off) takes no GPU work at all. While
+any workload is off, the node's inspector on **Game Server Nodes** says so
+(**Some GPU workloads are off**).
+
+The **GPU Nodes** page can filter by **Node type**:
+
+- **GPU only**: a node with a GPU that hosts no matches and has no ports. It
+  runs CS2 only to film lineup previews, so it needs **Rendering** on to
+  install CS2 at all.
+- **Match + GPU**: a node that hosts matches and does GPU work as well.
+  **Pause Highlight Renders During Active Match** keeps renders off it while a
+  match is live there.
+
+Each GPU node also has **Video settings**: the CS2 graphics quality its jobs
+render with, as a preset or **Custom**. Left on its default, CS2 tunes its video
+settings to the card on first launch.
+
+## Video encoding
+
+**Settings → Application → Video Encoding** decides how every GPU job encodes.
+NVIDIA nodes encode with NVENC and AMD nodes with VA-API, detected per node.
+Saved settings apply to new jobs; running jobs and existing videos keep theirs.
+
+- **Video Encoder**: **Auto (recommended)** encodes on the GPU and switches a
+  job to the CPU if the GPU encoder fails. **GPU only** fails the job instead.
+  **CPU only** always encodes on the CPU, in H.264, using more CPU cores. Every
+  job still needs a GPU node to run CS2.
+- **Live streams & demo playback**: **Live stream codec**, **H.264
+  (recommended)** or **H.265 / HEVC**. HEVC is smaller at the same quality,
+  but only Safari 17 and newer play it over WebRTC, so other browsers fall back
+  to HLS. It falls back to H.264 on a GPU that can't encode HEVC.
+- **Highlights & utility videos**: **Highlight codec**, **Highlight FPS** (60
+  or 30) and **Highlight resolution** (1080p or 720p), for highlights, edited
+  clips and utility videos.
+
+See [AMD](/servers/gpu-nodes/amd#video-encoding) for what Auto does on AMD
+cards.
 
 ## Monitoring
 

@@ -40,14 +40,29 @@ Below it, five tabs:
 | **Overview** | Prize pool, teams, format, start, and location at a glance; the podium, MVP, and stage standings; prizes; **About**; **Match Settings** |
 | **Bracket**  | Every stage's bracket (shown once stages exist, or to organizers)                                                                       |
 | **Matches**  | Every match in the tournament as a full row, filtered **Live**, **Upcoming**, **Results**, or **All**                                   |
-| **Teams**    | **My Team**, the **Roster** of entered teams (**All**, **Ready**, **Needs Players**), and the **Free Agents** pool                      |
+| **Teams**    | Every entered team as a card, your own first, and the **Free Agents** pool (see [The Teams tab](#the-teams-tab))                        |
 | **Stats**    | The tournament's **Player leaderboard**                                                                                                 |
 
 **Matches** and **Stats** appear once the tournament is live. Above the tabs,
 the page shows whatever needs your attention first: an invite to accept, the
-entry requirements you do or don't meet, and the check-in panel. An owner with
-several teams entered switches between them there, and the check-in panel and
-**My Team** follow the one picked.
+entry requirements you do or don't meet, and the check-in panel ("{checked} of
+{total} teams checked in").
+
+An owner with several teams entered switches between them with **Viewing**.
+Its menu, **Teams you registered**, lists each with **You play** or **Owner**,
+its player count and its check-in state, and the check-in panel and your team's
+card follow the one picked. Only the team they play on is theirs to check in
+(see [Check-in](#check-in)).
+
+### The Teams tab
+
+The **Teams** tab lays the field out as a grid of cards, with your own team full
+width and its roster open. **Expand all** and **Collapse all** open or fold
+every roster, **Search teams or players** finds anyone in the field, and the
+filters are **All**, **Ready**, **Checked in**, **Not Checked In**, **Missed**
+and **Needs Players**. A permanent team's card is tagged **Team** and carries
+its country flag; a team made for this tournament is tagged **Tournament
+only**.
 
 ### Tournament chat
 
@@ -79,6 +94,8 @@ Registration**, **Close Registration**, **Start Tournament**, **Pause
 Tournament**, **Resume Tournament**, **Reset to Setup**, **Cancel Tournament**,
 and **Delete Tournament**. An action that can't run yet says why, for example
 that the start time has passed, the bracket is full, or there is no stage.
+Canceling or deleting a tournament that has played matches lists the matches it
+would delete, and each has to be ticked before it goes ahead.
 
 A tournament without check-in that is still open for registration at its start
 time starts on its own then, as long as it has enough teams: registration
@@ -92,7 +109,8 @@ than 15 minutes past its start waits for an organizer to start it.
 - **Negotiated Scheduling**: teams agree their own match times instead, see
   [Negotiated match times](#negotiated-match-times).
 - **Allow Substitutes**: let teams roster and field substitutes beyond the
-  starting lineup. It can't be turned off once registration has closed.
+  starting lineup, up to the site's
+  [substitute limit](/features/admin/roles-and-players#teams). It can't be turned off once registration has closed.
 - **Map pool** and **match options**: veto, region (single region or region
   veto), and a TV delay (0–120s) for broadcasts. A change here, such as moving
   the tournament to another region, reaches every stage and every match that
@@ -155,6 +173,24 @@ whoever clicks, so a captain can't roster an ineligible teammate:
 Players see the requirements on the tournament page as **Entry requirements**,
 each marked met or not met, and someone arriving from an invite link gets a
 **You have an invite** prompt to **Accept invite** first.
+
+### Joining as a team
+
+**Join Tournament → As a team** enters one of your teams, or **Create New Team**
+makes one for the tournament. A new team is for this tournament only unless you
+turn on **Keep as a Permanent Team** (off by default), which also adds it to
+your teams with its own page and stats.
+
+Adding a player from outside a permanent team's roster to its entry sends one of
+two invites, and the player sees which before accepting:
+
+| Invite                   | When                                    | What the player joins                                                          |
+| ------------------------ | --------------------------------------- | ------------------------------------------------------------------------------ |
+| **Team + lineup invite** | The team doesn't have a full lineup yet | The team and this tournament's lineup                                          |
+| **Stand-in invite**      | The team already has a full lineup      | Only this tournament's lineup: "Stand in for {team}, without joining the team" |
+
+The team's owner, its roster Admins and players with the Invite role, and site
+administrators can send them.
 
 ::: tip No-shows can be sanctioned
 A player with an active tournament sanction can't enter new tournaments. By
@@ -307,6 +343,13 @@ fullscreen, and **Follow a team** to dim every match it isn't in. Organizers can
 matches straight from the bracket, and 5Stack estimates when each round is
 likely to be reachable so schedules stay realistic.
 
+Organizers can open a scheduled bracket match, or one in check-in, and edit its
+**Match Settings**. They're marked **Rules locked**: every match in a stage
+plays the same format, maps, rounds, overtime, timeouts and substitutes, while
+its region, TV delay, check-in and timers can still change. An empty bracket
+slot can be set up the same way before its teams are known, or left on **Use
+stage settings**.
+
 If a match went wrong, organizers can **Reset winner**. The reset shows a
 **preview** of exactly what it will undo, including any downstream matches that
 already advanced, before you commit.
@@ -404,6 +447,16 @@ recorded for the team, such as a result set by hand after a crash, counts
 everyone in its lineup; a forfeit counts nobody, and a team whose every match
 was a forfeit keeps everyone. When both semifinal losers share 3rd, no Third
 Place award is handed out automatically; an organizer can grant one by hand.
+
+### Prize Board
+
+Under **Prizes & awards**, the **Prize Board** sets everything each placement
+wins (1st, 2nd, 3rd and MVP): [Career](/features/career#prizes) Locker items
+and Stacks for every player on the team. Players see it on the tournament page
+as **What you can win**. With awards off, each place still wins the Stacks and
+items on its board.
+
+### Award catalog
 
 Each placement resolves to an award from the site-wide catalog. Leave it on the
 default and the tournament uses the built-in Champion / Runner-Up / Third Place

@@ -17,6 +17,12 @@ Every new string ships in all 17 languages. The web app's CI fails any change
 that leaves a language missing a string, or holding one that English no longer
 has.
 
+## Default language
+
+**Settings → Application → Language → Default language** is what visitors see
+when their browser's language isn't one 5Stack has. Anyone can still choose
+their own language.
+
 ## Help translate
 
 Translations are community-driven. If something in your language reads wrong,

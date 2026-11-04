@@ -8,6 +8,8 @@ For game servers. It is **strongly recommended** to set the CPU governor to `per
 
 ## Ubuntu/Debian Configuration
 
+On an Ubuntu 22.04 or newer node, **Set CPU Governor to Performance** in the node inspector does this for you; see [Tuning a node](/servers/game-server-nodes/managing#tuning-a-node).
+
 If you're using Ubuntu or Debian. You can install `cpufrequtils` and configure the governor:
 
 ```bash

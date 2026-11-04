@@ -49,9 +49,10 @@ counts the ones you have not imported yet.
 
 ## Upload a demo
 
-Administrators can upload a CS2 `.dem` by hand from **Upload a demo** above the
-match list on their own profile, handy for one-off matches or when no automatic
-source applies. A demo can be up to 2 GB; it uploads straight to storage in
+Players can upload a CS2 `.dem` by hand from **Upload a demo** above the match
+list on their own profile, handy for one-off matches or when no automatic source
+applies. Who can upload is **Who can upload demos** under **Settings →
+Application → Demos** (default User), and it needs external match imports on. A demo can be up to 2 GB; it uploads straight to storage in
 64 MB parts.
 
 ## Duplicates

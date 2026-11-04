@@ -8,8 +8,9 @@ day to day.
 ## Server types
 
 - **Game Server Nodes**: machines 5Stack manages directly to spin up **on-demand**
-  game servers. The node list shows hardware (CPU sockets/cores/threads, GPU,
-  disk), status, region, and the CS2 build each node is on. See
+  game servers. The node list shows each node's load, CS2 build, capacity and
+  region, and its inspector the hardware (CPU sockets/cores/threads, GPU,
+  disk) and status. See
   [Game Server Nodes](/servers/game-server-nodes/).
 - **Dedicated Servers**: servers that stay up, either run by 5Stack on one of
   your nodes or external servers you connect with host/port and RCON
@@ -86,14 +87,16 @@ game-server plugin, there's nothing to babysit. When you need stability instead:
   go back to always-latest.
 - **Pin the plugin version** separately, so an older build keeps a plugin that
   supports it.
-- A warning flags any node whose build differs from its target version, with an
-  update button to bring it in line; an **Install CS2** action appears if CS2
-  isn't on the node yet.
-- A failed update is marked with a red **Update Failed** icon that opens its
-  logs, and administrators are notified.
+- A node whose build differs from its target is marked **Behind**, with an
+  update button to bring it in line; **Install CS2** appears if CS2 isn't on
+  the node yet.
+- A failed update is marked **Update failed**, with its logs, and
+  administrators are notified.
 
-Both are set from the **CS2 Build** and **Plugin Version** columns on the Game
-Server Nodes page.
+Both pins are set in the **CS2** section of the node's inspector on the Game
+Server Nodes page, whose table shows each node's build in its **CS2** column.
+The **CS2 build** card at the top of the page shows the current version. See
+[Managing Nodes](/servers/game-server-nodes/managing#cs2-on-a-node).
 
 See [Version Pinning](/servers/game-server-nodes/version-pinning) for details.
 
@@ -108,7 +111,9 @@ match server:
 
 - **RCON console**: send commands to the live server from the browser.
 - **Live server logs**: watch the match server's console output.
-- **Round restore**: roll back to a backed-up round.
+- **Round restore**: the [Rounds tab](/features/matches#restoring-a-round)
+  and **Restore Round**, also reached from
+  [Fix a Problem](/features/matches#fix-a-problem).
 - **Reboot** the server.
 
 ## File browser & plugins
@@ -132,11 +137,15 @@ or community server actually loads.
 
 ## Node operations
 
-- **Accepting Matches**, in a node's controls: turned off, the node keeps running
+The node inspector, its warnings and one-click tuning, which match types each
+node takes, removing CS2, and Kubernetes updates are covered in
+[Managing Nodes](/servers/game-server-nodes/managing).
+
+- **Accepting matches**, in a node's controls: turned off, the node keeps running
   the matches it has but takes no new ones. The setting is kept while the node
   is offline, and applies when it reconnects.
-- **Remove Node** deletes the node and every server on it, dedicated servers
-  included. Shut the host down first: a host that is still running registers
+- **Remove node** deletes the node and every server on it, dedicated servers
+  included, after a confirm: "Remove this node? … This can't be undone." Shut the host down first: a host that is still running registers
   itself again on its next ping. Once it has been unreachable for 10 minutes,
   the panel also removes it from Kubernetes, along with its leftover jobs and
   volumes. Files on its disk are left alone.
@@ -144,9 +153,8 @@ or community server actually loads.
   fill the disk: untagged images, and older versions of other images once a
   newer one is running. Tagged 5Stack images are never touched.
 
-::: warning Remove Node asks no questions
-It deletes immediately, with no confirmation, and takes the node's dedicated
-servers with it. Move them to another node first.
+::: warning Remove node takes its dedicated servers with it
+Move them to another node first.
 :::
 
 ## Status notifications
@@ -172,7 +180,9 @@ rebuilt gets 5 minutes before it counts as down.
   instances.
 
 See also [CPU Governance](/servers/cpu-governance) and
-[Low Latency Kernel](/servers/low-latency-kernel).
+[Low Latency Kernel](/servers/low-latency-kernel). On Ubuntu nodes the node
+inspector can apply both for you; see
+[Tuning a node](/servers/game-server-nodes/managing#tuning-a-node).
 
 ## Regions
 

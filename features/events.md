@@ -66,11 +66,17 @@ The **Overview** tells the story of the event as it happens:
 
 - **Before** it starts: how many days to go, tournaments open for sign-up,
   **Who's going**, and media **From the organizers**.
-- **During** it: what's **Live now**, the brackets in play, the **Leaderboard
+- **During** it: the **On now** strip, the **Brackets**, the **Leaderboard
   so far**, **Your day**, **Results so far**, **Highlights**, and the **Latest
   uploads**.
 - **After** it: the **Champions**, the **Top of the leaderboard**, **Your
   event**, **Results**, **Highlights**, and **Moments** from the gallery.
+
+**On now** follows every match of the event in play, marking which are live and
+which are still getting ready, with **More in Matches** when they don't all
+fit. **Brackets** has one tab per live tournament, each badged "{count} on now",
+holding that tournament's full read-only bracket: follow a team, zoom, **Fit**,
+go fullscreen, and switch between the upper and lower brackets.
 
 **Your day** and **Your event** show your own line: your rank among the event's
 players and your numbers. Open it, or any leaderboard row, for that player's
@@ -81,7 +87,8 @@ event profile, and **Compare with...** another player.
 - **Standings**: a **Medal Table** across the event's tournaments, with each
   player's **Gold**, **Silver**, **Bronze**, and **MVP** awards.
 - **Leaderboard**: event-wide player rankings by **Rating, ADR, K/D Ratio,
-  Kills, or Wins**, with match counts.
+  Kills, or Wins**, with match counts. The **ELO** tab ranks players by the
+  **ELO Gained** at the event.
 
 ## Media gallery
 

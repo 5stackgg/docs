@@ -137,6 +137,9 @@ on a phone your pick becomes a bar pinned to the bottom of the screen.
 - **Edit Settings** changes the room's settings, and **Cancel Draft** closes the
   room for everyone, after a confirmation. A room opened with **Host a room**
   keeps its format, mode, and match settings when you edit it.
+- **Reset Draft**, in the admin dock, starts the picks over. The host or a
+  Match Organizer and above can use it, only while picking is under way, and a
+  host who is one of the captains can't reset their own draft.
 
 ### Substitutes and the sub queue
 

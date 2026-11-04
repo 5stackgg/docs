@@ -16,6 +16,10 @@ It helps by:
 
 ## Ubuntu 24.04 and newer (recommended)
 
+On these nodes, **Turn On Low Latency** in the node inspector applies the steps
+below for you, and **Move to the Generic Kernel** moves a node off the legacy
+kernel; see [Tuning a node](/servers/game-server-nodes/managing#tuning-a-node).
+
 Ubuntu no longer builds a separate low-latency kernel (it was dropped in 25.04). Canonical's replacement is the standard **generic** kernel booted with `preempt=full`, which makes the kernel fully preemptible. This also works on 24.04.
 
 1. Add the boot option and update GRUB:

@@ -319,6 +319,18 @@ edit panel need it.
 | **Queue entry lifetime (minutes)** | How long a player who was turned away still counts as waiting. Default 30                                                                             |
 | **Reserved on-demand slots**       | Server slots practice may never take, so a drill cannot take the last slot from a scheduled match. Lineup preview renders and Discover respect it too |
 | **Success radius (units)**         | How close a throw must land to score as a hit. Default 96                                                                                             |
+| **Idle player kick (minutes)**     | How long a connected player can do nothing before the server warns them, warns them once more, and kicks them. Default 15; 0 turns it off             |
+
+Moving, looking around, pressing a key, talking and typing all count as doing
+something, so only a player who has walked away is kicked.
+
+### Running practice servers
+
+**Practice Servers**, in the admin navigation (moderators and above), lists
+every running practice server live: its host, map and region, and how many players are
+connected. **Stop** ends a session after a confirm that says who it drops, and
+**Console** and **Logs** open the server's console and logs. Only
+administrators can open the console of another player's server.
 
 ::: tip Related
 [Utility Library](/features/utility-library) ·

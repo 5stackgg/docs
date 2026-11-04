@@ -93,6 +93,14 @@ them, switch between them freely, and one save sends everything.
 A server that is switched off saves the change and picks it up when it is
 enabled again.
 
+### GOTV
+
+The **GOTV** switch in **General** lists the server's TV port for anyone who
+can join, so the server pages offer **Watch on GOTV** and **Copy GOTV connect
+command**. On a game server node it turns GOTV on for the server; on an external
+server it only lists the port, and GOTV itself is turned on in the server's own
+config.
+
 ### Plugins
 
 **Plugins** lists every installed [game plugin](/servers/game-server-nodes/game-plugins)
@@ -159,11 +167,16 @@ community server records who played, when, and for how long. Anyone can see:
 - the **Overview**: **Online Now**, **Players This Week**, **Hours This Week**,
   **All-Time Players**, and a seven-day activity chart of the total hours
   played each day. Nobody's individual play times are shown.
-- the **Leaderboard**: **This Week** or **All Time**, by **Time** or **Kills**.
+- the **Leaderboard**: **This Season**, **This Week** or **All Time**, by
+  points, time, kills and the other boards of the combined
+  [public server leaderboard](/features/stats-and-leaderboards#public-server-leaderboard).
   It lists players with a 5Stack account; players without one still count
-  toward the totals.
+  toward the totals. Administrators can start a
+  [community season](/features/stats-and-leaderboards#community-seasons) for
+  this server alone from its page.
 
-Player profiles get a **Community** tab with the player's time and kills on
+Player profiles get a **Community** tab with the player's points, time, kills
+and [detailed stats](/features/stats-and-leaderboards#community-tab) on
 community servers. The public sees only when they were last seen. Moderators
 also see exact sessions, the names they used, their IPs, and other accounts
 seen on those IPs.

@@ -51,11 +51,21 @@ close it.
 Your **Steam friends** sync in (**Sync Friends**), so the people you already
 play with show up without adding them by hand. The **Friends** app lists each
 friend's online state, what they're doing in 5Stack ("In a match", "In a lobby",
-"In draft lobby"), and, with [Steam Presence](/features/steam-presence), what
-they're doing in CS2 outside 5Stack. From a friend's row you can invite them to
-your lobby or draft room, join them, message them, or remove or block them.
-Players in **Others** can be sent a
-[message request](/features/chat#message-requests) from their row.
+"In draft lobby", "In practice · {map}"), and, with
+[Steam Presence](/features/steam-presence), what they're doing in CS2 outside
+5Stack. From a friend's row you can invite them to your lobby or draft room,
+join them, message them, or remove or block them. A friend hosting a
+[practice server](/features/practice-servers) you can join shows **Join**.
+
+Each team you're on gets its own **Team · {name}** section in the list, so your
+teammates sit together.
+
+**Others** lists everyone else who is online, with players on your LAN first.
+They can be sent a [message request](/features/chat#message-requests) from
+their row. Admins cap it under **Settings → Application → Players → Most
+players online to list** (default 200, under **Who's online**). Above that
+many players online the list switches off until 10% fewer are online, and
+players find each other through search; 0 never lists everyone.
 
 When a friend comes online the dock tells you: one arrival shows their face on
 the **Friends** icon ("{name} just came online"), several show the count, and
@@ -70,7 +80,33 @@ have.
 Create and manage teams and invite friends straight into them. A team page
 carries its Elo and awards, its [league history](/features/leagues), its
 [veto tendencies](/features/match-analysis#team-analytics), and its
-[Scrim Finder](/features/scrim-finder) settings.
+[Scrim Finder](/features/scrim-finder) settings. On 5stack.gg its **Coach** tab
+gathers the roster's [Rokkan reviews](/features/coach#team-coaching).
+
+The **Teams** page has two lists: **All teams**, and **Tournament teams** for
+teams made inside a tournament (see
+[Joining as a team](/features/tournaments#joining-as-a-team)).
+
+- **Country**: the team's **⋮** → **Edit** → **Edit Team** → **Country**, a
+  searchable list with **No country**. The flag shows beside the team's name on
+  its page, in the match header, and on its tournament team cards.
+- **Top plays**: the team's best clips lead its Overview feed.
+
+### Roster History
+
+A team's Overview has a **Roster History** card: a bar for each player's
+tenure, "{current} current · {former} former", each former player marked
+**Left** or **Removed**, and **Member for** how long. **Show all {count} former
+players** opens the full list. The team's activity feed gets a row whenever a
+player joins, rejoins, leaves or is removed.
+
+A player's profile has a **Teams** tab with their **Team History**, a timeline
+by year of the teams they joined and left. A team that was disbanded keeps its
+name there ("{team} was disbanded").
+
+Roster history is public and records itself. It starts from when the feature
+shipped, so players who were already on a team show "Member since before
+{date}".
 
 A team that is short of five starters reminds anyone who can invite to it, in
 the [Inbox](/features/notifications#the-inbox).
@@ -166,11 +202,5 @@ as push notifications, by flashing the browser tab, and with sounds. See
 
 ## Getting around
 
-- **Back returns lists to where you left them.** Players, Matches, Teams,
-  Leaderboard and Highlights come back on the page of results you left, and
-  Teams keeps its search, sort and filters too. The lists inside team,
-  tournament, league, event and award pages do the same.
-- **Empty sections stay out of the navigation.** Tournaments, Events, News and
-  Highlights only appear in the navigation once there's something in them.
-  Players who can create tournaments, events or news posts still see those
-  links, so they can add the first one.
+The navigation, search, the profile menu and Help & FAQ are covered in
+[Getting Around](/features/navigation).

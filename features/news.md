@@ -97,6 +97,52 @@ page (**Only authors see drafts**), each with **Edit** and **Publish**. Publishe
 posts can be **unpublished** back to draft, edited, or deleted, and authors see a
 **view count** on every post.
 
+## Community polls
+
+Staff who can post news can also ask players a question at the top of the News
+page. Polls are managed from **News → Polls** or **Settings → Application →
+Community Polls**, and need News to be on.
+
+**New Poll** takes:
+
+- **Question**, up to 200 characters, and **Details (optional)**.
+- **Answers (2 to 8)**.
+- **Choice type**: **Single choice** or **Multiple choice**.
+- **Who sees the results**: **After they vote**, **After the poll closes**, or
+  **Staff only**. Staff always see the counts.
+- **Closes (optional)**, in your time zone. Leave it empty to close the poll by
+  hand.
+- **Players can change their vote**, while the poll is open.
+
+**Save Draft** keeps it private. **Publish** puts it on News and sends players
+one notification ("A new community poll is open"); from then on the answers,
+choice type, who sees the results and vote changes are locked. While a poll is
+open, staff see its **Results**, can still edit the details, can change the
+question until the first vote, and can only move the closing time later.
+**Close Poll** ends it for good; a closed poll can't be reopened, and its
+results are kept. Only drafts can be deleted.
+
+Players see open polls at the top of News and closed ones under **Earlier
+polls** (the newest 10). Signed-in players vote once, banned players can't
+vote, and ballots are private: everyone sees only the counts, when the poll
+lets them. The notification is **Community polls** in notification settings.
+
+## Changelog
+
+**Changelog**, in the profile menu (`/changelog`), is 5Stack's own daily feed
+of what changed, grouped by section, with each change tagged **New**,
+**Improved** or **Fixed**. Anyone can read it.
+
+- Search every day since the changelog began, and filter by **Type**,
+  **Section** and **Months**.
+- Days you haven't seen are marked, under **New since your last visit**, until
+  you **Mark as read**. Signed in, what you've seen follows your account across
+  devices.
+- Match Organizers and above get a dot on the profile menu while there are
+  days they haven't seen. The dot follows the account, not the browser.
+
+Each day's changes appear the next day, written in English.
+
 ## Admin
 
 Under **Settings → Application → News**:
@@ -104,4 +150,9 @@ Under **Settings → Application → News**:
 - The **News** switch turns the section on or off.
 - **Display name** renames the section in navigation and page titles.
 - **Who can post news** sets the minimum role allowed to create and publish
-  posts (administrators by default).
+  posts, and manage [polls](#community-polls) (administrators by default).
+- **Discord**: a **News webhook URL** for a dedicated news channel, and **Role
+  IDs** (comma-separated) to mention in each post. Each article is posted once,
+  the first time it's published, as a card with its cover. It's separate from
+  the default Discord webhook and never falls back to it, so nothing is posted
+  while it's empty.

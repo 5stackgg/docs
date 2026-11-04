@@ -7,8 +7,7 @@ finds new smoke throws onto a spot you pick and has a server throw each one to
 prove it lands. To walk a lineup in game, start a
 [practice server](/features/practice-servers).
 
-It lives under **Utility** in the left navigation, and under
-**Community → Utility Library** in the top navigation. A map needs a radar image
+It lives under **Practice → Utility** in the left navigation. A map needs a radar image
 to appear here; a map without one has nothing to draw a lineup on. Rush maps are
 not listed.
 
@@ -138,6 +137,11 @@ The list is live. A lineup saved elsewhere, a review answered, or an archive
 undone shows up without a reload, and a lineup you save from a practice server
 announces itself as **Lineup saved: {name}** with a **Show** button.
 
+While you're in a practice server, the lineups you save there land in a **This
+Server** group at the top of **Mine**, newest first, and are numbered on the
+map. They stay private until you submit them: the **Public** scope only ever
+shows public lineups.
+
 ### Addresses and Back
 
 Everything the page holds goes into its address: the tab, the scope and
@@ -248,8 +252,8 @@ filmed keeps its preview for whoever can still see it.
 
 ### The render queue
 
-Administrators follow renders under **System → Render Queue**, on the
-**Utility Lineups** tab:
+Administrators follow renders under **Media → Render Queue** in the admin
+navigation, on the **Utility Lineups** tab:
 
 - **Preview coverage** counts public lineups that are **Up to date**,
   **Missing**, **Outdated**, **Cannot be filmed**, or **In queue**, against the
@@ -266,10 +270,7 @@ Administrators follow renders under **System → Render Queue**, on the
 ::: tip Render versions
 Every preview records the render version that filmed it, so a change to how
 previews are filmed is rolled out by re-rendering what is outdated. Nothing
-re-renders on its own: press **Re-render Outdated**. If the render pod in use
-films an older version than the API expects, the page warns **The render pod
-is behind this API** and the API refuses to re-render outdated previews until
-the game-server and game-streamer images are updated.
+re-renders on its own: press **Re-render Outdated**.
 :::
 
 ## Recorded smokes
@@ -389,8 +390,9 @@ was thrown from and where it landed.
 
 The same matching drives two report surfaces:
 
-- **Utility vs Lineups** on a match, plus a browsable list of every grenade in
-  that map's demo — save one and it becomes a lineup.
+- The match page's [Utility tab](/features/match-analysis#utility): every
+  grenade in that map's demo drawn on the map, on or off the meta spot — save
+  one and it becomes a lineup.
 - **Utility Lineups** on a team page: which saved lineups a roster's grenades
   looked like in real matches, and how often they landed.
 
@@ -411,6 +413,18 @@ throws that _look like_ the lineup, not a record of the lineup being called.
 | **Lineup Imports**             | Whether lineups may be seeded from a payload, with a dry run, a per-entry error report, and a **Purge Imported** that removes only what the importer wrote  |
 | **Re-scan demos**              | Rebuilds the mined meta from demos that have already been parsed. Does not re-parse them                                                                    |
 | **Sync callouts**              | Refreshes the map callout names that lineups, meta spots and new throws are named from                                                                      |
+
+### Utility Drift
+
+**Utility Drift** (`/utility/drift`, administrators) shows what a map update did
+to the lineups already saved on it. Pick a **Map**, a **From revision** and a
+**To revision** (**Latest** by default), and **Start Scan**: every lineup on the
+map is flown again on both revisions, and each result is **Unchanged**,
+**Moved**, **Broken** (for example, the spot it's thrown from was walled off),
+or **Not simulatable**, with how far its end point moved. Only the movement is
+shown, since a simulated end point is never exactly where the utility lands in
+game. When a scan finishes, administrators get a **Utility drift scans**
+notification with a link to it.
 
 ## What each part needs
 
