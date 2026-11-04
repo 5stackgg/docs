@@ -22,8 +22,11 @@ matches are live. Under them, the pages sit in five sections:
 | **Media**     | Matches, Highlights, [News](/features/news)                                                  |
 | **Community** | Players, Teams, Leaderboard, [Bans](/features/moderation#recently-banned)                    |
 
-Click a section's heading to fold it. Folded sections stay folded in that
-browser, and a section added later starts open.
+Click a section's heading to fold it, and click it again to open it; the
+chevron beside the name turns to show which. Folded sections stay folded in
+that browser, and a section added later starts open. Going to a page inside a
+folded section opens that section. When the nav is collapsed to its icon rail,
+sections don't fold: every page shows as an icon.
 
 ### Pins
 
