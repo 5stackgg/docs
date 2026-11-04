@@ -74,9 +74,9 @@
   height: 22px;
 }
 
-/* Between the phone layout and the sidebar layout the title shares a row with
-   the whole menu, which leaves no room for the full wordmark: show its mark. */
-@media (min-width: 768px) and (max-width: 1069px) {
+/* From 768px until the title moves into the sidebar at 960px it shares a row
+   with the whole menu, which leaves no room for the full wordmark: show its mark. */
+@media (min-width: 768px) and (max-width: 959px) {
   .VPNavBarTitle .logo {
     width: 26px;
     object-fit: cover;
