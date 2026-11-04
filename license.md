@@ -52,6 +52,14 @@ panel serves the web app's license at `/license.txt`.
   5Stack. No license gives rights to the 5Stack name or logo beyond the
   credit.
 
+## Terms and privacy
+
+Every panel also ships a generic **Terms of Service** and **Privacy Policy**
+for its players, shown under your site's own brand name. They say the site
+runs on 5Stack and is hosted by you, its operator, and send questions to you.
+The text is the same on every panel apart from the name; see
+[Legal](/features/navigation#legal).
+
 ## Plugins
 
 Plugins that work with 5Stack only through its plugin interfaces

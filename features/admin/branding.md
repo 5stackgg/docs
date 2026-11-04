@@ -22,6 +22,10 @@ changes** bar that appears.
 - **Favicon**: optional, a simpler mark for the browser tab (PNG, JPEG, ICO or
   WebP).
 
+- **Nav banner**: optional, shown across the top of the left navigation for
+  players and visitors (840×228 recommended; PNG, JPEG, SVG or WebP). Without
+  one, the navigation shows your logo and name.
+
 Each has a preview and a remove button.
 
 ## Login Page

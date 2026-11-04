@@ -36,8 +36,11 @@ You should see `Kernel driver in use: amdgpu` under your GPU, and a
 - **Cloud and virtual machine kernels** leave the module out. Install it with
   `sudo apt install linux-firmware linux-modules-extra-$(uname -r)`.
 - **Recent GPUs** need a recent kernel. On Ubuntu LTS, install the HWE kernel.
+- **`nomodeset`** on the kernel command line (`cat /proc/cmdline`) stops `amdgpu`
+  from loading. Remove it from `GRUB_CMDLINE_LINUX_DEFAULT` in `/etc/default/grub`
+  and run `sudo update-grub`.
 
-Reboot after either. Unlike [NVIDIA](/servers/gpu-nodes/nvidia), there is nothing
+Reboot after any of these. Unlike [NVIDIA](/servers/gpu-nodes/nvidia), there is nothing
 to set up in K3s and no kernel parameter to add.
 
 ## 2. Run the setup script
@@ -80,9 +83,10 @@ sudo 5stack config set GAME_STREAMER_AMD_MEMORY_LIMIT=24Gi GAME_STREAMER_AMD_MEM
 ```
 
 It shows the change, asks, and applies the panel again. The limit is also
-**Config → AMD GPU memory** in the [`5stack` menu](/service/command#the-menu). A
-request larger than the limit is ignored: the API logs a warning and keeps the
-defaults.
+**Config → AMD GPU memory** in the [`5stack` menu](/service/command#the-menu).
+Leave both unset to keep the defaults. Any other value, including a request
+larger than the limit, stops the API at boot, and its log names the values it
+rejected.
 
 If something else on the machine also uses the integrated GPU heavily, viewers
 can see short stutters while it saturates the GPU.

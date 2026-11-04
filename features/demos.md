@@ -52,6 +52,12 @@ Under **Settings → Application → Demos**:
   the Cloudflare worker if you use one.
 - **Scan Orphaned Uploads**: finds demo, playback, and highlight files in storage
   that no database row references, and deletes them to reclaim the space.
+- **Who can watch demos** (default Verified User): the minimum role for
+  [in-browser demo playback](/features/demo-playback). Match organizers can
+  always watch their own matches.
+- **Who can upload demos** (default User): the minimum role for
+  [uploading a `.dem`](/features/external-matches#upload-a-demo) from a match
+  played elsewhere. External match imports must be turned on too.
 
 For where demos physically live and how to use your own bucket (e.g. Backblaze +
 Cloudflare). See [Bring Your Own S3](/advanced/s3/).

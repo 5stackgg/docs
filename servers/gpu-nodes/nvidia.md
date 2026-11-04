@@ -6,7 +6,7 @@ A [GPU node](/servers/gpu-nodes/) with an NVIDIA GPU needs three things:
 2. The NVIDIA Container Toolkit (so containerd can expose GPUs into pods).
 3. The Kubernetes `nvidia` overlay applied to your cluster (registers the device plugin so pods can request `nvidia.com/gpu`).
 
-Steps 1 to 4 below cover the first two and run on each GPU node.
+Steps 1 to 5 below cover the first two and run on each GPU node.
 [`setup-gpu-nodes.sh`](/servers/gpu-nodes/#run-the-setup-script) handles the third.
 
 ## 1. Add the NVIDIA Container Toolkit repository
@@ -45,7 +45,7 @@ nvidia-smi
 
 You should see your GPU(s) listed with the driver version.
 
-::: warning Secure Boot
+::: warning Secure Boot {#secure-boot}
 If Secure Boot is enabled, `nvidia-smi` won't load the driver because the kernel module isn't signed by a trusted key. Enroll NVIDIA's Machine Owner Key so the module is accepted:
 
 ```bash
@@ -53,9 +53,34 @@ sudo mokutil --import /var/lib/shim-signed/mok/MOK.der
 ```
 
 You'll be prompted to set a one-time password. Reboot, complete MOK enrollment in the blue MOK Manager screen using that password, then re-run `nvidia-smi`. Alternatively, disable Secure Boot in your firmware.
+
+5Stack warns on the node while Secure Boot keeps the NVIDIA driver from loading.
 :::
 
-## 3. Install the NVIDIA runtime
+## 3. Turn on kernel modesetting {#modeset}
+
+Clip renders read frames straight from the GPU, which needs the driver's kernel modesetting. Check it:
+
+```bash
+cat /sys/module/nvidia_drm/parameters/modeset
+```
+
+If it prints `N`, edit `/etc/default/grub`: remove `nomodeset` from `GRUB_CMDLINE_LINUX_DEFAULT` if it's there, and add `nvidia-drm.modeset=1`, keeping the line's other options. For example:
+
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvidia-drm.modeset=1"
+```
+
+Apply it and reboot:
+
+```bash
+sudo update-grub
+sudo reboot
+```
+
+The check should now print `Y`. Without it, renders still work but fall back to grabbing the X screen, and each clip logs `nvidia-drm modeset is OFF — using ximagesrc`. 5Stack also warns on the node while modesetting is off.
+
+## 4. Install the NVIDIA runtime
 
 Install the container runtime packages so containerd can launch GPU-enabled containers:
 
@@ -65,7 +90,7 @@ sudo apt install -y \
     nvidia-container-runtime
 ```
 
-## 4. Restart K3s containerd
+## 5. Restart K3s containerd
 
 K3s detects the NVIDIA container runtime when it starts and adds the matching runtime entries to its generated containerd config. Restart the K3s agent on each GPU node:
 

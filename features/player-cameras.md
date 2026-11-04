@@ -82,7 +82,7 @@ administrators keep full access so the feature can be exercised end to end.
   landscape box.
 - **Camera dots** on the lineup rows give organizers per-player state at a glance
   without opening the grid.
-- On the [Stream Deck](/features/live-streaming#stream-deck), player cameras
+- In the [Control Room](/features/live-streaming#control-room), player cameras
   render **inside the observer-target slots**, so the box you read to pick a
   spectate target is the box you click. Feeds start muted.
 

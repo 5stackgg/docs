@@ -18,11 +18,16 @@ _instant_ and powers the live status.
 
 On your account under **Settings → Linked Accounts**, once you've linked your
 Steam match history you'll see the **5stack Steam bot** card. Click **Add bot as
-friend**, then **Open the bot on Steam** and send it a friend request. It
-auto-accepts within about a minute and the card flips to "Connected — imports
+friend**, then **Open the bot on Steam**, which opens a one-use Steam invite
+from your bot, and send it a friend request. It auto-accepts within about a minute and the card flips to "Connected — imports
 are instant." From then on your matches import as soon as they end, and your
 friends see your live CS2 status. The card previews that status **As your
 friends see you**.
+
+If the bot is offline, the card says so. A request you send meanwhile is
+accepted as soon as it's back, and while a connected bot is down your matches
+import on the hourly check instead. Unfriending the bot on Steam disconnects you
+and gives your place in the pool back.
 
 Your friends see it in the **Friends** app on the
 [hub dock](/features/social#the-hub).
@@ -46,8 +51,16 @@ Under **Settings → Application → Steam Presence**:
 
 The page shows the pool's totals, **Online** bots, players **Watching**,
 **Pending** (assigned a bot but not yet friends with it) and **Capacity**, and
-lists each bot under **Bots** with its live status. Presence is **on by
-default**; **Enable Presence** is a kill-switch.
+lists each bot under **Bots** with its live status, and for one that's down,
+when it **Went offline**, its **Last error** and its **Next try**. Presence is
+**on by default**; **Enable Presence** is a kill-switch.
+
+A bot that loses its login reconnects on its own. Administrators are told in
+the bell when a bot goes offline, comes back, or needs a Steam Guard code
+(**Steam presence bot** in notification settings), and can enter the **Steam
+Guard code** straight from that notification. The Steam Presence entry in the
+settings rail shows a **Bot offline** or **Needs a Steam Guard code** chip
+meanwhile.
 
 ## How detection works
 

@@ -44,12 +44,45 @@ below their new role.
 - **Force Player Name Registration**: new players must submit a name to use on
   the platform.
 
+### Leaderboards
+
+**Leaderboards → Minimum matches** (default 3): players appear on a
+[leaderboard](/features/stats-and-leaderboards#leaderboards) only once they
+have played this many matches in the season or time range being viewed. The
+Awards, FACEIT and Premier boards ignore it.
+
+### Who's online
+
+**Most players online to list** (default 200) caps the **Others** tab of the
+[friends list](/features/social#friends). Above it the list switches off until
+10% fewer are online, and players find each other through search. 0 never
+lists everyone.
+
+## Teams
+
+**Settings → Application → Teams → Roster & substitutes** sets the roster rules
+used across [leagues](/features/leagues) and
+[tournaments](/features/tournaments):
+
+| Setting                 | Default | Range                          |
+| ----------------------- | ------- | ------------------------------ |
+| **Minimum roster size** | 5       | 1–15                           |
+| **Maximum roster size** | 7       | up to 20, at least the minimum |
+| **Substitutes**         | 2       | 0–10                           |
+
+Teams need at least the minimum to be approved and can't go over the maximum.
+Substitutes back up the five starters.
+
 ## Name changes
 
 When names need approval, a player's new name only shows once an admin approves
-it. The name field tells them so ("An admin approves name changes before they
-show."), and they're notified either way. Staff get a **Name change requests**
-notification, which can also be posted to Discord.
+it. The name field tells them so, and asks for a reason (**Why the new name?**,
+up to 300 characters). A player has one open request at a time. Staff get a
+**Name change requests** notification, which can also be posted to Discord.
+
+Administrators approve or deny a request with an optional **Comment for the
+player**, which is sent back with the decision. The player is notified either
+way.
 
 ## Sanctions
 

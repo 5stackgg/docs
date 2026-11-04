@@ -60,6 +60,7 @@ Press **?** for the full list.
 
 - Demo playback requires at least one **[GPU node](/servers/gpu-nodes/)** with demo
   playback enabled, plus a Steam account in the pool for the pod to log in with.
-- Playback is available to match organizers and to the **Streamer** role and
-  above.
+- Playback is open to the **Who can watch demos** role under **Settings →
+  Application → Demos** (default Verified User), and match organizers can
+  always watch their own matches. See [Demos](/features/demos#admin-controls).
 - The default HUD is set on **Settings → Application → Broadcast HUDs**.

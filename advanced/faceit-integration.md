@@ -30,7 +30,7 @@
 
 5Stack can import full Faceit matches (scoreboard, replay, highlights) for players who have linked their Steam match history, on the same hourly schedule as Valve matches.
 
-Enable it under **Settings → Application → External Matches**: turn on **External Matches**, then **Import Faceit Matches**. The **Test** button on that page checks your key against both the Data API (ranks/metadata) and the Downloads API (demo download) and reports which work.
+Enable it under **Settings → Application → Match imports**: turn on **Allow CS2 match imports**, then **Import Faceit matches**. The **Test** button on that page checks your key against both the Data API (ranks/metadata) and the Downloads API (demo download) and reports which work.
 
 ::: warning Downloading demos needs Downloads API access
 Downloading the demo is the one piece that needs more than the standard key. The `demo_url` the Data API returns is a private resource URL whose host is not publicly resolvable; it must be exchanged for a signed download URL via the Faceit **Downloads API**, which requires Downloads access on your key. If the Test button reports "Downloads API not authorized", apply at [fce.gg/downloads-api-application](https://fce.gg/downloads-api-application) (~30-day approval). Until then, ranks/metadata still import, and you can always import a match by uploading its `.dem` manually.

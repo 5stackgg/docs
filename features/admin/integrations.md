@@ -100,6 +100,10 @@ moved to 90 days, and a value you chose yourself was kept.
   GIPHY**). Searches go through the API, so the key never reaches a browser.
   **GIPHY searches per hour** is shared by every player and defaults to 90;
   GIPHY's beta keys allow 100 an hour.
+- **Blocked words**: words and phrases masked before a message is sent. See
+  [Blocked words](/features/chat#blocked-words).
+- **Player reports**: lets players report a message from its menu, into the
+  [Moderation page](/features/moderation#the-moderation-page).
 
 See [Chat](/features/chat) for how players use these.
 
