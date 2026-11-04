@@ -5,7 +5,7 @@ export default defineConfig({
   title: "5Stack",
   titleTemplate: ":title | 5Stack",
   description:
-    "Counter-Strike Management System, a panel for managing servers, matches, and tournaments.",
+    "Your own CS2 platform, on hardware you control. One self-hosted install runs matchmaking, tournaments, stats, replays and broadcast.",
   appearance: "dark",
   cleanUrls: true,
 
@@ -33,7 +33,7 @@ export default defineConfig({
       {
         property: "og:description",
         content:
-          "Counter-Strike Management System, a panel for managing servers, matches, and tournaments.",
+          "Your own CS2 platform, on hardware you control. One self-hosted install runs matchmaking, tournaments, stats, replays and broadcast.",
       },
     ],
     ["meta", { property: "og:site_name", content: "5Stack" }],
@@ -48,8 +48,13 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    // No nav logo image: the mini logo was illegible at that size. The nav
-    // shows the "5Stack" wordmark styled in Oxanium instead (see custom.css).
+    // The brand wordmark: its mark is the 5, so the site title text is hidden.
+    logo: {
+      light: "/brand/wordmark-light.svg",
+      dark: "/brand/wordmark-dark.svg",
+      alt: "5Stack",
+    },
+    siteTitle: false,
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [

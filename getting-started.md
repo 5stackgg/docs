@@ -1,8 +1,8 @@
 # What is 5Stack?
 
-5Stack is a comprehensive Counter-Strike management system originally built for
-LAN tournaments, and now supporting online servers, advanced matchmaking,
-statistics, social connectivity, and more.
+5Stack is your own CS2 platform, on hardware you control. It started as a way to
+run LAN tournaments, and now runs online servers, matchmaking, statistics,
+social features, and more.
 
 It runs everything around your matches end to end, from spinning up servers and
 running tournaments, to capturing demos and turning them into replays,
