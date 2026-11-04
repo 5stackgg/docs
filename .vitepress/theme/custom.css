@@ -70,14 +70,18 @@
   border-radius: 15px;
 }
 
-/* Nav wordmark: the tiny logo image was illegible, so the nav shows "5Stack"
-   set in the display font, matching the headings used across the site. */
-.VPNavBarTitle .title {
-  font-family: var(--vp-font-family-display);
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.01em;
-  color: var(--vp-c-text-1);
+.VPNavBarTitle .logo {
+  height: 22px;
+}
+
+/* From 768px until the title moves into the sidebar at 960px it shares a row
+   with the whole menu, which leaves no room for the full wordmark: show its mark. */
+@media (min-width: 768px) and (max-width: 959px) {
+  .VPNavBarTitle .logo {
+    width: 26px;
+    object-fit: cover;
+    object-position: left;
+  }
 }
 
 /* Headings across the whole site, not just home: this is the identity. */

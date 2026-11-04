@@ -1,8 +1,7 @@
 # Features
 
-5Stack is a comprehensive Counter-Strike management system, servers,
-matchmaking, tournaments, leagues, stats, and everything you do with a match
-after it ends. This is the full picture of what the platform offers.
+5Stack is your own CS2 platform: servers, matchmaking, tournaments, leagues,
+stats, and everything you do with a match after it ends. This is the full picture of what the platform offers.
 
 Pages linked below go deeper on the bigger features.
 
