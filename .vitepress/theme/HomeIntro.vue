@@ -33,11 +33,11 @@ const notFor = [
       </p>
       <div class="home-intro-overview">
         <p class="home-intro-lede">
-          5Stack is your own CS2 platform, on hardware you control. One
-          install runs the entire lifecycle of competitive play: it provisions
-          the servers, matchmakes the players, runs the map veto, controls the
-          live match, holds the tournament structure, captures and parses the
-          demos, computes the statistics, renders 2D and 3D replays, streams the
+          5Stack is your own CS2 platform, on hardware you control. One install
+          runs the entire lifecycle of competitive play: it provisions the
+          servers, matchmakes the players, runs the map veto, controls the live
+          match, holds the tournament structure, captures and parses the demos,
+          computes the statistics, renders 2D and 3D replays, streams the
           broadcast, cuts the highlight reel, and moderates the community.
         </p>
         <aside class="home-intro-punch">
