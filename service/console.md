@@ -68,9 +68,9 @@ its link. Press Enter to close it and open the
 
 People an Admin added on **Config → People** can open the console from
 [get.5stack.gg/panels](https://get.5stack.gg/panels) without anyone on the
-server, once an Admin turns on **Allow opening from get.5stack.gg** there. While
-this is on, get.5stack.gg can open a console for anyone on this list, so turn it
-on only if you trust 5Stack's cloud with that.
+server, unless an Admin turned off **Allow opening from get.5stack.gg** there.
+While this is on, get.5stack.gg can open a console for anyone on this list, so
+leave it on only if you trust 5Stack's cloud with that.
 
 On a panel whose 5Stack service is up to date, each console opened this way
 needs your approval on 5stack.gg first:
