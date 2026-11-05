@@ -23,10 +23,8 @@ On the server, `sudo 5stack ui` opens the browser console, and `5stack` on its
 own opens a menu of all of this in the terminal. See
 [The 5stack Command](/service/command).
 
-<ArchitectureDiagram flows="running,install,update,join,migrate" />
-
-Pick a flow above the diagram to see which parts it uses, and click a box to see
-what it does.
+See [How It Fits Together](/service/how-it-fits-together) for a diagram of what
+runs where and what each part talks to.
 
 ## What runs where
 
