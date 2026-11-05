@@ -59,8 +59,7 @@ Every dedicated server on a node runs with:
 - the [Player Management plugin](/servers/dedicated-servers/player-management)
   on a CS2 community server, with no setup.
 
-Plugin config files the panel writes for a server (a game plugin's config file,
-a map rotation) are written into that server's own directory, so they show up in
+Config files the panel writes for a server, such as a map rotation, show up in
 **Files** and survive restarts.
 
 A dedicated server follows its node: when the node's address or region changes,
@@ -81,13 +80,13 @@ built for the old one will not load.
 
 A move then runs through these steps, shown on the server's page:
 
-| Status            | What happens                                                                           |
-| ----------------- | -------------------------------------------------------------------------------------- |
-| **Queued**        | Waiting to start                                                                       |
-| **Stopping**      | The server is stopped on its current node                                              |
-| **Copying Files** | Its directory is copied straight from the old node to the new one, with a progress bar |
-| **Switching**     | The server is pointed at the new node and started there                                |
-| **Completed**     | Done. The old node's copy is removed                                                   |
+| Status            | What happens                                              |
+| ----------------- | --------------------------------------------------------- |
+| **Queued**        | Waiting to start                                          |
+| **Stopping**      | The server is stopped on its current node                 |
+| **Copying Files** | Its files are copied to the new node, with a progress bar |
+| **Switching**     | The server is pointed at the new node and started there   |
+| **Completed**     | Done. The old node's copy is removed                      |
 
 A move is refused while the server is hosting a match, or still uploading the
 last match's demo. The new node needs free disk for the server's files plus

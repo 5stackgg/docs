@@ -9,7 +9,7 @@ curl -fsSL https://get.5stack.gg | sudo sh -s -- --channel branch/<name>
 | Option                     | What it does                                                                                                   |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `--channel branch/<name>`  | Follows a branch build instead of `stable`. Use it only when 5Stack asks you to test a build.                 |
-| `--allow-downgrade`        | Installs a signed build older than the agent already installed.                                               |
+| `--allow-downgrade`        | Installs a build older than the one already installed.                                                         |
 | `-h`, `--help`             | Lists what the installer can do.                                                                               |
 
 A role goes first, before any options:
@@ -30,28 +30,17 @@ curl -fsSL https://get.5stack.gg | sudo sh -s -- join --panel-key <key> --channe
 
 ## Setup answers
 
-The installer asks for the panel domain and where its DNS is, whether a
-reverse proxy is in front of the server, the Steam Web API key, Tailscale,
-security updates, performance settings and storage, on the setup page or in
-the terminal, and checks each answer on the server. See
-[Install](/install/#answer-on-the-setup-page).
-
-For the [Cloudflare proxy](/install/cloudflare/proxy) on records you manage,
-pick **Cloudflare · I manage the records** and tick the orange cloud. For
-Nginx Proxy Manager, Caddy or a [Cloudflare Tunnel](/install/cloudflare/tunnel),
-answer **Yes** on the Reverse proxy step.
+The installer asks its setup questions on the setup page or in the terminal.
+See [Install](/install/#answer-on-the-setup-page). Run it from an interactive
+SSH session, not from a script.
 
 To change the proxy, keys or storage after the install, use
 `sudo 5stack config`. See [Command Reference](/service/cli#config).
 
-The installer asks its questions on the server's terminal, so run it from an
-interactive SSH session, not from a script.
-
 ## Service logs
 
-The installer prints its progress in the terminal. To see what the 5Stack
-service is doing afterwards, for example during an update, run this on the
-server:
+To see what the 5Stack service is doing, for example during an update, run
+this on the server:
 
 ```bash
 journalctl -u 5stack -f

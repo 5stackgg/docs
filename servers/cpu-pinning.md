@@ -1,10 +1,10 @@
 # CPU Pinning
 
-CPU pinning is particularly beneficial for Counter-Strike servers as it helps reduce latency and improve performance by dedicating specific CPU cores to the game server process. This prevents other system processes from interfering with the game server's CPU usage, leading to more consistent tick rates and lower latency for players.
+CPU pinning gives each Counter-Strike server its own CPU cores, so other processes on the node don't interfere with it. Players get more consistent tick rates and lower latency.
 
 ## Configuration
 
-Add the following configuration to enable static CPU Manager policy:
+On the node, add the following configuration:
 
 ::: code-group
 
@@ -17,7 +17,7 @@ kubelet-arg:
 
 :::
 
-Kubernetes holds one core back from the servers for k3s and the node connector. Every other core can take a server, so an 8-core node fits 7 servers at 1 CPU per server, or 3 at the default of 2.
+One core is held back for the node itself. Every other core can take a server, so an 8-core node fits 7 servers at 1 CPU per server, or 3 at the default of 2.
 
 ## Applying Changes
 

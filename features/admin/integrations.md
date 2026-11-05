@@ -23,10 +23,10 @@ Role ID fields take several IDs separated by commas.
 
 ::: tip Only staff notices reach Discord
 Discord is for the people running the instance. Besides the match status and
-CS2 build notices above, only staff notifications are posted there: server, node
-and RCON status, storage scans, Elo recomputes, search reindexes, utility drift
-scans, name-change requests, match assistance calls and abandons. Player
-notifications (invites, chat, awards, sanctions, warnings) never are.
+CS2 build notices above, only staff notifications are posted there, such as
+server and node status, name-change requests, match assistance calls and
+abandons. Player notifications (invites, chat, awards, sanctions, warnings)
+never are.
 :::
 
 ## Twitch
@@ -45,11 +45,9 @@ with Twitch, which proves the channel is theirs.
 
 Everything Twitch stays hidden until both are set. A saved secret can't be shown
 again; enter a new one to replace it, or **Remove Secret** to turn Twitch off.
-The keys are read on every call, so changing them needs no restart.
+Changing the keys needs no restart.
 
-5Stack checks every linked channel once a minute. Only a stream in the
-Counter-Strike category counts as live, and a channel Twitch hasn't confirmed as
-live in the last 10 minutes stops showing as live.
+Only a stream in the Counter-Strike category counts as live.
 
 ## External matches
 
@@ -57,8 +55,8 @@ live in the last 10 minutes stops showing as live.
 
 - **Allow CS2 match imports**: lets players link their Steam match-history auth
   code and upload demos. Off hides the form and blocks external imports.
-- **Import Faceit Matches**: off by default. Polls linked players' FACEIT
-  history (the last 30 days) using your FACEIT API key.
+- **Import Faceit Matches**: off by default. Imports linked players' FACEIT
+  matches from the last 30 days, using your FACEIT API key.
 - **Test Faceit Integration**: checks the key works and whether it can download
   demos.
 
@@ -87,19 +85,14 @@ room. 0 drops them immediately.
 | Organizer chat         | 90 days |
 | Team chat              | 30 days |
 
-Each field spells its value out underneath as a duration, such as "90 days".
-Organizer chat used to default to 24 hours; an instance still on that default
-moved to 90 days, and a value you chose yourself was kept.
-
 - **Direct Messages**: **Keep direct messages for (days)**. Default 365; 0 keeps
   them forever.
 - **Attachments**: **Largest file (MB)**, default 100, and **Uploads per player
   per day (MB)**, default 1024, counted over the last 24 hours including files
   that were removed.
 - **GIFs**: a **GIPHY API key** turns on GIFs in chat (**Get a key from
-  GIPHY**). Searches go through the API, so the key never reaches a browser.
-  **GIPHY searches per hour** is shared by every player and defaults to 90;
-  GIPHY's beta keys allow 100 an hour.
+  GIPHY**). **GIPHY searches per hour** is shared by every player and
+  defaults to 90; GIPHY's beta keys allow 100 an hour.
 - **Blocked words**: words and phrases masked before a message is sent. See
   [Blocked words](/features/chat#blocked-words).
 - **Player reports**: lets players report a message from its menu, into the
@@ -109,9 +102,8 @@ See [Chat](/features/chat) for how players use these.
 
 ## Web Push
 
-**Web Push** shows whether push notifications are working: its state, the last
-confirmed delivery, how many devices and players are subscribed, and which
-platforms they're on. Nothing to sign up for and no third-party provider; see
+**Web Push** shows whether push notifications are working and how many devices
+are subscribed. There's nothing to sign up for; see
 [Web Push Notifications](/advanced/web-push).
 
 ## Telemetry & analytics

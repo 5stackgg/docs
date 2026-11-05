@@ -6,16 +6,13 @@ what to do. To see what the service itself is doing, run
 
 ## The installer or service.sh refuses the download {#download-refused}
 
-The installer and `service.sh` check every download before they install it. When
-a check fails, they stop with **Nothing was installed**, and the server is
-unchanged.
+When a download fails a check, the installer and `service.sh` stop with
+**Nothing was installed**, and the server is unchanged.
 
-**The SHA256SUMS signature is not valid.** The download isn't signed by 5Stack's
-release key. Run the command again. For `service.sh`, run `git pull` first, so
-the checkout has the current key in `utils/agent_signing_key.pem`.
+**The SHA256SUMS signature is not valid.** Run the command again. For
+`service.sh`, run `git pull` first.
 
-**The ... checksum does not match SHA256SUMS.** The file changed or broke on the
-way. Run the command again.
+**The ... checksum does not match SHA256SUMS.** Run the command again.
 
 **The download is signed for channel '...', not '...'.** The build you got isn't
 for the channel you asked for. Check the spelling of `--channel`: it is `stable`
@@ -26,12 +23,11 @@ to install it anyway.** The channel's newest build is older than the agent you
 have, which happens when you go back from a branch build to `stable`. Add
 `--allow-downgrade` if that is what you want.
 
-**The installed agent at /usr/local/bin/5stack did not report its version.** The
-installed agent is damaged or for the wrong architecture. Run the command again
-with `--allow-downgrade` to replace it.
+**The installed agent at /usr/local/bin/5stack did not report its version.** Run
+the command again with `--allow-downgrade` to replace it.
 
-**No agent signing key is pinned in this checkout yet.** Your checkout is older
-than `service.sh`. Run `git pull` and try again.
+**No agent signing key is pinned in this checkout yet.** Run `git pull` and try
+again.
 
 **OpenSSL 3 or newer is needed to check the agent's signature.** Install it with
 `apt install openssl`. Ubuntu 22.04 and newer, and Debian 12 and newer, ship
@@ -42,8 +38,7 @@ the panel is installed on, not on a game server node.
 
 ## The setup link expired {#setup-link-expired}
 
-A setup link stays open while the setup page is open, and closes 30 minutes
-after. Run the install command again for a new one.
+Run the install command again for a new link.
 
 A link also stops working once the install finishes. The page then says the
 setup is finished, with a button to open your panel.
@@ -67,15 +62,14 @@ stop the install. The rest only warn. See [Install](/install/#install-5stack).
 
 ## The setup page says the server keys don't match {#setup-keys-mismatch}
 
-The key in your link differs from the one 5Stack sent, so the page won't send
-your answers. Press Enter in the terminal and answer the questions there.
+The page won't send your answers. Press Enter in the terminal and answer the
+questions there.
 
 ## No terminal to answer on {#no-terminal}
 
-The installer reads from the server's terminal, even though its script comes
-through `curl`: to answer the questions there instead of on the setup page, and
-to confirm you saved the recovery key. Run it from an interactive SSH session,
-not from a script or a provisioning tool.
+The installer needs the server's terminal, to confirm you saved the recovery key
+and to answer the questions there instead of on the setup page. Run it from an
+interactive SSH session, not from a script or a provisioning tool.
 
 A node joining without `--panel-key` also needs a terminal to confirm the panel's
 key. It stops with **without --panel-key this has to ask you to confirm the
@@ -109,10 +103,8 @@ once that finishes.
 ## Ignored .5stack-env.config keys {#ignored-keys}
 
 `5stack status` warns **ignored .5stack-env.config keys this agent doesn't
-know**. The panel's scripts read `.5stack-env.config` as shell, so the service
-writes only the keys it knows into it. It keeps the others but doesn't use them.
-If a newer panel needs one, update the agent. `5stack config list` marks them
-ignored.
+know**. The service keeps those keys but doesn't use them. If a newer panel
+needs one, update the agent. `5stack config list` marks them ignored.
 
 ## The checkout's config differs {#checkout-differs}
 
@@ -144,8 +136,8 @@ Don't approve the node. Click **Cancel**. A different fingerprint means the code
 you typed belongs to another server: a mistyped code, or a code someone else is
 using. Run the command on the node again and use the new code.
 
-The node and the panel check the keys as well. If either finds a key that isn't
-the one it expects, it refuses, and nothing is changed on the node:
+The node or the panel also refuses a key it doesn't expect, and nothing is
+changed on the node:
 
 - **5Stack cloud showed fingerprint ..., but the node's key has .... Do not
   approve this node.**
@@ -164,10 +156,9 @@ The node lists what is wrong with the container. See
 
 ## Certificates aren't issued yet {#dns-not-pointing}
 
-Let's Encrypt checks each address over plain HTTP on port 80. During the
-install, the setup page shows each address's certificate as it goes, and says
-why one keeps waiting: port 80 doesn't reach this server, or something else
-answers on it, such as a reverse proxy. Forward ports 80 and 443 to this
+During the install, the setup page shows each address's certificate as it goes,
+and says why one keeps waiting: port 80 doesn't reach this server, or something
+else answers on it, such as a reverse proxy. Forward ports 80 and 443 to this
 server, or answer **Yes** on the Reverse proxy step if a proxy is in front of
 it. With Cloudflare's proxy in front, see
 [Certificate generation fails behind the Cloudflare proxy](/install/cloudflare/dns-and-ssl#certificate-generation-fails-behind-the-cloudflare-proxy).

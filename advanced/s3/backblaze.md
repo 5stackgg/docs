@@ -2,7 +2,7 @@
 
 Backblaze has a partnership with Cloudflare to provide [free data transfer](https://www.backblaze.com/blog/backblaze-and-cloudflare-partner-to-provide-free-data-transfer/).
 
-The Cloudflare Worker in [5stack-panel](https://github.com/5stackgg/5stack-panel) (`cloudflare-workers/backblaze-proxy/`) signs S3 v4 requests in front of your B2 bucket and serves them through Cloudflare's edge, giving you free B2 → Cloudflare egress _and_ edge caching so popular clips/demos don't re-hit B2 on every view. It serves demos, clips, news images, event media and map assets.
+5Stack's Cloudflare Worker sits in front of your B2 bucket and serves it through Cloudflare, so you get free B2 egress, and popular clips and demos are cached instead of fetched from B2 on every view. It serves demos, clips, news images, event media and map assets.
 
 ## 1. Point the panel at your bucket
 
@@ -11,7 +11,7 @@ The deploy script reads the bucket from the panel's own S3 configuration, so set
 - `S3_BUCKET` and `S3_ENDPOINT` (whatever your bucket lists under "Endpoint", e.g. `s3.us-east-005.backblazeb2.com`)
 - `S3_ACCESS_KEY` and `S3_SECRET`
 
-If your secrets live in Vault, the script reads the keys from your cluster instead. Either way it checks them with Backblaze before deploying anything, and asks you for them if Backblaze rejects them.
+The script checks the keys with Backblaze before deploying anything, and asks you for them if Backblaze rejects them.
 
 ## 2. Deploy
 
@@ -21,18 +21,18 @@ On the panel server, run:
 sudo 5stack run backblaze-proxy.sh
 ```
 
-Or pick **Backblaze proxy** in the [`5stack` menu](/service/command#the-menu). It runs the script from the installed release, with the panel's config. It asks the panel's database whether clip links are signed. To give it the worker's hostname up front, add it after the script name: `sudo 5stack run backblaze-proxy.sh cf.example.com`.
+Or pick **Backblaze proxy** in the [`5stack` menu](/service/command#the-menu). To give it the worker's hostname up front, add it after the script name: `sudo 5stack run backblaze-proxy.sh cf.example.com`.
 
-It needs Node.js 22 or newer on the panel server (for `npx wrangler`, Cloudflare's deploy tool) and walks you through the rest:
+It needs Node.js 22 or newer on the panel server and walks you through the rest:
 
-1. **The hostname.** The worker gets a hostname of its own on a domain you have on Cloudflare, `cf.<your domain>` by default. It can't share one of the panel's hostnames: the worker takes over `/demo*`, `/clips*`, `/news*`, `/maps*` and `/events*` on it, and on your demos domain that would break the panel's own demo uploads.
+1. **The hostname.** The worker needs a hostname of its own on a domain you have on Cloudflare, `cf.<your domain>` by default. Don't use one of the panel's hostnames: on your demos domain the worker would break the panel's own demo uploads.
 2. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.
-3. **The DNS record.** If the hostname has no record yet, it tells you what to add: an `AAAA` record pointing at `100::` with the proxy on (orange cloud). The address is only a placeholder, because the worker answers every request itself. It links to your domain's DNS page and checks again once you have added it.
-4. **Signed clip links.** It asks the panel's database whether its API signs clip and lineup file links with the bucket keys the worker gets, and asks Cloudflare whether the worker requires signed links now. It turns them on once the panel signs them, warning that every panel using the worker must already sign them. Once they are on, it keeps them on when it can't reach the panel, and turns them off only if you answer yes to a question that defaults to no. With nobody there to answer, it deploys nothing. See [Signed clip links](#signed-clip-links).
-5. **Deploying.** It shows the hostname and bucket, then deploys the worker, stores the bucket keys as worker secrets and adds its routes. Routes the worker already has on other hostnames are kept, so links that still use an older hostname keep working.
+3. **The DNS record.** If the hostname has no record yet, it tells you what to add: an `AAAA` record pointing at `100::` with the proxy on (orange cloud). It links to your domain's DNS page and checks again once you have added it.
+4. **Signed clip links.** It turns them on once the panel signs them, warning that every panel using the worker must already sign them. Once they are on, it turns them off only if you answer yes to a question that defaults to no. See [Signed clip links](#signed-clip-links).
+5. **Deploying.** It shows the hostname and bucket, then deploys the worker. Links that still use an older hostname keep working.
 6. **Checking it.** It reads a file through the worker to make sure it can reach your bucket.
-7. **Pointing the panel at it.** It saves the hostname as the panel's `CLOUDFLARE_WORKER_DOMAIN` setting, asking first if the panel was using a different one, and applies it straight away, or offers to apply the panel again when it can't. Every demo, clip and media download link is built from it.
-8. **Smart Tiered Cache.** It checks whether it is on for your domain. Signed in with an API token, it can turn it on for you; signed in through the browser or a device code, it links you to the setting, because that sign-in can't change cache settings.
+7. **Pointing the panel at it.** It saves the hostname as the panel's `CLOUDFLARE_WORKER_DOMAIN` setting, asking first if the panel was using a different one, and applies it.
+8. **Smart Tiered Cache.** It checks whether it is on for your domain. Signed in with an API token, it can turn it on for you; signed in through the browser or a device code, it links you to the setting.
 
 Run it again at any time to update the worker, and after every panel update, rollback or change to `S3_SECRET` (see [Signed clip links](#signed-clip-links)).
 
@@ -45,7 +45,7 @@ Go to **Settings → Application → Demos**:
 
 ## Signed clip links
 
-Once the panel signs them, the worker refuses a clip, clip thumbnail or utility lineup file without a signed, unexpired link, and only people who may see a clip get one. Links expire: 1–2 years for a public clip or lineup, so embeds keep working, and 6–12 hours for anything else. Share a clip's page (`/clips/<id>`), not its file link: the page always hands out a fresh link.
+Once the panel signs them, the worker refuses a clip, clip thumbnail or utility lineup file without a signed, unexpired link, and only people who may see a clip get one. Share a clip's page (`/clips/<id>`), not its file link: the page always hands out a fresh link.
 
 - **Re-run `sudo 5stack run backblaze-proxy.sh` after every panel update, every rollback, and every change to `S3_SECRET`.** Each run decides again whether the worker requires signed links; updating or rolling back the panel doesn't touch the worker.
 - **One worker, several panels.** All panels on the same Cloudflare account and bucket share the `5stack` worker. Update every one of them before running the script from any of them: once the worker requires signed links, a panel that doesn't sign them loses its clips.
@@ -54,24 +54,19 @@ Once the panel signs them, the worker refuses a clip, clip thumbnail or utility 
 
 ## Changing the bucket keys
 
-The worker keeps its own copy of `S3_ACCESS_KEY` and `S3_SECRET`: it reads B2 with them and checks signed clip links with a key derived from `S3_SECRET`. To change them:
+The worker keeps its own copy of `S3_ACCESS_KEY` and `S3_SECRET`. To change them:
 
-1. Run `sudo 5stack config set S3_ACCESS_KEY= S3_SECRET=` and type the new keys, so the API restarts with them. On a [Vault](/advanced/vault) install, change them in Vault, then run `sudo 5stack config apply`.
+1. Run `sudo 5stack config set S3_ACCESS_KEY= S3_SECRET=` and type the new keys. On a [Vault](/advanced/vault) install, change them in Vault, then run `sudo 5stack config apply`.
 2. Run `sudo 5stack run backblaze-proxy.sh`, giving it the same keys.
 
-Until the second step, the worker refuses the links the API signs with the new `S3_SECRET`. If the script sees that the keys don't match the API's, it says so and doesn't turn signed links on.
-
-## Caching
-
-Edge caching is enabled in the worker by default, `cf.cacheEverything` plus a `Cache-Control: public, max-age=2592000, immutable` response header. Clip/demo objects are UUID-keyed so they're safe to cache for the full 30-day window Cloudflare allows on the Free tier. The first request to a clip warms the edge cache; subsequent viewers (including `<video>` Range seeks) are served from Cloudflare without touching B2.
+Until the second step, the worker refuses the clip links the panel signs with the new `S3_SECRET`.
 
 ## 3. Enable Tiered Cache (recommended)
 
-Cloudflare's edge cache is per-datacenter. Without Tiered Cache, a clip viewed first from London is still a cold miss in Tokyo and re-fetches from B2. Tiered Cache lets edges pull from each other before going to origin, so each clip is fetched from B2 once globally instead of once per region.
+Tiered Cache means each clip is fetched from B2 once globally instead of once per Cloudflare region.
 
-In the [Cloudflare Dashboard](https://dash.cloudflare.com/), select your zone, then go to **Caching → Tiered Cache** and enable **Smart Tiered Cache Topology**. It's free on all plans and is the single biggest reduction in B2 cold-miss traffic you can make.
+In the [Cloudflare Dashboard](https://dash.cloudflare.com/), select your zone, then go to **Caching → Tiered Cache** and enable **Smart Tiered Cache Topology**. It's free on all plans.
 
 ## Free-tier limits to watch
 
-- **Workers Free: 100,000 requests/day** across the whole account. Every clip view + every video Range seek consumes a request. Monitor under _Workers & Pages → your worker → Metrics_. The $5/mo Workers Paid plan includes 10 million requests a month, then charges per million.
-- **Per-file cache cap on Free: 512 MB.** Files larger than this bypass the edge cache (egress is still free via the Bandwidth Alliance, but they re-fetch from B2 each time). Most clips and demos are well under this.
+**Workers Free: 100,000 requests/day** across the whole account. Every clip view and every seek in a video uses a request. Monitor it under _Workers & Pages → your worker → Metrics_. The $5/mo Workers Paid plan includes 10 million requests a month, then charges per million.

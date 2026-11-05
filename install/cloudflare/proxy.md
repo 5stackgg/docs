@@ -1,12 +1,12 @@
 # Cloudflare Proxy
 
-Cloudflare acts as a reverse proxy when you enable **Proxied** DNS (the orange cloud). Incoming traffic to your domain first passes through Cloudflare before reaching your server, providing DDoS protection and performance benefits.
+Cloudflare acts as a reverse proxy when you turn on **Proxied** DNS (the orange cloud): traffic to your domain passes through Cloudflare before it reaches your server.
 
 With setup managed by 5Stack, all of this page is done for you. See [Which setup do I want?](/install/cloudflare/#which-setup-do-i-want).
 
 ## Tell 5Stack it is behind a proxy
 
-On the [setup page](/install/#answer-on-the-setup-page), pick **Cloudflare · I manage the records** on the Domain and DNS step and tick **Proxied by Cloudflare (orange cloud)**. The panel then runs in [reverse proxy mode](/install/reverse-proxy): Cloudflare holds the certificate visitors see, the panel stops asking Let's Encrypt for certificates, and it answers HTTPS with a self-signed certificate of its own. Set SSL/TLS to **Full** in Cloudflare. **Full (strict)** only works when something in front of the panel, like your own reverse proxy, holds a valid certificate for every address.
+On the [setup page](/install/#answer-on-the-setup-page), pick **Cloudflare · I manage the records** on the Domain and DNS step and tick **Proxied by Cloudflare (orange cloud)**. The panel then runs in [reverse proxy mode](/install/reverse-proxy), and Cloudflare holds the certificate visitors see. Set SSL/TLS to **Full** in Cloudflare. **Full (strict)** only works when something in front of the panel, like your own reverse proxy, holds a valid certificate for every address.
 
 To set it later, run this on the panel server, or pick **Config → Reverse proxy** in the [`5stack` menu](/service/command#the-menu):
 

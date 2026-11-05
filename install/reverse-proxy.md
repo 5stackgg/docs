@@ -1,14 +1,14 @@
 # Reverse Proxy
 
-A reverse proxy sits between your users and your backend services, forwarding requests and providing additional features such as SSL termination, load balancing, and enhanced security.
+Use reverse proxy mode when something in front of your panel, such as Nginx Proxy Manager, Caddy or a Cloudflare Tunnel, holds the HTTPS certificate and forwards to it.
 
 ## Turning reverse proxy mode on
 
-On the [setup page](/install/#answer-on-the-setup-page), the **Reverse proxy** step asks whether something in front of this server holds the HTTPS certificate and forwards to it. 5Stack checks from outside your network who answers on port 80, and picks the answer for you: **No** when port 80 reaches this server, **Yes** when something else answers, such as Nginx Proxy Manager. Change it if that's wrong.
+On the [setup page](/install/#answer-on-the-setup-page), the **Reverse proxy** step picks an answer for you: **No** when port 80 reaches this server, **Yes** when something else answers, such as Nginx Proxy Manager. Change it if that's wrong.
 
 Ticking **Proxied by Cloudflare (orange cloud)** for records you manage, on the Domain and DNS step, turns reverse proxy mode on too. See [Cloudflare](#cloudflare).
 
-In reverse proxy mode the panel doesn't ask Let's Encrypt for certificates. Your proxy holds the certificate visitors see.
+In reverse proxy mode your proxy holds the certificate visitors see, and the panel doesn't ask Let's Encrypt for one.
 
 To change it later, run this on the panel server, or pick **Config → Reverse proxy** in the [`5stack` menu](/service/command#the-menu):
 
@@ -34,15 +34,13 @@ proxy_buffering off;
 proxy_request_buffering off;
 ```
 
-The long timeouts keep live connections open, and the size and buffering lines let demo uploads and streams through.
-
 ### Nginx Proxy Manager
 
 Add a proxy host with all 8 addresses as its domain names, or one per address, with scheme `https`, this server's LAN IP as the forward hostname, port `443`, and **Websockets Support** on. Paste the lines above on its **Advanced** tab. Its **SSL** tab holds the certificate visitors see.
 
 ## Forward to HTTPS on 443
 
-Point your proxy at the node over HTTPS on port 443 (or your `HTTPS_PORT`), not plain HTTP on 80. The panel's login cookie is only set over HTTPS, so through port 80 nobody can stay signed in. With `REVERSE_PROXY=true` the node answers 443 with a self-signed certificate of its own, so turn off certificate verification for this upstream if your proxy does it (Nginx doesn't by default).
+Point your proxy at the panel server over HTTPS on port 443 (or your `HTTPS_PORT`), not plain HTTP on 80. Through port 80 nobody can stay signed in. The panel answers with a self-signed certificate of its own, so turn off certificate verification for this upstream if your proxy does it (Nginx doesn't by default).
 
 ## Cloudflare
 
@@ -54,9 +52,7 @@ See [Which setup do I want?](/install/cloudflare/#which-setup-do-i-want).
 
 ## Nginx Proxy
 
-To use Nginx as a reverse proxy, configure it to listen on HTTPS (port 443) and forward requests to your backend services.
-
-Below is a basic Nginx configuration example:
+A basic Nginx configuration, listening on HTTPS and forwarding to the panel server:
 
 ```nginx
 server {

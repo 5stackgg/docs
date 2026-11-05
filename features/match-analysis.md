@@ -1,7 +1,7 @@
 # Match Analysis
 
-Every finished match is parsed down to the tick, which means the match page is a
-lot more than a scoreboard. This is what's in there, and where to find it.
+Every finished match's demo is parsed, so the match page is a lot more than a
+scoreboard. This is what's in there, and where to find it.
 
 ## The match page
 
@@ -35,13 +35,11 @@ columns you care about, your column set is remembered.
 A **Round Economy** chart of the money each team took into every round across
 the map, annotated with who won each round, so eco calls, force-buys, and broken
 economies are visible at a glance. Bands mark eco money (under $5,000) and full
-buys (over $20,000), pistol rounds start at $800 a player, and a round whose
-starting money isn't known, such as the first round of an overtime half, is left
-as a gap rather than guessed.
+buys (over $20,000). A round whose starting money isn't known, such as the first
+round of an overtime half, is left as a gap.
 
-Alongside it, the **Buy Type Breakdown** classifies each round by the money the
-team started it with, into pistol / eco / force / full (a round whose starting
-money isn't known is left out), and reports win rate across six matchups:
+Alongside it, the **Buy Type Breakdown** sorts each round into pistol / eco /
+force / full, and reports win rate across six matchups:
 
 `Pistol v Pistol` · `Full v Full` · `Full v Eco` · `Full v Force` ·
 `Eco v Full` · `Force v Full`
@@ -66,16 +64,15 @@ thrown on each other.
 
 ### Roles
 
-Roles are **auto-detected per match** from AWP usage, opening-duel involvement,
-and utility output: **Sniper, Entry, Support, Lurker, Rifler**, with the signals
-behind each detection shown.
+Roles are **auto-detected per match**: **Sniper, Entry, Support, Lurker,
+Rifler**, with the reasons behind each shown.
 
 ### Map Analysis
 
 Positional analysis drawn over a top-down map, in two modes:
 
-**Heatmap**, plot **kills, deaths, utility, or utility damage**, rendered as a
-true heat intensity or as individual dots. Filter by side, player, round window,
+**Heatmap**, plot **kills, deaths, utility, or utility damage**, as a heatmap
+or as individual dots. Filter by side, player, round window,
 and utility type (HE / Molotov / Smoke / Flash / Decoy), and draw grenade
 **trajectories** rather than just detonation points.
 
@@ -89,8 +86,8 @@ From either mode, the **2D** and **3D** buttons open the
 ### Utility
 
 The **Utility** tab draws every grenade from the demo on the map, from where it
-was thrown to where it landed, one map per half (**CT half** and **T half**,
-side by side on a screen 1000px or wider). Each throw is checked against the
+was thrown to where it landed, one map per half (**CT half** and **T half**).
+Each throw is checked against the
 meta: a **meta lineup** is one that 3 or more players throw from the same spot.
 
 | Group            | What it means                                                    |
@@ -110,8 +107,8 @@ Each half's summary counts its lineups on the spot and its off-book throws.
   [utility library](/features/utility-library); **Open Lineup** and **See the
   Meta Spot** go to the lineup or meta spot it matched.
 
-A throw is matched by its start and end points, so these are throws that _look
-like_ the lineup, not proof the lineup was the one being called. Where you can
+These are throws that _look like_ the lineup, not proof the lineup was the one
+being called. Where you can
 read the match's [Rokkan review](/features/coach), Rokkan's notes appear on the
 throws it talks about.
 
@@ -158,8 +155,7 @@ both teams' histories: per-map **ban likelihood, pick likelihood, play
 likelihood, and predicted win %**, with the number of veto records behind each
 side shown so you know how much to trust it.
 
-It's an estimate derived from historical tendencies, not a guarantee, the app
-says so too, but for prep it beats a whiteboard.
+It's an estimate from past vetoes, not a guarantee.
 
 During the veto itself, [veto scouting](/features/map-veto#veto-scouting) puts
 the same kind of history on the veto board: each side's record on every map,

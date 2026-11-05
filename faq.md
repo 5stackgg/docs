@@ -60,10 +60,8 @@ two things that catch people out are:
 
 ## Why Kubernetes? That seems heavy.
 
-Game servers are created and destroyed constantly, and that's the problem
-Kubernetes is actually good at. The install uses K3s rather than a full
-distribution, so the footprint is much smaller than "Kubernetes" usually
-implies. The reasoning is written up in
+The install uses K3s rather than a full distribution, so the footprint is much
+smaller than "Kubernetes" usually implies. See
 [Why Kubernetes?](/install/why-k8s).
 
 ## Can I run it on a cluster I already have?
@@ -120,10 +118,10 @@ Game server nodes support offline operation — see
 
 ## How do updates work?
 
-From the panel, no shell needed. Every change ships as a signed release, and
-you choose when releases install: when you press **Update Now**, in a
-maintenance window, or in that window once no matches are live. Most updates
-apply without interrupting anyone. See [Updating](/updating).
+From the panel, no shell needed. You choose when releases install: when you
+press **Update Now**, in a maintenance window, or in that window once no matches
+are live. Most updates apply without interrupting anyone. See
+[Updating](/updating).
 
 A panel installed from the git checkout moves onto this once, with
 `git pull && sudo ./service.sh`. See

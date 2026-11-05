@@ -20,9 +20,9 @@ the buttons to register or join as a free agent.
 
 Search by name and narrow the list by **Status** (All, Live, Open, Upcoming,
 Finished). **Filters** adds a **Date** range, **Category**, and **Only
-tournaments I organize**, which replaces the old organizer management page.
+tournaments I organize**.
 
-Tournament cards know when you are already in: **Registered**, **Joined as a
+Tournament cards show when you are already in: **Registered**, **Joined as a
 free agent**, or **Free agent · waitlisted**. Tournaments that are open for
 registration also appear on the [Play page](/features/quick-play).
 
@@ -45,8 +45,7 @@ Below it, five tabs:
 
 **Matches** and **Stats** appear once the tournament is live. Above the tabs,
 the page shows whatever needs your attention first: an invite to accept, the
-entry requirements you do or don't meet, and the check-in panel ("{checked} of
-{total} teams checked in").
+entry requirements you do or don't meet, and the check-in panel.
 
 An owner with several teams entered switches between them with **Viewing**.
 Its menu, **Teams you registered**, lists each with **You play** or **Owner**,
@@ -123,23 +122,20 @@ person at a time. A team owner can enter several of their teams in the same
 tournament, but a player can be on only one roster in it.
 
 Once a bracket is seeded, a **roster lock** kicks in: a team's roster can't drop
-below the minimum lineup size, so a withdrawal can't silently break a live
-bracket. Swapping a player out means bringing a substitute in.
+below the minimum lineup size. Swapping a player out means bringing a substitute
+in.
 
 ### Banner and logo
 
 The logo and banner uploads open a crop editor with a **Where it shows**
-preview: the banner as it appears on the tournament page (desktop and phone),
-the live banner, cards, the quick look, list thumbnails, and the Next LAN strip;
-the logo at page-header, card, and small sizes. A dashed **Safe zone** marks
-where text and logos survive every crop. The editor warns when an image is too
-small or zoomed past its resolution, and logos can use **Remove background**.
-Banners are saved at 2400 × 800 (3:1).
+preview of each place the image appears. A dashed **Safe zone** marks where text
+and logos survive every crop. The editor warns when an image is too small, and
+logos can use **Remove background**. Banners are saved at 2400 × 800 (3:1).
 
 ### Presenting the event
 
-- **Prize pool** with per-placement distribution (drag to reorder; places
-  renumber automatically, and labels can be overridden).
+- **Prize pool** with per-placement distribution (drag to reorder; labels can
+  be overridden).
 - **Location**: the venue or city, found by address search.
 - **Categories**: **LAN**, **Location Event**, **Online Event**, or **League**.
 
@@ -214,13 +210,11 @@ bracket is seeded.
   stays open at least 5 minutes.
 
 A timeline previews the window against the start time. Once the window opens,
-the start time and both offsets lock, because teams are already acting on that
-schedule.
+the start time and both offsets lock.
 
 A team is checked in by someone who plays on it, never by an owner managing it
-from outside, so an owner with several teams entered leaves each one's
-check-in to its captain. Everyone else, including an owner who doesn't play on
-the team, sees _Waiting for Alex to check in_. A team's captain is always
+from outside. Everyone else, including an owner who doesn't play on the team,
+sees _Waiting for Alex to check in_. A team's captain is always
 someone on its tournament roster: if the team's own captain isn't on it, the
 captaincy goes to the owner when they play, otherwise a team admin, otherwise a
 starter. Organizers can mark any team present.
@@ -259,10 +253,8 @@ When registration closes, the pool is drafted into teams of the tournament's
 lineup size:
 
 - **Who plays is sign-up order.** Everyone past the last full team is
-  waitlisted, so a late sign-up can't take the slot of someone who registered
-  hours earlier.
-- **Which team is ELO.** The strongest player goes first onto the team with the
-  lowest running total, so teams come out balanced.
+  waitlisted.
+- **Which team is ELO.** Players are spread by Elo so teams come out balanced.
 - Drafted teams are numbered (_Team 5_, _Team 6_, …) after the teams already
   entered, and the highest-rated player stands in as owner and captain. If
   they leave, both roles pass to the next highest-rated teammate.
@@ -285,9 +277,9 @@ roster's player search.
 ### Managing the pool
 
 Organizers can **Add Free Agent** and **Remove** players while registration is
-open or during check-in review, and see a forecast of the draft: _N free agents
-→ T teams of S, W waitlisted_. **Draft teams** runs the draft early; it runs
-once, so drafting again does nothing until the drafted teams are removed.
+open or during check-in review, and see a forecast of the draft. **Draft
+teams** runs the draft early; it runs once, so drafting again does nothing
+until the drafted teams are removed.
 
 ## Stages & formats
 
@@ -304,9 +296,7 @@ format:
 - **Swiss**: in two flavours. By default it's **Valve Swiss**: advance at 3
   wins, out at 3 losses. Turn on **Swiss group (no elimination)** for the
   **ESEA-style** variant, where teams pair by record for a fixed number of rounds
-  and are ranked in one table without anyone being eliminated. The bracket
-  renders by record pool (2-0, 1-1, 0-2) with live **ADVANCED** and
-  **ELIMINATED** states.
+  and are ranked in one table without anyone being eliminated.
 
 Each stage can be configured with:
 
@@ -319,9 +309,7 @@ Each stage can be configured with:
 Every stage plays the tournament's map pool, and a best-of can't be longer than
 the pool has maps.
 
-Teams advance between stages automatically. A real configuration might run
-Round Robin (BO1, 32 teams) → Swiss (BO1, 16 teams) → Single Elimination (BO5,
-4 teams), with each stage feeding the next.
+Teams advance between stages automatically.
 
 ### What locks when
 
@@ -339,9 +327,8 @@ To change any of these, reset the tournament to setup.
 
 The bracket updates live as matches finish. You can zoom and fit it to the
 screen, switch between split and page-scroll views, hide finished rounds, go
-fullscreen, and **Follow a team** to dim every match it isn't in. Organizers can schedule
-matches straight from the bracket, and 5Stack estimates when each round is
-likely to be reachable so schedules stay realistic.
+fullscreen, and **Follow a team** to dim every match it isn't in. Organizers can
+schedule matches straight from the bracket.
 
 Organizers can open a scheduled bracket match, or one in check-in, and edit its
 **Match Settings**. They're marked **Rules locked**: every match in a stage
@@ -360,11 +347,9 @@ new match and takes the team that advanced back out of the next round until
 it's played. It isn't offered once the next round has started.
 
 There's also a **public, embeddable bracket** you can drop into a stream or
-website via an iframe, from **Share** or **Popout**. It updates in real time and
-shows the tournament name, stage, teams, and seeds. It can follow the **Current
-stage**, stay on a **Specific stage**, or **Cycle all stages** on a timer,
-highlighting live matches, which makes it a ready-made overlay for broadcasts
-and venue signage.
+website via an iframe, from **Share** or **Popout**. It updates in real time,
+and can follow the **Current stage**, stay on a **Specific stage**, or **Cycle
+all stages** on a timer.
 
 ## Negotiated match times
 
@@ -389,22 +374,17 @@ marked **LIVE · PROVISIONAL** until it finishes. When it finishes, the podium
 and the MVP join them.
 
 The podium is 1st, 2nd, and 3rd from the last stage, with the players who
-played for each team, and it shows whether or not the tournament hands out
-awards (headed **Standings** instead of **Awards** when it doesn't). A
-single-elimination final without a third-place match puts both semifinal
-losers on 3rd, and a last stage played in several groups has no podium. The
-final stage's standings, a team's placement badge, the tournament's cards, and
-its **Quick look** follow the same placements, so a shared 3rd reads 3rd for
-both teams everywhere.
+played for each team. It shows even when the tournament doesn't hand out
+awards, headed **Standings** instead of **Awards**. A single-elimination final
+without a third-place match puts both semifinal losers on 3rd, and a last stage
+played in several groups has no podium.
 
 Hover the MVP label for **How the MVP is chosen**: the player on the winning
 team with the highest average impact across every match of the tournament.
-Impact rates each match from 0.80 to 1.20, from (kills + assists) / deaths
-compared to the team and share of the team's damage. The card shows the MVP's
-average impact, matches played, and the next best player. An MVP the organizers
-picked reads **Picked by the organizers**, and its card shows their note and
-who the automatic pick was. Any other awards granted in the tournament are
-listed under the MVP.
+The card shows the MVP's average impact, matches played, and the next best
+player. An MVP the organizers picked reads **Picked by the organizers**, and its
+card shows their note and who the automatic pick was. Any other awards granted
+in the tournament are listed under the MVP.
 
 The **Stats** tab ranks every player in the tournament in a **Player
 leaderboard**: **Rating**, **ADR**, kills, deaths, assists, **K/D**, and
@@ -442,11 +422,9 @@ Tournaments hand out an award for each of the top placements and an MVP, which
 count toward the [leaderboard](/features/stats-and-leaderboards).
 
 Placement medals go to the placing team's players who actually played in the
-tournament, not to everyone on its roster. A match that finished with nothing
-recorded for the team, such as a result set by hand after a crash, counts
-everyone in its lineup; a forfeit counts nobody, and a team whose every match
-was a forfeit keeps everyone. When both semifinal losers share 3rd, no Third
-Place award is handed out automatically; an organizer can grant one by hand.
+tournament, not to everyone on its roster. When both semifinal losers share
+3rd, no Third Place award is handed out automatically; an organizer can grant
+one by hand.
 
 ### Prize Board
 
@@ -466,8 +444,8 @@ only.
 
 Administrators author the catalog on the **Awards** page under
 **Administration**, where awards can also be granted to a player or team by
-hand — no tournament required. A hand-granted 1st, 2nd, or 3rd place award for a
-tournament takes that placement on its podium. Two role settings in
+hand, with no tournament required. A hand-granted 1st, 2nd, or 3rd place award
+for a tournament takes that placement on its podium. Two role settings in
 **Settings → Application → Awards**, **Manage Awards Role** and **Grant Awards
 Role**, control who can author awards and who can grant them; tournament
 organizers can always grant awards inside their own tournament under **Manual

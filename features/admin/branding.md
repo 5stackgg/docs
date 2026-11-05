@@ -18,7 +18,7 @@ changes** bar that appears.
 ## Logo & Favicon
 
 - **Logo**: one square image (512×512 PNG recommended; PNG, JPEG, SVG or WebP).
-  It's used across the app and to generate your PWA install icon.
+  It's used across the app and as its install icon.
 - **Favicon**: optional, a simpler mark for the browser tab (PNG, JPEG, ICO or
   WebP).
 
@@ -43,11 +43,6 @@ Each has a preview and a remove button.
 - **Tactical**: the **Tactical Accent (amber highlights)**, used for highlights,
   live indicators, the open app on the hub dock, and your team in a match's
   header and stat tables.
-
-::: tip There is no light mode
-5Stack used to carry a light palette that nothing displayed. It was removed, so
-there's one set of colors to brand rather than two.
-:::
 
 ## Saving & sharing themes
 

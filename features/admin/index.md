@@ -41,8 +41,7 @@ the GPUs, a season that needs an ELO rebuild, or a plugin update. Under
 **Open**: Seasons, Game Server Nodes, Dedicated Servers, GPU Nodes, Render
 Queue, Metrics, Database, Alerts, Plugin Directory and App Settings.
 
-Most areas update the moment they change. Metrics refresh every 30 seconds and
-the database every minute. The same count shows on the **Admin** side of the
+The same count shows on the **Admin** side of the
 [Play / Admin switch](/features/navigation#play-and-admin).
 
 ## Admin navigation
@@ -98,8 +97,7 @@ those feature pages.
 every page for every visitor, for outages, maintenance and other notices. Each
 alert has a **Severity** (**Info**, **Warning** or **Critical**), an optional
 title and expiry, and can be made **Dismissible** or not. Messages can carry
-links: write `[label](https://example.com)` or paste a bare URL. Links to your
-own site open inside the app; other sites open in a new tab.
+links: write `[label](https://example.com)` or paste a bare URL.
 
 ::: tip Empty sections stay out of the navigation
 On a fresh instance, **Tournaments**, **Events**, **News** and **Highlights**

@@ -1,7 +1,7 @@
 # Servers & Regions
 
 5Stack can host matches several ways and keeps your servers up to date for you,
-all managed from the panel. For first-time setup of a node. See the
+all managed from the panel. For first-time setup of a node, see the
 [Servers](/servers/) section; this page covers what admins do with servers
 day to day.
 
@@ -9,8 +9,7 @@ day to day.
 
 - **Game Server Nodes**: machines 5Stack manages directly to spin up **on-demand**
   game servers. The node list shows each node's load, CS2 build, capacity and
-  region, and its inspector the hardware (CPU sockets/cores/threads, GPU,
-  disk) and status. See
+  region, and its inspector the hardware and status. See
   [Game Server Nodes](/servers/game-server-nodes/).
 - **Dedicated Servers**: servers that stay up, either run by 5Stack on one of
   your nodes or external servers you connect with host/port and RCON
@@ -21,8 +20,8 @@ day to day.
 - **Public Servers**: the page players use to find your community servers. See
   [below](#public-servers).
 
-When a match is created. It can use a dedicated server or provision an on-demand
-server in a chosen region automatically.
+When a match is created, it can use a dedicated server or an on-demand server
+in a chosen region.
 
 ## Community servers
 
@@ -71,11 +70,10 @@ Moderators get a **Manage** link on each server.
 
 ## Moving dedicated servers between nodes
 
-A dedicated server on a node can be moved to another node with its files: the
-server stops, its directory is streamed from the old node straight to the new
-one, and it starts again there. Progress shows on the server's page, the move
-can be canceled until it switches over, and a failed move restores the server
-where it was. A server on a dead node can be moved without its files. See
+A dedicated server on a node can be moved to another node with its files.
+Progress shows on the server's page, the move can be canceled until it switches
+over, and a failed move restores the server where it was. A server on a dead
+node can be moved without its files. See
 [Moving a server to another node](/servers/game-server-nodes/dedicated-servers#moving-a-server-to-another-node).
 
 ## Automatic CS2 updates & version pinning
@@ -100,10 +98,6 @@ The **CS2 build** card at the top of the page shows the current version. See
 
 See [Version Pinning](/servers/game-server-nodes/version-pinning) for details.
 
-The 3D replay's map meshes and the radar callouts are published by 5Stack for
-each CS2 build. When a node reports a new build, the panel picks up that build's
-callouts on its own once they are published.
-
 ## Match server controls
 
 From a match's server tab, organizers and admins get hands-on control of the
@@ -127,10 +121,9 @@ both the SwiftlyS2 and CounterStrikeSharp runtimes. See
 [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) and
 [Custom Game Plugins](/servers/game-server-nodes/custom-plugins).
 
-For plugins from the directory, you say what should be installed and every node
-converges to it on its own. Each plugin's page has a settings form, a config
-file editor and a list of the cvars it overrides; plugins that need Steam
-Workshop addons get them served automatically on SwiftlyS2. See
+For plugins from the directory, you choose what should be installed and every
+node installs it on its own. Each plugin's page has a settings form, a config
+file editor and a list of the cvars it overrides. See
 [Game Plugins](/servers/game-server-nodes/game-plugins), and
 [Game Modes](/features/admin/game-modes) for choosing which ones a given match
 or community server actually loads.
@@ -145,13 +138,9 @@ node takes, removing CS2, and Kubernetes updates are covered in
   the matches it has but takes no new ones. The setting is kept while the node
   is offline, and applies when it reconnects.
 - **Remove node** deletes the node and every server on it, dedicated servers
-  included, after a confirm: "Remove this node? … This can't be undone." Shut the host down first: a host that is still running registers
-  itself again on its next ping. Once it has been unreachable for 10 minutes,
-  the panel also removes it from Kubernetes, along with its leftover jobs and
-  volumes. Files on its disk are left alone.
-- Each node prunes unused container images once a day, so old builds do not
-  fill the disk: untagged images, and older versions of other images once a
-  newer one is running. Tagged 5Stack images are never touched.
+  included, after a confirm: "Remove this node? … This can't be undone." Shut
+  the host down first: a host that is still running registers itself again.
+  Files on its disk are left alone.
 
 ::: warning Remove node takes its dedicated servers with it
 Move them to another node first.
@@ -162,13 +151,13 @@ Move them to another node first.
 Administrators are notified, in the panel and on the Discord support webhook,
 when:
 
-| Notification                           | When                                                                                                                    |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Game Server Node Offline**           | A node has not checked in for 90 seconds, and was enabled for matches, GPU work or an enabled dedicated server          |
-| **Game Server Node Online**            | It comes back, with how long it was down. Only after an Offline alert                                                   |
-| **Region Offline** / **Region Online** | Every node in a region is down, and when one comes back                                                                 |
-| **Dedicated Server Offline**           | A dedicated server running the match or practice plugin stops checking in                                               |
-| **Dedicated Server RCON Error**        | A non-Ranked server's RCON stays unreachable for 2 minutes. A Ranked server's is reported as soon as a connection fails |
+| Notification                           | When                                                                                                           |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Game Server Node Offline**           | A node has not checked in for 90 seconds, and was enabled for matches, GPU work or an enabled dedicated server |
+| **Game Server Node Online**            | It comes back, with how long it was down. Only after an Offline alert                                          |
+| **Region Offline** / **Region Online** | Every node in a region is down, and when one comes back                                                        |
+| **Dedicated Server Offline**           | A dedicated server running the match or practice plugin stops checking in                                      |
+| **Dedicated Server RCON Error**        | A dedicated server's RCON can't be reached                                                                     |
 
 Disabled servers are never reported, and a server that is restarting or being
 rebuilt gets 5 minutes before it counts as down.

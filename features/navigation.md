@@ -62,9 +62,8 @@ A [panel plugin](/plugins/) joins the navigation as an app. In its registration
 under **Settings → Application → Panel Plugins**:
 
 - **Nav group** names the section it joins: compete, practice, community,
-  cosmetics, updates or info. An app still set to media joins community. Any
-  other name gets a section of its own after the built-in ones, and a blank
-  one puts it in **Apps** at the end.
+  cosmetics, updates or info. Any other name gets a section of its own after
+  the built-in ones, and a blank one puts it in **Apps** at the end.
 - **Nav order** is where it sits in that section: 1 after the first page, 2
   after the second, 0 at the end.
 - **Featured** shows it as a button right after Watch instead (see

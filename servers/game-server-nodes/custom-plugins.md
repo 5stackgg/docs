@@ -1,16 +1,16 @@
 # Custom Game Plugins
 
-5Stack Game Node Server containers support custom plugins for both supported frameworks. To set up custom plugins. There is a special folder located at `/opt/5stack/custom-plugins` on your Game Server Node.
+Game servers on a node can load custom plugins for both supported frameworks. Put them in `/opt/5stack/custom-plugins` on your game server node.
 
 ::: tip There is a managed path for this now
 Dropping files here still works and still applies to **every** server on the node.
 If the plugin you want is in the directory, [installing it](/servers/game-server-nodes/game-plugins)
-gets you version tracking, digest-checked downloads, and per-match selection via
+gets you version tracking and per-match selection via
 [Game Modes](/features/admin/game-modes) instead. A file placed here by hand
 still wins over a managed copy of the same path.
 :::
 
-Any files placed in `/opt/5stack/custom-plugins` are mirrored into `<install-dir>/game/csgo` when the game server starts, preserving their directory structure. So lay your files out exactly as they would sit inside `game/csgo`.
+Files in `/opt/5stack/custom-plugins` are copied into the server's `game/csgo` folder when it starts, so lay them out exactly as they would sit inside `game/csgo`.
 
 ::: warning
 Game Node servers operate independently, so you'll need to copy your plugin files to each game server node where you want them to run.
@@ -48,17 +48,17 @@ Drop the plugin into the `plugins` directory for your runtime. A plugin is norma
 
 :::
 
-The `configs` directory is symlinked rather than copied, so anything a plugin writes there persists across server restarts.
+Anything a plugin writes to the `configs` directory persists across server restarts.
 
 ## Gamedata overrides
 
-Sometimes when Counter-Strike is updated. It breaks the plugin framework's signatures before an official fix ships. Overriding the gamedata files is the temporary workaround.
+Sometimes a Counter-Strike update breaks the plugin framework's signatures before an official fix ships. Overriding the gamedata files is the temporary workaround.
 
 The two frameworks store gamedata very differently. CounterStrikeSharp uses a single `gamedata.json`, while SwiftlyS2 splits it into three `.jsonc` files. **If a file exists in your custom-plugins folder it replaces the shipped one wholesale**, so copy the original out of a running server first and edit that, rather than writing a file containing only your changes.
 
 ### SwiftlyS2
 
-SwiftlyS2 reads `offsets.jsonc`, `patches.jsonc`, and `signatures.jsonc` from `addons/swiftlys2/gamedata/cs2/core/`. Override any subset of the three, each is replaced independently.
+SwiftlyS2 reads `offsets.jsonc`, `patches.jsonc`, and `signatures.jsonc` from `addons/swiftlys2/gamedata/cs2/core/`. Override any of the three; each is replaced on its own.
 
 ::: code-group
 

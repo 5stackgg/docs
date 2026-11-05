@@ -29,10 +29,10 @@ Pages linked below go deeper on the bigger features.
   player, watch the feeds from the panel, auto-pause when one drops, and put the
   spectated player's camera on the broadcast.
 - **[Utility Library](/features/utility-library)**: a lineup library for every
-  map, built from throws recorded in game and grenades mined from your own
-  demos, with filmed preview clips and stills, the smoke the game itself
-  simulated, team executes timed to land together, and **Discover** to find new
-  smoke throws onto any spot and prove them on a real server.
+  map, built from throws recorded in game and grenades from your own demos,
+  with filmed preview clips and stills, the exact smoke the game produced, team
+  executes timed to land together, and **Discover** to find new smoke throws
+  onto any spot and prove them on a real server.
 - **[Practice Servers](/features/practice-servers)**: one-click CS2 practice
   servers driven from an in-game menu and HUD, with scored drills, mastery,
   executes, and a ranked plan of what to learn next.
@@ -78,7 +78,7 @@ Pages linked below go deeper on the bigger features.
   player, top plays on the Watch page, a theater-mode clip player, and an
   in-app clip builder.
 - **[Live Streaming](/features/live-streaming)**: a Watch page with a match
-  ticker and live stage, low-latency WebRTC streams, the Control Room, broadcast
+  ticker and live stage, low-latency streams, the Control Room, broadcast
   HUDs from your own library, players' Twitch POVs, and a floating player.
 - **[Demos](/features/demos)**: automatic upload, fast parsing, storage,
   retention, download, and reparsing.
@@ -157,7 +157,7 @@ Pages linked below go deeper on the bigger features.
 - **[Managing Nodes](/servers/game-server-nodes/managing)**: a node inspector
   with warnings you can fix, copy or acknowledge, one-click CPU governor and
   low-latency tuning, per-node match types and practice servers, and
-  one-node-at-a-time Kubernetes updates.
+  one-node-at-a-time updates.
 - **[GPU Nodes](/servers/gpu-nodes/)**: power highlights, demo playback, live
   streaming, and utility lineup previews.
 - **[Browser Console](/service/console)**: manage the panel's server from your
@@ -170,9 +170,8 @@ Pages linked below go deeper on the bigger features.
   for every kind of notification, with per-kind bell switches, per-group push,
   quiet hours, per-room chat mutes, @mention pushes, urgent match-found rings,
   and a flashing browser tab.
-- **Installable app (PWA)**: add 5Stack to your home screen or desktop for an
-  app-like experience, with offline-aware caching and an unread badge on the
-  app icon.
+- **Installable app**: add 5Stack to your home screen or desktop for an
+  app-like experience, with an unread badge on the app icon.
 - **Built for phones**: the hub slides in over the page, matchmaking settings
   open as swipe-to-close sheets, and Back returns lists to where you left them.
 - **[Push notifications](/advanced/web-push)**: per-category, per-device alerts

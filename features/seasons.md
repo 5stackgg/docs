@@ -88,8 +88,7 @@ out four built-in awards:
 | **Season MVP**         | Highest average impact across the season's Competitive matches |
 
 **Season MVP** needs at least **5 Competitive matches** in the season, so a
-single good game can't take it. Only Competitive matches count: impact is
-measured against a player's teammates, which means nothing in a Duel. If nobody
+single good game can't take it. Only Competitive matches count. If nobody
 reaches five, no MVP is awarded.
 
 Season awards appear under **Honors** on the player's profile and count toward
@@ -98,21 +97,14 @@ them away again.
 
 ## Rebuilds
 
-Season Elo and stats are recomputed automatically as matches finish. Changing a
-season's dates in a way that moves matches in or out of it, or creating a season
-over dates that already have matches, flags the season **Rebuild Required**,
-marks its standings out of date, and queues a rebuild on its own. The flag
-clears when the rebuild finishes.
+Season Elo and stats update on their own as matches finish. Changing a
+season's dates so matches move in or out of it, or creating a season over dates
+that already have matches, flags the season **Rebuild Required** and starts a
+rebuild on its own. The flag clears when the rebuild finishes.
 
-**Rebuild ELO** runs the same recompute by hand: that season's Elo and stats,
-from every match in it. It runs in the background with live progress
-(_Rebuilding season ELO… · 3/25 Matches_), and can be canceled while it's
-running.
-
-Rebuilds run one season at a time. Asking for another while one is running
-queues it instead of dropping it, and only the season being rebuilt has its
-button disabled. If a season's dates change mid-rebuild, it runs again for the
-new dates.
+**Rebuild ELO** runs the same rebuild by hand: that season's Elo and stats,
+from every match in it. It shows its progress and can be canceled while it's
+running. Rebuilds run one season at a time, and others wait their turn.
 
 ::: tip
 A rebuild is a maintenance tool, not a routine one. Normal play keeps a season

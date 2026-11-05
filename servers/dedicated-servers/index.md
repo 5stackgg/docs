@@ -33,9 +33,6 @@ latest release and follow that framework's install guide:
 - **SwiftlyS2** (default): [Releases](https://github.com/5stackgg/game-server/releases) (`sw-v*`) · [SwiftlyS2 docs](https://github.com/swiftly-solution/swiftlys2)
 - **CounterStrikeSharp**: [Releases](https://github.com/5stackgg/game-server/releases) (`css-v*`) · [CounterStrikeSharp docs](https://docs.cssharp.dev/docs/guides/getting-started.html)
 
-Both build out of one repository, so that releases list carries both: tags are
-prefixed `sw-` for SwiftlyS2 and `css-` for CounterStrikeSharp.
-
 See [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes) for how the two differ.
 
 ::: warning
@@ -126,22 +123,11 @@ start without it.
 
 ## Hibernation
 
-CS2 can put an empty server to sleep with `sv_hibernate_when_empty 1`, which stops it
-ticking until somebody connects. A 5Stack server used to need that turned off, because a
-sleeping server stopped reporting to the panel and showed as offline. From plugin versions
-`sw-v0.0.96` and `css-v0.0.441` it no longer does:
-
-- a hibernating server keeps reporting to the panel and still answers RCON
-- when it is given a match it wakes itself, changes map and sets the password before
-  anyone connects
-- it stays awake for as long as it has a match, and may hibernate again once the match is
-  gone
-
-From `sw-v0.0.97` and `css-v0.0.442` the match plugin also tells the panel when the server
-is asleep, and the server's page shows **Hibernating** instead of a warning. The
-[Player Management plugin](./player-management) a community server runs keeps syncing while
-the server sleeps, but does not report hibernation, so a community server never shows as
-**Hibernating**.
+CS2 can put an empty server to sleep with `sv_hibernate_when_empty 1` until somebody
+connects. From plugin versions `sw-v0.0.96` and `css-v0.0.441`, a hibernating server keeps
+reporting to the panel, and wakes itself when it is given a match. From `sw-v0.0.97` and
+`css-v0.0.442`, the server's page shows **Hibernating** instead of a warning. A community
+server keeps syncing while it sleeps, but never shows as **Hibernating**.
 
 Which servers may hibernate:
 

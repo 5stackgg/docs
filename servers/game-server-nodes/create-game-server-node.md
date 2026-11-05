@@ -28,47 +28,22 @@ what it does.
    curl -fsSL https://get.5stack.gg | sudo sh -s -- join --panel-key q7Hc2Lw9Zf0mR1xT…
    ```
 
-   `--panel-key` is your panel's public key. The node uses it to check that the
-   join keys it receives really come from your panel. The dialog also shows the
-   key's fingerprint under **Panel key**.
-
-3. SSH into the node as a user who can use sudo, and run the command. It installs
-   the agent, checks the server can run Tailscale and k3s, and shows a 6-digit
-   code and a key fingerprint:
-
-   ```
-   ==> Joining a panel
-       In your panel: Game Server Nodes → Create game server node, then enter this code
-       482913
-       key fingerprint 8F2C 19AA 03D1 7E55 · expires in 10:00
-   ```
-
-4. Type the code into the dialog's **Join code** box. The panel looks it up as
-   soon as the sixth digit is in.
+3. SSH into the node as a user who can use sudo, and run the command. It shows a
+   6-digit code and a key fingerprint.
+4. Type the code into the dialog's **Join code** box.
 5. The dialog shows the node's hostname, address, system and key fingerprint.
    Compare the fingerprint with the one on the node's screen.
    - If they match, pick the node's region and click **Approve**.
    - If they don't, click **Cancel**. See
      [The fingerprint doesn't match](/common-issues/5stack-service#fingerprint-mismatch).
-6. The panel sends the node its join keys. The dialog shows the node joining your
-   Tailscale network and installing the k3s agent, until it comes online. The
-   node's terminal ends with `Joined`.
+6. The dialog shows the node's progress until it comes online. The node's
+   terminal ends with `Joined`.
 
 The node starts out enabled, so the panel can put matches on it straight away.
 
 Anyone who sees a code, on a stream or in a screenshot, could try to use it for a
 different server. Comparing the fingerprint makes sure you approve the server you
 are looking at.
-
-### What the node receives
-
-The panel makes a single-use Tailscale key and a k3s token that expires in 15
-minutes and can only join as a worker. Both are encrypted to the node's key
-before they leave the panel, so the 5Stack cloud only passes them along. After
-it joins, the node talks to your panel over Tailscale only.
-
-This creates an internal network the panel uses to create and manage servers.
-See [What is Installed?](./what-is-installed.md).
 
 ## If the code expired
 
@@ -78,18 +53,17 @@ again for a new code. Nothing was changed on the node.
 
 ## Without --panel-key
 
-If you run the command without `--panel-key`, the node shows your panel key's
-fingerprint once you approve it and asks
-`Matches the panel key shown in the Create Game Server Node dialog? [y/N]`. Compare it
-with the fingerprint under **Panel key** in the dialog. Without a terminal to ask
-on, the node refuses. The command from the dialog already includes the key, so
-you won't see this question when you use it.
+If you run the command without `--panel-key`, the node asks
+`Matches the panel key shown in the Create Game Server Node dialog? [y/N]` once
+you approve it. Compare the fingerprint it shows with the one under
+**Panel key** in the dialog. The command from the dialog already includes the
+key, so you won't see this question when you use it.
 
 ## Proxmox LXC containers
 
-Before it shows a code, the node checks that an LXC container can run Tailscale
-and k3s. If it can't, the node lists what is wrong and stops. On the Proxmox host,
-where `CTID` is the container's ID:
+If the node is an LXC container that can't run Tailscale and k3s, the command
+lists what is wrong and stops. To fix it, on the Proxmox host, where `CTID` is
+the container's ID:
 
 1. If the container is unprivileged, restore a backup of it as privileged:
 
@@ -110,11 +84,10 @@ where `CTID` is the container's ID:
    lxc.mount.entry: /dev/net/tun dev/net/tun none bind,optional,create=file
    ```
 
-   `proc:rw` lets the kubelet set `vm.overcommit_memory=1`, `kernel.panic=10`
-   and `kernel.panic_on_oops=1`. These apply to the whole host, which then
-   reboots 10 seconds after a kernel oops.
+   `proc:rw` lets k3s change kernel settings that apply to the whole Proxmox
+   host, which then reboots 10 seconds after a kernel oops.
 
-3. Load the kernel modules k3s needs, and list the same modules, one per line, in
+3. Load these kernel modules, and list the same modules, one per line, in
    `/etc/modules-load.d/k3s.conf` so they load after a reboot:
 
    ```bash
@@ -125,9 +98,8 @@ where `CTID` is the container's ID:
 
 ## List the nodes
 
-On the panel server, `5stack nodes list` lists every node in the cluster: whether
-it is Ready, which one is the panel's own, whether it has the agent, and any
-removal in progress.
+On the panel server, `5stack nodes list` lists every node and whether it is
+Ready.
 
 ## Nodes added the old way
 
@@ -140,8 +112,8 @@ also start this on the panel server with `5stack nodes adopt`.
 
 On the panel's **Game Server Nodes** page, remove the node. Turn on
 **Also uninstall 5Stack from the server** to remove its k3s agent, Tailscale and
-5Stack files too. Its game servers stop. The server checks in once a minute, so
-this can take a few minutes, and you can close the dialog while it runs. The node
+5Stack files too. Its game servers stop. This can take a few minutes, and you
+can close the dialog while it runs. The node
 is removed from the list once the uninstall finishes. If it fails, the node is
 kept, and you can **Try Again** or **Remove Anyway**.
 

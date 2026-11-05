@@ -14,8 +14,6 @@ other rounds.
 - Only players who have signed in to 5Stack at least once get a highlight.
 - [Imported matches](/features/external-matches) only get highlights when
   **Include imported matches** is also on.
-- A clip stops at the end of the match's final round, so it never runs on into
-  the victory screen.
 
 ## Where highlights show up
 
@@ -37,10 +35,6 @@ other rounds.
 
 **Top plays** puts the most kills first, then the shortest clip, then the most
 views, so a fast 4K beats a slow one.
-
-A clip counts a view once a viewer has loaded half of it. Bots, downloads, and
-the next clip being loaded ahead of time don't count, and the same viewer counts
-at most once every 6 hours.
 
 ## The Highlights page
 
@@ -65,11 +59,10 @@ clipped it, and when. Beside the video:
   and where it happened.
 - **Scorecard**: the match it came from, with both teams' scores and a **View
   match** link.
-- **Up next**: the next clips, which play on automatically. The next one loads
-  ahead of time, so it starts instantly.
+- **Up next**: the next clips, which play on automatically.
 
 **Theater mode** (press `T`) fills the window with the video and puts the details
-over it; the player remembers your choice. It needs a window at least 640px wide.
+over it. It needs a window at least 640px wide.
 
 | Key            | Action                         |
 | -------------- | ------------------------------ |
@@ -152,7 +145,6 @@ Under **Settings → Application → Highlights**:
 When auto-generation covers imported matches, players who haven't linked their
 Steam match history get a **Feature Spotlight** card in their notifications
 panel, **Highlights From Every Match You Play**, with a **Link Account** button.
-Dismissing it hides it on every device.
 
 ::: tip
 Highlights, clips, and demo playback all share your [GPU nodes](/servers/gpu-nodes/).

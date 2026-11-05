@@ -28,7 +28,7 @@ Under **Settings → Application → Matchmaking**:
   60; `0` turns the timer off by default.
 
 Matchmaking never mixes LAN and online regions: on a LAN, players choose one or
-the other, and the server refuses a queue or match whose regions mix them.
+the other.
 
 ## Veto scouting
 
@@ -46,8 +46,7 @@ and their likely next move. See
 
 ## 5stack Ranks
 
-When matchmaking is enabled you can send each player's 5Stack Elo to the server
-so the plugin can display ranks in-game:
+When matchmaking is enabled you can show each player's 5Stack rank in game:
 
 - **Show ranks in regular matches**
 - **Show ranks in tournament matches**
@@ -90,6 +89,7 @@ Matches and tournaments can still pick a custom pool of their own.
 ## Game Type Configs
 
 Edit the server config applied for each game type, **Competitive**, **Wingman**,
-**Duel**, and **Rush**, plus the **LAN** and **Global** layers exec'd on top of
-whichever one a match uses, with defaults you can load and restore. See
-[Game Modes](/features/admin/game-modes#global-configuration) for the exec order.
+**Duel**, and **Rush**, plus the **LAN** and **Global** configs applied on top
+of whichever one a match uses, with defaults you can load and restore. See
+[Game Modes](/features/admin/game-modes#global-configuration) for the order they
+apply in.

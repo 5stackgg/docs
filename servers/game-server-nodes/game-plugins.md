@@ -3,41 +3,34 @@
 ::: info Game plugins, not panel plugins
 This page is about **CS2 server-side plugins** that load into your game servers.
 For a web app that runs inside the panel, see
-[5Stack Plugin Development](/plugins/) — those are registered under
+[5Stack Plugin Development](/plugins/). Those are registered under
 **Settings → Application → Panel Plugins**.
 :::
 
 5Stack can install CS2 server plugins onto your Game Server Nodes for you: pick
-one from the directory, and every node downloads the release, checks it against
-the digest the registry published, and unpacks it into the node's plugin
-directory.
+one from the directory, and every node downloads and installs it.
 
 It is on by default; the registry it reads from is configured under
 **Settings → Application → Plugin Directory**.
 
 ::: danger You are running someone else's code
-A game plugin is a .NET assembly loaded into the `cs2` process on your machines.
-It can do anything that process can. Install plugins you trust, and prefer the
-ones marked **Verified**, which means a 5Stack maintainer reviewed the entry.
+A game plugin runs inside the CS2 server on your machines, and can do anything
+that server can. Install plugins you trust, and prefer the ones marked
+**Verified**, which means a 5Stack maintainer reviewed the entry.
 :::
 
 ## The directory
 
 **Plugin Directory**, under **Site** in the admin navigation, lists
-everything in the catalog. It is administrator-only: it is where third-party
-code gets chosen to run on your servers, which is not a browsing experience for
-players. Each entry says which runtime it is built for, who wrote it, and
-whether it needs an external service you have to provide yourself.
+everything in the catalog. It is administrator-only. Each entry says which
+runtime it is built for, who wrote it, and whether it needs an external service
+you have to provide yourself.
 
-The catalog is pulled from a registry — by default
-`https://registry.5stack.gg/`, published from
+The catalog comes from a registry, by default `https://registry.5stack.gg/`,
+published from
 [5stackgg/plugin-registry](https://github.com/5stackgg/plugin-registry). Point
 **Registry URL** at a fork or an internal mirror if you would rather curate your
 own, then hit **Sync Now**.
-
-Syncing happens automatically every 30 minutes. A registry that fails to load,
-or comes back empty, leaves the last good catalog in place rather than emptying
-the directory.
 
 ## When the catalog does not have it
 
@@ -45,93 +38,60 @@ The registry is a curated list, and CS2 has more plugins than it carries. If the
 one you want is not in the directory, **Add a plugin** takes a release URL and
 turns it into an entry of your own:
 
-- a **repository** — `https://github.com/owner/repo` — resolves to the newest
-  Linux archive of its latest release, the same choice the registry build makes;
-- a **release** — `.../releases/tag/v1.2.0` — pins that release instead;
+- a **repository**, `https://github.com/owner/repo`, uses the newest Linux
+  archive of its latest release;
+- a **release**, `.../releases/tag/v1.2.0`, pins that release instead;
 - a **direct link** to a `.zip` is taken as-is, and you supply the slug and
-  version yourself, because nothing in the URL reliably says what they are.
+  version yourself.
 
-You always pick the framework: a CounterStrikeSharp build unpacks perfectly well
-under SwiftlyS2 and then never loads, and nothing inside the archive says which
-one it was built for.
+You always pick the framework, because nothing inside the archive says which
+one it was built for. A plugin added under the wrong one installs but never
+loads.
 
-The panel downloads the archive once and records its SHA-256, so every node
-verifies its own download against a digest the same way it does for a
-catalogued plugin. From there it installs, versions, and loads exactly like a
-registry entry — modes select it, nodes converge to it, the directory shows its
-coverage. It is marked **Custom** so it is clear nobody reviewed it.
+From there it installs and loads like a directory entry. It is marked **Custom**
+so it is clear nobody reviewed it.
 
 ::: danger Nobody reviewed this one
-A game plugin runs inside the `cs2` process on your machines. Installing from
-the directory means a 5Stack maintainer at least looked at the entry; adding one
-by URL means you are vouching for it yourself.
+A game plugin runs inside the CS2 server on your machines. Installing from the
+directory means a 5Stack maintainer at least looked at the entry; adding one by
+URL means you are vouching for it yourself.
 :::
 
-Adding the same slug again with a newer release adds a version rather than a
-second entry — that is how you update one. A registry sync never touches your
-entries: it will not overwrite one, prune one, or replace it if the catalog
-later publishes a plugin under the same slug. **Remove from catalog**, on the
-plugin's page, deletes it once it is uninstalled from every node.
+To update one, add the same slug again with a newer release. A registry sync
+never changes or removes your entries. **Remove from catalog**, on the plugin's
+page, deletes it once it is uninstalled from every node.
 
 If you find yourself adding several, point **Registry URL**
-[at your own fork of the registry](#the-directory) instead — one index every
-panel you run can read, rather than the same URLs typed into each of them.
+[at your own fork of the registry](#the-directory) instead, so every panel you
+run reads one list.
 
 ## Installing
 
-Pressing **Install** records that this deployment wants the plugin. It does not
-reach out to your nodes. Each node then converges to that list on its own:
+Press **Install**. Each node checks for changes every 5 minutes and installs the
+plugin on its own, including a node that was offline when you pressed it and a
+node you add later. A node that can't reach the panel keeps its plugins as they
+are.
 
-1. every 5 minutes, and once on boot, the node's connector asks the panel what
-   it should have,
-2. the panel resolves that to concrete downloads for the runtime **that node**
-   runs — the newest release, or the exact version if one is pinned,
-3. the node downloads anything missing, **verifies the SHA-256**, and checks
-   every path in the archive before a byte is written,
-4. it unpacks it into `/opt/5stack/custom-plugins/`, deleting the version it
-   replaced and recording which files belong to it,
-5. it removes any managed plugin that is no longer wanted, and reports back
-   everything it now has.
-
-An archive that does not match its digest, or that contains a path escaping the
-plugin directory, is refused and nothing reaches disk.
-
-Because this is a pull, there is nothing to re-run and nothing to remember. A
-node that was offline when you clicked install picks the plugin up when it comes
-back, and a node that joins the cluster next week arrives, asks, and converges
-like every other one.
-
-::: warning A node that cannot reach the panel changes nothing
-Failing to fetch the list is not the same as being told to have nothing. A node
-that cannot reach the API leaves its plugins exactly as they are and tries again
-on the next pass. Treating a failed request as an empty answer would uninstall
-every plugin on every node the first time the API restarted.
-:::
-
-Hand-placed plugins are never touched by any of this — see
+Plugins you placed by hand are never touched; see
 [what is actually on a node](#what-is-actually-on-a-node).
 
-### Install state is a count, not a yes or no
+### Install state
 
-Since nodes converge on their own clocks, "installed" is a fraction: how many
-online nodes report the plugin against how many should have it. The directory
-shows one of:
+The directory shows how many online nodes have the plugin:
 
-| State         | What it means                                                                                                        |
-| ------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **Installed** | Every online node reports it on disk                                                                                 |
-| **Partial**   | Some nodes have it, some do not                                                                                      |
-| **Pending**   | Asked for, but no node has reported it yet — nothing has converged since you asked, or no node is online to converge |
-| **Failed**    | A node reported the install as failed; the error is kept on that node's row                                          |
-| **Manual**    | Nobody asked for it, but it is there anyway: someone dropped it in by hand                                           |
+| State         | What it means                                                               |
+| ------------- | --------------------------------------------------------------------------- |
+| **Installed** | Every online node reports it on disk                                        |
+| **Partial**   | Some nodes have it, some do not                                             |
+| **Pending**   | Asked for, but no node has reported it yet, or no node is online            |
+| **Failed**    | A node reported the install as failed; the error is kept on that node's row |
+| **Manual**    | Nobody asked for it, but it is there anyway: someone dropped it in by hand  |
 
-Only enabled nodes that are **Online** or **Not Accepting New Matches** count
-toward the target.
+Only enabled nodes that are **Online** or **Not Accepting New Matches** count.
 
 ::: tip Partial for a few minutes is normal
-Nodes poll on their own five-minute clocks, so a fresh install reads **Pending**
-and then **Partial** before it settles. It is only worth looking into if it is
-still Partial well after that.
+A fresh install reads **Pending** and then **Partial** before it settles. It is
+only worth looking into if it is still Partial well after that.
 
 While it is partial, a [Game Mode](/features/admin/game-modes) that uses the
 plugin will work on some servers and not others.
@@ -139,30 +99,23 @@ plugin will work on some servers and not others.
 
 ## Removing
 
-**Remove** clears the intent, and each node drops the files on its next pass. A
-plugin that a live (non-archived) game mode still selects cannot be removed —
-the panel names the mode and asks you to take it out of the mode first, rather
-than leaving a mode pointing at something no server has.
+**Remove** clears the plugin, and each node drops the files on its next check. A
+plugin that a live (non-archived) game mode still selects cannot be removed: the
+panel names the mode and asks you to take it out of the mode first.
 
 ## What is actually on a node
 
-Each node reports its whole inventory every time it converges — the panel does
-not go looking. Two things are worth knowing:
-
-- Plugins you dropped into `/opt/5stack/custom-plugins` by hand are reported
-  too, marked **Manual**. Those are loaded on every server on the node,
-  regardless of mode — that is the existing behaviour and it has not changed.
-  The converge pass never removes them; the panel does not own them.
-- A managed plugin that has gone missing from disk stops being reported, so the
-  install falls back to **Partial** rather than quietly failing to load the next
-  time a match starts.
+- Plugins you dropped into `/opt/5stack/custom-plugins` by hand are listed too,
+  marked **Manual**. They load on every server on the node, regardless of mode,
+  and 5Stack never removes them.
+- A managed plugin that has gone missing from disk drops the install back to
+  **Partial**.
 
 ## Loading
 
 ::: tip Installing is not loading
 An installed plugin is on the node but dormant. Nothing loads it until a
-[Game Mode](/features/admin/game-modes) selects it and a server starts. That is
-what lets one node host a competitive match and a fun match at the same time.
+[Game Mode](/features/admin/game-modes) selects it and a server starts.
 :::
 
 ### Load without a game mode
@@ -170,37 +123,27 @@ what lets one node host a competitive match and a fun match at the same time.
 Each installed plugin's directory page has three switches saying which kinds of
 match load it on their own, whether or not a mode selects it:
 
-| Switch                 | Covers                                                              |
-| ---------------------- | ------------------------------------------------------------------- |
-| **Ranked Matches**     | Anything counting toward ranking — the queue or a draft lobby alike |
-| **Tournament Matches** | Matches played as part of a tournament bracket, ranked or not       |
-| **Custom Matches**     | Everything else: matches that count toward nothing                  |
+| Switch                 | Covers                                                             |
+| ---------------------- | ------------------------------------------------------------------ |
+| **Ranked Matches**     | Anything counting toward ranking: the queue or a draft lobby alike |
+| **Tournament Matches** | Matches played as part of a tournament bracket, ranked or not      |
+| **Custom Matches**     | Everything else: matches that count toward nothing                 |
 
-The buckets do not overlap. A match is sorted into exactly one of them, and a
-ranked tournament game is a **tournament** game — that switch is the more
-specific statement, so it wins. "Ranked" is about the match counting toward
-ranking, not about matchmaking having created it.
+A match falls into exactly one of these, and a ranked tournament game counts as
+a **tournament** game. Use them for plugins that aren't a game mode, such as a
+stats collector or an admin tool.
 
-That is what they are for: a stats collector or an admin tool is not a game
-mode, and the only way to get one onto every server used to be hand-placing the
-files in `custom-plugins` — the exact thing the catalog replaces.
-
-All three start **off**. Installing a plugin puts it on your nodes; it does not
-start running it on matches. Until you turn one on, or a game mode selects the
+All three start **off**. Until you turn one on, or a game mode selects the
 plugin, nothing loads it.
 
 ::: warning A game mode still wins
-A mode that names the plugin loads it regardless of these switches. Picking a
-mode is an explicit choice about one match; these are a blanket setting.
+A mode that names the plugin loads it regardless of these switches.
 :::
 
 ::: danger Ranked Matches reaches competitive play
-"Ranked" here means the match counts toward ranking — a queued match and a draft
+"Ranked" here means the match counts toward ranking: a queued match and a draft
 lobby playing for Elo alike. It is the broadest of the three: a match is ranked
 unless a game mode made it unranked or a bracket made it a tournament game.
-
-That is exactly why it is a switch of its own rather than part of a single
-"every match" flag.
 :::
 
 On a [community server](/servers/dedicated-servers/community-servers), which
@@ -210,21 +153,16 @@ hosts no match, a plugin loads by default when **Tournament Matches** or
 
 ### Configuration
 
-Some plugins are configured with console variables rather than a config file,
-and those have nowhere to live: a match type config is shared by every match of
-that type, and a [Game Mode](/features/admin/game-modes) only covers matches
-that select it.
-
-Each installed plugin's page has a **Configuration** box for exactly that.
+Each installed plugin's page has a **Configuration** box.
 **Edit configuration** opens an editor with up to three tabs:
 
 | Tab             | What it edits                                                                                                                                             |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Settings**    | A form for the console variables the plugin's registry entry lists, with each one's description and default                                               |
+| **Settings**    | A form for the plugin's console variables, with each one's description and default                                                                        |
 | The config file | The plugin's JSON config file, as a form when the registry describes it, or as JSON. Named after the file, for example **Weapon rotation** for Deathmatch |
 | **Advanced**    | The raw cvar block                                                                                                                                        |
 
-What you set is exec'd after the match type's config and after the
+What you set runs after the match type's config and after the
 [Global config](/features/admin/game-modes#global-configuration), on servers
 that load the plugin **and nowhere else**.
 
@@ -233,27 +171,11 @@ invsim_url "https://inventory.example.gg"
 invsim_apikey "inv_…"
 ```
 
-::: tip One place, not three
-This replaces pasting a plugin's cvars into Competitive, Wingman and Duel
-separately, which is how a rotated API key ends up half-updated.
-:::
-
-The cvars follow the plugin: they are exec'd wherever it loads, and nowhere
-else. A plugin kept out of competitive play by its
-[load switches](#load-without-a-game-mode) does not carry its configuration
-there either — it is not loaded at all, rather than loaded unconfigured. On a
-community server they are written into the server's Valve game mode config, which
-CS2 runs on every map load.
-
 #### Descriptions and defaults
 
-The registry only names a plugin's cvars. What each one does and what it
-defaults to is read from a real server: when a dedicated server or a match server
-running the plugin comes online, the panel asks it over RCON and records the
-answers. Until then the form says **Descriptions and defaults show up once a
-server running this plugin comes online.** A value your own config sets is
-never recorded as the plugin's default, and cvars that look like secrets never
-get one.
+Descriptions and defaults are read from a real server. Until a server running
+the plugin comes online, the form says **Descriptions and defaults show up once
+a server running this plugin comes online.**
 
 #### Config files
 
@@ -262,17 +184,14 @@ from the file the plugin ships with; **Use the Plugin's File** goes back to it.
 **View in Repo** opens the shipped file at the installed release, and **Open on
 Node** opens it in a node's file browser.
 
-Your file is written to every server that loads the plugin, at the path the
-registry names. Where the plugin finds its file through a cvar (Deathmatch's
-`dm_modes_file`), 5Stack points that cvar at the written file on those servers
-only.
+Your file is written to every server that loads the plugin.
 
 #### Cvars the plugin overrides
 
 Some plugins set console variables themselves on every map load, after every
-config has run. Deathmatch, for one, sets over a hundred. The plugin's page lists
-them under **Set by the plugin on every map**, and warns when your configuration
-sets one, since the value would be overwritten.
+config has run. The plugin's page lists them under **Set by the plugin on every
+map**, and warns when your configuration sets one, since the value would be
+overwritten.
 
 #### One server only
 
@@ -282,16 +201,10 @@ A community server can layer its own settings over the plugin page's with
 
 ### Workshop addons
 
-CS2 cannot send files from a server to a player, so a plugin's custom models,
-sounds or HUD layouts have to reach players as Steam Workshop addons. A plugin
-that needs them lists them in its registry entry, and its page shows them under
-**Workshop addons**.
-
-The SwiftlyS2 image ships
-[AddonsManager](https://github.com/SwiftlyS2-Plugins/AddonsManager). Every
-server that loads such a plugin serves exactly the addons its plugins list, and
-players download them from the Workshop while they connect. Nothing to install
-or configure.
+A plugin's custom models, sounds or HUD layouts reach players as Steam Workshop
+addons. A plugin that needs them shows them under **Workshop addons** on its
+page. On SwiftlyS2, players download them from the Workshop while they connect.
+Nothing to install or configure.
 
 ::: warning SwiftlyS2 only
 CounterStrikeSharp servers start without the addons and log why. The plugin
@@ -300,77 +213,51 @@ still loads; whatever needed the addon does not show.
 
 ### Plugins that need Valve's server guidelines off
 
-Both frameworks ship with `FollowCS2ServerGuidelines` on, and while it is on
-they refuse the calls a plugin makes to change what a player sees — custom HUDs,
-scoreboard text, skins and agents in place of the default models. A plugin that
-cannot work without those calls says so in its registry entry, and the directory
-badges it **Needs guidelines off**.
+By default, both frameworks follow Valve's server guidelines and block plugins
+from changing what a player sees: custom HUDs, scoreboard text, skins and agents
+in place of the default models. A plugin that needs this is badged **Needs
+guidelines off** in the directory.
 
-The panel never turns them off on the strength of that alone. The plugin's page
-carries a **Turn off Valve's server guidelines** switch, off until you set it,
-and it applies to that plugin only: servers whose mode does not load it keep
-booting compliant. Left off, the plugin still installs and loads — the parts
-that change what a player sees simply do nothing.
+To allow it, turn on **Turn off Valve's server guidelines** on the plugin's
+page. It applies only to servers that load that plugin. Left off, the plugin
+still installs and loads, but the parts that change what a player sees do
+nothing.
 
 ::: danger This can get your Steam GSLTs banned
 Per Valve, running outside their official
 [server guidelines](https://blog.counter-strike.net/index.php/server_guidelines/)
 can trigger **every** Game Server Login Token on the server owner's Steam
-account to be banned — not just the one the offending server used. It is the
+account to be banned, not just the one the offending server used. It is the
 same trade-off as
-[showing 5stack ranks in-game](/features/admin/matchmaking), which flips the
-same framework setting.
+[showing 5stack ranks in-game](/features/admin/matchmaking).
 :::
 
-The switch is a statement of intent, like installing: the next server to start
-with that plugin in its mode picks it up. Servers already running are not
-touched — the setting lives in the framework's own config and is read once, at
-boot.
+Servers pick up the switch the next time they start.
 
 ## Runtimes
 
-A CounterStrikeSharp plugin will not load under SwiftlyS2, and vice versa, so
-each registry entry publishes its releases per runtime. Nodes are only ever sent
-builds for the [runtime](/servers/game-server-nodes/plugin-runtimes) they run,
-so asking for a plugin that has no build for your deployment installs nothing —
-the directory says as much on the plugin's page.
+A CounterStrikeSharp plugin will not load under SwiftlyS2, and vice versa. Nodes
+only get builds for the [runtime](/servers/game-server-nodes/plugin-runtimes)
+they run, so a plugin with no build for your runtime installs nothing, and its
+page says so.
 
-Many projects publish both — the CS2 Inventory Simulator, for instance, has a
-SwiftlyS2 build and a CounterStrikeSharp build, so it is installable either way.
-
-This is also what decides where a game mode can run: a mode is runnable on a
-runtime only if **every** plugin it selects has a build for it. See
+This also decides where a game mode can run: a mode is runnable on a runtime
+only if **every** plugin it selects has a build for it. See
 [Runtime compatibility](/features/admin/game-modes#runtime-compatibility).
 
 ## Updates
 
 An install either tracks the newest release or sits on one version:
 
-- **Auto** (what you get by installing from the directory) — every converge pass
-  resolves the newest published release for the node's runtime and installs it
-  if it differs, removing the version it replaced. Servers pick it up the next
-  time they start; a live match is never disturbed.
-- **Pinned** — the version stays put. Once an hour the panel compares pinned
-  installs against the newest release and raises a single administrator
-  notification when any of them have fallen behind, the same way
-  [CS2 build and plugin version pinning](/servers/game-server-nodes/version-pinning)
-  already reports.
+- **Auto** (what you get by installing from the directory): nodes install the
+  newest release for their runtime when it comes out. Servers pick it up the
+  next time they start; a live match is never disturbed.
+- **Pinned**: the version stays put. Administrators get a notification when a
+  pinned install falls behind the newest release.
 
 ## Where the files live
 
-| Path                                          | What                                                                                                                                              |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/opt/5stack/custom-plugins/`                 | Both managed installs and hand-managed files, laid out relative to `game/csgo` ([Custom Game Plugins](/servers/game-server-nodes/custom-plugins)) |
-| `/opt/5stack/custom-plugins/.5stack-plugins/` | Which files belong to which managed plugin, and at what version                                                                                   |
-| `/opt/5stack/servers/<server id>/`            | A single dedicated server's own files                                                                                                             |
-
-Managed installs land in the directory operators already use rather than a store
-of their own: it is where a plugin writes its own config at runtime, and it
-needs no extra mount for a game server to see it. Ownership is recorded in
-`.5stack-plugins` instead of being inferred from where a file sits.
-
-That record is what makes installing different from loading. At boot the server
-links this directory into its own tree, leaving out the files the index
-attributes to a managed plugin the mode did not ask for. Anything hand-placed is
-in no manifest, so it is never left out — which is exactly how `custom-plugins`
-behaved before plugins were managed at all.
+| Path                               | What                                                                                                                                              |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/opt/5stack/custom-plugins/`      | Both managed installs and hand-managed files, laid out relative to `game/csgo` ([Custom Game Plugins](/servers/game-server-nodes/custom-plugins)) |
+| `/opt/5stack/servers/<server id>/` | A single dedicated server's own files                                                                                                             |

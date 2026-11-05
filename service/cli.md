@@ -31,12 +31,11 @@ sudo once you are in the `5stack` group. See
 | `5stack update-policy idle --window 03:00-06:00`      | Updates run in that window once no matches are live.                                                            |
 | `5stack channel set stable`                           | Picks the release channel. Stay on `stable` unless 5Stack asks you to test a build on `branch/<name>`.          |
 
-`--at` takes a clock time, which is the next time it comes round on the server,
-or an ISO time such as `2026-11-02T03:00:00Z`. When the time comes, it runs like
-an update scheduled in the panel, holding new matches first when it has to, so
-`--at` doesn't take `--no-drain`. A new `--at` replaces the one you scheduled
-before. If an update scheduled in the panel is already waiting, change it in the
-panel's update center instead.
+`--at` takes a clock time on the server, or an ISO time such as
+`2026-11-02T03:00:00Z`. It holds new matches first when it has to, so it
+doesn't take `--no-drain`. A new `--at` replaces the one you scheduled before.
+If an update scheduled in the panel is already waiting, change it in the panel
+instead.
 
 ## Config
 
@@ -46,7 +45,7 @@ server.
 
 | Command                                  | What it does                                                                                                                                                        |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `5stack config list`                     | Every setting, grouped by file. Secrets show as `••••••••`, `(empty)` or `(not set)`, and as `in Vault (kv/<path>)` on a Vault install.                             |
+| `5stack config list`                     | Every setting, grouped by file, with secrets masked.                                                                                                                |
 | `5stack config get <KEY>`                | One setting. A secret stays masked. As root, `--show` prints it.                                                                                                    |
 | `sudo 5stack config set <KEY>=<VALUE> …` | Changes settings, then applies the panel's release again.                                                                                                           |
 | `sudo 5stack config unset <KEY> …`       | Removes settings, then applies again.                                                                                                                               |
@@ -79,12 +78,11 @@ And for some of them:
 sudo 5stack config set REVERSE_PROXY=true
 ```
 
-It lists each change, old value to new, and asks
-`Save these and apply release <version> again? [y/N]`. The apply follows the
-update rules: new matches wait only when a restart needs it.
+It shows each change and asks before it saves and applies. New matches wait
+only when a restart needs it.
 
-Secrets are never taken from the command line, where shell history would keep
-them. Give the key with no value and type it hidden:
+Secrets are never taken from the command line. Give the key with no value and
+type it hidden:
 
 ```bash
 sudo 5stack config set FACEIT_API_KEY=
@@ -96,13 +94,12 @@ sudo 5stack config set FACEIT_API_KEY=
 - `REVERSE_PROXY` and `CLOUDFLARE` are `true` or `false`. Ports are 1 to 65535.
   `*_DOMAIN` and `*_HOST` are host names. `GAME_STREAMER_AMD_MEMORY_*` are like
   `24Gi` or `512Mi`.
-- The panel's scripts read `.5stack-env.config` as shell, so its values take
-  only letters, digits and `. _ , : / @ + = -`, or double quotes around a list
-  such as `GPU_NODES="node-a node-b"`.
-- Only the keys the panel's scripts read are written into `.5stack-env.config`.
-  Any other key there is kept but ignored, and `5stack status` warns
-  **ignored .5stack-env.config keys this agent doesn't know**. A newer panel
-  that needs one also needs a newer agent.
+- Values in `.5stack-env.config` take only letters, digits and
+  `. _ , : / @ + = -`, or double quotes around a list such as
+  `GPU_NODES="node-a node-b"`.
+- A key in `.5stack-env.config` that the agent doesn't know is kept but
+  ignored, and `5stack status` warns
+  **ignored .5stack-env.config keys this agent doesn't know**.
 - A key no panel file lists is refused, unless you add `--force --file <file>`.
 - `WEB_DOMAIN` and `STEAM_WEB_API_KEY` can change, but not be emptied.
 - The service sets these itself: `KUBECONFIG`, `VAULT_MANAGER`
@@ -117,17 +114,17 @@ sudo 5stack config set FACEIT_API_KEY=
 installed release, with the panel's config, in your terminal, so its questions
 work as usual. You can also pick each one in the menu.
 
-| Script               | What it does                                                                                                                                        |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `plugin.sh`          | Installs, upgrades, lists or removes a panel plugin. See [One-Command Install](/plugins/installing).                                                |
-| `custom.sh`          | Deploys one of your overlays in `/etc/5stack/custom` onto a node. See [Custom Kubernetes YAML](/advanced/custom-k8s).                               |
-| `setup-gpu-nodes.sh` | Picks the GPU nodes and the Steam account render pods use, then applies the panel again. See [GPU Nodes](/servers/gpu-nodes/#run-the-setup-script). |
-| `playcast-relay.sh`  | Deploys the Playcast edge relay. See [Playcast Edge Relay](/advanced/playcast-edge-relay).                                                          |
-| `backblaze-proxy.sh` | Deploys the Backblaze B2 worker and points the panel at it. See [Backblaze + Cloudflare](/advanced/s3/backblaze).                                   |
-| `fix-ssl.sh`         | Requests new certificates for the ones that aren't valid, then applies the panel again.                                                             |
-| `fix-vault.sh`       | Signs External Secrets in to Vault again and resyncs every secret, after Vault is unsealed. See [HashiCorp Vault](/advanced/vault).                 |
-| `fix-versions.sh`    | Removes the cached `ghcr.io/5stackgg` images on this server, so they are pulled again.                                                              |
-| `debug.sh`           | Saves pod logs, events and certificate status to a file for a bug report. See [Debugging](/common-issues/debug-script).                             |
+| Script               | What it does                                                                                                                                 |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `plugin.sh`          | Installs, upgrades, lists or removes a panel plugin. See [One-Command Install](/plugins/installing).                                         |
+| `custom.sh`          | Deploys one of your overlays in `/etc/5stack/custom` onto a node. See [Custom Kubernetes YAML](/advanced/custom-k8s).                        |
+| `setup-gpu-nodes.sh` | Picks the GPU nodes and the Steam account they use, then applies the panel again. See [GPU Nodes](/servers/gpu-nodes/#run-the-setup-script). |
+| `playcast-relay.sh`  | Deploys the Playcast edge relay. See [Playcast Edge Relay](/advanced/playcast-edge-relay).                                                   |
+| `backblaze-proxy.sh` | Deploys the Backblaze B2 worker and points the panel at it. See [Backblaze + Cloudflare](/advanced/s3/backblaze).                            |
+| `fix-ssl.sh`         | Requests new certificates for the ones that aren't valid, then applies the panel again.                                                      |
+| `fix-vault.sh`       | Signs the panel in to Vault again and resyncs every secret, after Vault is unsealed. See [HashiCorp Vault](/advanced/vault).                 |
+| `fix-versions.sh`    | Removes the cached 5Stack images on this server, so they download again.                                                                     |
+| `debug.sh`           | Saves logs, events and certificate status to a file for a bug report. See [Debugging](/common-issues/debug-script).                          |
 
 `5stack run --list` lists them, without sudo.
 
@@ -137,7 +134,7 @@ work as usual. You can also pick each one in the menu.
   `plugin.sh`, `custom.sh`, `setup-gpu-nodes.sh`, `fix-ssl.sh` and
   `fix-vault.sh`. The others refuse it.
 - **Live matches.** `plugin.sh`, `custom.sh`, `backblaze-proxy.sh`,
-  `setup-gpu-nodes.sh` and `fix-ssl.sh` apply to the cluster. When that would
+  `setup-gpu-nodes.sh` and `fix-ssl.sh` change the panel. When that would
   restart something, they hold new matches and wait for live ones first, like an
   update. `--no-drain` before the script name skips the wait, and live matches
   end. The other scripts refuse it.
@@ -145,8 +142,7 @@ work as usual. You can also pick each one in the menu.
   uninstall, a config change or another script runs on the panel, and none of
   those start while it runs.
 - **What a script changes is kept.** Config a script writes, such as the GPU
-  nodes `setup-gpu-nodes.sh` saves, is stored by the service and applies with
-  every update.
+  nodes `setup-gpu-nodes.sh` saves, applies with every update.
 - `update.sh` and `install.sh` aren't run this way. Use `5stack update`, or the
   [installer](/install/).
 
@@ -163,13 +159,13 @@ See [Browser Console](/service/console).
 
 ## Game server nodes
 
-| Command                           | What it does                                                                                                                                |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `5stack nodes list`               | Lists the cluster's nodes: Ready or not, the panel's own node, whether each has the agent, and any removal in progress.                     |
-| `5stack nodes join-command`       | Prints the command that joins a new server to this panel, with the panel key in it, as the **Create game server node** dialog shows it.     |
-| `5stack nodes adopt`              | Installs the agent on game server nodes added with the old install script. The panel also does this by itself.                              |
-| `sudo 5stack nodes remove <name>` | Uninstalls 5Stack from a game server node and deletes it from the cluster. It asks you to type the node's name. `--yes` skips the question. |
-| `5stack leave`                    | On a game server node, leaves the panel: removes the k3s agent and logs out of Tailscale.                                                   |
+| Command                           | What it does                                                                                                                              |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `5stack nodes list`               | Lists the nodes: Ready or not, the panel's own node, whether each has the agent, and any removal in progress.                             |
+| `5stack nodes join-command`       | Prints the command that joins a new server to this panel, with the panel key in it, as the **Create game server node** dialog shows it.   |
+| `5stack nodes adopt`              | Installs the agent on game server nodes added with the old install script. The panel also does this by itself.                            |
+| `sudo 5stack nodes remove <name>` | Uninstalls 5Stack from a game server node and removes it from the panel. It asks you to type the node's name. `--yes` skips the question. |
+| `5stack leave`                    | On a game server node, leaves the panel and logs out of Tailscale.                                                                        |
 
 See [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node).
 
@@ -180,7 +176,7 @@ See [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node)
 | `5stack vault status`          | Whether Vault answers and is unsealed, which secrets aren't syncing and why, and when the agent last checked. |
 | `sudo 5stack vault enable`     | Moves the panel's secrets into Vault. Takes `--kubernetes-host <url>` and `--force`.                          |
 | `sudo 5stack vault sync`       | Adds the secrets a new release needs. `--version <version>` prepares for a specific release.                  |
-| `sudo 5stack run fix-vault.sh` | Signs External Secrets in to Vault again and resyncs every secret.                                            |
+| `sudo 5stack run fix-vault.sh` | Signs the panel in to Vault again and resyncs every secret.                                                   |
 
 See [HashiCorp Vault](/advanced/vault).
 
@@ -206,5 +202,4 @@ See [HashiCorp Vault](/advanced/vault).
 
 Servers are set up through the installer: see
 [Setting up a server](/service/command#setting-up-a-server). `adopt`,
-`adopt-node` and `daemon` are run for you, by `service.sh`, the panel and
-systemd.
+`adopt-node` and `daemon` are run for you.

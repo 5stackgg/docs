@@ -15,29 +15,20 @@ Live performance across your infrastructure:
 
 ## System logs
 
-Tail live logs for any service, api, web, game-server-node, demo-parser, hasura,
-typesense, timescaledb, redis, rustfs, mediamtx, with follow and timestamp
+Read live logs for any of the panel's services, with follow and timestamp
 toggles. Per-**match** server logs are available from the match's server tab (see
 [Match server controls](/features/admin/servers#match-server-controls)).
 
-A pod that has restarted says so ("{name} restarted {count} times"), with the
-reason and exit code, and **Previous run** opens the log of the run that
-crashed. Kubernetes can't hand that log over while the pod's node is offline.
+A service that has restarted says so, with the reason, and **Previous run**
+opens the log of the run that crashed. That log can't be read while its node is
+offline.
 
 ## Database performance
 
-A built-in database dashboard for keeping the backend healthy, covering:
-
-- **Query performance**: slow queries and execution times.
-- **Connections** and **locks / transactions**.
-- **I/O & cache**: buffer cache hit rates and disk I/O.
-- **Index usage** and **storage** sizes.
-- **TimescaleDB** hypertable stats.
-
-Refresh on demand or auto-poll on an adjustable interval. A query's **Query
-details** panel labels its plan, and **Run EXPLAIN ANALYZE** runs it with values
-for its parameters. It runs read-only, is rolled back, and stops after 25
-seconds.
+A built-in database dashboard showing slow queries, connections, locks, cache
+and disk I/O, index usage, and storage sizes. Refresh it on demand or on an
+interval. **Run EXPLAIN ANALYZE**, in a query's **Query details**, runs the
+query read-only and rolls it back.
 
 ## Backups
 
@@ -51,13 +42,11 @@ Two settings pages check the parts of the platform that live outside your
 cluster:
 
 - **Settings → Application → Demos**: **Cloudflare delivery** shows whether the
-  Cloudflare Worker in front of your Backblaze bucket is answering and can read
-  the bucket, and **Storage check** writes a test file to your bucket, reads it
-  back (**Write**, **Read**), then fetches it through the worker (**Edge**) if you
-  use one.
+  Cloudflare Worker in front of your Backblaze bucket is working, and **Storage
+  check** tests your bucket (**Write**, **Read**) and the worker if you use one
+  (**Edge**).
 - **Settings → Application → Streaming**: **Edge relay (Cloudflare)**, shown when
-  Playcast is on, says whether the relay worker is serving Playcast viewers from
-  Cloudflare's cache.
+  Playcast is on, says whether the relay worker is serving Playcast viewers.
 
 Each reads **Online**, **Needs attention**, **Offline** or **Not set up**, with a
 **Setup guide** link. See [Backblaze](/advanced/s3/backblaze) and
@@ -83,9 +72,8 @@ The update button in the header opens a popover for administrators:
   report, one row per kind with how many nodes it covers ("2 nodes need a
   reboot"), worst first. Each row opens the node, or the list of nodes it
   covers.
-- **Updates**: when a newer image is published for one of the panel's
-  services, the **Services** that have one, with **Update Now**. A rebuild that
-  changes nothing doesn't show up as a pending update.
+- **Updates**: when a newer version of one of the panel's services is out, the
+  **Services** that have one, with **Update Now**.
 - **Kubernetes**, when a k3s update or node changes are waiting, to run now or
   schedule. See
   [Kubernetes updates](/servers/game-server-nodes/managing#kubernetes-updates).
@@ -102,16 +90,15 @@ were last changed and by whom ("Updated {time} by {name}").
 ## Media server
 
 **Media Server**, under **Media** in the admin navigation, shows the live load
-on MediaMTX. Game streams, player cameras, voice and video calls all share one
-instance, so it's everything it is carrying at once:
+on the media server. Game streams, player cameras, voice and video calls all
+share it, so it shows everything at once:
 
-- **Publishing**, **Paths** and **WebRTC sessions**. A path is one named stream
-  slot, such as one person's microphone or one camera; publishing counts the
-  ones sending media right now; every viewer of a stream is a session.
+- **Publishing**, **Paths** and **WebRTC sessions**: the streams sending right
+  now, the stream slots (such as one person's microphone or one camera), and the
+  viewers.
 - **By feature**: game streams, player cameras, voice, video calls and camera
   talk-back, with what each received.
-- **Resource usage** of the mediamtx pod, polled every 30 seconds, and a link to
-  its logs.
+- **Resource usage**, and a link to its logs.
 
 When the media server can't be reached, the page says so, and its numbers read
 as unknown rather than zero.
@@ -121,6 +108,6 @@ as unknown rather than zero.
 The render queue (administrator only, under **Media** in the admin navigation)
 shows every clip and highlight render job
 and its progress. Pair it with [GPU Nodes](/servers/gpu-nodes/) to see which node
-each job is running on. If renders back up. Check GPU availability and the "pause
+each job is running on. If renders back up, check GPU availability and the "pause
 renders during live matches" setting on the
 [Highlights](/features/highlights) page.

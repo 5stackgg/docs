@@ -2,7 +2,7 @@
 
 Sometimes you may need to customize the K8s YAML files, for instance if you want to add the cs2 ranks plugin. You may need to add mysql.
 
-On the panel server, create a new folder called `/etc/5stack/custom/mysql`. Your custom overlays live in `/etc/5stack/custom`, so they survive every update. `service.sh` copied a git-checkout panel's `custom/` folders there, but until that panel installs its first update, `5stack run` still uses the checkout and its `custom/` folder.
+On the panel server, create a new folder called `/etc/5stack/custom/mysql`. Your custom overlays live in `/etc/5stack/custom`, so they survive every update.
 
 ::: code-group
 

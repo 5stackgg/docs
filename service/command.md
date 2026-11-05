@@ -31,14 +31,11 @@ As root on a claimed panel, `sudo 5stack` opens the
 [browser console](/service/console) first and prints its link. Press Enter to
 close it and open the menu, or Ctrl+C to close it.
 
-Outside a terminal, such as in a script, `5stack` on its own prints the help
-instead.
-
 ## You don't need sudo
 
 The installer and `service.sh` add you to the `5stack` group. Log out and back
 in once so the group applies, and from then on everyday `5stack` commands work
-without sudo: they pass your request to the service, which runs it as root.
+without sudo.
 
 Being in the `5stack` group means being trusted with the server, the same as the
 `docker` group. Only add people you would give root to.
@@ -67,12 +64,9 @@ The installer takes two options, placed after `sh -s --`:
 
 ## Where things are
 
-| Path                                 | What it holds                                     |
-| ------------------------------------ | ------------------------------------------------- |
-| `/usr/local/bin/5stack`              | The agent                                         |
-| `/var/lib/5stack`                    | The agent's state and keys, readable only by root |
-| `/var/lib/5stack/backups`            | Encrypted backups                                 |
-| `/etc/5stack/custom`                 | Your custom overlays and installed plugins        |
-| `/etc/systemd/system/5stack.service` | The system service                                |
+| Path                      | What it holds                              |
+| ------------------------- | ------------------------------------------ |
+| `/var/lib/5stack/backups` | Encrypted backups                          |
+| `/etc/5stack/custom`      | Your custom overlays and installed plugins |
 
 To see what the service is doing, run `journalctl -u 5stack -f`.

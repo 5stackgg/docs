@@ -6,23 +6,13 @@ If you're looking to build a web app that runs inside the panel, see
 [5Stack Plugin Development](/plugins/).
 :::
 
-5Stack ships its match plugin for **two different CS2 plugin frameworks**. Both implement the same match logic, knife rounds, ready-up, overtime, map veto, backups, stats, and both talk to the panel over the same API. What differs is the framework they load into, and therefore which third-party plugins and gamedata files they understand.
+5Stack ships its match plugin for **two different CS2 plugin frameworks**. Both run matches the same way. What differs is which third-party plugins and gamedata files they understand.
 
 |                  | SwiftlyS2                              | CounterStrikeSharp                     |
 | ---------------- | -------------------------------------- | -------------------------------------- |
 | Image            | `ghcr.io/5stackgg/game-server-sw`      | `ghcr.io/5stackgg/game-server-css`     |
-| Source           | `apps/swiftly`                         | `apps/counterstrikesharp`              |
-| Loads via        | SwiftlyS2                              | Metamod → CounterStrikeSharp           |
 | Addons directory | `addons/swiftlys2`                     | `addons/counterstrikesharp`            |
 | Default          | ✅ Yes                                 | No                                     |
-
-Both live in the same repository,
-[5stackgg/game-server](https://github.com/5stackgg/game-server), one app per
-framework over a shared core.
-
-::: tip
-**SwiftlyS2 is the default.** New installs run it unless you pick otherwise. CounterStrikeSharp remains fully supported and is the right choice if you depend on existing CSS plugins.
-:::
 
 ## Which should I use?
 
@@ -33,14 +23,14 @@ The two frameworks are **not** interchangeable at the plugin level. A CounterStr
 
 ## Switching runtimes
 
-The runtime is a **deployment-wide** choice, not a per-node or per-match one.
+The runtime is one setting for every node and match.
 
 1. Go to **Settings → Application → Servers**.
 2. Under **Plugin Runtime**, pick **SwiftlyS2** or **CounterStrikeSharp**.
 
-The change saves immediately. No update, no redeploy, no restart.
-
-New game servers pick up the new image the next time they start. Servers already running keep the image they were created with until they're recycled.
+The change saves immediately, with no update or restart. New game servers use
+the new runtime when they start. Servers already running keep the old one until
+they restart.
 
 ::: warning
 Switching runtimes does **not** migrate your custom plugins. Anything under `addons/counterstrikesharp` is ignored by SwiftlyS2, and anything under `addons/swiftlys2` is ignored by CounterStrikeSharp. Move your files to the matching directory before you switch, or your servers will start without them.
@@ -48,16 +38,11 @@ Switching runtimes does **not** migrate your custom plugins. Anything under `add
 
 ## Runtime versions
 
-Each image pins the framework version it was built against:
+Each runtime comes with its framework version built in, so you don't manage it yourself.
 
-- **SwiftlyS2**: the plugin is built against a specific `SwiftlyS2.CS2` NuGet package, and the image downloads the matching SwiftlyS2 runtime release. The two must agree, so they're bumped in lockstep.
-- **CounterStrikeSharp**: the image downloads a pinned Metamod and CounterStrikeSharp release.
+Each runtime has its **own plugin releases**, numbered separately: `v0.0.42` of the SwiftlyS2 plugin is unrelated to `v0.0.42` of the CounterStrikeSharp plugin. The **Plugin Version** dropdown on a node only offers releases from the runtime you have selected. See [Version Pinning](/servers/game-server-nodes/version-pinning).
 
-You don't need to manage these yourself; they come with the image.
-
-Each framework has its **own plugin release history**, and the two number their releases independently, `v0.0.42` of the SwiftlyS2 plugin is unrelated to `v0.0.42` of the CounterStrikeSharp plugin. They share one repository, so releases are tagged `sw-v0.0.42` and `css-v0.0.42` to keep them apart; the image tag stays bare, since the image name already says which is which. The panel tracks both, and the **Plugin Version** dropdown on a node only offers releases from the runtime you have selected. See [Version Pinning](/servers/game-server-nodes/version-pinning).
-
-A node pinned to a plugin version stays on the framework it was pinned under, even if you later switch the deployment-wide runtime. Clear the pin to move that node onto the selected runtime.
+A node pinned to a plugin version stays on the runtime it was pinned under, even if you switch runtimes later. Clear the pin to move that node onto the selected runtime.
 
 ## Advanced: custom images
 
@@ -67,6 +52,6 @@ If you build your own plugin image, or mirror the official ones into a private r
 sudo 5stack config set SERVER_IMAGE=registry.example.com/my-org/my-game-server:latest
 ```
 
-It shows the change, asks, and applies the panel again. `sudo 5stack config unset SERVER_IMAGE` goes back to the Plugin Runtime setting.
+`sudo 5stack config unset SERVER_IMAGE` goes back to the Plugin Runtime setting.
 
-`SERVER_IMAGE` **overrides the Plugin Runtime setting**. While it is set, the selector in Settings is disabled and shows a note saying the runtime is managed by the environment. Version pinning still applies, replacing the image tag with `:v{version}`.
+`SERVER_IMAGE` **overrides the Plugin Runtime setting**. While it is set, the selector in Settings is disabled. Version pinning still applies, replacing the image tag with `:v{version}`.

@@ -33,8 +33,7 @@ Right-click a shortcut to mute it or choose what it notifies you about (see
 [Muting a room](/features/chat#muting-a-room)), **Pin to the dock**, **Remove
 until a new message**, or **Never show on the dock**.
 Right-click **Chat** to set how many people and rooms the dock shows (0 to 5
-each) and to bring hidden chats back. These choices are saved per browser, since
-dock space depends on the screen.
+each) and to bring hidden chats back. These choices are saved per browser.
 
 Match and party rooms aren't shortcuts: the match page and the Party app are
 their homes.
@@ -64,8 +63,8 @@ teammates sit together.
 They can be sent a [message request](/features/chat#message-requests) from
 their row. Admins cap it under **Settings → Application → Players → Most
 players online to list** (default 200, under **Who's online**). Above that
-many players online the list switches off until 10% fewer are online, and
-players find each other through search; 0 never lists everyone.
+many players online the list switches off, and players find each other through
+search; 0 never lists everyone.
 
 When a friend comes online the dock tells you: one arrival shows their face on
 the **Friends** icon ("{name} just came online"), several show the count, and
@@ -104,9 +103,8 @@ A player's profile has a **Teams** tab with their **Team History**, a timeline
 by year of the teams they joined and left. A team that was disbanded keeps its
 name there ("{team} was disbanded").
 
-Roster history is public and records itself. It starts from when the feature
-shipped, so players who were already on a team show "Member since before
-{date}".
+Roster history is public and records itself. Players who were already on a
+team before it started show "Member since before {date}".
 
 A team that is short of five starters reminds anyone who can invite to it, in
 the [Inbox](/features/notifications#the-inbox).

@@ -33,10 +33,6 @@ is nobody to draft. Everything else is under **All settings**.
   button reads **Open 5v5 LAN Room** for a LAN room. See
   [LAN or online](/features/quick-play#lan-or-online).
 
-Until you've hosted your first room, the section opens with a short
-explainer, **Run your own pick-up game.**, showing how a captains draft works.
-It goes away once you host or dismiss it.
-
 ## Creating a room with every setting
 
 **All settings** opens the full form. It is one page, with a live preview beside
@@ -100,19 +96,14 @@ never count toward ELO, and rooms using one are listed as unranked.
 
 ## The draft room
 
-The room fits the screen it's on: chat sits beside the board on a wide
-screen, the join or invite prompt moves above the board on a narrower one, and
-on a phone your pick becomes a bar pinned to the bottom of the screen.
+On a phone, your pick is a bar pinned to the bottom of the screen.
 
 ### Drafting
 
 - A **clock band** shows who is **On The Clock** (or **Your Pick**), **Pick 3
   of 8**, and the time left. Each pick has 30 seconds.
 - A **pick track** lays out the whole pick order, numbered, with the team each
-  pick belongs to. Picks fill in as they're made and the track scrolls to the
-  current one.
-- Team slots carry their pick number, open slots read **Pick 4**, the slot on
-  the clock pulses, and a new pick flashes and is announced to screen readers.
+  pick belongs to. Picks fill in as they're made.
 - Team 1's captain makes the first pick: with **Top 2 by Rank** that's the
   higher-rated captain, and with **Host & Next Highest** the host.
 - When a captain runs out of time, the highest-rated player still in the pool

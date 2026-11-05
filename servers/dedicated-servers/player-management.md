@@ -21,31 +21,23 @@ leaderboards are built from.
 It ships for both runtimes, from game-server releases `sw-v0.0.91` and
 `css-v0.0.437`, and it is CS2 only.
 
-::: tip No signatures to break
-Bans, mutes, gags and the roster use no byte-pattern signatures, so a CS2
-update does not break them. The one exception is refusing a player at connect
-on a restricted SwiftlyS2 server; see [Restricted Servers](./access#how-it-is-enforced).
-:::
-
 ## Installing it
 
 ### On a game server node
 
-Nothing to do. Both game server images carry the plugin, and 5Stack loads it on
-every community server it runs on a node. It gets its credentials from the
-container's environment, so there is no config file.
+Nothing to do. 5Stack loads the plugin on every community server it runs on a
+node, with no config file.
 
 ::: warning Servers created before the plugin shipped
-The plugin is switched on when the server's container is built. If an older
-server shows the plugin as not detected, switch the server off and back on with
-its **Enabled** switch to rebuild it.
+If an older server shows the plugin as not detected, switch the server off and
+back on with its **Enabled** switch.
 :::
 
 ### On an external server
 
 A server you run yourself needs the plugin installed by hand. The panel walks
 you through it under **Settings → Player Management** on the server's page
-(administrators only, since the config contains the server's API password):
+(administrators only):
 
 1. Download the plugin for the framework your server runs. It is published on
    the same [game-server release](https://github.com/5stackgg/game-server/releases)
@@ -85,8 +77,7 @@ The config holds three values:
 Environment variables with the same names take precedence over the file.
 
 ::: warning Update your panel first
-The plugin talks to the API at `/sanctions/server`. Panels installed before
-the plugin shipped do not route that path to the API;
+The plugin can't reach a panel installed before it shipped;
 [update the panel](/updating).
 :::
 
@@ -94,9 +85,8 @@ the plugin shipped do not route that path to the API;
 
 **Settings → Player Management** shows **Player Management plugin active** with
 the plugin's version, runtime and last check-in, or **Player Management plugin
-not detected**. The plugin counts as detected while it has checked in within the
-last 3 minutes. The **Players** tab shows the same state as an amber icon beside
-refresh, and the roster falls back to RCON while the plugin is missing.
+not detected**. The **Players** tab shows the same state as an amber icon
+beside refresh.
 
 Two RCON commands help from the server side:
 
@@ -106,26 +96,13 @@ Two RCON commands help from the server side:
 | `player_management_status`  | Prints the plugin's version and runtime, its last sync or error, the access list it holds and each player's sanctions |
 
 The panel sends `player_management_refresh` itself whenever you sanction a
-player or change the server's access list, so neither waits for the next sync.
+player or change the server's access list.
 
 ## How it syncs
 
-The plugin syncs with the panel every 30 seconds, and about 1.5 seconds after
-someone joins or leaves. Each sync:
-
-- asks for the active sanctions of everyone on the server,
-- reports the roster (who is connected, their kills, and who left),
-- reports whether the server is on [Steam relay](/servers/steam-relay#the-connect-address),
-  and its relay address,
-- doubles as the heartbeat the panel shows as the plugin's last check-in.
-
-Sanctions are cached on the server. If the panel cannot be reached, the plugin
-keeps enforcing the last answer it had. A player who rejoins is not enforced on
-until the panel answers about them (or the request fails), so a ban lifted while
-they were away is not applied from the stale copy.
-
-The plugin runs its sync on its own timer rather than the game's, so it keeps
-working while an empty server
+The plugin syncs with the panel every 30 seconds. If the panel cannot be
+reached, it keeps enforcing the last answer it had. It keeps working while an
+empty server
 [hibernates](/servers/dedicated-servers/#hibernation).
 
 ## Without the plugin

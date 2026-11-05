@@ -52,7 +52,7 @@ features:
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>
     title: Broadcast Without OBS <span class="gpu-mark">*</span>
-    details: Stream matches straight from the panel over WebRTC, with a Stream Deck, your own broadcast HUDs, a Watch page with a live stage, and a floating player.
+    details: Stream matches straight from the panel, with a Stream Deck, your own broadcast HUDs, a Watch page with a live stage, and a floating player.
     link: /features/live-streaming
     linkText: Live Streaming
   - icon: |
@@ -165,7 +165,7 @@ CounterStrikeSharp or SwiftlyS2.
 
 ## Ready to run it?
 
-One command gets you a full install, Kubernetes, database, storage, and panel.
+One command gets you a full install: database, storage and panel.
 
 <a class="home-button" href="/install/">Install 5Stack</a>
 <a class="home-button home-button-alt" href="/install/what-is-installed">What gets installed?</a>

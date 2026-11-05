@@ -14,9 +14,9 @@ link** buttons. **Earlier posts** sit below it in a grid, and **Show older
 posts** loads more.
 
 Posts published since your last visit are marked **New**, and the page says
-**New since your last visit** with a **Mark as read** link. It shares its read
-marker with the notification bell. Players are also notified when a post is
-published (**News articles** in their notification settings).
+**New since your last visit** with a **Mark as read** link. Players are also
+notified when a post is published (**News articles** in their notification
+settings).
 
 ## A post
 
@@ -24,10 +24,8 @@ Each post shows its publish date and read time, an **Updated** date when it was
 edited more than a day after publishing, and the author's name, avatar, and
 role.
 
-- **Contents**: every `###` heading becomes a section. On a wide screen an **On
-  this page** list follows you down the post and highlights where you are; on a
-  phone it folds into a menu at the top. The **#** beside each heading copies a
-  link to that section.
+- **Contents**: every `###` heading becomes a section, listed under **On this
+  page**. The **#** beside each heading copies a link to that section.
 - **Sign-off**: when a post ends with a `---` rule followed by one or two short
   paragraphs ("Ready to …?"), that closing line is set apart from the body
   rather than read as another section.
@@ -46,8 +44,8 @@ closed. Posts take comments for 7 days after they're published."
 
 - **Verified Users** and above can comment, reply and **+1**. Everyone else can
   read; signed-out visitors see "Sign in to join the conversation."
-- Comments are plain text, up to 2,000 characters. The newest come first, 20 at
-  a time (**Show More Comments**), and new ones appear without a refresh.
+- Comments are plain text, up to 2,000 characters. The newest come first, with
+  **Show More Comments** for older ones.
 - Replies go one level deep, oldest first: a reply to a reply joins the same
   thread, and still notifies the player it answers.
 - **+1** a comment to back it. You can't +1 your own.
@@ -62,8 +60,7 @@ closed. Posts take comments for 7 days after they're published."
 
 When someone replies to your comment you're notified in the Inbox and by push
 (**Replies to your comments**, under **Comment replies** in
-[notification settings](/features/notifications#what-you-ll-get)). Deleting or
-hiding the reply takes its Inbox notification back.
+[notification settings](/features/notifications#what-you-ll-get)).
 
 ### Moderating comments
 
@@ -80,15 +77,13 @@ Article authoring is built in:
 - **Markdown editor** with a live **Write / Preview** split, plus a full-post
   **Preview Post**.
 - **Cover image** upload (PNG / JPG / WEBP / GIF, up to 10 MB) with a crop tool
-  and background removal, so logos sit cleanly on the page.
+  and background removal.
 - **Inline image uploads** in the body.
 - **Video**: **Insert Video** embeds a YouTube or Twitch link, or uploads an MP4
-  (up to 512 MB) with a poster frame captured automatically. Pasting a YouTube or
-  Twitch link straight into the body embeds it too.
+  (up to 512 MB). Pasting a YouTube or Twitch link straight into the body embeds
+  it too.
 - **Title** and **teaser**, the teaser is what shows under the newest post and in
   link cards.
-
-Read time is worked out from the word count at 230 words a minute.
 
 ## Drafts and publishing
 
@@ -136,10 +131,9 @@ of what changed, grouped by section, with each change tagged **New**,
 - Search every day since the changelog began, and filter by **Type**,
   **Section** and **Months**.
 - Days you haven't seen are marked, under **New since your last visit**, until
-  you **Mark as read**. Signed in, what you've seen follows your account across
-  devices.
+  you **Mark as read**.
 - Match Organizers and above get a dot on the profile menu while there are
-  days they haven't seen. The dot follows the account, not the browser.
+  days they haven't seen.
 
 Each day's changes appear the next day, written in English.
 
@@ -153,6 +147,5 @@ Under **Settings → Application → News**:
   posts, and manage [polls](#community-polls) (administrators by default).
 - **Discord**: a **News webhook URL** for a dedicated news channel, and **Role
   IDs** (comma-separated) to mention in each post. Each article is posted once,
-  the first time it's published, as a card with its cover. It's separate from
-  the default Discord webhook and never falls back to it, so nothing is posted
-  while it's empty.
+  the first time it's published. It never falls back to the default Discord
+  webhook, so nothing is posted while it's empty.
