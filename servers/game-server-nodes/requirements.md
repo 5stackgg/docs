@@ -16,4 +16,4 @@ Put CS2's server files and k3s on an SSD or NVMe disk. A hard drive is fine for 
 
 ## Panel Tailscale Setup
 
-Before setting up a Game Server Node, make sure your panel has Tailscale set up. You give the setup page a Tailscale API token or OAuth client, as described in [Tailscale for game server nodes](/install/#tailscale-for-game-server-nodes). For a panel without Tailscale, see [Panel Upgrade](/servers/game-server-nodes/panel-upgrade).
+Before setting up a Game Server Node, make sure your panel has Tailscale set up. You paste a Tailscale access token on the setup page's Game Server Nodes step, as described in [Game server nodes](/install/#game-server-nodes). For a panel without Tailscale, see [Panel Upgrade](/servers/game-server-nodes/panel-upgrade).

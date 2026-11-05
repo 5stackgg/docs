@@ -1,17 +1,16 @@
 # Panel Upgrade
 
 A panel needs Tailscale before it can add game server nodes. When you
-[install](/install/) the panel, give the setup page a Tailscale API token or
-OAuth client, as
-[Tailscale for game server nodes](/install/#tailscale-for-game-server-nodes)
-describes. The panel is then set up for game server nodes, and you don't need
+[install](/install/) the panel, paste a Tailscale access token on the setup
+page's Game Server Nodes step, as
+[Game server nodes](/install/#game-server-nodes) describes. The panel is then set up for game server nodes, and you don't need
 anything on this page.
 
 ## Add Tailscale later
 
 If you skipped Tailscale at install, or the panel was installed without it, add
 an OAuth client on the panel server. Set up the tag owner and the client as the
-[OAuth client steps](/install/#tailscale-for-game-server-nodes) describe, then
+[OAuth client steps](/install/#use-your-own-oauth-client) describe, then
 run:
 
 ```bash
