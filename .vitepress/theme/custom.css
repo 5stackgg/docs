@@ -191,6 +191,55 @@
   }
 }
 
+/* Theater mode for the install video (InstallVideo.vue sets the attribute on
+   <html>). In the hero the video goes first at the hero's full width with the
+   copy under it. On a doc page the outline steps aside and the player grows to
+   the doc area's width, while the text keeps its column: .content becomes a
+   size container, so 100cqw is that width. */
+@media (min-width: 1024px) {
+  html[data-video-theater="hero"] .VPHome .VPHero .container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  html[data-video-theater="hero"] .VPHome .VPHero .image {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  html[data-video-theater="hero"] .VPHome .VPHero .container .main {
+    grid-row: 2;
+    grid-column: 1;
+    max-width: 760px;
+  }
+
+  html[data-video-theater="doc"] .VPDoc .aside {
+    display: none;
+  }
+
+  html[data-video-theater="doc"] .VPDoc .content {
+    container-type: inline-size;
+  }
+
+  html[data-video-theater="doc"] .vp-doc .install-video.is-theater {
+    width: 100cqw;
+    margin-left: calc(50% - 50cqw);
+  }
+}
+
+/* The theater morph. View-transition pseudo-elements live on the document
+   root, so these can't sit in the component's scoped styles. */
+:root[data-install-morph]::view-transition-group(*),
+:root[data-install-morph]::view-transition-old(*),
+:root[data-install-morph]::view-transition-new(*) {
+  animation-duration: 240ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-install-morph]::view-transition-old(install-video),
+:root[data-install-morph]::view-transition-new(install-video) {
+  height: 100%;
+}
+
 /* ---------------------------------------------------------------------------
    Home page
    --------------------------------------------------------------------------- */
