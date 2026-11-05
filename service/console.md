@@ -64,6 +64,29 @@ On a claimed panel, `sudo 5stack` on its own opens the console too, and prints
 its link. Press Enter to close it and open the
 [terminal menu](/service/command#the-menu) instead, or Ctrl+C to close it.
 
+### Opening from get.5stack.gg
+
+People an Admin added on **Config → People** can open the console from
+[get.5stack.gg/panels](https://get.5stack.gg/panels) without anyone on the
+server, once an Admin turns on **Allow opening from get.5stack.gg** there. While
+this is on, get.5stack.gg can open a console for anyone on this list, so turn it
+on only if you trust 5Stack's cloud with that.
+
+1. Sign in at get.5stack.gg/panels and press **Open Console** next to the panel.
+2. You go to a page on 5stack.gg that names the panel, its domain, its install
+   id and the Steam account you're signed in with. Check them, then press
+   **Open Console** there. **Cancel** takes you back without opening anything.
+3. Back on get.5stack.gg/panels, the console opens.
+
+The approval works once, for that panel and that request, within a few minutes,
+and only for someone on the panel's list. Your server checks it itself before it
+opens anything, so get.5stack.gg can't open a console you didn't approve. If it
+doesn't check out, the page says **Approval didn't check out; press Open Console
+again**.
+
+`sudo 5stack ui`, and a second tab joining a console that's already open, don't
+need this approval.
+
 ## Sign in
 
 The console asks you to sign in on 5stack.gg with the Steam account that claimed
