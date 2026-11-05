@@ -1,7 +1,7 @@
 # Backups
 
 A 5Stack panel keeps two kinds of backup. Both are on the **Backups** page of the
-[browser console](/service/cli#browser-console), under **Config**, one kind on
+[browser console](/service/console), under **Config**, one kind on
 each tab.
 
 |                 | Database backups                                                      | Recovery backups                                                                                                                          |

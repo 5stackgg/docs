@@ -7,10 +7,6 @@ titleTemplate: false
 hero:
   name: "5Stack"
   text: Your own CS2 platform, on hardware you control
-  image:
-    light: /brand/mark-light.png
-    dark: /brand/mark-dark.png
-    alt: 5Stack
   tagline: "The software between a game server and a league. One self-hosted install runs the whole stack: matchmaking, tournaments, stats, replays, and broadcast."
   actions:
     - theme: brand
@@ -117,6 +113,7 @@ features:
 - [Moderation & Sanctions](/features/moderation) bans, mutes, gags, VAC detection
 - [News](/features/news) first-party announcements from inside the panel
 - [Monitoring](/features/admin/system) CPU, memory, logs, and database health
+- [Browser Console](/service/console) updates, settings, add-ons and backups for your server, from your browser
 - [17 Languages](/features/languages) web app *and* the in-game plugin
 
 </div>

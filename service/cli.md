@@ -152,46 +152,14 @@ work as usual. You can also pick each one in the menu.
 
 ## Browser console
 
-`sudo 5stack ui` opens a console for the panel in your browser, through
-`get.5stack.gg`, so you can run panel commands without keeping an SSH session
-open.
+| Command                 | What it does                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `sudo 5stack ui`        | Opens the browser console for this panel and prints its link. It stays open until Ctrl+C or **End Session**. |
+| `sudo 5stack ui --link` | The same, printing only the link.                                                                            |
+| `sudo 5stack ui --end`  | Closes every open console.                                                                                   |
+| `5stack ui <ssh-host>`  | From your own computer, opens the console of the panel at that SSH host in your browser.                     |
 
-1. Run `sudo 5stack ui` on the panel server. It prints a link and the server's
-   key fingerprint. The link works once, in one browser.
-2. Open it and sign in through Steam with the account that claimed the panel.
-   Any other account is refused, and the terminal shows who tried.
-3. Type commands in the page. The server's terminal shows each one as it runs.
-
-The console runs only these:
-
-| Command                                                | What it does                                                                                     |
-| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `status`                                               | What `5stack status` shows.                                                                      |
-| `logs <service>… [--follow] [--previous] [--tail <n>]` | A service's logs. `logs 5stack` and `logs k3s` show the 5Stack service and k3s.                  |
-| `debug-bundle [--send]`                                | Pods, events and logs with player data removed, to download, or to send to 5Stack with `--send`. |
-| `run <script>`                                         | A [panel script](#panel-scripts).                                                                |
-| `config …`                                             | [`5stack config`](#config).                                                                      |
-| `session`, `end`, `help`                               | Who is signed in and for how long, end the session, or list the commands.                        |
-
-Updates, backups, the recovery key, Vault changes, moving and uninstalling are
-never in the console.
-
-- **Risky commands wait for the server.** Changing a setting, a script that asks
-  questions, and `--yes` or `--no-drain` wait for `y` typed in the server's
-  terminal within 2 minutes. The browser then answers the script's questions.
-- **Script arguments are limited.** The console passes `custom.sh` only an
-  overlay name, `backblaze-proxy.sh` only a hostname, and `plugin.sh` only
-  `list`, `remove <slug>`, or a GitHub repository with `--ref`, `--domain`,
-  `--node`, `--tls`, `--no-tls` or `--dry-run`. The other scripts take none. For
-  anything else, run the script on the server.
-- **It ends** 8 hours after you sign in, after 30 minutes without a command, on
-  **End Session**, or with Ctrl-C in the server's terminal. A link nobody opens
-  expires after 15 minutes. A reloaded page needs the link again.
-
-Only a claimed panel opens a console. An unclaimed one prints its claim link
-instead. Commands and their output are encrypted between the server and your
-browser, so 5Stack passes them along but can't read them. The server records
-each session and every command.
+See [Browser Console](/service/console).
 
 ## Game server nodes
 

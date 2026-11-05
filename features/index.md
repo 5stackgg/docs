@@ -160,6 +160,9 @@ Pages linked below go deeper on the bigger features.
   one-node-at-a-time Kubernetes updates.
 - **[GPU Nodes](/servers/gpu-nodes/)**: power highlights, demo playback, live
   streaming, and utility lineup previews.
+- **[Browser Console](/service/console)**: manage the panel's server from your
+  browser, with updates, settings, add-ons, GPU nodes, backups and logs behind
+  buttons, and no SSH session to keep open.
 
 ## Platform
 
