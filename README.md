@@ -1,4 +1,4 @@
-# Report Features or Bugs at [5stack Panel](https://github.com/5stackgg/5stack-panel/issues).
+# Report Features or Bugs at [5Stack Panel](https://github.com/5stackgg/5stack-panel/issues).
 
 ## License
 
