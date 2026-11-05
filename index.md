@@ -5,7 +5,6 @@ title: 5Stack | Your own CS2 platform, on hardware you control
 titleTemplate: false
 
 hero:
-  name: "5Stack"
   text: Your own CS2 platform, on hardware you control
   tagline: "The software between a game server and a league. One self-hosted install runs the whole stack: matchmaking, tournaments, stats, replays, and broadcast."
   actions:
