@@ -235,6 +235,7 @@ export default defineConfig({
           base: "/service",
           items: [
             { text: "How It Works", link: "/" },
+            { text: "How It Fits Together", link: "/how-it-fits-together" },
             { text: "Browser Console", link: "/console" },
             { text: "The 5stack Command", link: "/command" },
             { text: "Command Reference", link: "/cli" },

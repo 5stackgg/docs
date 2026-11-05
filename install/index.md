@@ -11,9 +11,8 @@ you prefer, and the server checks each answer as you give it.
 Please ensure you have met the [Requirements](/install/requirements) before you begin.
 :::
 
-<ArchitectureDiagram flows="install" />
-
-Click a box to see what it does and what it talks to.
+Want to see what runs where? See
+[How It Fits Together](/service/how-it-fits-together).
 
 ::: tip Already running a panel?
 If you installed your panel from the git checkout with `./install.sh`, don't
