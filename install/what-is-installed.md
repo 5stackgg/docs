@@ -12,6 +12,7 @@ The 5Stack Panel relies on several open-source software components for its opera
 
 5Stack includes its own components:
 
+- The [5Stack service](/service/), which installs and updates everything else
 - 5Stack Web
 - 5Stack API
 - 5Stack Demo Parser
@@ -39,3 +40,11 @@ Additional Credits:
 - [Metamod:Source](https://github.com/alliedmodders/metamod-source)
 - [K3s](https://k3s.io/)
 - [Kustomize](https://kustomize.io/)
+
+## How the parts connect
+
+A panel with one [game server node](/servers/game-server-nodes/):
+
+<ArchitectureDiagram flows="running" hide="p_agent,n_agent,cloud" />
+
+Click a box to see what it does and what it talks to.

@@ -2,6 +2,7 @@ import { h, watch, nextTick } from "vue";
 import { useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import HomeIntro from "./HomeIntro.vue";
+import ArchitectureDiagram from "./components/ArchitectureDiagram.vue";
 import "./custom.css";
 
 const canAnimate = () =>
@@ -10,6 +11,10 @@ const canAnimate = () =>
 
 export default {
   extends: DefaultTheme,
+
+  enhanceApp({ app }) {
+    app.component("ArchitectureDiagram", ArchitectureDiagram);
+  },
 
   setup() {
     if (typeof document === "undefined") {

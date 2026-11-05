@@ -34,14 +34,16 @@ the easiest way to see the software running before you install it.
 One command brings up the whole stack:
 
 ```bash
-git clone https://github.com/5stackgg/5stack-panel; cd 5stack-panel; ./install.sh
+curl -fsSL https://get.5stack.gg | sudo sh
 ```
 
-That installs [K3s](https://docs.k3s.io) (a lightweight Kubernetes
-distribution), the database, S3-compatible storage (RustFS by default), and the
-panel itself. See [What is Installed?](/install/what-is-installed) for the full
-inventory, and [Configuration Options](/install/command-line-arguments) for the
-flags the installer accepts.
+That installs the [5Stack service](/service/), which installs
+[K3s](https://docs.k3s.io) (a lightweight Kubernetes distribution), the
+database, S3-compatible storage (RustFS by default), and the panel itself, and
+keeps them updated. See [Install](/install/) for the setup questions,
+[What is Installed?](/install/what-is-installed) for the full inventory, and
+[Installer Options](/install/command-line-arguments) for the options the
+installer accepts.
 
 ## What do I need to run the panel?
 
@@ -118,15 +120,14 @@ Game server nodes support offline operation — see
 
 ## How do updates work?
 
-Two separate things:
+From the panel, no shell needed. Every change ships as a signed release, and
+you choose when releases install: when you press **Update Now**, in a
+maintenance window, or in that window once no matches are live. Most updates
+apply without interrupting anyone. See [Updating](/updating).
 
-- **The install itself**: `git pull` in the install directory, then
-  `./update.sh`. See [Updating](/updating).
-- **The components** (API, web, connector): these update from the update notice
-  inside the panel, no shell needed.
-
-If you edited anything under `overlays/config` or `overlays/local-secrets`,
-you need to run the update to apply it.
+A panel installed from the git checkout moves onto this once, with
+`git pull && sudo ./service.sh`. See
+[Upgrade an Existing Panel](/service/existing-install).
 
 ## Can I make it look like my organization?
 
@@ -151,8 +152,10 @@ own data from outside.
 
 ## Something is broken. Where do I start?
 
-Run the [debug script](/common-issues/debug-script) first — it collects the
-state that any support conversation is going to ask for anyway. The
+Run `5stack status` on the panel server first, and check the
+[5Stack service troubleshooting](/common-issues/5stack-service) page. Then run the
+[debug script](/common-issues/debug-script) with `sudo 5stack run debug.sh`: it
+collects the state that any support conversation is going to ask for anyway. The
 [Troubleshooting](/common-issues/debug-script) section covers the failures that
 come up most: [login problems](/common-issues/unable-to-login),
 [updates not applying](/common-issues/system-not-updating), and

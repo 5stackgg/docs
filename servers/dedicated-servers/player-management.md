@@ -86,8 +86,8 @@ Environment variables with the same names take precedence over the file.
 
 ::: warning Update your panel first
 The plugin talks to the API at `/sanctions/server`. Panels installed before
-the plugin shipped do not route that path to the API; run `./update.sh` on the
-panel.
+the plugin shipped do not route that path to the API;
+[update the panel](/updating).
 :::
 
 ## Checking that it works

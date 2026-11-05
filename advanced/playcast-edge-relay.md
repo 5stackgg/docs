@@ -10,13 +10,15 @@ The edge relay is a small Cloudflare Worker that you put on your relay domain. G
 
 ## Deploy it
 
-Your relay domain is already in the panel's config (`RELAY_DOMAIN`), so from the directory you installed the panel in (`5stack-panel`), run:
+Your relay domain is already in the panel's config (`RELAY_DOMAIN`), so on the panel server, run:
 
 ```bash
-./playcast-relay.sh
+sudo 5stack run playcast-relay.sh
 ```
 
-It needs Node.js 22 or newer (for `npx wrangler`, Cloudflare's deploy tool) and walks you through the rest:
+Or pick **Playcast relay** in the [`5stack` menu](/service/command#the-menu). It runs the script from the installed release, with the panel's config.
+
+It needs Node.js 22 or newer on the panel server (for `npx wrangler`, Cloudflare's deploy tool) and walks you through the rest:
 
 1. **Signing in to Cloudflare.** Pick a browser on this machine, a code you enter on another device (for a server without a browser), or an API token made from the **Edit Cloudflare Workers** template. A token is only used for that run.
 2. **Checking your relay domain.** It finds the domain in your Cloudflare account (the zone must be **Active**, so its nameservers must already point at Cloudflare) and checks that the relay domain is proxied (orange cloud) and that Cloudflare can reach your panel through it. Anything that needs changing, such as the proxy toggle or an SSL/TLS mode of Flexible, is explained with a link to the page in the Cloudflare dashboard; press Enter to check again once you have changed it, or type `skip` to carry on anyway.

@@ -2,7 +2,9 @@
 
 > **Requirements:** DNS managed by Cloudflare, SSL/TLS mode set to **Full**
 
-You can expose your 5Stack installation through a [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) (`cloudflared`) without opening inbound firewall ports.
+You can expose your 5Stack installation through a [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) (`cloudflared`) without opening inbound firewall ports. 5Stack doesn't set a tunnel up for you; for the setup it does, see [Which setup do I want?](/install/cloudflare/#which-setup-do-i-want).
+
+Game servers upload whole demos in one request, and Cloudflare limits a request to 100 MB on the Free and Pro plans, so a demo larger than that fails to upload through a tunnel.
 
 ## Create the tunnel
 
@@ -21,10 +23,11 @@ You can expose your 5Stack installation through a [Cloudflare Tunnel](https://de
 | `yourdomain.com`           | `https://localhost:443` |
 | `api.yourdomain.com`       | `https://localhost:443` |
 | `ws.yourdomain.com`        | `https://localhost:443` |
+| `tv.yourdomain.com`        | `https://localhost:443` |
 | `demos.yourdomain.com`     | `https://localhost:443` |
+| `hls.yourdomain.com`       | `https://localhost:443` |
 | `search.yourdomain.com`    | `https://localhost:443` |
 | `console.yourdomain.com`   | `https://localhost:443` |
-| `inventory.yourdomain.com` | `https://localhost:443` |
 
 ::: info Tailscale users
 Replace `localhost` with the node's local Tailscale IP address. These values can be updated later.

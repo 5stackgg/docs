@@ -68,9 +68,12 @@ The following subdomains are required:
 - `yourdomain.com`
 - `api.yourdomain.com`
 - `ws.yourdomain.com`
+- `tv.yourdomain.com`
 - `demos.yourdomain.com`
 - `search.yourdomain.com`
 - `console.yourdomain.com`
+- `hls.yourdomain.com`, for GPU live streams. It can wait until you add a
+  [GPU node](/servers/gpu-nodes/).
 
 :::info
 You can use deeply nested domains like `api.deep.yourdomain.com`

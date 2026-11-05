@@ -28,5 +28,5 @@ container: switch it off and back on with its **Enabled** switch.
 ## The API cannot be reached
 
 The plugin calls `<API_DOMAIN>/sanctions/server/<server id>`. Panels installed
-before the plugin shipped do not route that path to the API. Run `./update.sh` on
-the panel.
+before the plugin shipped do not route that path to the API.
+[Update the panel](/updating).

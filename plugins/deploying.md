@@ -99,7 +99,7 @@ If you are deploying alongside 5Stack itself, ship a kustomize package and an
 from your repository, in one command:
 
 ```sh
-./plugin.sh https://github.com/5stackgg/5stack-example-plugin
+sudo 5stack run plugin.sh https://github.com/5stackgg/5stack-example-plugin
 ```
 
 It reads their site's own config — cluster, domain, whether TLS terminates at

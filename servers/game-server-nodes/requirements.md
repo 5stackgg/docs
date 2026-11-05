@@ -14,6 +14,6 @@ also needs around 150 GB of disk for the game files and demo recordings.
 
 Put CS2's server files and k3s on an SSD or NVMe disk. A hard drive is fine for demo recordings, but on a hard drive CS2 and streams start slower and matches can time out. See [Storage](/servers/game-server-nodes/storage).
 
-## Panel Upgrade
+## Panel Tailscale Setup
 
-Before setting up a Game Server Node, make sure your panel is upgraded as described in the [Panel Install & Upgrade instructions](/servers/game-server-nodes/panel-upgrade).
+Before setting up a Game Server Node, make sure your panel has Tailscale set up. You paste a Tailscale access token on the setup page's Game Server Nodes step, as described in [Game server nodes](/install/#game-server-nodes). For a panel without Tailscale, see [Panel Upgrade](/servers/game-server-nodes/panel-upgrade).
