@@ -584,9 +584,11 @@ onBeforeUnmount(() => {
   cursor: pointer;
 }
 
+/* The poster's title ends about 56% of the way down. On small players 75%
+   would touch it, so the button drops lower there, but never past the bottom. */
 .iv-big {
   position: absolute;
-  top: 50%;
+  top: clamp(75%, calc(56% + 42px), calc(100% - 36px));
   left: 50%;
   display: grid;
   place-items: center;
