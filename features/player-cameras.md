@@ -2,8 +2,7 @@
 
 Matches can require every player to publish a **webcam** for the duration of the
 game. Officials watch the feeds from the panel, and the camera of whoever is
-being spectated can appear on the [broadcast](/features/live-streaming) — the
-face-cam grid you see on a LAN stream, without the LAN.
+being spectated can appear on the [broadcast](/features/live-streaming).
 
 ## Turning it on
 
@@ -27,26 +26,22 @@ ways in:
 
 - **Use this computer**: opens the camera page in a popup on the machine they're
   already on.
-- **Scan this code with your phone**: publishes from a phone instead, which is
-  how most players will do it — the phone becomes the camera and the PC stays
-  untouched.
+- **Scan this code with your phone**: publishes from a phone instead, so the PC
+  stays untouched.
 
-The camera page previews before it publishes. The feed starts local-only, so a
-player can pick a device, frame themselves, and only then connect — one
-permission prompt, no dead air:
+The camera page shows a preview before it publishes, so a player can pick a
+device and frame themselves first:
 
 - **Pick a camera** when the device has more than one; phones and tablets also
   get a **flip** button for front/back.
-- **Reframe** the shot: scroll or pinch to zoom, drag to re-centre. The crop is
-  applied to the **published** feed, not just the local preview, and is
-  remembered per camera.
-- **Hide preview** mid-match to give the resources back. The camera stays on
-  and stays published.
+- **Reframe** the shot: scroll or pinch to zoom, drag to re-centre. The crop
+  applies to the published feed, and is remembered per camera.
+- **Hide preview** mid-match. The camera stays on and stays published.
 - Permission denied, no camera, or a camera already in use each explain
   themselves in place, with a retry.
 
-The one rule that matters: **keep the page open for the rest of the match.**
-Closing it stops the feed, which is the same as unplugging the camera.
+**Keep the page open for the rest of the match.** Closing it stops the feed,
+which is the same as unplugging the camera.
 
 The setup panel can be dismissed to get at the rest of the match page, but the
 requirement doesn't go with it: a banner stays pinned to the top of the page, and
@@ -54,78 +49,61 @@ clicking it brings the panel back. Check-in stays blocked until a camera is live
 
 ## Who can watch
 
-Watching is scoped on the server, not hidden in the browser — a feed a viewer
-isn't entitled to is never sent to them at all.
-
 | Viewer                                          | Sees                                                        |
 | ----------------------------------------------- | ----------------------------------------------------------- |
 | Organizer or admin **not** playing in the match | Both lineups                                                |
 | A player in the match                           | Their own lineup, and only if **Teammates Can Watch** is on |
 | The opposing team                               | Nothing, ever                                               |
 
-A match organizer who is also playing is a competitor first: a live view of the
-other side is exactly the advantage cameras exist to prevent. Site
-administrators keep full access so the feature can be exercised end to end.
+A match organizer who is also playing is treated as a player. Site
+administrators keep full access.
 
 ## Watching from the panel
 
-- **Watch Cameras** on the match page opens the grid, and doubles as the summary
-  — it carries a live count like _7 of 10 live_.
-- Each tile shows the player the way the rest of the app does, with a **Live**,
-  **Stalled**, or **Not connected** state. A quiet grid means everything is
-  fine; only a problem tile draws the eye.
+- **Watch Cameras** on the match page opens the grid, and shows a live count
+  such as _7 of 10 live_.
+- Each tile shows the player with a **Live**, **Stalled**, or **Not connected**
+  state.
 - **Listen to mic** from any tile to hear a player without starting a call.
 - **Video call** a player from their tile. Their camera page shows you in a small
-  picture-in-picture, so you can talk to them face to face — an actual check that
-  a person is there, which no automated test of a video feed can give you. A
-  phone held upright shows in full on the call tile rather than cropped to a
-  landscape box.
+  picture-in-picture, so you can talk to them face to face and check a person is
+  really there.
 - **Camera dots** on the lineup rows give organizers per-player state at a glance
   without opening the grid.
 - In the [Control Room](/features/live-streaming#control-room), player cameras
-  render **inside the observer-target slots**, so the box you read to pick a
-  spectate target is the box you click. Feeds start muted.
+  show inside the observer-target slots. Feeds start muted.
 
 ## Enforcement
 
-5Stack keeps checking, rather than checking once at the door:
+5Stack keeps checking cameras for the whole match:
 
-- Feeds are polled continuously and classified **live**, **stalled**, or
-  **down** from whether video is actually arriving.
-- A drop gets a **30-second grace period**, long enough to ride out a WiFi blip
-  or a reconnect.
-- Past that, the game server is told to **pause the match** with a named reason.
-  The pause blocks `.resume` until the camera is back, and the scoreboard shows
-  who the match is waiting on. Players can ask the server for their own status
-  with `.cam`.
+- A dropped feed gets a **30-second grace period**.
+- Past that, the match **pauses** with a named reason. The pause blocks
+  `.resume` until the camera is back, and the scoreboard shows who the match is
+  waiting on. Players can check their own status with `.cam`.
 - Resume is **announced, never silent**, and an admin can override.
-- If the relay itself is unreachable, nothing changes — the check **fails open**,
-  so an infrastructure problem never pauses a match.
+- If the camera relay itself is unreachable, the match is not paused.
 
 ## On the broadcast
 
-While a player is being spectated, their camera can be composited onto the live
-stream through the existing overlay — no extra capture, no second encoder, and
-nothing for a broadcaster to set up.
+While a player is being spectated, their camera can appear on the live stream.
+There is nothing for a broadcaster to set up.
 
 ## Requirements & limits
 
 **HTTPS is required.** Browsers only grant camera access on a secure origin. A
 panel served over plain HTTP cannot publish cameras at all.
 
-**Feeds are relayed, not recorded.** 5Stack passes camera video through its own
-WebRTC relay and stores none of it. A camera that appears on a broadcast is, of
-course, part of whatever that broadcast records.
+**Feeds are not recorded.** 5Stack stores none of the camera video. A camera
+that appears on a broadcast is part of whatever that broadcast records.
 
-**Cameras are deliberately small.** A published feed is capped at 360p and 24fps
-(portrait on a phone), roughly 350 kbps, so publishing from mobile data is
-realistic and a full ten-player lineup costs your server a few Mbps rather than
-ten HD streams.
+**Cameras are small.** A feed is capped at 360p and 24fps, roughly 350 kbps, so
+publishing from mobile data is realistic and a full ten-player lineup costs your
+server a few Mbps.
 
-**A camera proves a feed is flowing, not that a person is being watched.** A
-virtual camera looping a video passes every automated check there is. That is
-what the video-call button is for — treat cameras as a deterrent and a broadcast
-feature, and use a call when you need certainty.
+**A camera proves a feed is flowing, not that a person is there.** A virtual
+camera looping a video passes every automated check. Treat cameras as a
+deterrent and a broadcast feature, and use a video call when you need certainty.
 
 ::: tip Cameras use the same relay as voice and live streaming
 No third-party video service is involved, and there is no per-player cost. See

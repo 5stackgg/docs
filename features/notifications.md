@@ -8,8 +8,7 @@ send and decides where each one reaches you.
 ## The Inbox
 
 The **Inbox** is the bell at the top of the [hub dock](/features/social#the-hub).
-Its badge counts what is waiting on you, and the bell shakes once when something
-new arrives. It's split into three sections:
+Its badge counts what is waiting on you. It's split into three sections:
 
 | Section       | What's in it                                                                                    |
 | ------------- | ----------------------------------------------------------------------------------------------- |
@@ -21,8 +20,7 @@ new arrives. It's split into three sections:
   decline.
 - **Team reminders**: a team you can invite to that has fewer than five
   starters shows "{count} of 5 starters" with **Invite Player** and **Dismiss**.
-  A short roster can be on purpose, so a dismissal holds until the roster
-  shrinks further.
+  A dismissal holds until the roster shrinks further.
 - **Clips of you** is a reel of your new [highlights](/features/highlights),
   with how many you haven't seen.
 - Several of the same kind stack into one card, such as "Rokkan reviewed 3
@@ -33,19 +31,13 @@ new arrives. It's split into three sections:
 The dot on a notification marks it read (**Mark read**), and on one already read
 deletes it, with **Undo** for a moment afterwards. The header has one bulk
 action at a time: **Dismiss All** while anything is unread, then **Delete
-Dismissed** once everything is. The gear opens **Notification Settings**. When
-it's empty it says "You're all caught up".
+Dismissed** once everything is. The gear opens **Notification Settings**.
 
 A notification you can switch off has a **More Actions** menu with **Turn Off
 {kind}**, which stops that kind reaching the Inbox, with **Undo** in case you
 didn't mean it.
 
-Chat never lands in the Inbox; see [Chat](#chat) below. Notifications about a
-match or tournament are removed when it is deleted, so the Inbox never links to
-a page that no longer exists.
-
-Dismissing a team reminder or a spotlight is saved to your account, so it stays
-dismissed on every device.
+Chat never lands in the Inbox; see [Chat](#chat) below.
 
 ## Toasts
 
@@ -60,8 +52,7 @@ Some things need an answer now, so they also pop up on the page:
   doesn't silence the next turn.
 - **Voice calls**: someone joining a voice channel you can join.
 
-Toasts appear at the bottom left of the page. A dismissed toast stays dismissed
-after a refresh, in that browser.
+Toasts appear at the bottom left of the page.
 
 ## Notification settings
 
@@ -80,9 +71,8 @@ after a refresh, in that browser.
   (**Chat message**, **Match found**, **Tick** and **Countdown**). Saved in this
   browser.
 
-Your **Push** choices are saved to your account even before you turn push on for
-a device, and apply on any device where you do. Sounds stay quiet while you're
-connected to a match server.
+Your **Push** choices are saved to your account and apply on every device where
+you turn push on. Sounds stay quiet while you're connected to a match server.
 
 ### What you'll get
 
@@ -123,10 +113,9 @@ normal. **Match found** and **Admin calls** ring anyway.
 supports it, they vibrate and stay on screen rather than sliding away like other
 notifications.
 
-They are only worth anything while they can still be answered, so they expire
-after 30 seconds: a phone that was offline doesn't get a stale "Match found"
-later. Accepting the match, or answering the call, on that device takes the
-alert down. Both ring through quiet hours.
+They expire after 30 seconds, so a phone that was offline doesn't get a stale
+"Match found" later. Accepting the match, or answering the call, on that device
+takes the alert down.
 
 ## Chat
 
@@ -135,10 +124,8 @@ entries. A chat push is only sent if you haven't already seen the message:
 
 - Nothing is sent while you're looking at that conversation, or once you've read
   past the message on any device.
-- The first message of a burst arrives straight away. Anything else in the same
-  conversation in the next 15 seconds is collapsed into one summary.
-- Editing or deleting a message updates or withdraws a push that hasn't gone out
-  yet.
+- The first message of a burst arrives straight away. The rest of the burst is
+  collapsed into one summary.
 - [Message requests](/features/chat#message-requests) and players you've blocked
   never push.
 - A room you've muted, or set to **Only @tags** or **Nothing**, only pushes what
@@ -146,14 +133,10 @@ entries. A chat push is only sent if you haven't already seen the message:
 
 A message that [tags you](/features/chat#tagging-players) is pushed as "{name}
 mentioned you", with the room's name. Tags are pushed under **Chat**, so a tag
-in match chat reaches you even with **Match chat** off. One player's tags push
-you at most once every 5 minutes, and the same words only once an hour; anything
-more from them arrives like any other message in the room. When a burst is
-collapsed into a summary, it says how many of the messages mention you.
+in match chat reaches you even with **Match chat** off.
 
 **Match chat** is a separate switch and is **off by default**: in-game chat is
-relayed into the match room line by line, and you've already read it in the
-game.
+relayed into the match room, and you've already read it in the game.
 
 ## Banned teammates
 
@@ -176,9 +159,8 @@ once you link.
 
 ## Installed app
 
-On an installed app the app icon carries your unread Inbox count, kept up to date
-by both the open app and incoming pushes. A **Turn on notifications** prompt
-offers push on devices that don't have it yet.
+On an installed app the app icon carries your unread Inbox count. A **Turn on
+notifications** prompt offers push on devices that don't have it yet.
 
 ## For administrators
 
@@ -186,7 +168,6 @@ Push needs no setup and no third-party service; see
 [Web Push Notifications](/advanced/web-push). Only staff notifications are ever
 posted to Discord; see [Integrations](/features/admin/integrations#discord).
 
-**Settings → Application → Notification Gallery** draws every notification
-type with the bell's own components from sample data, so you can see how each
-one looks: unread or read, in the bell or wide, stacked, and with reduced
-motion. Nothing on it reaches players.
+**Settings → Application → Notification Gallery** shows a sample of every
+notification type, so you can see how each one looks. Nothing on it reaches
+players.

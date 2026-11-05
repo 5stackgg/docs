@@ -2,12 +2,6 @@
 
 A low-latency kernel lets the CPU switch to a game server's work sooner, which matters for Counter-Strike: hit registration and movement depend on every tick being processed on time, with as little jitter as possible.
 
-It helps by:
-
-- Minimizing processing delays in the operating system
-- Providing more predictable response times
-- Reducing system jitter and inconsistencies
-
 ::: warning
 
 - Not every node needs it. Low latency trades some throughput for faster response.
@@ -20,7 +14,7 @@ On these nodes, **Turn On Low Latency** in the node inspector applies the steps
 below for you, and **Move to the Generic Kernel** moves a node off the legacy
 kernel; see [Tuning a node](/servers/game-server-nodes/managing#tuning-a-node).
 
-Ubuntu no longer builds a separate low-latency kernel (it was dropped in 25.04). Canonical's replacement is the standard **generic** kernel booted with `preempt=full`, which makes the kernel fully preemptible. This also works on 24.04.
+Ubuntu no longer builds a separate low-latency kernel. Instead, you boot the standard **generic** kernel with `preempt=full`.
 
 1. Add the boot option and update GRUB:
 
@@ -29,8 +23,6 @@ Ubuntu no longer builds a separate low-latency kernel (it was dropped in 25.04).
      | sudo tee /etc/default/grub.d/99-5stack-low-latency.cfg
    sudo update-grub
    ```
-
-   Files in `/etc/default/grub.d/` are read after `/etc/default/grub`, so this adds to the boot options you already have instead of replacing them.
 
 2. Reboot:
 
@@ -66,7 +58,7 @@ Older guides, including earlier versions of this one, installed the `linux-lowla
    sudo update-grub
    ```
 
-   The purge also removes the `linux-lowlatency` metapackages, which would otherwise keep installing new low-latency kernels. Do it before rebooting: when a generic and a low-latency kernel have the same version, such as `6.8.0-147`, GRUB lists the low-latency one first and boots it. The kernel you are running stays installed as a fallback until step 3.
+   Do this before rebooting, or GRUB may boot a low-latency kernel again. The kernel you are running stays installed as a fallback until step 3.
 
    ::: warning GPU nodes
    If the NVIDIA driver uses prebuilt modules rather than DKMS, the purge removes the low-latency ones. Check before running it:

@@ -66,9 +66,8 @@ starts. **Check In Settings** decides who checks in:
 | **Admins**                           | Only administrators; players wait for an organizer to start it.  |
 
 The match moves on once both lineups are ready, or when an organizer starts it
-from the [admin dock](#running-a-match). The rule is enforced by the
-server, not just by which buttons the page shows, and anyone outside the
-lineups is refused.
+from the [admin dock](#running-a-match). Anyone outside the lineups can't check
+in.
 
 Check-in lives in the match header's scorebug: **Check In**, how many have
 ("{ready} of {total} checked in"), and **Set Up Your Camera** first when the
@@ -85,9 +84,8 @@ Organizers can push it back with **They need more time** (see
 ## Map & region veto
 
 - **Map veto**: an interactive pick/ban flow; once a map is chosen, teams pick
-  their **CT / T side**. The exact ban/pick sequence is generated deterministically
-  from the pool size and best-of. See [Map Veto](/features/map-veto) for the
-  full rules and worked examples.
+  their **CT / T side**. See [Map Veto](/features/map-veto) for the full rules
+  and worked examples.
 - **Region veto**: teams can veto server regions so neither side is forced onto
   unfavorable latency.
 - **Veto board**: both vetoes run on one board that lays out the whole order of
@@ -98,8 +96,7 @@ Organizers can push it back with **They need more time** (see
   picks. See [Veto scouting](/features/map-veto#veto-scouting).
 
 A match is played on the LAN or online, never both. Turn on **LAN Match** and
-the region list holds only LAN regions, with no region veto; the server refuses
-a region list that mixes the two.
+the region list holds only LAN regions, with no region veto.
 
 ## Match rules
 
@@ -141,15 +138,10 @@ room). A toast clears itself when the turn is over and stays hidden on that
 match's own page, and dismissing one doesn't silence the next turn. See
 [Notifications](/features/notifications#toasts).
 
-The match-ready popup and redirect are remembered per player across reloads
-and tabs, so a reload doesn't send you back to a match you already handled,
-while each new match status still gets its popup.
-
 ## The match page
 
-- The header and highlights are one stage: a scorebug in each map's score
-  colours (with the T/CT split on a single-map match) above a theater player for
-  the match's highlights, with an **Up next** list of clips beside it.
+- The header's scorebug sits above a player for the match's highlights, with an
+  **Up next** list of clips beside it.
 - **Your team** is marked with an amber ring on its crest in the header, and
   its header in the scoreboard and stat tabs gets the same amber rail as your
   own row.
@@ -311,8 +303,6 @@ Everyone who turned up, on either side, keeps their rating.
 ## Watching live
 
 While a match is live you can follow the score and action in real time, jump in
-to spectate, or [broadcast it](/features/live-streaming). Veto picks, rewinds
-and clocks, check-ins, draft picks, seats and captains reach everyone on the
-page as they happen, within about half a second on a self-hosted panel. When it's over, the demo
-is uploaded automatically and turned into [replays](/features/match-replay),
+to spectate, or [broadcast it](/features/live-streaming). When it's over, the
+demo is uploaded automatically and turned into [replays](/features/match-replay),
 [highlights](/features/highlights), and [stats](/features/stats-and-leaderboards).

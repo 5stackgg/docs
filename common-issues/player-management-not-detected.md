@@ -4,13 +4,12 @@ A community server's page shows **Player Management plugin not detected** (or an
 amber icon beside the roster's refresh button) when the
 [Player Management plugin](/servers/dedicated-servers/player-management) has not
 checked in within the last 3 minutes. Until it does, mutes, gags and access
-lists are not enforced, and the roster is read over RCON with no history.
+lists are not enforced, and the roster has no history.
 
 ## A server on a game server node
 
-The plugin is part of the server's container, and is switched on when the
-container is built. A server created before the plugin shipped has an old
-container: switch it off and back on with its **Enabled** switch.
+A server created before the plugin shipped doesn't have it yet: switch the
+server off and back on with its **Enabled** switch.
 
 ## An external server
 

@@ -28,16 +28,13 @@ that tab controls who finds you and what they can ask for:
 
 ## Weekly availability
 
-Instead of a vague "we play evenings". You paint a **weekly availability grid**,
-drag across hour blocks in your local time to mark the times a scrim can _start_.
+Paint a **weekly availability grid**: drag across hour blocks in your local
+time to mark the times a scrim can _start_.
 
-The grid then does the math for you:
-
-- Each painted start is shaded forward to show **playtime** (~1 hour per map), so
-  the grid reflects the real commitment rather than an optimistic range.
-- 5Stack computes your **longest contiguous block** and derives which series
-  lengths actually fit inside it. If BO3 doesn't fit, the grid tells you exactly
-  how much more you need to paint to unlock it.
+- Each painted start is shaded forward to show **playtime** (about 1 hour per
+  map).
+- The grid shows which series lengths fit inside your longest block. If BO3
+  doesn't fit, it tells you how much more you need to paint.
 - Opponents can only propose start times inside your availability, unless you
   enable **Allow requests outside these hours**, or leave the grid empty entirely
   (which means "ask any time").

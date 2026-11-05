@@ -19,9 +19,10 @@ Each sanction carries a **reason** and a **duration**: 15 minutes, 30 minutes, 1
 hour, 1 day, 1 week, 1 month, or **permanent**.
 
 Sanctions **sync across matches and servers**: a player gagged from the panel is
-gagged in game, and a ban applies wherever they try to play. Match servers
-enforce them through the match plugin, and community servers through the
-[Player Management plugin](/servers/dedicated-servers/player-management).
+gagged in game, and a ban applies wherever they try to play. Community servers
+need the
+[Player Management plugin](/servers/dedicated-servers/player-management) to
+enforce them.
 
 A gag also covers website chat: in match, team, lobby, draft, tournament and
 organizer rooms a gagged player gets a read-only composer. Direct messages
@@ -170,9 +171,8 @@ For each source you set:
   tournaments** (joining a tournament roster or the free agent pool), or **Bars
   both**.
 
-The defaults reproduce what 5Stack did before the page existed, and reading the
-page changes nothing; only an edit does. A tournament no-show is only checked on
-the way in, so a player already in a running bracket keeps their place.
+A tournament no-show is only checked on the way in, so a player already in a
+running bracket keeps their place.
 
 ## Abandoned matches
 
@@ -187,10 +187,10 @@ cooldown. One abandon is only ever counted once.
 
 ## Steam ban detection
 
-5Stack checks players' Steam accounts for **VAC and game bans**: on sign-in,
-when a player is first seen, after every match they finish, and on an hourly
-sweep that re-checks everyone who played in the last 6 months at most once a
-day. A **VAC ban** creates a platform ban automatically, with a link through to
+5Stack checks players' Steam accounts for **VAC and game bans** on sign-in,
+after every match they finish, and once a day for everyone who played in the
+last 6 months. A **VAC ban** creates a platform ban automatically, with a link
+through to
 the ban on Steam. Game bans are recorded and shown, but don't ban anyone on
 their own. A badge on the player's profile shows either kind (red for VAC,
 orange for a game ban), and the profile's record lists the counts.

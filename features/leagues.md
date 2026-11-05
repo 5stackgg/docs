@@ -7,9 +7,9 @@ teams negotiating their own times, and promotion and relegation at the end.
 **seasons** (each run through it). Admins enable it from
 **Settings → Application → League**.
 
-Under the hood, each division's season runs on the same engine as a
-[tournament](/features/tournaments): its bracket, matches, and stats open on the
-tournament page, with **Back to League** to return to the season.
+Each division's season runs as a [tournament](/features/tournaments): its
+bracket, matches, and stats open on the tournament page, with **Back to League**
+to return to the season.
 
 ## How a season works
 
@@ -37,8 +37,7 @@ divisions renumber automatically.
 ## Creating a season
 
 A season is configured once and mostly stays editable afterwards. Only the
-**match-week count** and **games per week** lock at season start, because they
-define the generated brackets.
+**match-week count** and **games per week** lock at season start.
 
 | Setting                              | What it controls                                                                                                          |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
@@ -83,8 +82,7 @@ Admins then work the registrations on the season's **Teams** tab:
 
 ## Scheduling
 
-The schedule is the part most leagues do badly. In 5Stack, every matchup carries
-its own negotiation:
+Every matchup carries its own negotiation:
 
 - **Propose a time** inside the match week window, times outside it are
   rejected.

@@ -14,13 +14,11 @@ The diagram shows the old panel. Click a box to see what it does.
   not already a panel or a game server node.
 - The old panel has Tailscale set up, as it needs for
   [game server nodes](/servers/game-server-nodes/create-game-server-node). If it
-  doesn't, add it with `sudo 5stack config tailscale` on the old server. The
-  two servers move the data directly over your Tailscale network, never through
-  the 5Stack cloud.
+  doesn't, add it with `sudo 5stack config tailscale` on the old server.
 - The old panel runs the 5Stack service, and you have claimed its install. An
   unclaimed panel can't look up the new server's code. For a panel still on the
   git checkout, run `git pull && sudo ./service.sh` on it and
-  [claim the install](/service/existing-install#claim-the-install) first.
+  [claim the install](/service/existing-install) first.
 - You can change the DNS records for your panel's domain.
 
 ## 1. Start the new server
@@ -31,9 +29,7 @@ On the new server, run:
 curl -fsSL https://get.5stack.gg | sudo sh -s -- migrate
 ```
 
-It installs the agent and prints a code, a key fingerprint and two commands for
-the old server: one for a panel that runs the 5Stack service, and one for a panel
-installed from the git checkout.
+It prints a code, a key fingerprint and the commands to run on the old server.
 
 ## 2. Pair the old server
 
@@ -43,12 +39,10 @@ On the old server, run the `5stack move` command the new server printed:
 sudo 5stack move --to QX4-71M --key age1qv3x…
 ```
 
-The new server also prints a `sudo ./service.sh --to … --key …` command, for a
-panel still on the git checkout. Use `5stack move` once you've moved that panel
-onto the service and claimed it, as above.
-
-`--key` is the new server's key. The old server sends its data only to a server
-holding that key, so copy the whole command.
+Copy the whole command, including `--key`. The new server also prints a
+`sudo ./service.sh --to … --key …` command, for a panel still on the git
+checkout. Use `5stack move` once you've moved that panel onto the service and
+claimed it, as above.
 
 The old server prints its panel key fingerprint. The new server shows the same
 fingerprint and asks whether it matches. Answer `y` only if the two are the same.
@@ -72,24 +66,16 @@ server asks whether to freeze anyway, which ends any live matches.
 
 ## 6. The database moves
 
-This is the only downtime. The old server dumps the database and sends it,
-encrypted to the new server's key, together with your secrets, config and
-plugins. Only the demos and clips added or changed since the first copy are sent
-now. The downtime is the database move plus that difference.
-
-The new server restores the database into the same TimescaleDB version, then
-updates the extension. If the old panel ran an older PostgreSQL major version,
-the new server lands on the current one without a separate upgrade.
-
-Search is rebuilt from the database, and the cache starts empty.
+This is the only downtime. The old server sends the database, your secrets,
+config and plugins, and the demos and clips added or changed since the first
+copy. If the old panel ran an older PostgreSQL version, the new server lands on
+the current one without a separate upgrade.
 
 ## 7. Game server nodes re-join
 
-The new panel is a new cluster, so every game server node has to join it. The old
-panel sends each node with the agent a signed message, and the node leaves the old
-panel and joins the new one by itself. This includes nodes that were added with
-the install script and got the agent from the panel later. You don't need to SSH
-into them.
+Each game server node with the agent leaves the old panel and joins the new one
+by itself, including nodes added with the install script that got the agent from
+the panel later. You don't need to SSH into them.
 
 If a node has no agent, the move tells you to add it to the new panel again. See
 [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node).
@@ -108,5 +94,5 @@ new panel through the proxy, so point your proxy at the new server.
 ## 9. The old server stays stopped
 
 When the move finishes, the old panel stays stopped, not wiped, so its data is
-still there if you need to go back. Its 5Stack install credential is revoked, and
-the new server takes over the install and its claim.
+still there if you need to go back. The new server takes over the install and its
+claim.

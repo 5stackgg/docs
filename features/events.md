@@ -16,8 +16,7 @@ events**. Any event can be opened in a **Quick look** sheet without
 leaving the list.
 
 Search by name and narrow the list by **Status** (All, Live, Upcoming, Past).
-**Filters** holds **Only events I organize**, which replaces the old event
-management page.
+**Filters** holds **Only events I organize**.
 
 ## Creating an event
 

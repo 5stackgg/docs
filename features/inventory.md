@@ -23,7 +23,7 @@ five stickers and arrange them:
 - **Snap** holds half centimetres and 5° turns.
 - Pick a gun from the **Outline** rail to chalk its side on the mat, with each
   sticker slot dashed and numbered. The mat and its rulers resize to that gun's
-  real centimetres, since CS2 sizes stickers per gun.
+  real centimetres.
 - Beside the mat, the stickers are five slots, top to bottom as on a gun. Click
   the chain between two slots to link them so they move and turn as one.
 - Switch between the **Angled** view and **Top**, straight down for measuring

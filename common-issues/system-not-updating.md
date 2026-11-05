@@ -3,7 +3,7 @@
 If a service still appears as needing an update after you've already updated the system, the version information may not have refreshed properly.
 
 ::: tip
-A rebuild of an image that changed nothing used to show up here as a pending update. The panel now compares against every digest the node knows for the image, so that no longer happens. Update the panel first if you still see it.
+Update the panel first. A rebuilt image that changed nothing no longer shows as a pending update.
 :::
 
 To fix this, follow these steps to refresh the service versions:

@@ -1,7 +1,7 @@
 # Intel GPU Setup
 
 ::: warning Not yet supported
-Intel GPUs can't be used as [GPU nodes](/servers/gpu-nodes/) yet. The streamer pipeline encodes via NVENC (NVIDIA-specific) and the pod runtime relies on the NVIDIA Kubernetes runtime, neither has an Intel equivalent wired up yet.
+Intel GPUs can't be used as [GPU nodes](/servers/gpu-nodes/) yet.
 :::
 
 ## Tracking issue

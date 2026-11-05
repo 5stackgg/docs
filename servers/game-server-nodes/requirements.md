@@ -1,14 +1,14 @@
 # Requirements
 
-The 5Stack Game Node Server runs on [K3s](https://docs.k3s.io/installation/requirements), a lightweight Kubernetes distribution. Please ensure that your system meets all the requirements for K3s installation, as well as the following additional requirements specific to the 5Stack Panel.
+A game server node must meet the [K3s requirements](https://docs.k3s.io/installation/requirements), plus the following.
 
 ## Sizing
 
 Each Counter-Strike server takes **2 CPU cores** by default (see
 [CPU Pinning](/servers/cpu-pinning) to change that) and about **1 GB of
-memory** when empty, more once players join. K3s and the game server node
-connector hold back one core and a few hundred MB for themselves. Each node
-also needs around 150 GB of disk for the game files and demo recordings.
+memory** when empty, more once players join. The node itself holds back one
+core and a few hundred MB. Each node also needs around 150 GB of disk for the
+game files and demo recordings.
 
 ## Storage
 

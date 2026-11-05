@@ -6,9 +6,6 @@ Everything in game is driven from a radial menu, a HUD and a handful of keys,
 so nothing has to be typed. Every throw you make with a lineup loaded is scored
 against it, and five landed in a row masters it.
 
-Practice servers always run the SwiftlyS2 practice plugin, whatever plugin
-runtime the node uses for matches. See [The practice plugin](#the-practice-plugin).
-
 ## Starting a server
 
 Start one from the **practice bar** at the foot of a map's card on the
@@ -33,8 +30,8 @@ Play page (pick a **Map**, then **Start practice**).
 
 **Start Server** books it. While it boots the bar reads **Starting**; once it is
 up, **Join Server** connects you, and the connect string can be copied beside
-it. If the server stops, is reaped, or fails to boot, the panel drops back to
-**Start Server** and says why.
+it. If the server stops or fails to boot, the panel drops back to **Start
+Server** and says why.
 
 On a phone the Utility page is browse-only: the practice bar and every action
 that sends something to a server are hidden there.
@@ -47,8 +44,7 @@ session wherever you are in the panel. Press the bar to pull up the session:
 - **Session Access** can be changed by the host without restarting.
 - **Invite players** puts players on the server's roster by name; they get a
   notification and can connect straight away. An invite link is offered for
-  **Open** and **Friends** only, because **Invite** and **Private** decide on a
-  list a link has no say in.
+  **Open** and **Friends** only.
 - **Server console** gives moderators and administrators RCON on the server.
 - **Stop Server** (the host) or **Leave Session** (everyone else).
 
@@ -60,14 +56,14 @@ show you as **In match**.
 
 Once you are on a practice server, the bar acts on whatever is open above it:
 
-| Open in the card | Bar action         | What it does                                                                                 |
-| ---------------- | ------------------ | -------------------------------------------------------------------------------------------- |
-| A lineup         | **Load me in**     | Stands you on the throw — same spot, same stance, same aim — with a ghost showing the flight |
-| A lineup         | **Repeat in game** | Drills it, three throws at a time                                                            |
-| A collection     | **Practice**       | Drills the collection's lineups on this map, three throws each                               |
-| An execute       | **Practice**       | Loads the execute into the session                                                           |
-| The plan         | **Practice next**  | Loads the next lineup in your plan                                                           |
-| A Discover throw | **Test in game**   | Stands you on a throw Discover found, before you save it                                     |
+| Open in the card | Bar action         | What it does                                                   |
+| ---------------- | ------------------ | -------------------------------------------------------------- |
+| A lineup         | **Load me in**     | Stands you on the throw, with a ghost showing the flight       |
+| A lineup         | **Repeat in game** | Drills it, three throws at a time                              |
+| A collection     | **Practice**       | Drills the collection's lineups on this map, three throws each |
+| An execute       | **Practice**       | Loads the execute into the session                             |
+| The plan         | **Practice next**  | Loads the next lineup in your plan                             |
+| A Discover throw | **Test in game**   | Stands you on a throw Discover found, before you save it       |
 
 Nothing is saved by loading a throw. **Load in game** and **Repeat in game**
 are also on a lineup's right-click menu in the list.
@@ -98,8 +94,8 @@ rethrows, **DEL** clears smoke and fire.
 
 ### Keys
 
-The plugin reacts to what a key is bound to, not the key itself, and the
-on-screen legend draws whatever key you actually have bound.
+Keys follow your binds, not the default keys, and the on-screen legend shows
+the key you have bound.
 
 | Key (default bind)           | Does                                                                                                                                            |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -148,9 +144,9 @@ wheel, or closes the menu on the first one.
 
 **Save Throw** never asks for a name: it names the throw from the map's
 callouts ("Window Smoke from T Spawn"), or after the utility if the map has none
-there. A smoke that is still spreading is held until it settles, so the save
-can carry its [recorded smoke](/features/utility-library#recorded-smokes).
-**Delete** asks first, on a page of its own.
+there. A smoke is saved once it settles, with its
+[recorded smoke](/features/utility-library#recorded-smokes). **Delete** asks
+first, on a page of its own.
 
 **Edit** opens a panel for the loaded lineup: **NAME**, **WRITE-UP** and
 **VISIBILITY** (**PRIVATE**, **TEAM**, **PUBLIC**), with **SAVE** and
@@ -212,14 +208,12 @@ aim ring.
   one does not restart the round.
 - The round clock is held at an hour. When it runs out the map reloads, with
   a countdown on screen from a minute out.
-- Practice servers never hibernate.
 
 ### Executes and the plan
 
 - **The stack** is how one person practises an execute that takes four:
   **Add To Stack** the throws, mark one with **I Throw**, and **R** throws the
-  rest from their recorded seeds, **together** or **as thrown**, while you
-  make yours.
+  rest, **together** or **as thrown**, while you make yours.
 - **Load Execute** lists your own and your team's executes for the map, built
   on the website, and turns the one you pick into the stack on its timings.
 - **Run Execute** runs the execute loaded onto the session from the website,
@@ -251,57 +245,38 @@ Chat commands start with `.` or `!`. In the console they are prefixed `sw_`.
 ## Scoring, streaks and mastery
 
 Every throw made with a lineup loaded is scored against that lineup's landing
-point. The game server reports; the panel decides, recomputing the distance from
-the lineup it owns rather than trusting the server's arithmetic. Grenades the
-plugin throws for you (rethrows, the stack) are never scored.
+point. Grenades thrown for you (rethrows, the stack) are never scored.
 
-- A throw is a **hit** when it lands inside the **success radius** — 96 source
-  units by default, against a smoke roughly 144 units across, so the default
-  asks the utility to land well inside the smoke rather than merely clip it.
+- A throw is a **hit** when it lands inside the **success radius**: 96 units by
+  default, against a smoke about 144 units across, so the utility has to land
+  well inside the smoke.
 - **Five hits in a row masters the lineup.** Your record, hit rate, current
   streak and best streak are kept per lineup, and shown on the lineup's page
   and on the throw card in game.
 - **Plan**, on the Utility page, ranks what you haven't mastered by how many
   players throw it on that map: **Never thrown**, **Popular**, **Unmastered**,
-  or **Slipping** — one you had mastered whose streak has since broken.
-- **Miss patterns** aggregate where _other_ people's throws land, reported as
-  short, long, left, right, high, low, scattered, or no pattern. Below the
-  sample floor it says so rather than inventing a tendency from a handful of
-  attempts. A public lineup's miss pattern can be read signed out.
+  or **Slipping** (one you had mastered whose streak has since broken).
+- **Miss patterns** show where _other_ people's throws land: short, long, left,
+  right, high, low, scattered, or no pattern. With too few throws, it says so. A
+  public lineup's miss pattern can be read signed out.
 
 ## The HUD addon
 
-The menu, the picker and the panels are Panorama, so the files have to reach
-the player's game rather than the server's. CS2 has no server-to-client file
-transfer, so they go through the Steam Workshop: the server image names the
-addon's Workshop item, and
-[AddonsManager](https://github.com/SwiftlyS2-Plugins/AddonsManager) tells each
-connecting client which item it needs.
+The menu, the picker and the HUD panels come as a Steam Workshop addon. Players
+do not subscribe to anything: Steam downloads it on a player's first join, with
+one reconnect, then never again. Only practice servers use it.
 
-Players do not subscribe to anything. Steam delivers it on a player's first
-join — one download and one reconnect, then never again. The addon is
-published with each release of the SwiftlyS2 game-server image, so a plugin
-never asks for a layout players cannot download.
-
-Practice servers only. A one-time download is a fair price for somebody who
-came to drill; it is not something to ask ten people for before a knife round.
-On a server without the addon the throw guidance falls back to centre text and
-chat, and `.hud` does the same for one player, but the menu, the picker and the
-edit panel need it.
+On a server without the addon, the throw guidance falls back to centre text and
+chat, and the menu, the picker and the edit panel aren't available. `.hud`
+switches to centre text for one player.
 
 ## The practice plugin
 
-- Practice servers boot the SwiftlyS2 game-server image with the practice
-  plugin in place of the match plugin, whatever runtime the node uses for
-  matches. A plugin version pinned for CounterStrikeSharp is ignored for
-  practice. The CounterStrikeSharp image refuses to boot a practice server.
+- Practice servers always run SwiftlyS2 with the practice plugin, whatever
+  plugin runtime the node uses for matches. A plugin version pinned for
+  CounterStrikeSharp doesn't apply to them.
 - If SwiftlyS2 does not yet support the node's CS2 build, starting a practice
   server says so instead of queueing you.
-- A practice server's game-server job is named `u-<match id>` (match servers
-  are `m-<match id>`), and so are the servers that film
-  [lineup previews](/features/utility-library#preview-clips-and-stills) and
-  run [Discover](/features/utility-library#discover). The practice match's
-  page reads its server logs from that job.
 - A dedicated server can be set up as a **Practice Server**: it hosts practice
   sessions, runs the practice plugin, and is never used for matchmaking. It is
   listed by name in the **Region** picker.

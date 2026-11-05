@@ -1,26 +1,13 @@
 # Requirements
 
-The 5Stack Panel runs on [K3s](https://docs.k3s.io/installation/requirements), a lightweight Kubernetes distribution. Please ensure that your system meets all the requirements for K3s installation, as well as the following additional requirements specific to the 5Stack Panel.
+Your server must meet the [K3s requirements](https://docs.k3s.io/installation/requirements), as well as the following.
 
 ## Server Requirements
 
 ### Minimum: `2` CPU cores, `4 GB` memory
 
-The panel and K3s need about **3.7 GB** before anyone visits. Measured on
-5stack.gg with nobody online, and RustFS in the load lab:
-
-| What                                                        | Memory at idle |
-| ----------------------------------------------------------- | -------------- |
-| Hasura                                                      | 1.2 GB         |
-| API                                                         | 370 MB         |
-| TimescaleDB                                                 | 250 MB         |
-| Typesense, Redis, web, game server node connector, MediaMTX | 490 MB         |
-| RustFS (file storage)                                       | 90 MB          |
-| K3s, containerd and the operating system                    | 1.3 GB         |
-
-TimescaleDB grows from there: when it is installed it sizes its cache to the
-server's memory, and fills it as the panel is used. More memory means more of
-the database stays in memory.
+The panel needs about **3.7 GB** of memory before anyone visits, and more as
+it's used.
 
 ### Recommended
 
@@ -30,17 +17,8 @@ the database stays in memory.
 | Up to 2,000           | 8         | 16 GB  |
 | Up to 3,000           | 12        | 16 GB  |
 
-At 1,000 people the panel used about 1.5 cores most of the time and up to 3.5
-in bursts, and about 6 GB of memory. At 3,000, about 4 cores most of the time
-and up to 8 in bursts, and about 8.5 GB.
-
-These numbers come from the [load lab](/community/developer/load-testing),
-where every simulated person browses the whole site, signed in or as a guest,
-while matches play. Real visitors spend more time idle on one page, so treat
-them as a safe upper bound.
-
-Hasura, which serves the site's live data, runs on up to 4 cores. Cores beyond
-that go to the database and the API.
+These numbers come from the [load lab](/community/developer/load-testing).
+Real visitors spend more time idle, so treat them as a safe upper bound.
 
 If [game servers](/servers/game-server-nodes/requirements) run on the same
 machine, add their cores and memory on top.
@@ -49,7 +27,7 @@ machine, add their cores and memory on top.
 
 #### HTTP Ports `80` / `443`
 
-The 5Stack Panel requires ports `80` and `443` to be open and accessible for Kubernetes routing. If you can't use these ports, you can [change them](/install/ports).
+The panel needs ports `80` and `443` open. If you can't use these ports, you can [change them](/install/ports).
 
 #### Game Node Connector Port `8585`
 

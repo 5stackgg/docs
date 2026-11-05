@@ -21,8 +21,7 @@ browser and the game server.
 
 Retention is set per kind of room by an administrator under
 **Settings → Application → Chat Settings** (see
-[Integrations](/features/admin/integrations#chat)). Direct messages are stored
-in the database rather than expiring with room chat.
+[Integrations](/features/admin/integrations#chat)).
 
 When a draft room becomes a match, its chat carries on in the match room.
 
@@ -68,9 +67,8 @@ never count toward unread**: in-game chat is relayed into those rooms line by
 line, and you have already read it in the game. A message there that tags you
 still counts.
 
-Opening a room shows its latest 200 messages. Scroll to the top to load the ones
-before them, back to the oldest the room still keeps; the top of the list then
-says **No older messages**.
+Scroll to the top of a room to load older messages, back to the oldest the room
+still keeps.
 
 The participant list links every player to their profile.
 
@@ -131,8 +129,7 @@ silences tags too and counts them as ordinary messages. **Only @tags** keeps the
 room's unread count but only alerts you for tags.
 
 These choices are saved to your account, so a room muted on one device is quiet
-on every other, and a timed mute ends by the server's clock rather than your
-device's. Nobody else can see what you've muted.
+on every other. Nobody else can see what you've muted.
 
 ## Reactions
 
@@ -166,20 +163,14 @@ also paste files or drag them onto the conversation.
   or MOV videos.
 - Works in queue, draft, tournament, organizers, team and direct chat. **Match
   and match team chat stay text-only.**
-- Uploads start straight away, and **Send** says what it's waiting for.
-- Images show inline, videos open in a lightbox, and GIFs play inline; click a
-  GIF to see it larger in the lightbox. They run the full width of the message,
-  under the sender's avatar.
+- Images and GIFs show inline, and videos open in a lightbox.
 
 Administrators set the largest file size and each player's daily upload
-allowance. Files are only served to people who can open the room. They are
-deleted when the room's messages expire, when a direct message is pruned or
-deleted, or after 24 hours if they were never sent.
+allowance. Only people who can open the room can see its files, and
+they're deleted when the room's messages expire.
 
 **GIFs** need a GIPHY API key, set by an administrator. Without one, the **+**
-only attaches files. With one, it opens a picker with search, **Trending**, and
-"Powered by GIPHY". Searches go through the 5Stack API, so the key never reaches
-a browser.
+only attaches files. With one, it opens a picker with search and **Trending**.
 
 ## Direct messages
 
@@ -215,13 +206,11 @@ Match chat is relayed in both directions between the web and the match server:
 - **Team chat** in game (`say_team`) appears in your team's private room on the
   web. A team line never reaches the room the other team reads.
 - **Everyone** messages from the web appear in game chat. Lines from Match
-  Organizers and above carry a red `[organizer]` tag, which a player can't fake
-  through their name or message.
+  Organizers and above carry a red `[organizer]` tag.
 - **Your team** messages from the web stay on the web.
 
-A relayed line is flattened to one line and cut to 240 characters in game, with
-formatting codes stripped. A gagged player's chat is blocked in game and isn't
-relayed.
+In game, a web message is cut to 240 characters. A gagged player's chat is
+blocked in game and isn't relayed.
 
 ## Moderation
 
@@ -270,8 +259,8 @@ whole word, ignores case, and catches common letter swaps such as `3` for `e`,
 
 ### Rokkan chat moderation
 
-On 5stack.gg, Rokkan also reads group chat in batches and flags messages that
-break the rules (**AI chat moderation**). Direct messages are never scanned.
+On 5stack.gg, Rokkan also reads group chat and flags messages that break the
+rules (**AI chat moderation**). Direct messages are never scanned.
 
 | Mode            | What Rokkan does                                                 |
 | --------------- | ---------------------------------------------------------------- |

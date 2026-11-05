@@ -26,21 +26,10 @@ own opens a menu of all of this in the terminal. See
 See [How It Fits Together](/service/how-it-fits-together) for a diagram of what
 runs where and what each part talks to.
 
-## What runs where
-
-- **On the panel server**, the agent runs as root under systemd
-  (`5stack.service`). It keeps its own credentials in `/var/lib/5stack`, which
-  only root can read.
-- **On each game server node**, the same agent joins the node to your panel and
-  re-joins it if the panel moves.
-- **Both connect out** to the 5Stack cloud at `get.5stack.gg` over HTTPS.
-  Nothing connects in to them, and the agent doesn't listen on a network port.
-
-Anything the 5Stack cloud passes between your servers, such as your setup
-answers or a node's join keys, is encrypted to the server that receives it.
-5Stack passes it along but can't read it.
-
 ## What needs the 5Stack cloud
+
+The service on each server connects out to the 5Stack cloud at `get.5stack.gg`
+over HTTPS. Nothing connects in to it.
 
 Installing, updating, adding a game server node and moving to a new server go
 through the 5Stack cloud. The panel, matches and game servers that are already

@@ -34,8 +34,8 @@ The headline numbers, in more detail:
   [seasons](/features/seasons) are on, this card instead races the current
   season against the last one; see [Season pace](/features/seasons#season-pace).
 - **Win rate** and **K/D ratio**.
-- An **Elo chart** that buckets to weekly/monthly for long ranges. The **ELO**
-  tab keeps every match. With seasons on, both draw each season start as a
+- An **Elo chart**, grouped by week or month over long ranges. The **ELO** tab
+  keeps every match. With seasons on, both draw each season start as a
   break, so the reset doesn't read as a losing streak.
 
 **Per-round / per-match**
@@ -150,14 +150,13 @@ Two more tabs rank ratings that come from outside 5Stack:
 | **Premier** | **Premier Rank**             | **Allow CS2 match imports** is on (Valve demos) |
 
 These boards list **your instance's own players** only: someone who has signed
-in at least once and finished a 5Stack match. Importing a demo creates a record
-for everyone in it, so without that rule the boards would fill with strangers.
-Players who haven't placed in Premier are left off.
+in at least once and finished a 5Stack match. Players who haven't placed in
+Premier are left off.
 
 Both are snapshots, not stats from matches played here, so the time, type,
 source, and role filters don't apply and are hidden on these tabs. FACEIT
-ratings are refreshed in the background from the FACEIT Data API, looked up from
-each player's Steam ID, so there is nothing to link in 5Stack.
+ratings are looked up from each player's Steam account, so there is nothing to
+link in 5Stack.
 
 ::: tip
 Both switches live under **Settings → Application → Match Imports**. See

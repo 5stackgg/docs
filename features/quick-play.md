@@ -11,8 +11,7 @@ underneath it:
 | **Draft rooms**       | Open [draft lobbies](/features/draft-lobbies) to join, and a host bar to open your own in one click. |
 | **More ways to play** | An open tournament, league signups, the Scrim Finder, public servers, and a practice server.         |
 
-A section with nothing to show is left out, so a quiet instance doesn't show a
-page of empty boxes.
+A section with nothing to show is left out.
 
 ## Matchmaking
 
@@ -31,12 +30,7 @@ without picking the mode.
 | **Rush**        | 3v3    | CS2's Rush mode, room by room, on its own map pool and its own ELO. |
 
 Nothing is picked for you unless only one mode fits your party. Pick a tile and
-press **Find Match**. The tiles work as a radio group, so the arrow keys move
-between the modes your party can play.
-
-The in-queue count is people, not parties: a queued trio counts as three, and a
-party searching several regions is only counted once. It refreshes after every
-matchmaking pass, so players already in a ready check or a match drop off it.
+press **Find Match**. The in-queue count is people, not parties.
 
 ::: tip Queue from anywhere
 The **Play** button in the top bar queues the mode you played last in one
@@ -77,13 +71,10 @@ measured latency to each:
 - **Star** a region to prefer it. Matchmaking uses your starred regions; with
   none starred it uses every region under your limit.
 - **Maximum Acceptable Latency** is a slider capped at the instance's own
-  limit. Each region's bar is drawn on the slider's scale, so you can see which
-  regions fall inside it as you drag.
-- **Refresh** measures every region again. Offline regions, regions that are
-  still being measured, and partially available regions are labelled.
+  limit.
+- **Refresh** measures every region again.
 
-If every region is over your limit, the button becomes **Edit regions** and the
-page says so instead of letting you search for a match that can never be found.
+If every region is over your limit, the button becomes **Edit regions**.
 
 ### LAN or online
 
@@ -91,10 +82,7 @@ On a network with a LAN region, you play on the LAN or online, never both. The
 first time you queue or host a draft room in a session you're asked **You're on
 a LAN. Where do you want to play?**, and you can switch at any time from the
 region line (**LAN** or **Online**). On the LAN the button reads **Find LAN
-Match**.
-
-The server enforces the same rule: a queue or a match whose regions mix LAN
-and online regions is refused.
+Match**. A queue or a match that mixes LAN and online regions is refused.
 
 ### The ready check
 
@@ -109,24 +97,15 @@ So you don't miss it:
   [urgent](/features/notifications#urgent-alerts), which vibrates and stays on
   screen until it is answered or expires.
 - A hidden browser tab flashes its title and icon until you look at it.
-- Screen readers hear the dialog's title, what to do, and the seconds left as
-  they count down.
 
-The countdown, like your time in queue, runs on the server's clock, so a device
-whose clock is wrong still shows the right time.
-
-If everyone is ready but the match can't be created, every party goes back to
-where it was in the queue, except one that can no longer queue, which is told
-why and dropped. When the server refuses the match outright, every party is
-told why and leaves the queue, rather than being matched into the same refusal
-again.
+If everyone is ready but the match can't be created, parties go back into the
+queue, or are told why and dropped from it.
 
 Once everyone is ready, the Matchmaking section turns into the match: its
 status, map, score, a link to the match page, and the connect details.
 
 If you're in more than one match at once, the match-ready popup and the hub
-follow the one that needs you first: a live match, then one in veto, then one
-waiting for check-in, then for a server.
+follow the one that needs you first.
 
 **Match & Draft Room Popup**, under **Matchmaking settings**, controls the popup
 (and the redirect) when your match or draft room is ready. Turn it off and you
@@ -137,8 +116,7 @@ ready check.
 
 Banned players and players on a matchmaking cooldown see why, and until when,
 above the mode tiles, and can't start a search. A tournament cooldown is shown
-there too but doesn't block the queue. A join the server refuses always says
-why, for example **Your lobby is still joining the queue, try again.**
+there too but doesn't block the queue.
 
 ## Your Schedule
 

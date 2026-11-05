@@ -8,7 +8,7 @@ sudo 5stack run debug.sh
 ```
 
 Or pick **Diagnostics → Debug bundle** in the
-[`5stack` menu](/service/command#the-menu). It saves pod logs, events and
+[`5stack` menu](/service/command#the-menu). It saves logs, events and
 certificate status to a file and prints where it saved it.
 
 Support can also ask the panel for a debug bundle, with player data removed. See

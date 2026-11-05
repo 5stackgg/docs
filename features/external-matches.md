@@ -25,8 +25,7 @@ signed in during the last week, and on demand with **Poll now**. Competitive,
 Premier, Wingman, and Rush matches are imported. You can **Unlink** at any time.
 
 With the [5Stack Steam bot](/features/steam-presence) as a friend, 5Stack looks a
-match up a minute after it ends instead of waiting for the next hourly check. If
-Valve hasn't published the match yet, it tries once more a few minutes later.
+match up right after it ends instead of waiting for the next hourly check.
 
 ## Import a match by share code
 
@@ -38,8 +37,7 @@ whether or not your match history is linked.
 ## FACEIT matches
 
 When external imports and FACEIT are enabled, your FACEIT matches import
-automatically too. See [FACEIT Integration](/advanced/faceit-integration) for the
-details, including how per-match FACEIT ranks are captured.
+automatically too. See [FACEIT Integration](/advanced/faceit-integration).
 
 ## From FACEIT or Leetify in your browser
 
@@ -52,32 +50,27 @@ counts the ones you have not imported yet.
 Players can upload a CS2 `.dem` by hand from **Upload a demo** above the match
 list on their own profile, handy for one-off matches or when no automatic source
 applies. Who can upload is **Who can upload demos** under **Settings →
-Application → Demos** (default User), and it needs external match imports on. A demo can be up to 2 GB; it uploads straight to storage in
-64 MB parts.
+Application → Demos** (default User), and it needs external match imports on. A
+demo can be up to 2 GB.
 
 ## Duplicates
 
-Before importing, 5Stack checks whether it already has the match. A match
-brought in a second way, by share code and by upload, under a renamed file, or by
-another player, is recognised by its map, its round-by-round winners, and most of
-its players. A demo recorded on one of your own 5Stack servers is never imported,
-since that match is already in 5Stack.
+5Stack skips a match it already has, even when it's brought in a second way, by
+another player, or under a renamed file. A demo recorded on one of your own
+5Stack servers is never imported, since that match is already in 5Stack.
 
 ## Tracking imports
 
-Imports are processed in the background, two at a time. While you have imports
-in flight, a **Pending imports** list shows each one with its map, start time,
-and status (**Queued** or **Parsing**), filterable by status, and you can
-**Clear** an entry.
+While you have imports in flight, a **Pending imports** list shows each one with
+its map, start time, and status (**Queued** or **Parsing**), filterable by
+status, and you can **Clear** an entry.
 
 An import that fails drops off the list. Most failures are demos older than 30
-days, which Valve no longer hosts. A sweep every 15 minutes fails any import
-whose job stalled or was lost, so nothing sits in the list forever.
+days, which Valve no longer hosts.
 
 ::: tip
 Imported matches only get [automatic highlights](/features/highlights) when an
-admin turns on **Include imported matches**, so imports don't flood the render
-queue.
+admin turns on **Include imported matches**.
 :::
 
 ## Admin

@@ -41,11 +41,9 @@ first thing to fix, with Rokkan's column beside it.
   plays or pauses from anywhere on the page.
 - **Viewing** switches to a teammate's section, or to the **Team summary**.
 
-On a wide screen the replay and Rokkan's column sit side by side.
-
 ## The Coach page
 
-**Coach**, under **Practice** in the navigation (`/coach`), holds everything
+**Coach**, under **Practice** in the navigation, holds everything
 Rokkan has sent you, newest first.
 
 - Tabs: **All**, **New** (reviews you haven't opened), **Reviews** and
@@ -56,8 +54,8 @@ Rokkan has sent you, newest first.
 ### Habits
 
 After three reviewed matches, **Your habits · last N matches** shows the three
-things Rokkan found most often. **See All** opens the full list (`/coach/habits`)
-over your last 10 reviewed matches, split into **To fix** and **Working**. Each
+things Rokkan found most often. **See All** opens the full list over your last
+10 reviewed matches, split into **To fix** and **Working**. Each
 habit says how often it came up ("In 4 of 10 matches") and links its **Latest
 Review**.
 
@@ -83,6 +81,5 @@ each player's top fix, and **Team habits** across the roster.
 ## For admins
 
 **Review with Rokkan**, in a finished match's **⋮** menu, sends any match with
-demos for review. Older demos are parsed again first, and the menu then shows
-the review's progress, **View Rokkan Review** once it's ready, or **Retry
+demos for review. The menu then shows the review's progress, **View Rokkan Review** once it's ready, or **Retry
 Rokkan Review** if it failed.

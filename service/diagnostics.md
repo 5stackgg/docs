@@ -6,18 +6,17 @@ on by default, and one switch turns it off.
 ## What is sent
 
 - **Crash reports.** When a panel service crashes or restarts, a crash report
-  holds its exit reason, its recent events and the logs from before the crash. At
-  most 10 reports are sent an hour.
+  holds its exit reason, its recent events and the logs from before the crash.
 
 Before anything leaves your server, player data is removed: Steam IDs, IP
-addresses, email addresses, chat and player names. Each report is capped at 5 MB.
+addresses, email addresses, chat and player names.
 
 ## Debug bundles
 
 A full debug bundle, with the same kind of state the
 [debug script](/common-issues/debug-script) collects, is sent only when 5Stack
 support asks for one while helping you. Player data is removed from it the same
-way, and each request is recorded in the install's audit log.
+way.
 
 ## Turn it off
 

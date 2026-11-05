@@ -1,6 +1,6 @@
-# Lens IDE - Kubernetes Management Made Simple
+# Lens IDE
 
-Lens IDE is a powerful desktop application that provides a visual interface for managing Kubernetes clusters. It's often called "The Kubernetes IDE" and offers an intuitive way to interact with your 5stack infrastructure.
+Lens IDE is a desktop application with a visual interface for managing Kubernetes clusters, including your 5stack server.
 
 ## Download and Installation
 

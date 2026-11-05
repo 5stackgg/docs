@@ -8,6 +8,4 @@ sudo 5stack config set HTTP_PORT=8080 HTTPS_PORT=8443
 
 It shows the change, asks, and applies the panel again.
 
-Browsers are still sent to the standard ports: the HTTP to HTTPS redirect and every link the panel builds use the bare domain. Put a [reverse proxy](/install/reverse-proxy) or a port forward in front that serves `80` and `443` publicly.
-
-Installs from before the panel moved to Traefik kept these settings in `nginx-config.env`. An update renames that file for you.
+Browsers are still sent to the standard ports, so put a [reverse proxy](/install/reverse-proxy) or a port forward in front that serves `80` and `443` publicly.

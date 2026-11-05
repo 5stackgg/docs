@@ -14,17 +14,11 @@ each tab.
 ## Database backups
 
 The panel saves its database every night into your file storage and keeps the
-latest 7. The **Database Backups** tab lists them newest first. Each shows its
-time in your time zone and in UTC, so a backup made at 03:00 UTC shows as the
-evening before if you are in the Americas.
-
-The list is read from your file storage, which can take a minute the first time.
-After that the console shows the last list straight away and checks for newer
-backups in the background.
+latest 7. The **Database Backups** tab lists them newest first.
 
 If the panel uses its built-in storage, the backups sit on the panel server's
-disk and go with it if the disk fails. The tab shows an amber icon when that's
-the case. [Your own S3](/advanced/s3/) keeps them off the server.
+disk and go with it if the disk fails. [Your own S3](/advanced/s3/) keeps them
+off the server.
 
 ### Restore a database backup
 
@@ -35,8 +29,6 @@ the case. [Your own S3](/advanced/s3/) keeps them off the server.
 - Everything after that backup is lost: matches, stats and sign-ups.
 - The database it replaces is kept on the panel server. Delete it under
   **Kept From a Restore** once you're happy with the restore.
-- If the restore fails part way, the old database is put back and the panel
-  starts again.
 
 ## Recovery backups
 
@@ -62,15 +54,13 @@ framed **SAVE THESE NOW** block, on a line starting with `AGE-SECRET-KEY-1`.
 - **5Stack can't recover it.** The key never leaves your server, so 5Stack
   doesn't have it. Without it, nobody can open your recovery backups.
 - **Show it again** on the panel server: run `5stack` and pick **Backups**, then
-  **Show the recovery key**. Each time it's shown is recorded in the install's
-  audit log.
+  **Show the recovery key**.
 
 To replace the key, see the [Command Reference](/service/cli#backups-and-diagnostics).
 
 ### Restore a recovery backup
 
-A restore runs on the panel server, because it needs your recovery key and the
-key is only ever typed there.
+A restore runs on the panel server.
 
 1. Connect to the panel server and run `5stack`.
 2. Pick **Backups**, then **Restore a recovery backup**.
@@ -78,22 +68,18 @@ key is only ever typed there.
    their date and size. **Another file…** takes a backup kept somewhere else.
 4. Type your recovery key.
 
-- The server first checks that the backup was made with that key and wasn't
-  changed since. If the key is wrong, it says
+- If the key is wrong, it says
   **This key does not open this backup. 5Stack cannot open it either.**
 - The panel is down while it restores.
 - Config, secrets, custom files, plugins and the database all go back to when
   the backup was made.
-- **Game server nodes have to be added again.** Game server nodes trust the
-  panel's signing key, so recovery backups leave it out on purpose: a leaked
-  recovery key exposes your panel's data, not your nodes. The restore makes a
-  new key, so run the command from the **Create game server node** dialog again
-  on each node. See
+- **Game server nodes have to be added again.** Run the command from the
+  **Create game server node** dialog again on each node. See
   [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node).
 
 ## Moving to a new server
 
-Both ways start on the new server, because it has no 5Stack yet.
+Both ways start on the new server.
 
 ### While the old server still works
 
@@ -138,8 +124,7 @@ backups in your own S3 bucket are still there.
 5Stack can keep an encrypted copy of each recovery backup off-site, so a new
 server can bring the panel back after the old one is lost.
 
-- The copy is encrypted to your recovery key before it leaves the server, so
-  5Stack can't open it.
+- The copy is encrypted to your recovery key, so 5Stack can't open it.
 - It's a paid add-on. Once your install has it, turn it on from the panel
   server: run `5stack` and pick **Backups**, then **5Stack cloud copy**. The
   browser console shows it but can't turn it on.

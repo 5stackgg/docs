@@ -1,10 +1,6 @@
 # Bring Your Own S3
 
-5Stack uses S3-compatible storage for storing demos and backups. By default it uses [RustFS](https://rustfs.com/), which is hosted locally within the Kubernetes cluster.
-
-## Demo Storage
-
-The S3 storage is primarily used for storing match demos and backups. When a match is played, the demos are automatically uploaded to the configured S3 storage.
+5Stack uses S3-compatible storage for storing demos and backups. By default it uses [RustFS](https://rustfs.com/), which runs locally on your panel.
 
 ## Configuration
 
@@ -24,13 +20,13 @@ It asks for the access key and secret key, typed hidden, shows the changes, asks
 
 | Variable               | Notes                                                                                                                                                                  |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `S3_ENDPOINT`          | Your provider's hostname (for example `s3.us-east-005.backblazeb2.com`). Leaving this as `rustfs` keeps the in-cluster store.                                           |
+| `S3_ENDPOINT`          | Your provider's hostname (for example `s3.us-east-005.backblazeb2.com`). Leaving this as `rustfs` keeps the local store.                                               |
 | `S3_USE_SSL`           | Set to `true` for a remote provider.                                                                                                                                   |
 | `S3_PORT`              | `443` for a remote provider.                                                                                                                                           |
-| `S3_REGION`            | Must match the region your endpoint expects (Backblaze uses values like `us-east-005`). Requests are signed with it, so a mismatch is rejected. Defaults to `us-east-1`. |
+| `S3_REGION`            | Must match the region your endpoint expects (Backblaze uses values like `us-east-005`), or requests are rejected. Defaults to `us-east-1`.                              |
 | `S3_FORCE_PATH_STYLE`  | Leave unset for every provider except real AWS S3, which requires `false` for buckets created after September 2020.                                                     |
 | `S3_DB_BACKUP_BUCKET`  | Where the panel's nightly database backups go. Use a second bucket of your own, in the same account, such as `<bucket>-db-backups`. The backup job keeps only the newest 7 objects in it, so never share it with demos. |
 
 :::info
-If you are upgrading from an install that used MinIO, nothing needs to change. RustFS serves the same volume in place, and `S3_ENDPOINT=minio` keeps working — the panel keeps a Service under that name pointing at the RustFS pods.
+If you are upgrading from an install that used MinIO, nothing needs to change. `S3_ENDPOINT=minio` keeps working.
 :::

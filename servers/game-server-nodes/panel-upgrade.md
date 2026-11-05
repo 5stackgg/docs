@@ -18,14 +18,9 @@ sudo 5stack config tailscale
 ```
 
 Or pick **Config → Tailscale** in the [`5stack` menu](/service/command#the-menu).
-It asks for the client ID and the secret, typed hidden, checks the client with
-Tailscale, and joins this server to your tailnet. It shows what it will do and
-asks before it changes anything.
-
-When k3s on the panel doesn't route over Tailscale yet, it has to restart. The
-change runs like an update that restarts k3s: new matches are held, live ones
-finish first, and then k3s restarts. If something goes wrong, the old k3s config
-is put back.
+It asks for the client ID and the secret, and joins this server to your tailnet.
+If the panel has to restart for this, new matches are held and live ones finish
+first.
 
 It refuses, with nothing changed, when this server is already on a tailnet
 without the `tag:fivestack` tag, or on another tailnet: log it out or tag it

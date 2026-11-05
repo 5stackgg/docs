@@ -9,28 +9,25 @@ node that needs attention. Filter it by region, **Only enabled nodes** or
 ## The node inspector
 
 The inspector holds everything about one node: its live CPU, memory, disk and
-network charts, hardware, ports, capacity, CS2 and GPU. Each change it saves
-shows who made it ("Updated {time} by {name}").
+network charts, hardware, ports, capacity, CS2 and GPU.
 
 Select several nodes for bulk changes: Ctrl- or ⌘-click a row to add or drop
-it, Shift-click for a range, then **Apply to all**. **Update CS2** skips nodes
-that are offline, current or already updating.
+it, Shift-click for a range, then **Apply to all**.
 
 ### What needs attention
 
 At the top, the inspector lists what wants your attention, worst first: a node
-waiting to connect or offline, a failed CS2 update (its logs are kept for 24
-hours), more servers on its ports than the CPU has room for, a plugin that
-doesn't support its build, what it still needs before it can host matches (a
-region, ports or CS2), a CS2 build that's behind, a CPU at under 3 GHz ("CPU at
-{ghz} GHz"), a CPU governor other than `performance`, a filling disk, the
-warnings the node reports itself, and GPU workloads that are switched off.
+waiting to connect or offline, a failed CS2 update, more servers on its ports
+than the CPU has room for, a plugin that doesn't support its build, what it
+still needs before it can host matches (a region, ports or CS2), a CS2 build
+that's behind, a CPU at under 3 GHz, a CPU governor other than `performance`, a
+filling disk, the warnings the node reports itself, and GPU workloads that are
+switched off.
 
 ### Warnings from the node
 
-Each node checks itself and reports what it finds. A warning has a short title,
-**Details** with the node's full text, a **Docs** link where one applies, and,
-when there's a fix to run, the command on one line with a copy button.
+Each node checks itself and reports what it finds. A warning can have
+**Details**, a **Docs** link, and a command to copy and run when there's a fix.
 
 | Warning                                                    | What to do                                                                                                        |
 | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -50,11 +47,8 @@ when there's a fix to run, the command on one line with a copy button.
 The NVIDIA driver and Secure Boot warnings mark the node as broken, since its
 GPU can't take work until they're fixed; the rest are warnings.
 
-**Acknowledge** sets a warning aside: it moves to the node's acknowledged list,
-marked "Acknowledged by {name} · {ago}", and stops counting as something to
-do. **Restore** brings it back. An acknowledgement only covers that exact
-warning, and it's dropped once the node stops reporting it. CPU-constrained and
-governor warnings can't be acknowledged.
+**Acknowledge** sets a warning aside, and **Restore** brings it back.
+CPU-constrained and governor warnings can't be acknowledged.
 
 The same warnings, grouped by kind across every node, are listed in the
 [update popover](/features/admin/system#updates) in the header.
@@ -62,8 +56,7 @@ The same warnings, grouped by kind across every node, are listed in the
 ### Tuning a node
 
 On Ubuntu nodes, the inspector can apply the fixes from the tuning pages for
-you. It runs the change on the node as a Kubernetes job and reports when it has
-finished or failed.
+you, and reports when the change has finished or failed.
 
 | Button                                 | What it does                                                                                       | Needs                 |
 | -------------------------------------- | -------------------------------------------------------------------------------------------------- | --------------------- |
@@ -88,7 +81,7 @@ switches:
 - **Matchmaking**: matches and practice servers start here. Off keeps the node
   for dedicated servers and GPU work.
 - **Accepting matches**: off, the node keeps running its matches but takes no
-  new ones. The setting is kept while the node is offline.
+  new ones.
 - **Match types**: **All**, **Only** the types you pick, **No matches,
   practice servers only**, or **No matches or practice servers**.
 - **Practice servers**: whether players can boot
@@ -111,20 +104,17 @@ Its **⋮** menu also has:
   off **Matchmaking** or **Accepting matches** first. Enabled nodes install CS2
   again when the next CS2 update comes out.
 - **Install CS:GO**, for legacy CS:GO servers. It starts right away, with no
-  confirm, and the toast says **CS:GO is being installed on the node**. It's
-  also in the node row's **⋮** menu. Once CS:GO is installed, the inspector
-  gets its own **CS:GO** section with **Update CS:GO**, the **Update log** and
-  **Remove CS:GO**, which asks first like **Remove CS2**.
+  confirm. Once CS:GO is installed, the inspector gets its own **CS:GO**
+  section with **Update CS:GO**, the **Update log** and **Remove CS:GO**.
 
 The **CS2 build** card at the top of the page shows the current CS2 version and
 when it was released.
 
 ## Kubernetes updates
 
-When a newer k3s release is out for your nodes, or nodes have changes that only
-apply when k3s restarts, the header's update popover shows a **Kubernetes**
-section with how many nodes need it. **Update** offers **Update now** or
-**Schedule** for a time you pick.
+When your nodes need a Kubernetes update or restart, the header's update
+popover shows a **Kubernetes** section with how many nodes need it. **Update**
+offers **Update now** or **Schedule** for a time you pick.
 
 - It runs one node at a time. Matches already running keep going.
 - Players see a maintenance banner 24 hours before (right away for **Update
@@ -133,5 +123,5 @@ section with how many nodes need it. **Update** offers **Update now** or
   offline node is skipped.
 - **Cancel update** calls off a scheduled run.
 
-The update runs through the system-upgrade-controller the panel installs. If
-it's missing, the popover says so, and updating the panel puts it back.
+If the popover says the system-upgrade-controller is missing, update the panel
+to put it back.

@@ -17,21 +17,20 @@ the automatic cycle.
   **Filter maps**. Drag a map out of the list to remove it.
 - **Shuffle** picks the next map at random. It is on for a new rotation.
 
-The pool is your panel's maps table, so any map you have added to 5Stack is
-available, not only the ones in a map pool.
+Any map you have added to 5Stack is available, not only the ones in a map
+pool.
 
 ### Importing from the Steam Workshop
 
 **Import From Workshop** takes a Steam Workshop collection or a single map, as a
-link or an ID. Every public CS2 map in it is added to your maps table and to the
+link or an ID. Every public CS2 map in it is added to 5Stack and to the
 rotation. Items that are not CS2 maps (skins, other games, removed items) are
 skipped and counted.
 
 ## The rotation plugin
 
 A rotation needs a game plugin that can play it. The catalog's is
-**MapChooser** (SwiftlyS2), which declares a `map_rotation` block in its
-[registry entry](https://github.com/5stackgg/plugin-registry#plugins-that-run-a-map-rotation).
+**MapChooser** (SwiftlyS2).
 
 - Once one is installed, a server with a rotation loads it automatically,
   unless the server switches it **Off** under **Plugins**. The plugins list says
@@ -57,7 +56,7 @@ the second one. The panel warns when a rotation with workshop maps has
 ## Saving
 
 Rotation changes are saved with the rest of the server's settings and restart
-the server once (**Save & Restart**). A map deleted from the maps table drops
-out of every rotation.
+the server once (**Save & Restart**). A map deleted from 5Stack drops out of
+every rotation.
 
 Map rotations are CS2 only, and Ranked and Practice servers never play one.

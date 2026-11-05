@@ -22,8 +22,7 @@ Match organizers and above also get:
 - The **Privilege** and **Last Sign In At** columns.
 
 Sort by name, Elo, last sign-in, or **Privilege**, which sorts by rank in the
-role hierarchy rather than alphabetically. Back returns you to the page of
-results you left.
+role hierarchy.
 
 ## Managing roles
 
@@ -54,9 +53,8 @@ Awards, FACEIT and Premier boards ignore it.
 ### Who's online
 
 **Most players online to list** (default 200) caps the **Others** tab of the
-[friends list](/features/social#friends). Above it the list switches off until
-10% fewer are online, and players find each other through search. 0 never
-lists everyone.
+[friends list](/features/social#friends). Above it the list switches off, and
+players find each other through search. 0 never lists everyone.
 
 ## Teams
 
@@ -89,8 +87,6 @@ way.
 Moderators and above can **warn**, **ban**, **mute**, **gag** and **silence**
 players whose role is below their own, from their profile, from chat, or from a
 community server's player list.
-Sanctions sync across matches and servers, VAC bans on Steam create bans
-automatically, and abandons and tournament no-shows escalate on their own.
 
 See [Moderation & Sanctions](/features/moderation) for sanction types, durations,
 warnings, and the automatic sanctions policy.
@@ -98,14 +94,12 @@ warnings, and the automatic sanctions policy.
 ## Maintenance
 
 The **Danger Zone** on **Settings → Application → Players** runs jobs across
-every player in the background. The reindex and the recompute show live
-progress and can be cancelled.
+every player. The reindex and the recompute can be cancelled.
 
-- **Reindex Search**: re-syncs every player's name, Elo, stats and sanctions
-  into the search index, for when a player looks out of date in search but their
+- **Reindex Search**: for when a player looks out of date in search but their
   profile is correct.
-- **Recompute ELO**: wipes and rebuilds every player's Elo by replaying all
-  finished matches in order, and each season's Elo when seasons are on.
+- **Recompute ELO**: wipes and rebuilds every player's Elo from all finished
+  matches, and each season's Elo when seasons are on.
 - **Scan Steam Bans**: re-checks every player who has been on a lineup for
   Steam VAC and game bans.
 
@@ -114,6 +108,6 @@ These run automatically when needed; only trigger them by hand if you have to.
 ## Organizers chat
 
 **Match Organizers** and above get an **Organizers chat** room for coordinating
-events out of public view. It keeps 90 days of history by default, and goes by
-the role a player holds now: someone demoted below Match Organizer stops
-receiving it straight away. See [Chat](/features/chat).
+events out of public view. It keeps 90 days of history by default. Someone
+demoted below Match Organizer loses access straight away. See
+[Chat](/features/chat).

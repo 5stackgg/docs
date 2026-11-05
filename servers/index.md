@@ -13,14 +13,14 @@ If you want to build a web app that runs **inside the panel**, that's
 
 ## What is a Game Server Node
 
-A [5Stack Game Server Node](./game-server-nodes/index) is a Kubernetes cluster that automatically creates Counter-Strike servers on demand.
+A [5Stack Game Server Node](./game-server-nodes/index) is a server that automatically creates Counter-Strike servers on demand.
 
 :::info
 The number of servers you can run depends on your machine’s hardware specifications and the number of open ports available.
 :::
 
 :::warning
-Each game server node should have around 150 GB of available disk space. This space is needed for the Counter-Strike game files and for storing demo recordings of each match (up to 1 GB per match, which will be uploaded and deleted after uploading).
+Each game server node should have around 150 GB of available disk space. This space is needed for the Counter-Strike game files and for demo recordings (up to 1 GB per match, deleted once uploaded).
 :::
 
 ## What is a Dedicated Server

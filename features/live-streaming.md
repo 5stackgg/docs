@@ -88,9 +88,8 @@ screen. It has a compact mode for small windows.
 ### Face cams
 
 If a match [requires player cameras](/features/player-cameras), the camera of the
-player currently being spectated is composited onto the stream through the
-built-in JTs Hud, no second capture, no extra encoder, and nothing for the
-broadcaster to wire up.
+player currently being spectated shows on the stream, with nothing for the
+broadcaster to set up.
 
 ## Control Room
 
@@ -100,15 +99,14 @@ panel, for the **Streamer** role and above. It's laid out like a TV gallery:
 - **Program** is what's on air, with its on-air clock. **Preview** has a
   monitor for every live, in-veto and waiting match; a match that can't go on
   air yet says why (veto in progress, players checking in, no free GPU).
-- **Take** puts the picked preview on air: **Go live with {match}** takes a
-  free GPU and boots a stream pod (about a minute), and **Switch to {match}**
-  repoints the running pod in a few seconds. **More ways to start** holds
-  **Start as TV (delayed)**.
+- **Take** puts the picked preview on air: **Go live with {match}** starts a
+  stream on a free GPU (about a minute), and **Switch to {match}** moves the
+  running stream over in a few seconds. **More ways to start** holds **Start as
+  TV (delayed)**.
 - **Stop** asks first (**Stop broadcast** or **Keep streaming**), so a stray
-  click can't kill a live broadcast. **Reconnect** re-issues the connect to the
+  click can't kill a live broadcast. **Reconnect** reconnects the stream to the
   game server.
-- **Spectator grid**: CT/T player slots fed by live game state; click a slot to
-  spectate that player.
+- **Spectator grid**: CT/T player slots; click a slot to spectate that player.
 - **Auto-director** toggle for automatic spectator camera work, plus X-ray.
 - **HUD**: pick the [broadcast HUD](#broadcast-huds) for this stream, hide or
   show it, **Swap sides (manual override)**, or **Refresh HUD (reload player
@@ -137,40 +135,32 @@ If an imported HUD fails to load, the stream falls back to the built-in one.
 
 ## How streams reach viewers
 
-Streams play over **WebRTC (WHEP)** for ultra-low latency. The browser sends its
-connection details as it finds them (trickle ICE) instead of waiting to gather
-them all first, so the picture arrives sooner. If WebRTC can't connect after
-three tries, the player falls back to HLS, at a few seconds more latency. Once a
-stream has played over WebRTC it never drops to HLS.
-
-WebRTC sessions go straight to MediaMTX inside your install, so there's no
-third-party streaming service and no per-viewer vendor cost (browsers use a
-public STUN server to find their route).
+Streams play over WebRTC for very low latency. If a browser can't connect that
+way, the player falls back to HLS, a few seconds behind.
 
 ## Admin controls
 
 Under **Settings → Application → Streaming**:
 
-- **Minimum Role Allowed to Connect to TV (Delayed)**: GOTV broadcast viewers
-  connect to the delayed TV port, so broadcast delay applies. Safe for casters
+- **Minimum Role Allowed to Connect to TV (Delayed)**: who can connect to the
+  delayed TV broadcast. The broadcast delay applies, so it's safe for casters
   and audiences.
 - **Minimum Role Allowed to Spectate (No Delay)**: real-time spectating connects
   directly to the game server with no delay. Restrict this to trusted roles to
   prevent ghosting.
 - **Require Sign-In to View Live Streams** (on by default): hide live game
   streams from signed-out visitors, so every viewer is an identifiable account.
-  With it on, the stream server itself also refuses players and coaches of a
-  live match, which closes the most obvious ghosting route.
+  With it on, players and coaches of a live match are also refused its stream,
+  which closes the most obvious ghosting route.
 - **Live Stream Codec**, now under **Settings → Application → Video Encoding**:
-  **H.264 (recommended)**, the broadest compatibility and
-  the lowest-latency WebRTC path everywhere, or **H.265 / HEVC**, ~30% smaller at
-  matched quality, but HEVC-over-WebRTC is Safari 17+ only; other browsers fall
-  back to HLS, and H.265 falls back to H.264 if the GPU can't encode HEVC.
-- **Playcast**: use CS2's GOTV broadcast (Playcast) format so spectators connect
-  to relay infrastructure instead of the game server, increasing viewer capacity
-  while reducing load on the match server. With Playcast on, an **Edge relay
-  (Cloudflare)** status shows whether viewers are served from Cloudflare's
-  cache. See [Playcast Edge Relay](/advanced/playcast-edge-relay).
+  **H.264 (recommended)** plays with the lowest latency in every browser.
+  **H.265 / HEVC** is about 30% smaller at the same quality, but only Safari 17+
+  plays it at low latency; other browsers fall back to HLS. If the GPU can't
+  encode H.265, the stream uses H.264.
+- **Playcast**: spectators connect through a relay instead of the game server,
+  so more people can watch with less load on the match server. With Playcast
+  on, an **Edge relay (Cloudflare)** status shows whether the relay is working.
+  See [Playcast Edge Relay](/advanced/playcast-edge-relay).
 
 Live streaming renders on a [GPU node](/servers/gpu-nodes/); make sure at least one
 node has streaming enabled and a Steam account available in the pool. To add

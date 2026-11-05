@@ -9,8 +9,8 @@ Find it on the **Breakdown** tab of any player profile.
 ## How it's scored
 
 Each area is your **percentile against every other player on the instance**, so
-**50 is an average player** and higher is better. That means the number is
-relative to the people you actually play with, not an abstract benchmark.
+**50 is an average player** and higher is better. The number is relative to the
+people you actually play with.
 
 | Area            | What it measures                                                                                                |
 | --------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -19,17 +19,16 @@ relative to the people you actually play with, not an abstract benchmark.
 | **Utility**     | Grenade impact, flash assists, how much you blind enemies, and HE/molotov damage per nade.                      |
 
 ::: tip Utility is provisional
-Utility is marked **Provisional** in the app. On current data it doesn't cleanly
-separate skill the way aim and positioning do, so it's shown but flagged rather
-than quietly treated as gospel.
+Utility is marked **Provisional** in the app. It doesn't separate skill as
+cleanly as Aim and Positioning do, so treat it as a rough guide.
 :::
 
 Each score is labelled **Elite** (80 and up), **Good** (60 and up), **Average**
 (40 and up), or **Subpar**.
 
-Players without enough games yet aren't rated, the breakdown unlocks once
-there's a meaningful sample: a match needs at least 10 rounds to be scored, and
-a player needs 30 rounds before they're ranked against the pool.
+Players without enough games yet aren't rated: a match needs at least 10
+rounds to be scored, and a player needs 30 rounds before they're ranked against
+the pool.
 
 ## Ranges and seasons
 
@@ -45,9 +44,8 @@ The Breakdown follows the profile's range:
 
 ## The underlying metrics
 
-Each area is the average of several percentile-scored metrics. Hovering any one
-in the app explains what it measures; several are only possible because 5Stack
-parses per-tick demo data rather than just the scoreboard.
+Each area is the average of several metrics, each scored the same way.
+Hovering any one in the app explains what it measures.
 
 **Aim**
 
@@ -61,7 +59,7 @@ parses per-tick demo data rather than just the scoreboard.
   enemy.
 - **Counter-Strafing**: how often you fully stop before firing.
 
-Related engagement metrics also tracked from the demo include **First Bullet**
+Related metrics also tracked include **First Bullet**
 (how often the opening shot of a duel hits) and **Tracking** (how much of an
 engagement your crosshair stays on the enemy).
 
@@ -86,21 +84,17 @@ opposite key to stop dead before firing, shots while moving are wildly
 inaccurate"_, and weak trade positioning reads _"fight near teammates so when you
 die it gets traded, instead of dying for free."_
 
-It's the difference between "your rating is 0.94" and "here's the habit costing
-you rounds."
-
 ## Consistency
 
 Every match also gets a single combined score from your Aim, Positioning, and
-Utility for that match. **Consistency** charts it across your recent matches,
-a flatter line is better, and you're labelled **Rock Solid**, **Steady**, or
+Utility for that match. **Consistency** charts it across your recent matches
+(a flatter line is better), and you're labelled **Rock Solid**, **Steady**, or
 **Streaky**.
 
 ## Comparison
 
-Pin another player and the whole breakdown renders side by side, both overall
-areas and the individual metrics, so you can see exactly where you differ rather
-than just who has the bigger rating.
+Pin another player and the whole breakdown shows side by side, both the areas
+and the individual metrics, so you can see exactly where you differ.
 
 With seasons on, you can compare against **yourself in an earlier season**
 instead, and the metrics on that side are ranked within that season's pool. See

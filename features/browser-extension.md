@@ -40,19 +40,16 @@ for you; press **Import** and the panel takes it from there.
 
 ### FACEIT matches
 
-FACEIT only gives a demo to a logged-in FACEIT user who passes its Cloudflare
-check, the same as its own **Watch demo** button. So stay logged in to FACEIT:
-the extension asks FACEIT for each demo in a FACEIT tab, with your FACEIT login.
-The check usually passes on its own; when it wants a click, it appears at the
-bottom right of the FACEIT tab.
+Stay logged in to FACEIT: the extension gets each demo in a FACEIT tab, with
+your FACEIT login. FACEIT sometimes shows a check first; when it wants a click,
+it appears at the bottom right of the FACEIT tab.
 
 Imported from a Leetify page, FACEIT matches use any FACEIT tab you have open,
 or one the extension opens in the background.
 
 ### Valve matches
 
-Leetify lists each matchmaking match's share code, and the extension imports it
-like a share code pasted under
+Matchmaking matches import like a share code pasted under
 [Import a match by share code](/features/external-matches#import-a-match-by-share-code).
 Valve keeps demos for about 30 days, so older matches fail.
 
@@ -68,14 +65,9 @@ The extension uses settings the panel already has:
 - **Allow CS2 match imports** must be on, see
   [Integrations](/features/admin/integrations#external-matches).
 - FACEIT imports also need a FACEIT Data API key, see
-  [FACEIT Integration](/advanced/faceit-integration), which the panel uses to
-  check each demo link. The FACEIT Downloads API approval is not needed, and
-  the **FACEIT import** switch only runs the automatic poller: the extension's
-  demos come from the player's own FACEIT login.
+  [FACEIT Integration](/advanced/faceit-integration). The FACEIT Downloads API
+  approval is not needed, and neither is the **FACEIT import** switch: the
+  extension's demos come from the player's own FACEIT login.
 - Valve imports need the Steam game coordinator, as share codes do.
-
-Before downloading a FACEIT demo, the panel checks the link against FACEIT's own
-record of that match, so a player can only ever import that match's demo from
-FACEIT's storage.
 
 See also the extension's [privacy policy](/features/browser-extension-privacy).

@@ -27,8 +27,7 @@ Every **XP per level** (default 1,000) is a level, and every level pays
 player abandoned, earns nothing.
 
 Players who were already on the instance when Career arrived were counted from
-their match history, so nobody starts from zero. Changing the formula recounts
-every player from their history the same way.
+their match history, so nobody starts from zero.
 
 - A finished match's page has a **Match Rewards** panel with your lines:
   **Played**, **Win**, **Rating band** and **XP earned**.
@@ -50,10 +49,9 @@ the Locker. Its tabs are **Banners**, **Frames**, **Nameplates**, **Titles**,
 **Backgrounds** and **Profile stat**, then **Awards** for items that come with
 awards, and **Rewards** with **Level rewards** and your **Stacks History**.
 
-5stack.gg's Locker holds 549 items: 100 banners, 108 frames, 101 nameplates,
-100 titles, 100 backgrounds and 40 stat looks. Items are graded like CS2 skins:
-**Consumer Grade**, **Industrial Grade**, **Mil-Spec**, **Restricted**,
-**Classified**, **Covert** and **★ Special**. Anything animated is ★ Special.
+Items are graded like CS2 skins: **Consumer Grade**, **Industrial Grade**,
+**Mil-Spec**, **Restricted**, **Classified**, **Covert** and **★ Special**.
+Anything animated is ★ Special.
 
 Each item is **Owned**, **For sale** (75 to 2,000 Stacks), or **Earn only**
 (a level or award unlocks it). Filter by grade and status, sort by **Rarity**,
@@ -116,14 +114,14 @@ tournament's podium shows its winners as mini player cards.
 
 Players who wear the `5stack.gg` clan tag in imported Valve or FACEIT matches
 earn 100 Stacks for every such match, plus a 2,000 Stacks bonus the first time.
-The tag is read from each imported match's demo (see
-[External Matches](/features/external-matches)), and the player gets a
-**Supporter thanks** notification. The **Wear the 5stack.gg Tag** spotlight
-walks through joining the Steam group and picking the tag in CS2.
+The tag is checked on each [imported match](/features/external-matches), and
+the player gets a **Supporter thanks** notification. The **Wear the 5stack.gg
+Tag** spotlight walks through joining the Steam group and picking the tag in
+CS2.
 
 ## Admin settings
 
-**Settings → Application → Career** (`/settings/application/career`):
+**Settings → Application → Career**:
 
 - **Career Levels**: the on switch. Turned off, the Career page says "Career
   levels are turned off on this server."

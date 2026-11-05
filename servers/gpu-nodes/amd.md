@@ -1,9 +1,8 @@
 # AMD GPU Setup
 
 A [GPU node](/servers/gpu-nodes/) with an AMD Radeon GPU needs only the `amdgpu`
-kernel driver. There is no container toolkit, containerd runtime or device plugin
-to install: the render image ships its own Mesa Vulkan and VA-API drivers, and
-render pods reach the GPU directly.
+kernel driver. Unlike [NVIDIA](/servers/gpu-nodes/nvidia), there is nothing else
+to install.
 
 ## Supported GPUs
 
@@ -40,29 +39,25 @@ You should see `Kernel driver in use: amdgpu` under your GPU, and a
   from loading. Remove it from `GRUB_CMDLINE_LINUX_DEFAULT` in `/etc/default/grub`
   and run `sudo update-grub`.
 
-Reboot after any of these. Unlike [NVIDIA](/servers/gpu-nodes/nvidia), there is nothing
-to set up in K3s and no kernel parameter to add.
+Reboot after any of these.
 
 ## 2. Run the setup script
 
 [Run `sudo 5stack run setup-gpu-nodes.sh`](/servers/gpu-nodes/#run-the-setup-script)
-on the panel server and pick **AMD**. The script labels each selected node
-`5stack-gpu-vendor=amd` and `5stack-game-streamer=true`, and removes
-`nvidia-gpu` from it, since a node carrying both stays on the NVIDIA path.
+on the panel server and pick **AMD**.
 
 ::: warning One vendor per cluster
 The setup script configures every GPU node for the vendor you pick. Selecting an
 NVIDIA node while picking AMD turns it into an AMD node with no GPU, and an
-NVIDIA node you leave unselected loses its GPU labels. Mixing NVIDIA and AMD
+NVIDIA node you leave unselected stops being a GPU node. Mixing NVIDIA and AMD
 GPU nodes in one cluster isn't supported by the script.
 :::
 
 ### Integrated GPUs
 
 After the node list, the script asks which of those nodes should render on the
-GPU integrated into their CPU (an APU), and labels them
-`5stack-gpu-integrated=true`. Tick a node only when you want it to render on
-its integrated GPU:
+GPU integrated into their CPU (an APU). Tick a node only when you want it to
+render on its integrated GPU:
 
 - **A node whose only AMD GPU is integrated** needs the tick, or it reports no GPU.
 - **A node with a discrete Radeon card** should be left unticked, even if its CPU
@@ -72,7 +67,7 @@ its integrated GPU:
 
 On an integrated GPU, the VRAM shown on the **GPU Nodes** page is only the
 memory reserved for it in the BIOS. The rest of what it uses comes from system
-RAM, which CS2 also uses. Render pods default to a 16 GiB memory limit and an
+RAM, which CS2 also uses. Renders default to a 16 GiB memory limit and an
 8 GiB request.
 
 To change that on AMD nodes, set both as whole numbers with `Mi` or `Gi`, with
@@ -82,20 +77,18 @@ the request no larger than the limit:
 sudo 5stack config set GAME_STREAMER_AMD_MEMORY_LIMIT=24Gi GAME_STREAMER_AMD_MEMORY_REQUEST=12Gi
 ```
 
-It shows the change, asks, and applies the panel again. The limit is also
-**Config → AMD GPU memory** in the [`5stack` menu](/service/command#the-menu).
-Leave both unset to keep the defaults. Any other value, including a request
-larger than the limit, stops the API at boot, and its log names the values it
-rejected.
+The limit is also **Config → AMD GPU memory** in the
+[`5stack` menu](/service/command#the-menu). Leave both unset to keep the
+defaults. Any other value, including a request larger than the limit, stops
+the panel's API from starting, and its log names the values it rejected.
 
 If something else on the machine also uses the integrated GPU heavily, viewers
 can see short stutters while it saturates the GPU.
 
 ## Video encoding
 
-AMD nodes encode with VA-API: live streams and demo playback in H.264 or
-H.265 / HEVC, and highlights and utility clips through to their final MP4. A
-request for HEVC on a GPU that can't encode it gets H.264 instead.
+AMD nodes encode with VA-API, in H.264 or H.265 / HEVC. A request for HEVC on
+a GPU that can't encode it gets H.264 instead.
 
 Under **Settings → Application → Video Encoding**:
 
@@ -106,5 +99,4 @@ Under **Settings → Application → Video Encoding**:
 - **CPU only** always encodes on the CPU in H.264.
 
 The **GPU Nodes** page shows the card by name with its VRAM, load, temperature
-and power, and the encoder each live stream and demo capture used. AMD nodes
-only read these values. They never change GPU clocks or power levels.
+and power, and the encoder each live stream and demo capture used.

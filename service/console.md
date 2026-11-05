@@ -21,22 +21,11 @@ that claimed the panel to sign in to it.
 sudo 5stack ui
 ```
 
-It prints a link to the console:
+It prints a link to the console. Over SSH, it also copies the link to your
+clipboard in terminals that allow it. Otherwise, copy the whole link, including
+the part after `#`.
 
-```
-==> 5Stack UI is ready
-    https://get.5stack.gg/ui/R4TW-81JC#k=age1…&s=…&p=panel.example.gg
-    It turns off after 30 minutes idle, or when you press End Session.
-    Press Ctrl+C to end this console.
-```
-
-On a server with a desktop, it opens the link in your browser. Over SSH, it
-also copies the link to your computer's clipboard in terminals that allow it,
-such as iTerm2, WezTerm, Ghostty and kitty. Otherwise, copy the whole line,
-including the part after `#`.
-
-Leave the command running while you use the console. `sudo 5stack ui --link`
-prints only the link.
+Leave the command running while you use the console.
 
 ### From your own computer
 
@@ -54,9 +43,8 @@ config or `user@host`:
 5stack ui my-server
 ```
 
-It runs `sudo 5stack ui --link` on the server over SSH, which may ask for your
-sudo password there, and opens the link in your browser. Ctrl+C ends the
-console.
+It may ask for your sudo password on the server, then opens the console in your
+browser. Ctrl+C ends the console.
 
 ### With `sudo 5stack`
 
@@ -67,41 +55,25 @@ its link. Press Enter to close it and open the
 ## Sign in
 
 The console asks you to sign in on 5stack.gg with the Steam account that claimed
-the panel, then brings you back. Any other account is refused, and the server
-logs who tried. If you sign out of 5stack.gg, the console signs you out too.
+the panel. Any other account is refused.
 
 A panel nobody has claimed yet can't open a console: `sudo 5stack ui` prints the
 claim link instead. Claim it, then run `sudo 5stack ui` again.
 
 ## When it ends
 
-A console closes when:
-
-- you press **End Session** in the account menu, at the bottom of the sidebar,
-- you press Ctrl+C in the terminal that opened it, or that terminal closes,
-  such as when SSH drops,
-- 30 minutes pass without you opening a page or running anything,
-- it has been open for 7 days,
-- nobody signs in within 15 minutes of the link being made,
-- someone opens a new console on the server, or runs `sudo 5stack ui --end`.
-
-If something is still running when you press Ctrl+C, the console closes once it
-finishes. After it closes, the link stops working: run `sudo 5stack ui` for a
-new one.
+A console closes when you press **End Session** in the account menu, at the
+bottom of the sidebar, when the terminal that opened it closes or you press
+Ctrl+C there, after 30 minutes idle, or when someone opens a new console on the
+server. After it closes, the link stops working: run `sudo 5stack ui` for a new
+one.
 
 ## Why it's safe
 
-- **The link's secret never reaches a server.** It sits after the `#`, which
-  browsers keep to themselves. The page uses it, with your server's key from the
-  same link, to encrypt and sign everything it sends.
-- **get.5stack.gg only passes messages along.** Your browser and your server
-  talk through it, encrypted end to end, so 5Stack can't read what you do or
-  change it on the way.
-- **Your server checks your sign-in itself.** It asks 5stack.gg directly whether
-  you're the account that claimed the panel.
+- **5Stack can't read what you do.** Your browser and your server talk through
+  get.5stack.gg encrypted end to end.
 - **There's no box for commands.** You can't type a command for the server to
-  run. Every button sends one of a fixed set of actions, and the server checks
-  each one, with its values, before it runs it.
+  run. Every button runs one of a fixed set of actions.
 - **Changes ask first.** Before anything that restarts, installs or removes
   something runs, the page says what it affects, such as **No restart** or
   **Holds new matches until live matches finish**, and waits for you to
@@ -110,9 +82,8 @@ new one.
   recovery backup, showing the recovery key, accepting a new owner and
   uninstalling aren't in the console. Maintenance shows how to do them on the
   server.
-- **Everything is logged.** The 5Stack service logs each sign-in with its IP
-  address and browser, and every page opened and everything run after it. See
-  them with `journalctl -u 5stack`.
+- **Everything is logged.** Each sign-in and everything run after it is in
+  `journalctl -u 5stack`.
 
 ## Pages
 
@@ -125,19 +96,9 @@ settings are waiting, **Update** appears at the top of every page.
 
 ### Server
 
-**Overview** shows the server at a glance. Each card opens its page:
-
-- **Panel**: the release it runs, and whether a newer one is out.
-- **5Stack service**: its version and release channel.
-- **Updates**: the update policy.
-- **Vault**: whether the panel keeps its secrets in Vault.
-- **Backups**: when the last backup ran, and whether nightly backups are on.
-- **Nodes**: how many are ready, how many are GPU nodes, and how many don't
-  have the 5Stack service yet.
-- **Add-ons**: plugins and add-ons of your own.
-- **Tailscale**: whether it's set up, and whether crash reports are on.
-- **Cloudflare**: all good, or how many things need fixing, when the panel uses
-  Cloudflare.
+**Overview** shows the server at a glance: the panel's release, the 5Stack
+service, updates, Vault, backups, nodes, add-ons, Tailscale and Cloudflare. Each
+card opens its page.
 
 **Nodes** lists every node: its role, whether it's ready, whether it has the
 5Stack service, its system and its graphics card. **Remove** uninstalls 5Stack
@@ -201,10 +162,10 @@ or move to a new server. See [Backups](/install/backups).
 
 ### Tools
 
-**Logs** reads the logs of the 5Stack service, k3s and the panel's services, up
-to 6 at once. Follow them live, filter by level or text, and download what you
-see. **Make a Bundle** makes a debug bundle with Steam IDs, IPs, emails, chat
-and player names removed, to download or send to 5Stack.
+**Logs** reads the logs of the 5Stack service, k3s and the panel's services.
+Follow them live, filter by level or text, and download what you see.
+**Make a Bundle** makes a debug bundle with player data removed, to download or
+send to 5Stack.
 
 **Maintenance** fixes certificates that aren't valid, and
 **Download Fresh Images** helps when a service won't start after an update.

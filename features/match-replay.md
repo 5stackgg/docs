@@ -5,10 +5,8 @@ install, no downloading the demo. As soon as a demo is parsed, each map can be
 replayed on the **replay stage**: the real map, rebuilt in your browser, viewed
 from straight above (2D) or in 3D.
 
-> Replay reconstructs the round from the parsed demo data. It does **not** stream
-> video, and it runs entirely in your browser, so it needs no GPU node. For a true
-> GOTV-style video feed with player POVs, see
-> [In-Browser Demo Playback](/features/demo-playback).
+> Replay runs entirely in your browser, so it needs no GPU node. For a video feed
+> with player POVs, see [In-Browser Demo Playback](/features/demo-playback).
 
 ## Opening a replay
 
@@ -26,10 +24,8 @@ landscape.
 
 - **2D** is the map seen from straight above, north up like the in-game radar,
   with the roofs cut away so you can see inside.
-- **3D** tilts the same map; anything more than a storey and a half up turns into
-  a see-through ghost, so roofs never block the action.
-- **Themed maps**: each map is drawn as a clean, flat-shaded model in its own
-  colors, with the bomb sites marked. Night versions of a map get a moonlit look.
+- **3D** tilts the same map; anything high above turns see-through, so roofs
+  never block the action.
 - **Stacked maps** such as Nuke and Vertigo show **Both** floors side by side by
   default, or one floor at a time (**Upper** / **Lower**), following the player
   you follow. `L` switches between the two.
@@ -38,19 +34,14 @@ landscape.
 
 - **Players**: an avatar (or slot number) with name, weapon, and a health ring.
   You can see who's crouching, who's blinded, and plant or defuse progress.
-- **Shots**: every bullet, from the shooter's eye along their aim. Hits land on
-  the body part they struck, misses stop where they hit the wall, and damage
-  numbers float off the victim.
-- **Smokes**: each smoke is rebuilt from CS2's own smoke simulation, so it fills
-  the room, stops at walls, pours off ledges onto the floor below, and merges
-  with other smokes the way it did in the game. HE grenades and the bomb blast
-  punch holes in it.
+- **Shots**: every bullet, with the body part it hit and the damage it did.
+- **Smokes**: each smoke fills the room the way it did in the game. HE grenades
+  and the bomb blast punch holes in it.
 - **Flashes**: players glow while blinded, for as long as they really were.
-- **Utility**: grenades fly their real bounce paths, molotovs burn as one spreading
-  pool of fire, and smokes, fires, and decoys carry countdowns.
+- **Utility**: grenades fly their real paths, and smokes, fires, and decoys carry
+  countdowns.
 - **Bomb**: the dropped or planted bomb and dropped defuse kits show through
-  walls, the planted bomb counts down, and the explosion rolls through the map's
-  corridors, using Valve's own bomb damage data on maps that ship it.
+  walls, and the planted bomb counts down.
 
 ## Playing it back
 
@@ -78,12 +69,11 @@ Drag to pan, right-drag (or middle-drag) to orbit and tilt, and scroll to zoom
 toward the cursor; on touch, one finger pans and two pinch, orbit, and tilt. Click
 a player to follow them, or press `C` to follow the fight.
 
-**BROADCAST** hands the camera to an auto-director that plans each round ahead,
-cutting between fights, executes, plants, retakes, and clutches, with a caption
-for each shot. It can slow down for big plays and speed through quiet stretches
-(both toggles), and offers an instant **Replay** after a multi-kill or a fight it
-cut away from. Move the camera yourself and it pauses; click it or press `B` to
-resume.
+**BROADCAST** hands the camera to an auto-director that cuts between fights,
+executes, plants, retakes, and clutches, with a caption for each shot. It can
+slow down for big plays and speed through quiet stretches (both toggles), and
+offers an instant **Replay** after a multi-kill or a fight it cut away from.
+Move the camera yourself and it pauses; click it or press `B` to resume.
 
 ## Analysis layers
 
@@ -137,12 +127,9 @@ collapsed. **BROADCAST**, the play-by-play, and the utility heatmap move into
 
 ## Map models and older demos
 
-The stage loads a 3D model of each map, published for each CS2 update.
-Workshop maps get one from the map-asset job, which builds them from the
-workshop downloads on your game server nodes, so a workshop map needs to have
-been played on one of your servers first. Without a model, the **3D** button is
-hidden and the replay says **The map for this replay couldn't load.**
+A workshop map needs to have been played on one of your servers before it has a
+3D model. Without a model, the **3D** button is hidden and the replay says
+**The map for this replay couldn't load.**
 
-The recorded smokes, real blind times, and hit locations come from demos parsed
-by the current parser. Older matches still replay, with smokes and flashes
-approximated, until their demo is reparsed.
+Older matches still replay, with smokes and flashes approximated, until their
+demo is reparsed.

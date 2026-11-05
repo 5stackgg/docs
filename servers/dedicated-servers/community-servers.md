@@ -20,9 +20,8 @@ preset, but none of this applies to it.
 
 ## The server page
 
-Every dedicated server has one page, at `/dedicated-servers/<id>`. Old
-`/public-servers/<id>` links land there too. What it shows depends on who is
-looking:
+Every dedicated server has one page, at `/dedicated-servers/<id>`. What it
+shows depends on who is looking:
 
 - Anyone below **Moderator**, signed in or not, gets the public view: the
   server's address and a **Join** button, its stats and its leaderboard.
@@ -50,7 +49,7 @@ and a menu with **Sanction History**, their 5Stack profile if they have one,
 and their Steam ID. When the
 Player Management plugin is reporting, the roster is marked **Live**, shows each
 player's IP, and joins and leaves show up within seconds. Without it, the roster
-is read over RCON every 30 seconds and no history is recorded. An amber warning
+refreshes every 30 seconds and no history is recorded. An amber warning
 icon beside the refresh button says why when the plugin is not reporting.
 
 **Recent Players** below it lists everyone who played in the last **24H** or
@@ -76,9 +75,8 @@ left side (a dropdown on a phone):
 |                  | **Delete Server**     | Removes it from 5Stack. A server on a game server node is shut down too                                  |
 
 **Map Rotation** and **Plugins** only appear for a server on a
-[game server node](/servers/game-server-nodes/dedicated-servers): both reach the
-server through the container 5Stack builds for it. An external server gets
-**Access** and **Player Management**.
+[game server node](/servers/game-server-nodes/dedicated-servers). An external
+server gets **Access** and **Player Management**.
 
 ### Saving
 
@@ -129,9 +127,8 @@ A community server can run a [Game Mode](/features/admin/game-modes) by picking
 it under **Custom Presets** in **General**. Custom presets need a game server
 node, because 5Stack installs the mode's plugins onto the server.
 
-The server starts on the mode's **Valve Game Mode**, and the cvars a match would
-exec are written into the Valve mode's server config instead, which CS2 execs
-on every map load. In order, last wins:
+The server starts on the mode's **Valve Game Mode**, and applies these console
+variables on every map load. In order, last wins:
 
 1. each loading plugin's console variables, from its plugin page,
 2. the game mode's console variables,

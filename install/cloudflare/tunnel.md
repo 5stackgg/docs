@@ -35,7 +35,7 @@ Replace `localhost` with the node's local Tailscale IP address. These values can
 
 ## Disable TLS verification
 
-Because 5Stack provisions its own certificates. You must disable TLS verification on each route; otherwise the tunnel cannot reach the backend.
+5Stack serves its own certificate, so you must disable TLS verification on each route; otherwise the tunnel cannot reach the panel.
 
 7. Go to **Protect & Connect → Zero Trust → Networks → Tunnels & Mesh**.
 8. Find your tunnel and click **⋯ → Configure**.
