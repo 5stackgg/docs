@@ -44,10 +44,11 @@ Level 1000. It shows the next unlock and roughly how many matches away it is.
 
 ## The Locker
 
-**Career**, in the **Cosmetics** section of the navigation, opens your card and
-the Locker. Its tabs are **Banners**, **Frames**, **Nameplates**, **Titles**,
-**Backgrounds** and **Profile stat**, then **Awards** for items that come with
-awards, and **Rewards** with **Level rewards** and your **Stacks History**.
+Click your level in the top bar, or search for **Career**, to open your card
+and the Locker. Its tabs are **Banners**, **Frames**, **Nameplates**,
+**Titles**, **Backgrounds** and **Profile stat**, then **Awards** for items
+that come with awards, and **Rewards** with **Level rewards** and your **Stacks
+History**.
 
 Items are graded like CS2 skins: **Consumer Grade**, **Industrial Grade**,
 **Mil-Spec**, **Restricted**, **Classified**, **Covert** and **★ Special**.
@@ -91,8 +92,9 @@ free; changing it costs 250 Stacks.
 ### Where your look shows
 
 Your banner, frame, nameplate and title show next to your name across the site:
-on your profile's hero card, in player rows and lists, and on the profile menu
-card.
+on your profile's hero card, in player rows and lists, and on
+[your card](/features/navigation#your-player-card) in the navigation's
+bottom-left corner.
 
 ## Other ways to earn
 
