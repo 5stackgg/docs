@@ -62,10 +62,11 @@ export default {
     return h(DefaultTheme.Layout, null, {
       "home-hero-info-before": () =>
         h(VPImage, {
-          class: "hero-mark",
+          class: "hero-logo",
           image: {
-            light: "/brand/mark-light.png",
-            dark: "/brand/mark-dark.png",
+            light: "/brand/wordmark-light.svg",
+            dark: "/brand/wordmark-dark.svg",
+            alt: "5Stack",
           },
         }),
       "home-hero-image": () => h(InstallVideo, { hero: true }),

@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "5Stack",
-  titleTemplate: ":title | 5Stack",
+  titleTemplate: "5Stack | :title",
   description:
     "Your own CS2 platform, on hardware you control. One self-hosted install runs matchmaking, tournaments, stats, replays and broadcast.",
   appearance: "dark",
@@ -19,15 +19,9 @@ export default defineConfig({
   head: [
     ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
     ["link", { rel: "icon", href: "/favicon.ico", sizes: "32x32" }],
+    ["link", { rel: "apple-touch-icon", href: "/apple-touch-icon.png" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "en" }],
-    [
-      "meta",
-      {
-        property: "og:title",
-        content: "5Stack | Your own CS2 platform, on hardware you control",
-      },
-    ],
     [
       "meta",
       {
@@ -45,6 +39,10 @@ export default defineConfig({
       },
     ],
     ["meta", { property: "og:url", content: "https://docs.5stack.gg" }],
+  ],
+
+  transformHead: ({ title }) => [
+    ["meta", { property: "og:title", content: title }],
   ],
 
   themeConfig: {

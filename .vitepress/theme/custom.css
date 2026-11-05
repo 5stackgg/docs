@@ -76,17 +76,16 @@
   border-radius: 3px;
 }
 
-.VPHome .VPHero .hero-mark {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 20px;
+.VPHome .VPHero .hero-logo {
+  width: 230px;
+  height: auto;
+  margin: 0 auto 18px;
 }
 
 @media (min-width: 960px) {
-  .VPHome .VPHero .hero-mark {
-    width: 72px;
-    height: 72px;
-    margin: 0 0 24px;
+  .VPHome .VPHero .hero-logo {
+    width: 340px;
+    margin: 0 0 26px;
   }
 }
 
@@ -195,18 +194,6 @@
 /* ---------------------------------------------------------------------------
    Home page
    --------------------------------------------------------------------------- */
-
-/* Hero name picks up the brand gradient rather than a flat accent color. */
-.VPHome .VPHero .name .clip {
-  background: linear-gradient(
-    120deg,
-    var(--vp-c-brand-1) 30%,
-    var(--vp-c-brand-3)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 /* Feature cards carry the panel's corner-bracket motif: an amber L in the
    top-left that only resolves on hover, so the grid stays calm at rest. */
