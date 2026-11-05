@@ -12,21 +12,27 @@ sign-in prompt instead: "Sign in to queue for matches, track your stats and
 join tournaments."
 
 Below it are two doors, **Play** and **Watch**. Watch carries a badge while
-matches are live. Under them, the pages sit in five sections:
+matches are live. Under them, the pages sit in six sections:
 
 | Section       | Pages                                                                                        |
 | ------------- | -------------------------------------------------------------------------------------------- |
-| **Compete**   | Tournaments, League, Events                                                                  |
+| **Compete**   | Matches, Tournaments, League, Events, Leaderboard                                            |
+| **Practice**  | [Utility](/features/utility-library), [Coach](/features/coach), Scrim Finder, Public Servers |
+| **Community** | Players, Teams, Highlights, [Bans](/features/moderation#recently-banned)                     |
 | **Cosmetics** | [Career](/features/career)                                                                   |
-| **Practice**  | [Utility](/features/utility-library), [Coach](/features/coach), Public Servers, Scrim Finder |
-| **Media**     | Matches, Highlights, [News](/features/news)                                                  |
-| **Community** | Players, Teams, Leaderboard, [Bans](/features/moderation#recently-banned)                    |
+| **Updates**   | [News](/features/news), [Changelog](/features/news#changelog)                                |
+| **Info**      | [Help & FAQ](#help-faq), How Our Stats Work                                                  |
+
+Signed-out visitors also find **Terms of Service** and **Privacy Policy** under
+**Info**, since they have no profile menu. Organizers and up see a dot on
+**Changelog** while it has days they haven't read.
 
 Click a section's heading to fold it, and click it again to open it; the
 chevron beside the name turns to show which. Folded sections stay folded in
 that browser, and a section added later starts open. Going to a page inside a
 folded section opens that section. When the nav is collapsed to its icon rail,
-sections don't fold: every page shows as an icon.
+sections don't fold: every page shows as an icon, except **Info**, which is one
+icon that opens a menu of its pages.
 
 ### Pins
 
@@ -55,9 +61,10 @@ Sections only list what's there for you:
 A [panel plugin](/plugins/) joins the navigation as an app. In its registration
 under **Settings → Application → Panel Plugins**:
 
-- **Nav group** names the section it joins: compete, practice, media or
-  community. Any other name gets a section of its own after the built-in ones,
-  and a blank one puts it in **Apps** at the end.
+- **Nav group** names the section it joins: compete, practice, community,
+  cosmetics, updates or info. An app still set to media joins community. Any
+  other name gets a section of its own after the built-in ones, and a blank
+  one puts it in **Apps** at the end.
 - **Nav order** is where it sits in that section: 1 after the first page, 2
   after the second, 0 at the end.
 - **Featured** shows it as a button right after Watch instead (see
@@ -90,8 +97,8 @@ section, reading setting names and descriptions.
 
 ## Help & FAQ
 
-**Help & FAQ** (`/faq`) is in the profile menu and behind the **Support** (?)
-button at the bottom of the navigation. It's split into parts: **Start Here**, **Running
+**Help & FAQ** (`/faq`) is in the navigation's **Info** section and in the
+profile menu. It's split into parts: **Start Here**, **Running
 a Match**, **The Veto**, **Tournaments**, **Playing Here**, **About 5Stack**,
 and **For Administrators**, which only administrators see. **Search the FAQ**
 filters it, and ⌘K searches it too.
@@ -128,8 +135,9 @@ Every panel ships a **Terms of Service** (`/terms`) and a **Privacy Policy**
 own brand, explain that it runs on 5Stack and is hosted by its operators, and
 send questions to those operators. The **Licenses** page lists 5Stack's
 [license](/license) and the third-party software it uses. All three are under
-**Legal** in the profile menu, and the Welcome page's footer links the terms,
-the privacy policy and its cookies section.
+**Legal** in the profile menu. Signed-out visitors find the terms and the
+privacy policy under **Info** in the navigation, and the Welcome page's footer
+links the terms, the privacy policy and its cookies section.
 
 ## Lists remember where you were
 
