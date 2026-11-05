@@ -51,6 +51,8 @@
   --vp-c-divider: #27272a;
   --vp-c-gutter: #27272a;
   --vp-local-search-bg: var(--vp-c-bg-elv);
+  --vp-local-search-result-bg: var(--vp-c-bg-elv);
+  --vp-local-search-result-selected-bg: var(--vp-c-bg-elv);
 
   /* On the dark surface a brighter amber reads as the accent and stays legible
      as link text. */
