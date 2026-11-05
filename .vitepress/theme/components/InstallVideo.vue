@@ -1,9 +1,13 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 
-// The host serves these as immutable, so a new render gets a new name: the 8 hex
-// are the start of the mp4's sha256. Change this one line after a re-render.
-const INSTALL_VIDEO = "https://demo-dl.5stack.gg/landing/install-6358931e";
+// The host serves these as immutable, so a new render gets new names: the 8 hex
+// are the start of each file's sha256.
+const INSTALL_VIDEO = {
+  phone: "https://demo-dl.5stack.gg/landing/install-720-a8d2711f.mp4",
+  full: "https://demo-dl.5stack.gg/landing/install-51dadfe6.mp4",
+  poster: "https://demo-dl.5stack.gg/landing/install-177c23b5.webp",
+};
 
 const props = defineProps({
   hero: { type: Boolean, default: false },
@@ -91,8 +95,7 @@ onBeforeUnmount(() => {
     <video
       v-if="hero"
       ref="video"
-      :src="`${INSTALL_VIDEO}.mp4`"
-      :poster="`${INSTALL_VIDEO}.webp`"
+      :poster="INSTALL_VIDEO.poster"
       :preload="seen && !saveData ? 'metadata' : 'none'"
       controls
       muted
@@ -100,16 +103,29 @@ onBeforeUnmount(() => {
       playsinline
       @play="onPlay"
       @pause="onPause"
-    />
+    >
+      <source
+        :src="INSTALL_VIDEO.phone"
+        media="(max-width: 767px)"
+        type="video/mp4"
+      />
+      <source :src="INSTALL_VIDEO.full" type="video/mp4" />
+    </video>
     <video
       v-else
-      :src="`${INSTALL_VIDEO}.mp4`"
-      :poster="`${INSTALL_VIDEO}.webp`"
+      :poster="INSTALL_VIDEO.poster"
       preload="none"
       controls
       muted
       playsinline
-    />
+    >
+      <source
+        :src="INSTALL_VIDEO.phone"
+        media="(max-width: 767px)"
+        type="video/mp4"
+      />
+      <source :src="INSTALL_VIDEO.full" type="video/mp4" />
+    </video>
     <div class="install-video-foot">
       <figcaption>{{ caption }}</figcaption>
       <div
