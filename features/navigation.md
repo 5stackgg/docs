@@ -1,8 +1,8 @@
 # Getting Around
 
-Everything in 5Stack is reached from the left navigation, the search box, and
-the profile menu. This page covers how they're laid out, what decides which
-links you see, and the pages visitors land on before they sign in.
+Everything in 5Stack is reached from the left navigation and the search box.
+This page covers how they're laid out, what decides which links you see, and
+the pages visitors land on before they sign in.
 
 ## The left navigation
 
@@ -12,32 +12,36 @@ sign-in prompt instead: "Sign in to queue for matches, track your stats and
 join tournaments."
 
 Below it are two doors, **Play** and **Watch**. Watch carries a badge while
-matches are live. Under them, the pages sit in six sections:
+matches are live. Under them, [News](/features/news) has a row of its own, and
+the rest of the pages sit in four sections:
 
-| Section       | Pages                                                                                        |
-| ------------- | -------------------------------------------------------------------------------------------- |
-| **Compete**   | Matches, Tournaments, League, Events, Leaderboard                                            |
-| **Practice**  | [Utility](/features/utility-library), [Coach](/features/coach), Scrim Finder, Public Servers |
-| **Community** | Players, Teams, Highlights, [Bans](/features/moderation#recently-banned)                     |
-| **Cosmetics** | [Career](/features/career)                                                                   |
-| **Updates**   | [News](/features/news), [Changelog](/features/news#changelog)                                |
-| **Info**      | [Help & FAQ](#help-faq), How Our Stats Work                                                  |
+| Section       | Pages                                                                                                                          |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Compete**   | Matches, Tournaments, League, Events, Leaderboard                                                                              |
+| **Practice**  | [Utility](/features/utility-library), [Coach](/features/coach), Scrim Finder, Public Servers                                   |
+| **Community** | Players, Teams, Highlights, [Bans](/features/moderation#recently-banned)                                                       |
+| **Info**      | [Help & FAQ](#help-faq), How Our Stats Work, [Changelog](/features/news#changelog), Terms of Service, Privacy Policy, Licenses |
 
-Signed-out visitors also find **Terms of Service** and **Privacy Policy** under
-**Info**, since they have no profile menu. Organizers and up see a dot on
-**Changelog** while it has days they haven't read.
+**Info** lists the same pages whether you're signed in or not. Organizers and
+up see a dot on **Changelog** while it has days they haven't read, and on the
+**Info** heading while Info is folded.
 
 Click a section's heading to fold it, and click it again to open it; the
-chevron beside the name turns to show which. Folded sections stay folded in
-that browser, and a section added later starts open. Going to a page inside a
-folded section opens that section. When the nav is collapsed to its icon rail,
-sections don't fold: every page shows as an icon, except **Info**, which is one
-icon that opens a menu of its pages.
+chevron beside the name turns to show which. **Info** starts folded and the
+others start open. What you fold or open stays that way in that browser, and a
+section added later starts open. Going to a page inside a folded section opens
+it for that visit only: following a link to the Changelog opens **Info**, and
+it's folded again next time.
+
+When the nav is collapsed to its icon rail, sections don't fold: every page
+shows as an icon, **News** included, except **Info**, which is one icon that
+opens a menu of its pages. The Changelog dot shows on that icon.
 
 ### Pins
 
-Star any page (**Pin {page}**) to keep it in **Pinned**, above the sections,
-and drag pins to reorder them. Admin pages can be pinned too; they gather under
+Signed in, star any page (**Pin {page}**) to keep it in **Pinned**, between
+News and the sections, and drag pins to reorder them. **Pinned** only shows
+once something is pinned. Admin pages can be pinned too; they gather under
 their own label inside **Pinned**. Pins are saved per browser.
 
 ### What shows up
@@ -53,17 +57,20 @@ Sections only list what's there for you:
   exists (administrators always see it).
 - **Public Servers** shows once a server is listed for players; moderators
   always see it.
-- **Career** needs you signed in and Career switched on, **Coach** is on
-  5stack.gg, and **Scrim Finder** shows when it's enabled.
+- **Coach** is on 5stack.gg, and **Scrim Finder** shows when it's enabled.
+
+[Career](/features/career) isn't in the navigation: open it from your level in
+the top bar, or from search.
 
 ### Apps from plugins
 
 A [panel plugin](/plugins/) joins the navigation as an app. In its registration
 under **Settings → Application → Panel Plugins**:
 
-- **Nav group** names the section it joins: compete, practice, community,
-  cosmetics, updates or info. Any other name gets a section of its own after
-  the built-in ones, and a blank one puts it in **Apps** at the end.
+- **Nav group** names the section it joins: compete, practice, community or
+  info. An app set to media or cosmetics joins **Community**, and one set to
+  updates joins **Info**. Any other name gets a section of its own after the
+  built-in ones, and a blank one puts it in **Apps** at the end.
 - **Nav order** is where it sits in that section: 1 after the first page, 2
   after the second, 0 at the end.
 - **Featured** shows it as a button right after Watch instead (see
@@ -84,7 +91,9 @@ join the Play list as one **Administration** section instead.
 **Search**, or ⌘K / Ctrl+K anywhere, opens one box to "Search players, pages,
 settings and help". Results come in groups:
 
-- **Pages**: every page in the navigation, admin pages included.
+- **Pages**: every page in the navigation, admin pages included, plus Career.
+  Older names still work: "legal" finds the legal pages, "updates" finds News
+  and Changelog, and "cosmetics" finds Career.
 - **Account Settings** and **Application Settings**: individual settings.
   Picking one opens its page scrolled to that setting.
 - **Help**: answers from [Help & FAQ](#help-faq), opened in place.
@@ -96,11 +105,10 @@ section, reading setting names and descriptions.
 
 ## Help & FAQ
 
-**Help & FAQ** (`/faq`) is in the navigation's **Info** section and in the
-profile menu. It's split into parts: **Start Here**, **Running
-a Match**, **The Veto**, **Tournaments**, **Playing Here**, **About 5Stack**,
-and **For Administrators**, which only administrators see. **Search the FAQ**
-filters it, and ⌘K searches it too.
+**Help & FAQ** (`/faq`) is in the navigation's **Info** section. It's split
+into parts: **Start Here**, **Running a Match**, **The Veto**, **Tournaments**,
+**Playing Here**, **About 5Stack**, and **For Administrators**, which only
+administrators see. **Search the FAQ** filters it, and ⌘K searches it too.
 
 Two pages let you try things without touching a real game:
 
@@ -110,11 +118,15 @@ Two pages let you try things without touching a real game:
 - **Demo Lobby** (`/faq/demo-draft`): a captains draft played through step by
   step, from the picks and check-in to the veto and the server starting.
 
-## The profile menu
+## Your player card
 
-Your avatar at the bottom of the navigation opens the profile menu. It starts
-with your player card, then **My Account** (your settings), **Help & FAQ**, and
-[Changelog](/features/news#changelog), then the **Legal** pages and **Logout**.
+Signed in, your player card fills the navigation's bottom-left corner, wearing
+your [look](/features/career#the-locker): banner, frame, nameplate, title and
+profile stat, with your level, flag and Elo, and your
+[pending imports](/features/external-matches#tracking-imports) while you have
+any. Collapsed to the icon rail, it's just your avatar and frame.
+
+Click it to open **View Profile**, **My Settings** and **Logout**.
 
 ## Before signing in
 
@@ -134,9 +146,9 @@ Every panel ships a **Terms of Service** (`/terms`) and a **Privacy Policy**
 own brand, explain that it runs on 5Stack and is hosted by its operators, and
 send questions to those operators. The **Licenses** page lists 5Stack's
 [license](/license) and the third-party software it uses. All three are under
-**Legal** in the profile menu. Signed-out visitors find the terms and the
-privacy policy under **Info** in the navigation, and the Welcome page's footer
-links the terms, the privacy policy and its cookies section.
+**Info** in the navigation, for signed-in players and visitors alike, and the
+Welcome page's footer links the terms, the privacy policy and its cookies
+section.
 
 ## Lists remember where you were
 
