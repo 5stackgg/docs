@@ -16,8 +16,8 @@ the pods log in with. This page covers what is specific to streaming.
 ## Playback domain
 
 The playback domain is where viewers' browsers load streams from. It defaults to
-`hls.<your web domain>`. To change it, re-run `./setup-gpu-nodes.sh` from your
-panel install directory; it asks for the domain on every run, with the current
+`hls.<your web domain>`. To change it, run `sudo 5stack run setup-gpu-nodes.sh`
+on the panel server again; it asks for the domain on every run, with the current
 value as the default.
 
 ## Networking

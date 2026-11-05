@@ -2,7 +2,7 @@
 
 Sometimes you may need to customize the K8s YAML files, for instance if you want to add the cs2 ranks plugin. You may need to add mysql.
 
-In the `<INSTALL_DIR>` of your panel, create a new folder called `custom/mysql`.
+On the panel server, create a new folder called `/etc/5stack/custom/mysql`. Your custom overlays live in `/etc/5stack/custom`, so they survive every update. `service.sh` copied a git-checkout panel's `custom/` folders there, but until that panel installs its first update, `5stack run` still uses the checkout and its `custom/` folder.
 
 ::: code-group
 
@@ -116,11 +116,13 @@ spec:
 
 :::
 
-Once you have created the files. You can apply the changes using the following command:
+Once you have created the files, apply them with:
 
 ```bash
-./custom.sh mysql
+sudo 5stack run custom.sh mysql
 ```
+
+Without the folder's name, the script asks which overlay to deploy. You can also pick **Custom overlays** in the [`5stack` menu](/service/command#the-menu).
 
 ::: info
 To allow the plugin to connect to the database. Use the service name `mysql`.

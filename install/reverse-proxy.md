@@ -4,17 +4,15 @@ A reverse proxy sits between your users and your backend services, forwarding re
 
 ## Toggling the reverse proxy setting
 
-The installer asks whether you're using a reverse proxy (Nginx or a Cloudflare proxied DNS record) and stores the answer in `INSTALL_DIR/.5stack-env.config`.
+The [setup page](/install/#answer-on-the-setup-page) asks how visitors reach the server. Pick the Cloudflare proxy or Tunnel, or your own reverse proxy (Nginx, Caddy), if one is in front of it.
 
-To change it later, edit that file and set:
+To change it later, run this on the panel server, or pick **Config → Reverse proxy** in the [`5stack` menu](/service/command#the-menu):
 
-```env
-REVERSE_PROXY=false
+```bash
+sudo 5stack config set REVERSE_PROXY=true
 ```
 
-Use `true` if you front the panel with Nginx or Cloudflare's orange-cloud DNS, `false` if traffic reaches the panel directly.
-
-After saving, re-run `./update.sh` so the new value is applied.
+Use `true` if you front the panel with Nginx or Cloudflare's orange-cloud DNS, `false` if traffic reaches the panel directly. It shows the change, asks, and applies the panel again.
 
 ## Forward to HTTPS on 443
 

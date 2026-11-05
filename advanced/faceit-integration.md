@@ -10,15 +10,15 @@
 
 2. Add the key to your panel secrets
 
-   Open `INSTALL_DIR/overlays/local-secrets/faceit-secrets.env` and set:
+   On the panel server, run this and paste the key when it asks. It is typed
+   hidden:
 
-   ```env
-   FACEIT_API_KEY=<your_faceit_api_key>
+   ```bash
+   sudo 5stack config set FACEIT_API_KEY=
    ```
 
-3. Update the panel
-
-   See the [Update Guide](/updating) for instructions on applying the new secret.
+   It shows the change, asks, and applies the panel again. On a
+   [Vault](/advanced/vault) install, set it in Vault instead.
 
 ## How it works
 
@@ -38,7 +38,7 @@ Downloading the demo is the one piece that needs more than the standard key. The
 
 ## Troubleshooting
 
-- **No chip appears on any player.** Double-check that `FACEIT_API_KEY` is set in `INSTALL_DIR/overlays/local-secrets/faceit-secrets.env` and that the panel has been updated. The API logs `FACEIT_API_KEY not configured` on each refresh attempt when the key is missing.
+- **No chip appears on any player.** Run `5stack config get FACEIT_API_KEY` on the panel server: it shows `••••••••` when the key is set and `(empty)` or `(not set)` when it isn't. The API logs `FACEIT_API_KEY not configured` on each refresh attempt when the key is missing.
 - **Chip appears for some players but not others on a player page.** That's expected, only players who have linked their Steam account to Faceit will have a CS2 profile to fetch.
 - **Scoreboard ranks are missing for opponents on an imported match.** Re-import the match. Every player's Faceit rank is fetched at import time, so opponents who have never opened 5Stack get filled in.
 - **Matches never import automatically.** Confirm `FACEIT_API_KEY` is set and that the player has linked their Steam match history; without the key, only manual demo upload works.
