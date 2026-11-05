@@ -124,16 +124,17 @@ lets them. The notification is **Community polls** in notification settings.
 
 ## Changelog
 
-**Changelog**, in the profile menu (`/changelog`), is 5Stack's own daily feed
-of what changed, grouped by section, with each change tagged **New**,
-**Improved** or **Fixed**. Anyone can read it.
+**Changelog**, under **Info** in the navigation (`/changelog`), is 5Stack's own
+daily feed of what changed, grouped by section, with each change tagged
+**New**, **Improved** or **Fixed**. Anyone can read it.
 
 - Search every day since the changelog began, and filter by **Type**,
   **Section** and **Months**.
 - Days you haven't seen are marked, under **New since your last visit**, until
   you **Mark as read**.
-- Match Organizers and above get a dot on the profile menu while there are
-  days they haven't seen.
+- Match Organizers and above get a dot on **Changelog** in the navigation
+  while there are days they haven't seen. While **Info** is folded, or the nav
+  is collapsed to icons, the dot shows on **Info** instead.
 
 Each day's changes appear the next day, written in English.
 

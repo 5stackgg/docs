@@ -47,7 +47,7 @@ panel serves the web app's license at `/license.txt`.
   them to others as a hosted or managed service.
 - Remove the **Powered by 5Stack** credit, with its link to
   [5stack.gg](https://5stack.gg), from the panel's **Licenses** page, which
-  is linked from the sign-in page and the profile menu.
+  is linked under **Info** in the navigation.
 - Present a changed version of the open-source parts as the official
   5Stack. No license gives rights to the 5Stack name or logo beyond the
   credit.

@@ -200,5 +200,5 @@ as push notifications, by flashing the browser tab, and with sounds. See
 
 ## Getting around
 
-The navigation, search, the profile menu and Help & FAQ are covered in
+The navigation, search, your player card and Help & FAQ are covered in
 [Getting Around](/features/navigation).
