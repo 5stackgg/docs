@@ -22,11 +22,18 @@ the panel's [People](/service/console-people) list can sign in to it.
    you claimed or were added to, with your role on each.
 2. Press **Open Console** next to the panel. It may ask you to sign in with
    Steam again first.
-3. The console opens on get.5stack.gg and shows its progress: **Opened from
-   5stack.gg**, then **Waking** the panel, then **Connecting**. It's usually
-   ready within about 15 seconds. A panel that get.5stack.gg can't reach
-   directly checks in every 5 minutes, so it can take up to that long. A panel
-   that hasn't checked in for over an hour shows **Offline**.
+3. The console opens in its own window on get.5stack.gg, so your 5stack.gg tab
+   stays where it was. It shows its progress: **Opened from 5stack.gg**, then
+   **Waking** the panel, then **Connecting**. It's usually ready within about
+   15 seconds. A panel that get.5stack.gg can't reach directly checks in every
+   5 minutes, so it can take up to that long. A panel that hasn't checked in
+   for over an hour shows **Offline**.
+
+![My Settings → Panels on 5stack.gg](./console-panels.webp){.screenshot}
+
+If your browser blocks the new window, the console opens in the same tab
+instead. Pressing **Open Console** again while that panel's console window is
+still open brings the window to the front.
 
 Pressing **Open Console** on 5stack.gg is the approval. It works once, for that
 panel and that request, within a few minutes, and only for someone on the
@@ -111,7 +118,8 @@ claim link instead. Claim it, then run `sudo 5stack ui` again.
 ## When it ends
 
 A console closes when you press **End Session** in the account menu, at the
-bottom of the sidebar, which takes you back to 5stack.gg →
+bottom of the sidebar. A console opened from 5stack.gg closes its window; one
+that opened in the same tab takes you back to 5stack.gg →
 [My Settings → Panels](https://5stack.gg/settings/panels). It also closes after 30
 minutes idle, when an Admin removes you from People, or when root runs
 `sudo 5stack ui --end`.
