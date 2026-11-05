@@ -18,10 +18,10 @@ The offline match tool asks for the node's offline password. Every node has its 
   sudo cat /var/lib/rancher/k3s/agent/pod-manifests/.offline-password
   ```
 
-A sign-in lasts 12 hours. After 10 wrong passwords from one address in 5 minutes, that address has to wait before it can try again.
+A sign-in lasts 12 hours. After 10 wrong passwords in 5 minutes from one address (an IPv4 address, or an IPv6 /64 network), that address has to wait before it can try again.
 
 :::info
-To use a password of your own, set `OFFLINE_MATCHES_PASSWORD` on the node's connector. The panel's **Copy Password** always shows the generated password, so read the file above to see the one a node actually uses.
+To use a password of your own, set `OFFLINE_MATCHES_PASSWORD` in the environment of the game server node connector DaemonSet. It applies to every node that DaemonSet runs on, so they then share one password instead of each having their own. The panel's **Copy Password** always shows the generated password, so read the file above to see the one a node actually uses.
 :::
 
 ## Match types
