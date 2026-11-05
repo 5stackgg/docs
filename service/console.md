@@ -18,7 +18,7 @@ the panel's [People](/service/console-people) list can sign in to it.
 
 ### From 5stack.gg
 
-1. On 5stack.gg, open **My Panels** from your user menu. It lists every panel
+1. On 5stack.gg, go to **My Settings → Panels**. It lists every panel
    you claimed or were added to, with your role on each.
 2. Press **Open Console** next to the panel. It may ask you to sign in with
    Steam again first.
@@ -40,7 +40,7 @@ plugin) while you're signed in, or from a compromised get.5stack.gg page once
 the console is open, since the console runs there. If the approval doesn't
 check out, the console says so and offers **Try Again**.
 
-`get.5stack.gg/panels` now takes you to My Panels on 5stack.gg. A panel on an
+`get.5stack.gg/panels` now takes you to 5stack.gg → My Settings → Panels. A panel on an
 older 5Stack service opens the console without the approval. `sudo 5stack ui`,
 and a second tab joining a console that's already open, don't need the
 approval.
@@ -111,8 +111,8 @@ claim link instead. Claim it, then run `sudo 5stack ui` again.
 ## When it ends
 
 A console closes when you press **End Session** in the account menu, at the
-bottom of the sidebar, which takes you back to My Panels on
-[5stack.gg](https://5stack.gg/panels). It also closes after 30
+bottom of the sidebar, which takes you back to 5stack.gg →
+[My Settings → Panels](https://5stack.gg/settings/panels). It also closes after 30
 minutes idle, when an Admin removes you from People, or when root runs
 `sudo 5stack ui --end`.
 
