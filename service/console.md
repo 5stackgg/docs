@@ -13,39 +13,41 @@ panel's own admin settings stay in your panel.
 
 ## Open it
 
-Open it from get.5stack.gg, or from the panel server. Either way, only people on
+Open it from 5stack.gg, or from the panel server. Either way, only people on
 the panel's [People](/service/console-people) list can sign in to it.
 
-### From get.5stack.gg
+### From 5stack.gg
 
-1. Sign in at [get.5stack.gg/panels](https://get.5stack.gg/panels) with Steam.
-   It lists every panel you claimed or were added to, with your role on each.
-2. Press **Open Console** next to the panel.
-3. Approve it on 5stack.gg. You go to a page there that names the panel, its
-   domain, its install id and the Steam account you're signed in with. It may ask you to sign in
-   with Steam again first. Check the details, then press **Open Console** there.
-   **Cancel** takes you back without opening anything.
-4. Back on get.5stack.gg/panels, the panel wakes up and the console opens,
-   usually within about 15 seconds. A panel that get.5stack.gg can't reach
+1. On 5stack.gg, open **My Panels** from your user menu. It lists every panel
+   you claimed or were added to, with your role on each.
+2. Press **Open Console** next to the panel. It may ask you to sign in with
+   Steam again first.
+3. The console opens on get.5stack.gg and shows its progress: **Opened from
+   5stack.gg**, then **Waking** the panel, then **Connecting**. It's usually
+   ready within about 15 seconds. A panel that get.5stack.gg can't reach
    directly checks in every 5 minutes, so it can take up to that long. A panel
    that hasn't checked in for over an hour shows **Offline**.
 
-The approval works once, for that panel and that request, within a few minutes,
-and only for someone on the panel's list. Your server checks it itself before it
-opens anything, so neither get.5stack.gg's pages nor its servers can open a
-console you didn't approve. It doesn't protect you if 5stack.gg itself is
-compromised, from a script running on 5stack.gg (such as a plugin) while you're
-signed in, or from a compromised get.5stack.gg page once you've approved, since
-the console runs there. If the approval doesn't check out, the page says
-**Approval didn't check out; press Open Console again**.
+Pressing **Open Console** on 5stack.gg is the approval. It works once, for that
+panel and that request, within a few minutes, and only for someone on the
+panel's list. Your server checks it itself before it opens anything, so neither
+get.5stack.gg's pages nor its servers can open a console you didn't approve.
+The key that unlocks your console travels once, in the part of the console's
+address after `#`, which is removed as the page loads; it's only useful for a
+few minutes, together with your 5stack.gg sign-in. This doesn't protect you if
+5stack.gg itself is compromised, from a script running on 5stack.gg (such as a
+plugin) while you're signed in, or from a compromised get.5stack.gg page once
+the console is open, since the console runs there. If the approval doesn't
+check out, the console says so and offers **Try Again**.
 
-A panel on an older 5Stack service opens the console without the approval in
-step 3. `sudo 5stack ui`, and a second tab joining a console that's already
-open, don't need the approval.
+`get.5stack.gg/panels` now takes you to My Panels on 5stack.gg. A panel on an
+older 5Stack service opens the console without the approval. `sudo 5stack ui`,
+and a second tab joining a console that's already open, don't need the
+approval.
 
 The panel checks you against its own People list before it opens anything, so
 get.5stack.gg can't add anyone. A console opened this way is yours alone, and
-opening another one from get.5stack.gg replaces it.
+opening another one from 5stack.gg replaces it.
 
 This works while **Allow opening from get.5stack.gg** is on. It's on by
 default. An Admin turns it off on **Config → People**, or root runs
@@ -109,8 +111,8 @@ claim link instead. Claim it, then run `sudo 5stack ui` again.
 ## When it ends
 
 A console closes when you press **End Session** in the account menu, at the
-bottom of the sidebar, which takes you back to
-[get.5stack.gg/panels](https://get.5stack.gg/panels). It also closes after 30
+bottom of the sidebar, which takes you back to My Panels on
+[5stack.gg](https://5stack.gg/panels). It also closes after 30
 minutes idle, when an Admin removes you from People, or when root runs
 `sudo 5stack ui --end`.
 

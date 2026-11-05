@@ -27,8 +27,8 @@ Picking Admin shows a red warning:
 Making someone an Admin later asks first, with the same warning.
 
 Once added, they open the console from
-[get.5stack.gg/panels](/service/console#from-get-5stack-gg), or sign in to a
-link from `sudo 5stack ui`.
+[My Panels on 5stack.gg](/service/console#from-5stack-gg), or sign in to a link
+from `sudo 5stack ui`.
 
 ## Change or remove someone
 
@@ -53,7 +53,7 @@ Read only people see every page, but they can't:
 
 The **Allow opening from get.5stack.gg** switch on this page decides whether
 people on the list can open the console from
-[get.5stack.gg/panels](/service/console#from-get-5stack-gg). It's on by default.
+[My Panels on 5stack.gg](/service/console#from-5stack-gg). It's on by default.
 Turning it off ends every console opened from there, and `sudo 5stack ui` on
 the server still works.
 
