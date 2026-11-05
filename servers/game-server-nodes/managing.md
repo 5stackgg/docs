@@ -45,6 +45,7 @@ when there's a fix to run, the command on one line with a copy button.
 | **The NVIDIA driver isn't loaded**                         | [NVIDIA](/servers/gpu-nodes/nvidia)                                                                               |
 | **New GPU pods fail until it reboots**                     | An NVIDIA driver update is installed but the old one is still loaded                                              |
 | **NVIDIA modeset is off**                                  | [NVIDIA](/servers/gpu-nodes/nvidia#modeset)                                                                       |
+| **Unused graphics card: {card}**                           | Set it up as a [GPU node](/servers/gpu-nodes/) for streams, demos and highlights, or acknowledge it               |
 
 The NVIDIA driver and Secure Boot warnings mark the node as broken, since its
 GPU can't take work until they're fixed; the rest are warnings.
