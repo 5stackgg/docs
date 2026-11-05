@@ -34,7 +34,7 @@ The panel lists its game server nodes and asks what to remove:
 
 Before it deletes anything, it offers a final encrypted backup, saved as
 `/root/5stack-final-backup-<date>.age`. Restoring it needs the
-[recovery key](/service/backups#the-recovery-key). If the backup fails, nothing
+[recovery key](/install/backups#the-recovery-key). If the backup fails, nothing
 is removed.
 
 To answer without questions, add `--yes` with `--everything` or

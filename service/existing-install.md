@@ -70,7 +70,7 @@ look up node codes.
 
 Save the recovery key together with the install id somewhere safe. The key never
 leaves your server, so 5Stack doesn't have it. `sudo 5stack recovery-key show`
-prints it again on this server. See [Backups and Recovery](/service/backups).
+prints it again on this server. See [Backups](/install/backups#the-recovery-key).
 
 ## What changes in the panel
 

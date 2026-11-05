@@ -11,8 +11,8 @@ run:
   [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node).
 - **Move** the panel to a new server, game server nodes included. See
   [Move to a New Server](/service/new-server).
-- **Back up** the panel into one encrypted file. See
-  [Backups and Recovery](/service/backups).
+- **Back up** the panel into one encrypted recovery backup. See
+  [Backups](/install/backups).
 - **Change settings** with `5stack config`, and run the panel's scripts with
   `5stack run`, with no git checkout. See [Command Reference](/service/cli).
 
