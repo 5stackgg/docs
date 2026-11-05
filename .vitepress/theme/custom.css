@@ -76,12 +76,27 @@
   border-radius: 3px;
 }
 
-.VPHome .VPHero .VPImage {
-  border-radius: 15px;
+.VPHome .VPHero .hero-mark {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+}
+
+@media (min-width: 960px) {
+  .VPHome .VPHero .hero-mark {
+    width: 72px;
+    height: 72px;
+    margin: 0 0 24px;
+  }
 }
 
 .VPNavBarTitle .logo {
   height: 22px;
+}
+
+.vp-doc img.screenshot {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
 }
 
 /* From 768px until the title moves into the sidebar at 960px it shares a row
@@ -110,14 +125,32 @@
   letter-spacing: -0.01em;
 }
 
-/* VitePress lays the hero out as flex, which lets the logo sprawl and leaves a
-   dead gap on its right. Re-lay it as a real 2:1 grid: copy on the left, logo
-   centered in a fixed right cell. */
+/* The hero's right cell holds the install video instead of an image. VitePress
+   sizes that cell for a square logo, and on phones puts it above the copy, so
+   give the video the full width and put it under the copy. */
+.VPHome .VPHero .image-bg {
+  display: none;
+}
+
+@media (max-width: 959px) {
+  .VPHome .VPHero .image {
+    order: 3;
+    margin: 40px 0 0;
+  }
+
+  .VPHome .VPHero .image-container {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* VitePress lays the hero out as flex, which leaves the right cell a fixed
+   third. Re-lay it as a grid: copy on the left, video on the right. */
 @media (min-width: 960px) {
   .VPHome .VPHero .container {
     display: grid;
-    grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
-    gap: 32px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 48px;
     align-items: center;
   }
 
@@ -150,16 +183,12 @@
     min-height: 0;
   }
 
-  /* Center the logo in its cell, cap its size so the copy column dominates, and
-     drop VitePress's -32px horizontal nudge (keeping the vertical lift). */
   .VPHome .VPHero .image-container {
-    margin: 0 auto;
-    transform: translateY(-24px);
-  }
-
-  .VPHome .VPHero .image-src {
-    max-width: 300px;
-    max-height: 300px;
+    display: block;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    transform: none;
   }
 }
 

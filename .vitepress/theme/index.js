@@ -1,8 +1,9 @@
 import { h, watch, nextTick } from "vue";
 import { useRoute } from "vitepress";
-import DefaultTheme from "vitepress/theme";
+import DefaultTheme, { VPImage } from "vitepress/theme";
 import HomeIntro from "./HomeIntro.vue";
 import ArchitectureDiagram from "./components/ArchitectureDiagram.vue";
+import InstallVideo from "./components/InstallVideo.vue";
 import "./custom.css";
 
 const canAnimate = () =>
@@ -14,6 +15,7 @@ export default {
 
   enhanceApp({ app }) {
     app.component("ArchitectureDiagram", ArchitectureDiagram);
+    app.component("InstallVideo", InstallVideo);
   },
 
   setup() {
@@ -58,6 +60,15 @@ export default {
   // to come in through a slot to sit above the cards.
   Layout() {
     return h(DefaultTheme.Layout, null, {
+      "home-hero-info-before": () =>
+        h(VPImage, {
+          class: "hero-mark",
+          image: {
+            light: "/brand/mark-light.png",
+            dark: "/brand/mark-dark.png",
+          },
+        }),
+      "home-hero-image": () => h(InstallVideo, { hero: true }),
       "home-features-before": () => h(HomeIntro),
     });
   },

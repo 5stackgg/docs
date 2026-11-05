@@ -7,6 +7,9 @@ run:
 - **Install** the panel with one command, and answer the setup questions on a
   web page or in the terminal. See [Install](/install/).
 - **Update** from the panel, when you choose. See [Updating](/updating).
+- **Manage the server from your browser**: updates, settings, add-ons, GPU
+  nodes, backups and logs, all with buttons. See
+  [Browser Console](/service/console).
 - **Add game server nodes** by typing a short code the node shows. See
   [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node).
 - **Move** the panel to a new server, game server nodes included. See
@@ -16,7 +19,8 @@ run:
 - **Change settings** with `5stack config`, and run the panel's scripts with
   `5stack run`, with no git checkout. See [Command Reference](/service/cli).
 
-On the server, `5stack` on its own opens a menu of all of this. See
+On the server, `sudo 5stack ui` opens the browser console, and `5stack` on its
+own opens a menu of all of this in the terminal. See
 [The 5stack Command](/service/command).
 
 <ArchitectureDiagram flows="running,install,update,join,migrate" />

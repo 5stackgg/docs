@@ -27,6 +27,10 @@ The full-screen menu needs a terminal of at least 80×20. In a smaller one, or
 with `5stack menu --plain`, you get a numbered menu instead. On a game server
 node the menu shows Status, Diagnostics, Leave the panel and Uninstall.
 
+As root on a claimed panel, `sudo 5stack` opens the
+[browser console](/service/console) first and prints its link. Press Enter to
+close it and open the menu, or Ctrl+C to close it.
+
 Outside a terminal, such as in a script, `5stack` on its own prints the help
 instead.
 

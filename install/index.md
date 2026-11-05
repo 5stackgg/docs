@@ -5,6 +5,8 @@ service, which installs k3s and the panel and keeps them updated from then on.
 You answer the setup questions on a page in your browser, or in the terminal if
 you prefer, and the server checks each answer as you give it.
 
+<InstallVideo />
+
 ::: danger
 Please ensure you have met the [Requirements](/install/requirements) before you begin.
 :::
