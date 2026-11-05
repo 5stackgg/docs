@@ -157,6 +157,16 @@ work as usual. You can also pick each one in the menu.
 
 See [Browser Console](/service/console).
 
+| Command                                               | What it does                                                                              |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `sudo 5stack people`, `sudo 5stack people list`       | Lists who can use the console, their roles, and whether opening from get.5stack.gg is on. |
+| `sudo 5stack people add <steamid64> admin\|readonly`  | Adds someone as an Admin or Read only.                                                    |
+| `sudo 5stack people role <steamid64> admin\|readonly` | Changes someone's role.                                                                   |
+| `sudo 5stack people remove <steamid64>`               | Removes someone and ends their open console sessions.                                     |
+| `sudo 5stack people web on\|off`                      | Turns **Allow opening from get.5stack.gg** on or off.                                     |
+
+See [Console People](/service/console-people).
+
 ## Game server nodes
 
 | Command                           | What it does                                                                                                                              |

@@ -1,9 +1,10 @@
 # Browser Console
 
-The browser console is a page on `get.5stack.gg` where you manage your panel's
-server from your browser. Its tab says **5Stack Connector**. You update the
-panel, change its settings, add plugins, set up GPU nodes, look after backups
-and read logs, all with buttons, and without keeping an SSH session open.
+The browser console is a page on `get.5stack.gg` where you, and the people you
+add, manage your panel's server from your browser. Its tab says
+**5Stack Connector**. You update the panel, change its settings, add plugins,
+set up GPU nodes, look after backups and read logs, all with buttons, and
+without keeping an SSH session open.
 
 ![The console's Overview page](./console-overview.webp){.screenshot}
 
@@ -12,8 +13,48 @@ panel's own admin settings stay in your panel.
 
 ## Open it
 
-You need root on the panel server to open the console, and the Steam account
-that claimed the panel to sign in to it.
+Open it from get.5stack.gg, or from the panel server. Either way, only people on
+the panel's [People](/service/console-people) list can sign in to it.
+
+### From get.5stack.gg
+
+1. Sign in at [get.5stack.gg/panels](https://get.5stack.gg/panels) with Steam.
+   It lists every panel you claimed or were added to, with your role on each.
+2. Press **Open Console** next to the panel.
+3. Approve it on 5stack.gg. You go to a page there that names the panel, its
+   domain, its install id and the Steam account you're signed in with. It may ask you to sign in
+   with Steam again first. Check the details, then press **Open Console** there.
+   **Cancel** takes you back without opening anything.
+4. Back on get.5stack.gg/panels, the panel wakes up and the console opens,
+   usually within about 15 seconds. A panel that get.5stack.gg can't reach
+   directly checks in every 5 minutes, so it can take up to that long. A panel
+   that hasn't checked in for over an hour shows **Offline**.
+
+The approval works once, for that panel and that request, within a few minutes,
+and only for someone on the panel's list. Your server checks it itself before it
+opens anything, so neither get.5stack.gg's pages nor its servers can open a
+console you didn't approve. It doesn't protect you if 5stack.gg itself is
+compromised, from a script running on 5stack.gg (such as a plugin) while you're
+signed in, or from a compromised get.5stack.gg page once you've approved, since
+the console runs there. If the approval doesn't check out, the page says
+**Approval didn't check out; press Open Console again**.
+
+A panel on an older 5Stack service opens the console without the approval in
+step 3. `sudo 5stack ui`, and a second tab joining a console that's already
+open, don't need the approval.
+
+The panel checks you against its own People list before it opens anything, so
+get.5stack.gg can't add anyone. A console opened this way is yours alone, and
+opening another one from get.5stack.gg replaces it.
+
+This works while **Allow opening from get.5stack.gg** is on. It's on by
+default. An Admin turns it off on **Config → People**, or root runs
+`sudo 5stack people web off` on the panel server. The console warns:
+
+> While this is on, get.5stack.gg can open a console for anyone on this list,
+> so turn it off if you don't trust 5Stack's cloud with that.
+
+With it off, someone on the server opens the console with `sudo 5stack ui`.
 
 ### On the panel server
 
@@ -26,6 +67,9 @@ clipboard in terminals that allow it. Otherwise, copy the whole link, including
 the part after `#`.
 
 Leave the command running while you use the console.
+
+Console links look like `https://get.5stack.gg/panels/<code>`. Older
+`/ui/<code>` links still work.
 
 ### From your own computer
 
@@ -52,41 +96,12 @@ On a claimed panel, `sudo 5stack` on its own opens the console too, and prints
 its link. Press Enter to close it and open the
 [terminal menu](/service/command#the-menu) instead, or Ctrl+C to close it.
 
-### Opening from get.5stack.gg
-
-People an Admin added on **Config → People** can open the console from
-[get.5stack.gg/panels](https://get.5stack.gg/panels) without anyone on the
-server, unless an Admin turned off **Allow opening from get.5stack.gg** there.
-While this is on, get.5stack.gg can open a console for anyone on this list, so
-leave it on only if you trust 5Stack's cloud with that.
-
-On a panel whose 5Stack service is up to date, each console opened this way
-needs your approval on 5stack.gg first:
-
-1. Sign in at get.5stack.gg/panels and press **Open Console** next to the panel.
-2. You go to a page on 5stack.gg that names the panel, its domain, its install
-   id and the Steam account you're signed in with. It may ask you to sign in
-   with Steam again first. Check the details, then press **Open Console** there.
-   **Cancel** takes you back without opening anything.
-3. Back on get.5stack.gg/panels, the console opens.
-
-The approval works once, for that panel and that request, within a few minutes,
-and only for someone on the panel's list. Your server checks it itself before it
-opens anything, so neither get.5stack.gg's pages nor its servers can open a
-console you didn't approve. It doesn't protect you if 5stack.gg itself is
-compromised, from a script running on 5stack.gg (such as a plugin) while you're
-signed in, or from a compromised get.5stack.gg page once you've approved, since
-the console runs there. If the approval doesn't check out, the page says
-**Approval didn't check out; press Open Console again**.
-
-A panel on an older 5Stack service opens the console without this step.
-`sudo 5stack ui`, and a second tab joining a console that's already open, don't
-need the approval.
-
 ## Sign in
 
-The console asks you to sign in on 5stack.gg with the Steam account that claimed
-the panel. Any other account is refused.
+The console asks you to sign in with Steam on 5stack.gg. The server checks that
+account against its [People](/service/console-people) list, and you get the
+role you have there: **Admin** or **Read only**. An account that isn't on the
+list is refused.
 
 A panel nobody has claimed yet can't open a console: `sudo 5stack ui` prints the
 claim link instead. Claim it, then run `sudo 5stack ui` again.
@@ -94,15 +109,26 @@ claim link instead. Claim it, then run `sudo 5stack ui` again.
 ## When it ends
 
 A console closes when you press **End Session** in the account menu, at the
-bottom of the sidebar, when the terminal that opened it closes or you press
-Ctrl+C there, after 30 minutes idle, or when someone opens a new console on the
-server. After it closes, the link stops working: run `sudo 5stack ui` for a new
-one.
+bottom of the sidebar, which takes you back to
+[get.5stack.gg/panels](https://get.5stack.gg/panels). It also closes after 30
+minutes idle, when an Admin removes you from People, or when root runs
+`sudo 5stack ui --end`.
+
+A console from `sudo 5stack ui` also closes when the terminal that opened it
+closes or you press Ctrl+C there, or when someone runs `sudo 5stack ui` again.
+One opened from get.5stack.gg also closes 8 hours after you signed in, when you
+open another one from there, or when an Admin turns off
+**Allow opening from get.5stack.gg**.
+
+After it closes, the link stops working: open a new one from get.5stack.gg, or
+run `sudo 5stack ui`.
 
 ## Why it's safe
 
 - **5Stack can't read what you do.** Your browser and your server talk through
   get.5stack.gg encrypted end to end.
+- **Your server decides who gets in.** It checks every sign-in against its own
+  People list, so get.5stack.gg can't add anyone.
 - **There's no box for commands.** You can't type a command for the server to
   run. Every button runs one of a fixed set of actions.
 - **Changes ask first.** Before anything that restarts, installs or removes
@@ -119,7 +145,9 @@ one.
 ## Pages
 
 The sidebar groups the pages. **Search**, or ⌘K or Ctrl+K, jumps to any page by
-name.
+name. Read only people see every page, but the buttons that change something
+are for Admins. See
+[What Read only can't do](/service/console-people#what-read-only-can-t-do).
 
 Anything you run shows its progress in a panel at the side, with **Stop** to
 stop it. The console runs one thing at a time. When an update is out, or saved
@@ -180,6 +208,10 @@ shows the live log of updates as they run, switch on and off here. See
 
 ![The Settings page](./console-settings.webp){.screenshot}
 
+**People** lists who can use the console and their roles, holds the
+**Allow opening from get.5stack.gg** switch, and shows Admins the console log.
+See [Console People](/service/console-people).
+
 **Vault** is for panels that keep their secrets in HashiCorp Vault. It shows
 whether Vault answers, when it was checked and last synced, and any secret that
 isn't syncing. **Check Now** checks again, and **Resync** and
@@ -190,6 +222,17 @@ isn't syncing. **Check Now** checks again, and **Resync** and
 panel's nightly backups and restores one. **Recovery Backups** runs
 **Back Up Now**, turns nightly recovery backups on, and shows how to restore one
 or move to a new server. See [Backups](/install/backups).
+
+Admins also get **Download** next to each recovery backup:
+
+- It downloads the file exactly as it's stored on the server, still encrypted,
+  so you need your [recovery key](/install/backups#the-recovery-key) to open it.
+- Database backups have no download.
+- When your browser can reach the panel's file storage, which is the usual
+  case, it downloads the backup straight from there. Otherwise the backup comes
+  through the console itself, which carries files up to 32 MB. A bigger backup
+  can't come that way: copy it off the server from `/var/lib/5stack/backups`
+  instead.
 
 ### Tools
 
