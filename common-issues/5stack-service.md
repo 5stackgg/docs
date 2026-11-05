@@ -45,20 +45,25 @@ the panel is installed on, not on a game server node.
 A setup link stays open while the setup page is open, and closes 30 minutes
 after. Run the install command again for a new one.
 
+A link also stops working once the install finishes. The page then says the
+setup is finished, with a button to open your panel.
+
 ## A setup check fails {#setup-check-failed}
 
 The setup page and the terminal show why each answer failed. Fix it and the
 server checks it again. A refused Steam key, a missing or wrong hostname,
 Tailscale credentials that don't work, and S3 keys or buckets that don't work
-stop the install. The rest only warn. See
-[Confirm in the terminal](/install/#confirm-in-the-terminal).
+stop the install. The rest only warn. See [Install](/install/#install-5stack).
 
-- **DNS.** Point each hostname it lists at the server's address, or pick the
-  proxy you use in **How visitors reach this server**.
+- **DNS.** Point each hostname it lists at the server's address. If your
+  records are on Cloudflare, pick a Cloudflare answer on the Domain and DNS
+  step. If your own reverse proxy is in front of the server, answer **Yes** on
+  the Reverse proxy step.
 - **S3 backup bucket.** Create a second bucket named like yours plus
   `-db-backups`, in the same account. See [Storage](/install/#storage).
-- **Tailscale policy managed in GitOps.** An API token can't edit it. Add the tag
-  owner in your repository and use an OAuth client instead.
+- **Tailscale policy managed in GitOps.** 5Stack won't edit it. The page shows
+  the lines for your panel: add them in your GitOps repository, then press
+  **Check Again**.
 
 ## The setup page says the server keys don't match {#setup-keys-mismatch}
 
@@ -67,9 +72,10 @@ your answers. Press Enter in the terminal and answer the questions there.
 
 ## No terminal to answer on {#no-terminal}
 
-The installer asks its questions, and asks you to confirm your answers, on the
-server's terminal, even though its script comes through `curl`. Run it from an
-interactive SSH session, not from a script or a provisioning tool.
+The installer reads from the server's terminal, even though its script comes
+through `curl`: to answer the questions there instead of on the setup page, and
+to confirm you saved the recovery key. Run it from an interactive SSH session,
+not from a script or a provisioning tool.
 
 A node joining without `--panel-key` also needs a terminal to confirm the panel's
 key. It stops with **without --panel-key this has to ask you to confirm the
@@ -158,13 +164,19 @@ The node lists what is wrong with the container. See
 
 ## Certificates aren't issued yet {#dns-not-pointing}
 
-The server requests certificates only once your panel's domain resolves to it.
-Until then, the install or move waits.
+Let's Encrypt checks each address over plain HTTP on port 80. During the
+install, the setup page shows each address's certificate as it goes, and says
+why one keeps waiting: port 80 doesn't reach this server, or something else
+answers on it, such as a reverse proxy. Forward ports 80 and 443 to this
+server, or answer **Yes** on the Reverse proxy step if a proxy is in front of
+it. With Cloudflare's proxy in front, see
+[Certificate generation fails behind the Cloudflare proxy](/install/cloudflare/dns-and-ssl#certificate-generation-fails-behind-the-cloudflare-proxy).
 
-Behind a reverse proxy or the Cloudflare proxy, the domain never resolves to the
-server's own address. The server waits instead until the domain reaches this
-panel through the proxy. Check the proxy forwards to this server over HTTPS, as
-[Reverse Proxy](/install/reverse-proxy) describes.
+A move waits until your panel's domain resolves to the new server. Behind a
+reverse proxy or the Cloudflare proxy, the domain never resolves to the
+server's own address, so the move waits instead until the domain reaches the
+new panel through the proxy. Check the proxy forwards to this server over
+HTTPS, as [Reverse Proxy](/install/reverse-proxy) describes.
 
 Point the domain and its
 [subdomains](/install/requirements#domain-requirements) at the server's address.

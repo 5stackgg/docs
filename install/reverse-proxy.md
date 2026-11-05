@@ -2,9 +2,13 @@
 
 A reverse proxy sits between your users and your backend services, forwarding requests and providing additional features such as SSL termination, load balancing, and enhanced security.
 
-## Toggling the reverse proxy setting
+## Turning reverse proxy mode on
 
-The [setup page](/install/#answer-on-the-setup-page) asks how visitors reach the server. Pick the Cloudflare proxy or Tunnel, or your own reverse proxy (Nginx, Caddy), if one is in front of it.
+On the [setup page](/install/#answer-on-the-setup-page), the **Reverse proxy** step asks whether something in front of this server holds the HTTPS certificate and forwards to it. 5Stack checks from outside your network who answers on port 80, and picks the answer for you: **No** when port 80 reaches this server, **Yes** when something else answers, such as Nginx Proxy Manager. Change it if that's wrong.
+
+Ticking **Proxied by Cloudflare (orange cloud)** for records you manage, on the Domain and DNS step, turns reverse proxy mode on too. See [Cloudflare](#cloudflare).
+
+In reverse proxy mode the panel doesn't ask Let's Encrypt for certificates. Your proxy holds the certificate visitors see.
 
 To change it later, run this on the panel server, or pick **Config → Reverse proxy** in the [`5stack` menu](/service/command#the-menu):
 
@@ -12,7 +16,29 @@ To change it later, run this on the panel server, or pick **Config → Reverse p
 sudo 5stack config set REVERSE_PROXY=true
 ```
 
-Use `true` if you front the panel with Nginx or Cloudflare's orange-cloud DNS, `false` if traffic reaches the panel directly. It shows the change, asks, and applies the panel again.
+Use `true` if a proxy in front of the panel ends HTTPS for it, `false` if traffic reaches the panel directly. It shows the change, asks, and applies the panel again.
+
+## Settings for your proxy
+
+When you answer **Yes**, the setup page shows the settings for your proxy, with this server's address filled in:
+
+1. Forward all 8 addresses from the Domain and DNS step to `https://<this server's LAN IP>:443`, with websockets on.
+2. Add these lines:
+
+```nginx
+# forward to https://<this server's LAN IP>:443 with websockets on
+proxy_read_timeout 7d;
+proxy_send_timeout 7d;
+client_max_body_size 5G;
+proxy_buffering off;
+proxy_request_buffering off;
+```
+
+The long timeouts keep live connections open, and the size and buffering lines let demo uploads and streams through.
+
+### Nginx Proxy Manager
+
+Add a proxy host with all 8 addresses as its domain names, or one per address, with scheme `https`, this server's LAN IP as the forward hostname, port `443`, and **Websockets Support** on. Paste the lines above on its **Advanced** tab. Its **SSL** tab holds the certificate visitors see.
 
 ## Forward to HTTPS on 443
 
@@ -20,7 +46,9 @@ Point your proxy at the node over HTTPS on port 443 (or your `HTTPS_PORT`), not 
 
 ## Cloudflare
 
-The orange cloud doesn't need reverse proxy mode: the panel can keep its own Let's Encrypt certificates behind it, and setup managed by 5Stack does exactly that. Use reverse proxy mode with Cloudflare only when you want Cloudflare, or a [Cloudflare Tunnel](/install/cloudflare/tunnel), to be the only thing terminating HTTPS; then set SSL/TLS to **Full**.
+Cloudflare's orange cloud on records you manage puts the panel in reverse proxy mode: the setup page turns it on when you tick **Proxied by Cloudflare (orange cloud)**. Set SSL/TLS to **Full**, or **Full (strict)** if your own proxy in front of the panel holds valid certificates. See [Cloudflare Proxy](/install/cloudflare/proxy).
+
+With **Cloudflare · 5Stack sets it up**, the orange cloud doesn't need reverse proxy mode: the panel keeps its own Let's Encrypt certificates behind it. Answer **Yes** on the Reverse proxy step only when your own proxy, or a [Cloudflare Tunnel](/install/cloudflare/tunnel), is in front of the panel as well.
 
 See [Which setup do I want?](/install/cloudflare/#which-setup-do-i-want).
 
@@ -54,6 +82,13 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
+
+        # Settings for your proxy, from the setup page
+        proxy_read_timeout 7d;
+        proxy_send_timeout 7d;
+        client_max_body_size 5G;
+        proxy_buffering off;
+        proxy_request_buffering off;
     }
 }
 ```

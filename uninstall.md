@@ -2,7 +2,8 @@
 
 :::warning
 This is destructive and irreversible. It removes all k3s state, 5Stack files and
-the server's Tailscale connection.
+the server's Tailscale connection. Afterwards, remove the machines from your
+Tailscale admin console yourself. See [Finish in Tailscale](#finish-in-tailscale).
 :::
 
 On the server, run:
@@ -50,6 +51,34 @@ You can also do this from the panel: remove the node on the
 **Game Server Nodes** page with **Also uninstall 5Stack from the server** turned
 on, or run `sudo 5stack nodes remove <name>` on the panel server. See
 [Remove a node](/servers/game-server-nodes/create-game-server-node#remove-a-node).
+
+## Finish in Tailscale
+
+Uninstall logs the server out of your tailnet and removes Tailscale. On the
+panel, it also tries to remove the panel's machine, and with **Everything** its
+game server nodes' machines, from your Tailscale dashboard. Its summary says
+what it removed and what is still there.
+
+Removing 5Stack doesn't clean up your tailnet for you. Finish in the
+[Tailscale admin console](https://login.tailscale.com/admin) yourself:
+
+- **Machines.** Open [Machines](https://login.tailscale.com/admin/machines) and
+  remove the panel and every game server node that is still listed. Uninstall
+  names the ones it couldn't remove. A node uninstalled on its own is removed
+  by the panel once it stops reporting; if it is still there after a few
+  minutes, remove it too.
+- **Your tailnet policy.** Under
+  [Access controls](https://login.tailscale.com/admin/acls/file), remove this
+  panel's lines for its tag and pod range. 5Stack can't edit your policy after
+  the install, so the summary prints the lines to remove. Keep the shared
+  `tag:fivestack` line if another 5Stack panel uses it.
+- **The OAuth client.** Under
+  [Trust credentials](https://login.tailscale.com/admin/settings/trust-credentials),
+  remove this panel's OAuth client. The summary names it. A client can't delete
+  itself.
+
+On a panel installed before the 5Stack service, nothing is removed from your
+Tailscale dashboard: remove its machines there yourself.
 
 ## Without the 5stack command
 

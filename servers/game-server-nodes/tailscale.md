@@ -6,9 +6,9 @@ panel sends them matches over it, and players connect straight to the nodes.
 On the setup page, the **Game Server Nodes** step asks for one temporary
 Tailscale access token, made under
 [Settings → Keys](https://login.tailscale.com/admin/settings/keys) with a 1-day
-expiry. Your server adds `tag:fivestack` and the rules game nodes need to your
-tailnet policy, makes its own key for adding nodes, tests it, and deletes the
-token. See [Game server nodes](/install/#game-server-nodes) for the exact lines
+expiry. Your server adds a tag for this panel and the rules game nodes need to
+your tailnet policy, makes its own key for adding nodes, tests it, and deletes
+the token. See [Game server nodes](/install/#game-server-nodes) for the exact lines
 and what happens with a policy managed in GitOps.
 
 Skipped it at install? Add it later on the panel server with

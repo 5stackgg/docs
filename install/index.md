@@ -25,14 +25,15 @@ Have these ready:
 
 - A server running Linux on x86_64 or arm64, with `curl` and OpenSSL 3 or newer.
   Ubuntu or Debian is recommended.
-- A domain, with the [subdomains](/install/requirements#domain-requirements)
-  pointed at the server.
+- A domain for the panel. If its DNS is on Cloudflare, 5Stack can add the
+  records for you. Otherwise, point its
+  [subdomains](/install/requirements#domain-requirements) at the server.
 - A [Steam Web API key](https://steamcommunity.com/dev/apikey).
 - The Steam account you want as the panel's first admin.
 - Optional: a [Tailscale](https://tailscale.com) account, if you will add
   [game server nodes](/servers/game-server-nodes/). See
   [Game server nodes](#game-server-nodes).
-- Optional: S3 storage for demos and clips, with two buckets. See
+- Optional: a Backblaze B2 account or other S3 storage for demos and clips. See
   [Storage](#storage).
 
 ## Run the installer
@@ -63,52 +64,86 @@ The installer:
 The link stays good while the setup page is open, and expires 30 minutes after
 you close it. If it expires, run the install command again for a new one.
 
+The link stops working once the install finishes. Opening it again shows that
+the setup is finished, with a button to open your panel.
+
 ## Answer on the setup page
 
 Open the link from the terminal. Copy the whole line: the part after `#` carries
 your server's key and never reaches 5Stack.
 
-The banner at the top shows the server the page is connected to: its hostname,
-IP address and install ID. Hover or tab to **Connected** for its key fingerprint,
-such as `8F2C 19AA 03D1 7E55`, and check it matches the fingerprint in your
-terminal. If the page loses its connection, **Connected** turns to
-**Reconnecting…**.
+The page shows the server it's connected to, with its hostname and IP address.
+If the page loses its connection, it says **Reconnecting** until it's back.
+Your account menu shows the install ID and the server key, such as
+`8F2C 19AA 03D1 7E55`. Check the key matches the one in your terminal.
 
-First, **sign in through Steam**. This claims the server. The Steam account you
-sign in with becomes the panel's first admin, and 5Stack links the install to
+First, **sign in with Steam** and press **Claim This Server**. The account that
+claims it becomes the panel's first admin, and 5Stack links the install to
 your account.
 
-Then the page walks you through the steps. Your server checks each answer while
-you fill the page in: it looks up your DNS, tries the Steam key, and tests the
-Tailscale and S3 credentials, and the page shows each result as it comes back.
-You can go on past a step that fails and fix it before you send.
+Then the page walks you through the steps, with the list of steps on the left
+and **Back**, **Skip** and **Next** at the bottom. Your server checks each
+answer while you fill the page in: it looks up your DNS, checks who answers on
+port 80, tries the Steam key, and tests the Tailscale and storage keys. The page
+shows each result as it comes back. You can go on past a step that fails and
+fix it before you install.
 
-1. **Domain and DNS.** Your panel's domain, such as `panel.example.gg`, and its
-   [subdomains](/install/requirements#domain-requirements). The server looks
-   each one up and lists any that are missing or point somewhere else.
-2. **How visitors reach this server.** Straight to this server, through the
-   Cloudflare proxy or a Cloudflare Tunnel, or through your own reverse proxy
-   such as Nginx or Caddy. For the first and last, say whether the DNS is on
-   Cloudflare. See [Cloudflare](/install/cloudflare/) and
-   [Reverse Proxy](/install/reverse-proxy).
-3. **Steam.** Your Steam Web API key. The server checks it with Steam.
-4. **Game Server Nodes.** Optional. One Tailscale access token sets up the
-   private network game server nodes join. See
+1. **Domain and DNS.** Your panel's domain, such as `panel.example.gg`, and
+   where its DNS is. Your server looks up the panel's 8 addresses once you stop
+   typing, and lists any that are missing or point somewhere else. It also
+   checks whether the domain is on Cloudflare, and picks an answer for you:
+   - **Cloudflare · 5Stack sets it up.** Recommended when the domain is on
+     Cloudflare. 5Stack adds the records, puts Cloudflare's proxy on the panel's
+     addresses (not demos or video), and sets HTTPS to Full (strict). You
+     connect Cloudflare in the next step.
+   - **Cloudflare · I manage the records.** You add the records yourself, on
+     the grey or the orange cloud. Tick **Proxied by Cloudflare (orange cloud)**
+     if they're proxied. See [Cloudflare Proxy](/install/cloudflare/proxy).
+   - **Somewhere else.** Point the 8 addresses at this server.
+
+   For a panel below its domain's root, such as `panel.example.gg`, the page
+   keeps every address one level deep by default, like `panel-api.example.gg`.
+   See
+   [Keep every address one level deep](/install/cloudflare/dns-and-ssl#keep-every-address-one-level-deep).
+2. **Cloudflare.** Only when 5Stack sets Cloudflare up. Press
+   **Connect Cloudflare**, approve once on Cloudflare's page, then pick the
+   panel's domain from your Cloudflare account. Nothing changes on Cloudflare
+   until you install. See
+   [Connect Cloudflare](/install/cloudflare/#connect-cloudflare).
+3. **Reverse proxy.** Whether something in front of this server holds the HTTPS
+   certificate and forwards to it, such as Nginx Proxy Manager, Caddy or
+   Traefik. 5Stack checks from outside your network who answers on port 80, and
+   picks the answer for you: **No** when port 80 reaches this server, **Yes**
+   when something else answers. Change it if that's wrong. Cloudflare's orange
+   cloud doesn't count here, because it was the Domain and DNS step. **Yes**
+   shows the settings for your proxy. See
+   [Reverse Proxy](/install/reverse-proxy#settings-for-your-proxy).
+4. **Steam.** Your Steam Web API key, from
+   [steamcommunity.com/dev/apikey](https://steamcommunity.com/dev/apikey). The
+   server checks it with Steam. The step also shows the account that claimed
+   the server.
+5. **Game Server Nodes.** Optional. One temporary Tailscale access token sets up
+   the private network game server nodes join. Tick
+   **I'll stream matches from GPU nodes** if you will. See
    [Game server nodes](#game-server-nodes).
-5. **Security updates.** Turns on automatic security updates. See
+6. **Security updates.** Turns on automatic security updates. See
    [Security updates](#security-updates).
-6. **Performance.** The CPU governor, and a low-latency kernel option. See
+7. **Performance.** The CPU governor, and a low-latency kernel option. See
    [Performance](#performance).
-7. **Storage.** Keep demos and clips on this server, or put them in S3. See
+8. **Storage.** Where demos and clips go. **On this server** is the default. See
    [Storage](#storage).
-8. **GPU nodes.** Only when this server has an NVIDIA or AMD graphics card. It
+9. **GPU nodes.** Only when this server has an NVIDIA or AMD graphics card. It
    names the card and asks whether to use this server as a
    [GPU node](/servers/gpu-nodes/) for streaming and clips. It's off unless you
    choose it. A GPU node also needs a Steam account without Steam Guard, which
    you add on the GPU Nodes page of your panel. To add a GPU node later, open
    Game Server Nodes in your panel.
-9. **Review.** Every answer is checked again. Fix anything that fails, then
-   click **Send to Server**.
+10. **Review.** One row per step, each checked again. A row that needs work has
+    **Fix**, which takes you back to its step. With Cloudflare set up by 5Stack,
+    Review also lists what 5Stack sets up on Cloudflare for each address. Then
+    press **Install 5Stack**.
+
+Game Server Nodes, Security updates and Performance can be skipped.
 
 ::: info Signing in first doesn't make you admin
 Only the Steam account that claimed the install is made admin. Whoever signs in
@@ -150,7 +185,62 @@ changing anything. At install, it:
 
 1. Adds what game nodes need to your
    [tailnet policy](https://login.tailscale.com/admin/acls/file), only where
-   it's missing, and keeps every other line and comment as it is:
+   it's missing, and keeps every other line and comment as it is. Each panel
+   gets a tag of its own, named after its install ID, and an address range for
+   its pods that no other panel on your tailnet uses. For install ID
+   `7f3c-91d0-e21a`, with the first free range:
+
+   ```json
+   "tagOwners": {
+     "tag:fivestack": ["autogroup:admin"],
+     "tag:fivestack-7f3c91d0e21a": ["autogroup:admin"],
+   },
+   "autoApprovers": {
+     "routes": {
+       "10.52.0.0/16": ["tag:fivestack-7f3c91d0e21a"],
+     },
+   },
+   "grants": [
+     {
+       "src": ["tag:fivestack-7f3c91d0e21a", "10.52.0.0/16"],
+       "dst": ["tag:fivestack-7f3c91d0e21a", "10.52.0.0/16"],
+       "ip": ["*"],
+     },
+   ],
+   ```
+
+   The range is picked from `10.52.0.0/16` to `10.242.0.0/16`, skipping any your
+   policy or this server already uses. The grant is left out when your policy
+   already lets that traffic through, such as Tailscale's default
+   allow-everything rule.
+2. Makes its own key for adding game nodes, an OAuth client that can only add
+   this panel's tagged devices and remove them again, and tests it once by
+   making a single-use key and deleting it. You never make or manage this
+   client.
+3. Deletes the token. If Tailscale doesn't let the token delete itself, the
+   page and the terminal say so: it expires on its own within a day, or delete
+   it under Settings → Keys.
+
+The token is never saved. The panel uses its own key to make a single-use key
+for each node you add.
+
+If your tailnet policy is managed in GitOps, 5Stack doesn't edit it. The page
+shows the exact lines for your panel: add them in your repository, then press
+**Check Again**. The same happens if Tailscale refuses the edit.
+
+Already have an OAuth client of your own? Open
+**Advanced: use an OAuth client you already have** under the token field and
+paste its client ID and secret instead.
+
+#### Use your own OAuth client
+
+Only if you'd rather not paste a token, or for a panel that gets Tailscale later
+with `sudo 5stack config tailscale`. A panel with its own OAuth client uses the
+shared `tag:fivestack` tag and the `10.42.0.0/16` pod range:
+
+1. In the Tailscale admin console, open
+   [Access controls](https://login.tailscale.com/admin/acls/file) and add these
+   lines:
 
    ```json
    "tagOwners": {
@@ -170,34 +260,6 @@ changing anything. At install, it:
    ],
    ```
 
-   `10.42.0.0/16` is the range the panel's pods use. The grant is left out when
-   your policy already lets that traffic through, such as Tailscale's default
-   allow-everything rule.
-2. Makes its own key for adding game nodes, an OAuth client that can only add
-   `tag:fivestack` devices and remove them again, and tests it once by making a
-   single-use key and deleting it. You never make or manage this client.
-3. Deletes the token. If Tailscale doesn't let the token delete itself, the
-   page and the terminal say so: it expires on its own within a day, or delete
-   it under Settings → Keys.
-
-The token is never saved. The panel uses its own key to make a single-use key
-for each node you add.
-
-If your tailnet policy is managed in GitOps, 5Stack doesn't edit it. The page
-shows the lines above: add them in your repository, then press **Check Again**.
-The same happens if Tailscale refuses the edit.
-
-Already have an OAuth client of your own? Open **Advanced** under the token
-field and paste its client ID and secret instead.
-
-#### Use your own OAuth client
-
-Only if you'd rather not paste a token, or for a panel that gets Tailscale later
-with `sudo 5stack config tailscale`:
-
-1. In the Tailscale admin console, open
-   [Access controls](https://login.tailscale.com/admin/acls/file) and add the
-   lines above.
 2. Open
    [Trust credentials](https://login.tailscale.com/admin/settings/trust-credentials/add)
    and add an OAuth client with **Auth Keys** write and **Devices** write
@@ -211,9 +273,10 @@ it's set up. Add it later on the panel server with `sudo 5stack config tailscale
 ### Security updates
 
 With this on, the server installs security fixes every day through
-`unattended-upgrades`. Nothing is held back, NVIDIA drivers included. The server
-never reboots by itself: when an update needs a reboot, the panel shows it as a
-to-do in its header.
+`unattended-upgrades`. Nothing is held back, NVIDIA drivers included, because a
+held driver breaks the next kernel. The server never reboots by itself for an
+update: when one needs a reboot, the panel tells you, and the reboot waits for
+the node maintenance window, so a match is never cut off.
 
 ### Performance
 
@@ -221,22 +284,32 @@ Two settings that help game servers keep a steady tick:
 
 - **CPU governor.** Keeps every core at full speed. It uses more power, and stays
   set after a reboot.
-- **Low latency.** Offered only if game servers will run on this server too.
-  It boots the kernel with `preempt=full`, which needs Ubuntu 24.04 or newer and
-  one reboot at the end of the install.
+- **Low latency.** Offered only if you tick
+  **Game servers will run on this server**. Game servers run best on their own
+  game server nodes, so it's off by default. It boots the kernel with
+  `preempt=full`, which needs one reboot at the end of the install. Undo it any
+  time from the node's settings.
 
 ### Storage
 
-Demos and highlight clips are kept for every match. The page shows how long this
-server's disk lasts, and warns under 200 GB free.
+Demos and highlight clips are kept for every match, about 250 MB a match. The
+page shows how many matches this server's disk holds, and warns under 200 GB
+free.
 
-- **Keep files on this server.** Nothing more to set up. You can move to S3
-  later.
-- **Use S3 storage.** Give the endpoint, region, bucket, access key ID and
-  secret key. Demos and clips go to that bucket, and the panel's nightly
-  database backups go to a second bucket in the same account, named like the
-  first with `-db-backups` added: `my-5stack` and `my-5stack-db-backups`. Create
-  both before you send.
+- **On this server.** The default. Nothing more to set up. You can move to S3
+  later in Settings.
+- **Backblaze B2.** Storage that never fills up, and the recommended choice for
+  a small disk. Make a free Backblaze account, create an application key with
+  access to all buckets, and paste its keyID and applicationKey. Setup makes two
+  private buckets named after your domain: one for demos and clips, and one
+  ending in `-db-backups` for the panel's nightly database backups. Downloads
+  are allowed from your panel's domain.
+- **Another S3-compatible store.** AWS S3, Wasabi, MinIO or similar. Give the
+  endpoint, region, bucket, access key ID and secret key. Demos and clips go to
+  that bucket, and the panel's nightly database backups go to a second bucket
+  in the same account, named like the first with `-db-backups` added:
+  `my-5stack` and `my-5stack-db-backups`. Create both, and a key that can read
+  and write both, before you install.
 
 The server writes and deletes a small test file in each bucket. Bucket names are
 global, so when the key can list its account's buckets, both must be in the
@@ -247,14 +320,18 @@ are yours. Database backups need an `https` endpoint on port 443. See
 ## Or answer in the terminal
 
 Press Enter in the terminal instead of opening the link. The installer walks you
-through the same steps there, and checks each answer as you enter it:
+through the setup there, and checks each answer as you enter it:
 
 ```
-9 steps. Enter keeps the answer in [brackets]. Type back to return to the step before.
-==> Step 1 of 9 · Domain and DNS
+8 steps. Enter keeps the answer in [brackets]. Type back to return to the step before.
+==> Step 1 of 8 · Domain and DNS
 Panel domain:
 ```
 
+- The steps are the same as on the page, except that DNS and the reverse proxy
+  are one step, **How visitors reach this server**: straight to this server,
+  the Cloudflare proxy or a Tunnel, or your own reverse proxy. The terminal
+  doesn't set Cloudflare up for you.
 - Enter keeps the answer in brackets, and `back` returns to the step before.
 - A failed check asks again. Press Enter to check again, or type `next` to go on
   and fix it before installing. At the Game Server Nodes step, `skip` skips it, and at
@@ -267,35 +344,43 @@ Without the setup page there is no Steam sign-in, so claim the install with the
 claim link the installer prints at the end. Open it and sign in through Steam
 with the account you want as admin.
 
-## Confirm in the terminal
+## Install 5Stack
 
-Before it installs anything, the terminal shows the answers it received, with
-the Steam key masked, and checks them all again. If nothing failed, it asks
-`Install with these answers? [Y/n]`. Check the domain and the account that
-claimed the install, then press Enter.
+When you press **Install 5Stack**, your server checks every answer once more.
+If one fails, the install doesn't start, and Review shows which step to fix.
 
-These stop the install until you fix them: a Steam key Steam refuses, a
-hostname that is missing or points somewhere else, a Tailscale token or client
-that doesn't work, or a tailnet policy that still needs the 5Stack lines (unless
-you skipped Game Server Nodes), and S3 keys or buckets that don't
-work (unless files stay on the server). Fix them on the page and send again, or
-press Enter and answer in the terminal. Everything else only warns: a missing
-`hls.` record, which only GPU live streams use, less than 200 GB free, a check
-that couldn't reach its service, or a performance or update setting the server
-can't apply.
+With **Cloudflare · 5Stack sets it up**, the page sets Cloudflare up first: the
+settings, then the records. The panel's addresses are created proxied (orange
+cloud) from the start, while demos and streams (`demos.` and `hls.`) stay DNS
+only, straight to your server. If Cloudflare can't be set up, nothing is
+installed, and Review says why. See
+[What managed setup does](/install/cloudflare/#what-managed-setup-does).
 
-The installer then installs k3s and the panel with the settings you chose, and
-requests certificates. The setup page shows the same progress, and you can close
-it.
+Your server then installs k3s and the panel with your answers. The page shows
+each step as it runs, with a timer, and the terminal shows the same:
 
-Certificates are requested once your domain resolves to this server. Behind a
-reverse proxy or the Cloudflare proxy, the domain never resolves to the server's
-own address, so the installer waits instead until the domain reaches the panel
-through the proxy.
+- Installing k3s and the panel.
+- Setting up your tailnet for game server nodes.
+- Turning on security updates, and setting the CPU governor and boot option.
+- Setting up storage for demos and clips.
+- Booting the panel.
+- Requesting certificates. Each address shows its certificate live, from
+  waiting for Let's Encrypt to issued. If one waits a long time, the page says
+  why, such as port 80 not reaching this server or something else answering on
+  it. Behind your own reverse proxy, the panel requests no certificates.
+- Putting Cloudflare in front of the panel, when 5Stack set Cloudflare up. A
+  last check that Cloudflare reaches the panel on each proxied address. An
+  address Cloudflare can't reach goes back to DNS only, and the page says why.
+
+Steps you skipped show as skipped. **Stop the Install**, then
+**Confirm Stop**, stops it where it is: change your answers on the page and
+install again. You can close the page, and the
+install carries on.
 
 ## Save the recovery key
 
-The install ends with a framed block:
+When the install finishes, the page asks you to copy the recovery key from your
+terminal. It's shown only there, and only once, in a framed block:
 
 ```
 ================================================================
@@ -307,7 +392,7 @@ The install ends with a framed block:
   Claim link     https://get.5stack.gg/claim/7f3c-91d0-e21a
 
   Without the recovery key nobody can open your backups,
-  not you and not 5Stack. sudo 5stack recovery-key show
+  not you and not 5Stack. 5stack recovery-key show
   prints it again on this server.
 ================================================================
 ```
@@ -318,9 +403,11 @@ happens when you answered in the terminal.
 Save the recovery key and the install id together somewhere safe, such as a
 password manager. The key never leaves your server, so 5Stack doesn't have it.
 The installer then asks you to type the key's last 4 characters, to confirm you
-saved it. See [Backups](/install/backups#the-recovery-key).
+saved it. On the page, tick **I've saved my recovery key** to open your panel.
+See [Backups](/install/backups#the-recovery-key).
 
-If you chose low latency, the server reboots a minute later.
+If you chose low latency, the server reboots a minute later. The panel is back a
+few minutes after that.
 
 ## Sign in
 
@@ -333,7 +420,8 @@ to host matches.
 ## Diagnostics
 
 The panel sends 5Stack crash reports, with player data removed. This is on by
-default. Turn it off in the panel under **Settings → System → Diagnostics**. See
+default. Turn it off in the panel under **Settings → System → Diagnostics**, or
+run `5stack diagnostics off` on the panel server. See
 [Diagnostics](/service/diagnostics) for what is sent.
 
 ## Commands without sudo
