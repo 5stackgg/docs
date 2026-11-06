@@ -46,6 +46,23 @@ You can also do this from the panel: remove the node on the
 on, or run `sudo 5stack nodes remove <name>` on the panel server. See
 [Remove a node](/servers/game-server-nodes/create-game-server-node#remove-a-node).
 
+### Game files on a node
+
+A node keeps its game files in `/opt/5stack` (the CS2 server, SteamCMD, custom
+plugins and local demos), so a reinstall skips the CS2 download. Uninstall lists
+each folder with its size and asks which to delete; the panel's **Remove**
+dialog does the same. To answer without questions:
+
+- `--keep-files` keeps them all (what `--yes` does on its own).
+- `--delete demos,steamcmd` deletes the folders you name.
+- `--delete-files` deletes all of `/opt/5stack`.
+
+These work with `sudo 5stack uninstall` on the node, with
+`sudo 5stack nodes remove <name>` on the panel, and with
+`sudo 5stack uninstall --everything` on the panel for every node. A panel's own
+`/opt/5stack` holds its database and is always deleted. A node whose 5Stack
+service is older than the panel's can't keep its files; update it first.
+
 ## Finish in Tailscale
 
 On the panel, uninstall tries to remove the panel's machine, and with
@@ -87,6 +104,12 @@ node it couldn't reach.
 ```bash
 sudo bash <<'EOF'
 set -e
+
+# A game server node keeps its game files in /opt/5stack for a reinstall.
+# Set this to 1 to delete them too. A panel's /opt/5stack is always deleted.
+DELETE_GAME_FILES=0
+PANEL=0
+if [ -x /usr/local/bin/k3s-uninstall.sh ]; then PANEL=1; fi
 
 # 1. Run the appropriate k3s uninstaller
 if [ -x /usr/local/bin/k3s-uninstall.sh ]; then
@@ -130,7 +153,11 @@ if command -v apt-get >/dev/null 2>&1; then
 fi
 
 # 7. Remove 5Stack files
-rm -rf /opt/5stack
+if [ "$PANEL" = 1 ] || [ "$DELETE_GAME_FILES" = 1 ]; then
+    rm -rf /opt/5stack
+else
+    echo "Kept /opt/5stack for a reinstall. Delete it once you no longer need it: sudo rm -rf /opt/5stack"
+fi
 
 echo "5Stack uninstall complete."
 EOF
