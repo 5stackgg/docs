@@ -94,9 +94,9 @@ event profile, and **Compare with...** another player.
 Events carry a media gallery for photos, clips, and audio. **Add media** takes
 either a file or a link:
 
-- **Upload a file**: images (PNG, JPEG, WebP, GIF, up to 10 MB), MP4 video (up
-  to 512 MB), or MP3 audio (up to 50 MB). You can also drag files straight onto
-  the gallery; each one gets its own row in the upload queue.
+- **Upload a file**: images (PNG, JPEG, WebP, GIF), MP4 video, or MP3 audio, up
+  to 100 MB each. You can also drag files straight onto the gallery; each one
+  gets its own row in the upload queue.
 - **Add a link**: paste a YouTube or Twitch URL to embed it, or any other link
   to add it as a card that opens in a new tab.
 
