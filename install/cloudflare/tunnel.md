@@ -26,8 +26,6 @@ Game servers upload whole demos in one request, and Cloudflare limits a request 
 | `tv.yourdomain.com`        | `https://localhost:443` |
 | `demos.yourdomain.com`     | `https://localhost:443` |
 | `hls.yourdomain.com`       | `https://localhost:443` |
-| `search.yourdomain.com`    | `https://localhost:443` |
-| `console.yourdomain.com`   | `https://localhost:443` |
 
 ::: info Tailscale users
 Replace `localhost` with the node's local Tailscale IP address. These values can be updated later.

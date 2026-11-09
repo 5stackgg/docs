@@ -84,8 +84,6 @@ Live video in the panel's own player still connects to your server directly, whi
 | `tv.yourdomain.com` | Live match relay |
 | `demos.yourdomain.com` | Demo uploads and downloads |
 | `hls.yourdomain.com` | Streams |
-| `search.yourdomain.com` | Search |
-| `console.yourdomain.com` | File storage console |
 
 A panel below its domain's root can name them one level deep instead, like `panel-api.example.com`. See [Keep every address one level deep](/install/cloudflare/dns-and-ssl#keep-every-address-one-level-deep).
 

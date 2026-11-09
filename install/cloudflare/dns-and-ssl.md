@@ -30,8 +30,6 @@ A panel at `panel.example.com` can name its other addresses beside it instead of
 | Match relay | `tv.panel.example.com` | `panel-tv.example.com` |
 | Demo uploads | `demos.panel.example.com` | `panel-demos.example.com` |
 | Streams | `hls.panel.example.com` | `panel-hls.example.com` |
-| File storage console | `console.panel.example.com` | `panel-console.example.com` |
-| Search | `search.panel.example.com` | `panel-search.example.com` |
 
 For a panel below its domain's root, the setup page ticks **Keep every address one level deep** for you, wherever its DNS is. The box is on the Domain and DNS step, or on the Cloudflare step when 5Stack sets Cloudflare up.
 
