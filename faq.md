@@ -51,11 +51,13 @@ A Linux server with at least **2 CPU cores and 4 GB** of memory, and a domain
 you control. See [Requirements](/install/requirements) for the details, but the
 two things that catch people out are:
 
-- **Ports.** `80` and `443` for routing, plus `8585` on every 5Stack server for
-  the game server node connector. If you can't use 80/443, you can
-  [change them](/install/ports).
+- **Ports.** Only `80` and `443` (TCP), and `8189` (UDP) for game streams and
+  cameras, need to be open to the internet. Port `8585`, used by the game
+  server node connector on every 5Stack server, must only be reachable from
+  your other 5Stack servers, never the internet. If you can't use 80/443, you
+  can [change them](/install/ports).
 - **Subdomains.** The panel needs several records pointing at it — the root
-  domain plus `api`, `ws`, `demos`, `search`, and `console`. Deeply nested
+  domain plus `api`, `ws`, `tv`, `demos`, and `hls`. Deeply nested
   domains like `api.deep.example.com` are fine.
 
 ## Why Kubernetes? That seems heavy.
