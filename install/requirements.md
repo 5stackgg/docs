@@ -30,23 +30,24 @@ Only these ports need to be open to the internet:
 | Port | Protocol | What for |
 | --- | --- | --- |
 | `80` / `443` | TCP | The panel. If you can't use these ports, you can [change them](/install/ports). |
-| `8189` | UDP | Game streams and player cameras |
+| `8189` | UDP | Game streams, voice chat and player cameras |
+| `30000-32767` | UDP | Game servers, on each game server node. See [Port Forwarding](/servers/game-server-nodes/ports). |
 
 If you set up a [TURN relay](/advanced/turn-server), open its ports too.
 
-#### Ports between your 5Stack servers
+#### Ports for your LAN and your 5Stack servers
 
-These must reach the panel and your other 5Stack servers, but never the internet:
+These must never be open to the internet:
 
 | Port | Protocol | What for |
 | --- | --- | --- |
-| `8585` | TCP | The Game Server Node Connector, on every 5Stack server |
+| `8585` | TCP | The Game Server Node Connector, on every 5Stack server. Your other 5Stack servers reach it, and so does your LAN: [offline mode](/servers/game-server-nodes/offline-support) opens `http://<lan-ip>:8585` in a browser on the LAN. |
 | `6443` | TCP | Kubernetes, on the panel |
 | `10250` | TCP | Kubernetes, on every 5Stack server |
 
-Allow them only from your panel and your other 5Stack servers, for example
-over [Tailscale](https://tailscale.com) or your LAN. Block them from anywhere
-else.
+Allow `8585` only from your LAN and your other 5Stack servers, and `6443` and
+`10250` only from your panel and your other 5Stack servers, for example over
+[Tailscale](https://tailscale.com). Block them from anywhere else.
 
 :::info
 We recommend using a Linux-based server such as [Ubuntu](https://ubuntu.com/download/server).
