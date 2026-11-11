@@ -20,6 +20,9 @@ Experimental GPUs should work but haven't been through the same testing. A GPU
 whose encoder can't be used still renders CS2, but every capture is encoded on
 the CPU, which isn't recommended for live streaming.
 
+See [Supported GPUs](/servers/gpu-nodes/supported-gpus#amd) for how fast each
+card runs CS2.
+
 ## 1. Check the kernel driver
 
 On each GPU node, run:

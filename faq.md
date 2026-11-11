@@ -103,7 +103,8 @@ Only for the features that produce video —
 [live streaming](/features/live-streaming), and
 [highlight and clip rendering](/features/highlights). Those run on a
 [GPU node](/servers/gpu-nodes/), which needs an **NVIDIA** or **AMD** GPU on a
-native Linux host (WSL will not work).
+native Linux host (WSL will not work). See
+[Supported GPUs](/servers/gpu-nodes/supported-gpus) for which cards to use.
 
 Everything else — matchmaking, tournaments, stats, the 2D and 3D replays,
 servers, chat — runs fine without one.

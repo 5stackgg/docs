@@ -5,6 +5,10 @@ and the NVIDIA Container Toolkit. Steps 1 to 5 below install them on each GPU
 node. [`setup-gpu-nodes.sh`](/servers/gpu-nodes/#run-the-setup-script) does the
 rest.
 
+Any GeForce GTX 1080 or newer works. See
+[Supported GPUs](/servers/gpu-nodes/supported-gpus#nvidia) for how fast each
+one runs CS2.
+
 ## 1. Add the NVIDIA Container Toolkit repository
 
 Before installing the drivers, install the prerequisites and add NVIDIA's apt repository.
