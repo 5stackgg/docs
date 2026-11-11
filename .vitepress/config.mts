@@ -327,6 +327,7 @@ export default defineConfig({
               base: "/servers/gpu-nodes",
               link: "/",
               items: [
+                { text: "Supported GPUs", link: "/supported-gpus" },
                 { text: "NVIDIA", link: "/nvidia" },
                 { text: "AMD", link: "/amd" },
                 { text: "Intel", link: "/intel" },

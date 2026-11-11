@@ -43,6 +43,9 @@ runtime. Follow the guide for your GPU:
 | [AMD](/servers/gpu-nodes/amd)       | Supported on Strix Halo, experimental on other Radeon GPUs                                    |
 | [Intel](/servers/gpu-nodes/intel)   | Not yet supported, [tracking issue #468](https://github.com/5stackgg/5stack-panel/issues/468) |
 
+To pick a card, see [Supported GPUs](/servers/gpu-nodes/supported-gpus) for
+how fast each one runs CS2.
+
 ### Run the setup script
 
 On the panel server, run:
@@ -140,7 +143,8 @@ The **GPU Nodes** page can filter by **Node type**:
 
 Each GPU node also has **Video settings**: the CS2 graphics quality its jobs
 render with, as a preset or **Custom**. Left on its default, CS2 tunes its video
-settings to the card on first launch.
+settings to the card on first launch. We recommend **1080p** on **High**; see
+[Recommended settings](/servers/gpu-nodes/supported-gpus#recommended-settings).
 
 ## Video encoding
 
