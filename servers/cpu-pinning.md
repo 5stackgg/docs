@@ -17,7 +17,7 @@ kubelet-arg:
 
 :::
 
-One core is held back for the node itself. Every other core can take a server, so an 8-core node fits 7 servers at 1 CPU per server, or 3 at the default of 2.
+One core is held back for the node itself. Every other core can take a server, so an 8-core node fits 7 servers at the default of 1 CPU per server, or 3 at 2.
 
 ## Applying Changes
 
