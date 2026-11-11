@@ -2,8 +2,7 @@
 
 A [GPU node](/servers/gpu-nodes/) runs on an NVIDIA GeForce GTX 1080 or newer,
 or on one of the AMD Radeon GPUs below. The tables show about how fast each one
-runs CS2 at 1080p on each quality preset, and whether it can use the
-recommended settings.
+runs CS2 at 1080p on each quality preset, and which settings to use on it.
 
 ## Recommended settings
 
@@ -19,15 +18,16 @@ to 120 fps, so every frame it captures is fresh. Smokes and big fights pull CS2
 well below its average, so a GPU needs to average about **200 fps on High** to
 keep up.
 
-GPUs marked **Use Medium** fall short of that. Set them to the **Medium**
-preset instead.
+The **Settings** column in the tables says what to use on each GPU:
+**Recommended** for these settings, or **Medium** for 1080p on the Medium
+preset, on GPUs that fall short of 200.
 
 ## NVIDIA
 
 Every card here is supported. See [NVIDIA GPU Setup](/servers/gpu-nodes/nvidia)
 to install the driver.
 
-| GPU               | Low | Medium | High | 1080p High  |
+| GPU               | Low | Medium | High | Settings    |
 | ----------------- | --: | -----: | ---: | ----------- |
 | RTX 5090          | 535 |    510 |  470 | Recommended |
 | RTX 5080          | 530 |    490 |  450 | Recommended |
@@ -52,15 +52,15 @@ to install the driver.
 | RTX 3070 Ti       | 340 |    310 |  290 | Recommended |
 | RTX 3070          | 320 |    290 |  270 | Recommended |
 | RTX 3060 Ti       | 300 |    270 |  250 | Recommended |
-| RTX 3060          | 250 |    210 |  175 | Use Medium  |
-| RTX 3050          | 195 |    160 |  135 | Use Medium  |
+| RTX 3060          | 250 |    210 |  175 | Medium      |
+| RTX 3050          | 195 |    160 |  135 | Medium      |
 | RTX 2080 Ti       | 350 |    320 |  300 | Recommended |
 | RTX 2080 Super    | 330 |    300 |  280 | Recommended |
 | RTX 2080          | 320 |    285 |  265 | Recommended |
 | RTX 2070 Super    | 300 |    270 |  250 | Recommended |
 | RTX 2070          | 280 |    250 |  230 | Recommended |
 | RTX 2060 Super    | 260 |    230 |  210 | Recommended |
-| RTX 2060          | 215 |    180 |  145 | Use Medium  |
+| RTX 2060          | 215 |    180 |  145 | Medium      |
 | GTX 1080 Ti       | 300 |    270 |  250 | Recommended |
 | GTX 1080          | 260 |    230 |  210 | Recommended |
 
@@ -69,7 +69,7 @@ to install the driver.
 **Status** comes from [AMD GPU Setup](/servers/gpu-nodes/amd#supported-gpus).
 Experimental GPUs should work but haven't been through the same testing.
 
-| GPU                              | Status       | Low | Medium | High | 1080p High  |
+| GPU                              | Status       | Low | Medium | High | Settings    |
 | -------------------------------- | ------------ | --: | -----: | ---: | ----------- |
 | RX 9070 XT                       | Experimental | 510 |    460 |  420 | Recommended |
 | RX 9070                          | Experimental | 465 |    420 |  380 | Recommended |
@@ -80,18 +80,18 @@ Experimental GPUs should work but haven't been through the same testing.
 | RX 7900 GRE                      | Experimental | 380 |    340 |  320 | Recommended |
 | RX 7800 XT                       | Experimental | 370 |    330 |  310 | Recommended |
 | RX 7700 XT                       | Experimental | 325 |    290 |  265 | Recommended |
-| RX 7600 XT                       | Experimental | 240 |    200 |  170 | Use Medium  |
-| RX 7600                          | Experimental | 240 |    200 |  170 | Use Medium  |
+| RX 7600 XT                       | Experimental | 240 |    200 |  170 | Medium      |
+| RX 7600                          | Experimental | 240 |    200 |  170 | Medium      |
 | RX 6950 XT                       | Experimental | 410 |    370 |  350 | Recommended |
 | RX 6900 XT                       | Experimental | 400 |    360 |  340 | Recommended |
 | RX 6800 XT                       | Experimental | 385 |    345 |  325 | Recommended |
 | RX 6800                          | Experimental | 360 |    320 |  300 | Recommended |
 | RX 6750 XT                       | Experimental | 310 |    265 |  230 | Recommended |
 | RX 6700 XT                       | Experimental | 300 |    250 |  210 | Recommended |
-| RX 6650 XT                       | Experimental | 250 |    210 |  175 | Use Medium  |
-| RX 6600 XT                       | Experimental | 240 |    200 |  170 | Use Medium  |
-| RX 6600                          | Experimental | 215 |    180 |  150 | Use Medium  |
-| RX 5700 XT                       | Untested     | 230 |    190 |  160 | Use Medium  |
+| RX 6650 XT                       | Experimental | 250 |    210 |  175 | Medium      |
+| RX 6600 XT                       | Experimental | 240 |    200 |  170 | Medium      |
+| RX 6600                          | Experimental | 215 |    180 |  150 | Medium      |
+| RX 5700 XT                       | Untested     | 230 |    190 |  160 | Medium      |
 
 ## Intel
 
