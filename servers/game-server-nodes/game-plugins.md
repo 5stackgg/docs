@@ -87,7 +87,7 @@ The directory shows how many online nodes have the plugin:
 | **Failed**    | A node reported the install as failed; the error is kept on that node's row |
 | **Manual**    | Nobody asked for it, but it is there anyway: someone dropped it in by hand  |
 
-Only enabled nodes that are **Online** or **Not Accepting New Matches** count.
+Only enabled nodes that are **Online** or **Not accepting new servers** count.
 
 ::: tip Partial for a few minutes is normal
 A fresh install reads **Pending** and then **Partial** before it settles. It is
