@@ -101,8 +101,9 @@ The inspector's **CS2** section shows the node's build and its update state
 Its **⋮** menu also has:
 
 - **Remove CS2**: deletes the CS2 files from the node, after a confirm. Turn
-  off **Matchmaking**, **Practice servers** or **Accepting new servers** first.
-  Enabled nodes install CS2 again when the next CS2 update comes out.
+  off **Accepting new servers**, or both **Matchmaking** and
+  **Practice servers**, first. Enabled nodes install CS2 again when the next
+  CS2 update comes out.
 - **Install CS:GO**, for legacy CS:GO servers. It starts right away, with no
   confirm. Once CS:GO is installed, the inspector gets its own **CS:GO**
   section with **Update CS:GO**, the **Update log** and **Remove CS:GO**.
