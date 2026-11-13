@@ -29,20 +29,20 @@ switched off.
 Each node checks itself and reports what it finds. A warning can have
 **Details**, a **Docs** link, and a command to copy and run when there's a fix.
 
-| Warning                                                    | What to do                                                                                                        |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Needs a reboot to finish installing updates**            | Turn off **Accepting matches**, wait for its matches to end, turn off **Enabled**, reboot, then turn both back on |
-| **Automatic security updates are off**                     | Ubuntu's unattended-upgrades; run the command shown and answer Yes                                                |
-| **{name} is CPU-constrained**                              | A game server is at its pinned CPU limit: give servers more CPUs ([CPU Pinning](/servers/cpu-pinning))            |
-| **Reserves {cores} CPU cores for Kubernetes instead of 1** | [CPU Pinning](/servers/cpu-pinning#nodes-that-reserve-two-cores)                                                  |
-| **Governor is {governor} with pinning on**                 | [CPU Governance](/servers/cpu-governance)                                                                         |
-| **Legacy lowlatency kernel**                               | [Low-Latency Kernel](/servers/low-latency-kernel)                                                                 |
-| **Game files are on a hard drive**                         | [Storage](/servers/game-server-nodes/storage)                                                                     |
-| **Secure Boot blocks the NVIDIA driver**                   | [NVIDIA](/servers/gpu-nodes/nvidia#secure-boot)                                                                   |
-| **The NVIDIA driver isn't loaded**                         | [NVIDIA](/servers/gpu-nodes/nvidia)                                                                               |
-| **New GPU pods fail until it reboots**                     | An NVIDIA driver update is installed but the old one is still loaded                                              |
-| **NVIDIA modeset is off**                                  | [NVIDIA](/servers/gpu-nodes/nvidia#modeset)                                                                       |
-| **Unused graphics card: {card}**                           | Set it up as a [GPU node](/servers/gpu-nodes/) for streams, demos and highlights, or acknowledge it               |
+| Warning                                                    | What to do                                                                                                            |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Needs a reboot to finish installing updates**            | Turn off **Accepting new servers**, wait for its matches to end, turn off **Enabled**, reboot, then turn both back on |
+| **Automatic security updates are off**                     | Ubuntu's unattended-upgrades; run the command shown and answer Yes                                                    |
+| **{name} is CPU-constrained**                              | A game server is at its pinned CPU limit: give servers more CPUs ([CPU Pinning](/servers/cpu-pinning))                |
+| **Reserves {cores} CPU cores for Kubernetes instead of 1** | [CPU Pinning](/servers/cpu-pinning#nodes-that-reserve-two-cores)                                                      |
+| **Governor is {governor} with pinning on**                 | [CPU Governance](/servers/cpu-governance)                                                                             |
+| **Legacy lowlatency kernel**                               | [Low-Latency Kernel](/servers/low-latency-kernel)                                                                     |
+| **Game files are on a hard drive**                         | [Storage](/servers/game-server-nodes/storage)                                                                         |
+| **Secure Boot blocks the NVIDIA driver**                   | [NVIDIA](/servers/gpu-nodes/nvidia#secure-boot)                                                                       |
+| **The NVIDIA driver isn't loaded**                         | [NVIDIA](/servers/gpu-nodes/nvidia)                                                                                   |
+| **New GPU pods fail until it reboots**                     | An NVIDIA driver update is installed but the old one is still loaded                                                  |
+| **NVIDIA modeset is off**                                  | [NVIDIA](/servers/gpu-nodes/nvidia#modeset)                                                                           |
+| **Unused graphics card: {card}**                           | Set it up as a [GPU node](/servers/gpu-nodes/) for streams, demos and highlights, or acknowledge it                   |
 
 The NVIDIA driver and Secure Boot warnings mark the node as broken, since its
 GPU can't take work until they're fixed; the rest are warnings.
@@ -78,14 +78,14 @@ switches:
 
 - **Enabled**: off, the node is fully disabled, with no GPU work and no match
   scheduling.
-- **Matchmaking**: matches and practice servers start here. Off keeps the node
-  for dedicated servers and GPU work.
-- **Accepting matches**: off, the node keeps running its matches but takes no
-  new ones.
-- **Match types**: **All**, **Only** the types you pick, **No matches,
-  practice servers only**, or **No matches or practice servers**.
+- **Matchmaking**: matches start here. Off keeps the node for dedicated
+  servers, GPU work and practice servers.
+- **Accepting new servers**: off, the node takes no new matches or practice
+  servers, and the ones it is running keep going.
+- **Match types**: **All**, **Only** the types you pick, or **No matches**.
 - **Practice servers**: whether players can boot
-  [practice servers](/features/practice-servers) here.
+  [practice servers](/features/practice-servers) here, with **Matchmaking** on
+  or off.
 
 If no node in a region takes a match type any more, the list warns "No node in
 {region} takes {types}", and region pickers leave out regions that can't host
@@ -101,8 +101,8 @@ The inspector's **CS2** section shows the node's build and its update state
 Its **⋮** menu also has:
 
 - **Remove CS2**: deletes the CS2 files from the node, after a confirm. Turn
-  off **Matchmaking** or **Accepting matches** first. Enabled nodes install CS2
-  again when the next CS2 update comes out.
+  off **Matchmaking**, **Practice servers** or **Accepting new servers** first.
+  Enabled nodes install CS2 again when the next CS2 update comes out.
 - **Install CS:GO**, for legacy CS:GO servers. It starts right away, with no
   confirm. Once CS:GO is installed, the inspector gets its own **CS:GO**
   section with **Update CS:GO**, the **Update log** and **Remove CS:GO**.
