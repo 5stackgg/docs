@@ -29,7 +29,7 @@ lsblk -o NAME,ROTA,TRAN,MODEL,SIZE,MOUNTPOINTS
 
 The game files stay at `/opt/5stack`, with each folder mounted from the fast disk. These steps assume the fast disk is already formatted and mounted from `/etc/fstab`, here at `/mnt/fast`.
 
-1. In the panel, turn off **Accepting matches** on the node, wait for its matches to end, then turn off **Enabled**.
+1. In the panel, turn off **Accepting new servers** on the node, wait for its matches to end, then turn off **Enabled**.
 
 2. On the node, as root, stop k3s and copy each folder to the fast disk. The old copies are kept as `/opt/5stack/.<folder>.before-move`:
 
@@ -62,7 +62,7 @@ The game files stay at `/opt/5stack`, with each folder mounted from the fast dis
    systemctl start k3s-agent
    ```
 
-4. Turn **Enabled** and **Accepting matches** back on. Once a match has run, delete the old copies:
+4. Turn **Enabled** and **Accepting new servers** back on. Once a match has run, delete the old copies:
 
    ```bash
    rm -rf /opt/5stack/.*.before-move

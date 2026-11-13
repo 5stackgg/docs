@@ -134,9 +134,9 @@ The node inspector, its warnings and one-click tuning, which match types each
 node takes, removing CS2, and Kubernetes updates are covered in
 [Managing Nodes](/servers/game-server-nodes/managing).
 
-- **Accepting matches**, in a node's controls: turned off, the node keeps running
-  the matches it has but takes no new ones. The setting is kept while the node
-  is offline, and applies when it reconnects.
+- **Accepting new servers**, in a node's controls: turned off, the node takes no
+  new matches or practice servers, and the ones it is running keep going. The
+  setting is kept while the node is offline, and applies when it reconnects.
 - **Remove node** deletes the node and every server on it, dedicated servers
   included, after a confirm: "Remove this node? … This can't be undone." Shut
   the host down first: a host that is still running registers itself again.
