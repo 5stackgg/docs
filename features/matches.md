@@ -76,7 +76,7 @@ match [requires cameras](/features/player-cameras).
 Check-in has a deadline. With **Match Cancellation** on (the default), the
 match page counts down **Check in within**, red for the last 10 seconds, and if
 everyone required hasn't checked in before it runs out, the match is canceled
-automatically (a tournament match is forfeited instead, see below). The time
+automatically (a tournament match may be forfeited instead, see below). The time
 allowed is the instance's **Auto Cancel Duration**, 15 minutes unless an admin
 changes it, and a match or tournament can override it. Organizers can push it
 back with **They need more time** (see [Fix a Problem](#fix-a-problem)).
@@ -89,13 +89,14 @@ when any of the three runs out depends on who is missing:
 | Someone never showed up           | Canceled | Forfeit to the side that did its part                                                                     |
 | Everyone connected, not all ready | Canceled | Online, the match is started for them. On a LAN it waits, and Tournament Organizers and above are alerted |
 
-A tournament match with nobody to blame, such as a server that never came up
-or a veto no side is holding, is not forfeited: Tournament Organizers and above
-are asked to step in. When both sides are at fault it depends on the
-tournament's **Auto Start**. On, the side with more players on the server wins,
-and a tie, or a check-in neither side made, is settled by a coin toss. Off,
-organizers are asked to step in. Once a map of the series has started, the match
-is never forfeited.
+A tournament match with nobody to blame, such as a server that never came up,
+a server nobody joined, or a veto no side is holding, is not forfeited:
+Tournament Organizers and above are asked to step in. When both sides are at
+fault, the side with more players on the server wins, and an even count, or a
+check-in neither side made, is settled by a coin toss. With
+[Negotiated Scheduling](/features/tournaments#negotiated-match-times), as in
+every league season, organizers are asked to step in instead. Once a map of the
+series has started, the deadline never forfeits the match.
 
 When a match is canceled or forfeited this way, the players who were not
 connected once the server was up are recorded as having
