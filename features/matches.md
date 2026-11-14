@@ -81,18 +81,24 @@ minutes unless an admin changes it, and a match or tournament can override it.
 Organizers can push it back with **They need more time** (see
 [Fix a Problem](#fix-a-problem)).
 
-The same deadline covers the veto and the warmup on the server. What happens
+The veto and the warmup on the server each get the same time. What happens
 when it runs out depends on who is missing:
 
-| At the deadline                   | Match    | Tournament match                                                                                      |
-| --------------------------------- | -------- | ----------------------------------------------------------------------------------------------------- |
-| Someone never showed up           | Canceled | Forfeit to the side that did its part                                                                 |
-| Everyone connected, not all ready | Canceled | Online, the match is started for them. On a LAN it waits, and the tournament's organizers are alerted |
+| At the deadline                   | Match    | Tournament match                                                                                         |
+| --------------------------------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| Someone never showed up           | Canceled | Forfeit to the side that did its part                                                                    |
+| Everyone connected, not all ready | Canceled | Online, the match is started for them. On a LAN it waits, and Tournament Organizers and above are alerted |
 
-Players who never connected once the server was up are recorded as having
-[abandoned](/features/moderation#abandoned-matches) the match. A full lobby that
-is canceled for not readying up costs nobody anything. Apart from that waiting
-LAN tournament match, a LAN follows the same rules as online.
+A tournament match with nobody to blame, or with both sides at fault, is not
+forfeited: Tournament Organizers and above are asked to step in. The one
+exception is a tournament nobody is watching (auto mode) where neither side did
+its part, which is settled by a coin toss.
+
+When a match is canceled or forfeited this way, the players who were not
+connected once the server was up are recorded as having
+[abandoned](/features/moderation#abandoned-matches) it. A full lobby that is
+canceled for not readying up costs nobody anything. Apart from that waiting LAN
+tournament match, a LAN follows the same rules as online.
 
 ## Map & region veto
 
@@ -309,14 +315,18 @@ differently:
 | Recorded as an abandoned match | Only if the team then surrenders while it is still short | Never                                            |
 | `.surrender`                   | Works                                                    | Refused                                          |
 
-Type `.check` in chat to see whether everyone is back. It lists who the match is
-still waiting for, or, when the whole roster is connected, resumes the match.
-Only a player in the match can resume it this way; anyone else gets the list.
-`.check` works in every match, and only ever ends a disconnect pause: a tactical
-or technical pause is still left to the teams.
+An [offline match](/servers/game-server-nodes/offline-support) has no connection
+to the panel, so nothing is recorded or alerted there.
 
-A match on a LAN that hangs mid-map alerts its organizers instead of being
-canceled.
+While the match is paused, type `.check` in chat to see whether everyone is
+back. It tells everyone who the match is still waiting for, or, when the whole
+roster is connected, resumes the match. Only a player in the match can resume it
+this way; anyone else is only told who is missing, or that everyone is
+connected. `.check` works in every match, and only ever ends a disconnect pause:
+a tactical or technical pause is still left to the teams.
+
+A match on a LAN that hangs mid-map is not canceled: Match Organizers and above
+are alerted, or Tournament Organizers and above for a tournament match.
 
 ## When a series is decided
 

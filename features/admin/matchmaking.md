@@ -22,8 +22,9 @@ Under **Settings → Application → Matchmaking**:
   minutes. Default 15. Matches and tournaments can override it.
 - **Live Match Timeout**: a safety net that cancels a live match after this many
   minutes if it never finishes. Default 180. Matches and tournaments can
-  override it. A tournament match, and any match on a LAN, alerts its
-  organizers instead of being canceled.
+  override it. A tournament match alerts Tournament Organizers and above
+  instead of being canceled, and a match on a LAN alerts Match Organizers and
+  above.
 - **Veto Pick Timer**: the default seconds each team gets per
   [veto](/features/map-veto#pick-timer) step on newly created matches. Default
   60; `0` turns the timer off by default.
