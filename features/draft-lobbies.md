@@ -21,9 +21,9 @@ your own.
 | **Who can join** | **Open**, **Friends**, or **Invite**                    |
 
 A quick room uses the same match settings matchmaking uses for that format and
-your preferred regions. A captains draft picks the **Top 2 by Rank** as
-captains and drafts in snake order, and a 1v1 is always auto-split since there
-is nobody to draft. Everything else is under **All settings**.
+your preferred regions. A captains draft picks two random players as captains
+and drafts in snake order, and a 1v1 is always auto-split since there is
+nobody to draft. Everything else is under **All settings**.
 
 - **Re-host last** recreates the last room you hosted on this device, with the
   same settings.
@@ -38,6 +38,10 @@ is nobody to draft. Everything else is under **All settings**.
 **All settings** opens the full form. It is one page, with a live preview beside
 it that shows the format, the exact pick order, and the rules you've set, and a
 **Create** button that stays in reach.
+
+The form opens on the draft settings of the last room you hosted on this
+device: draft mode, captain selection, draft order, lobby access, rank gate and
+require approval. Match settings start from the defaults every time.
 
 ### Draft Mode
 
@@ -63,7 +67,7 @@ Selection**:
 
 - **Top 2 by Rank**
 - **Host & Next Highest** (only when the host is playing)
-- **Random Two**
+- **Random Two** (the default)
 - **Manual**: you pick them in the room
 
 and the **Draft Order**:
