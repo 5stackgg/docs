@@ -294,6 +294,9 @@ Imported matches can't be brought back.
 - When they reconnect, the match resumes on its own once the whole roster is
   back, counting lineup players only, so a caster or an admin on the server
   can't stand in. A tactical or technical pause is still left to the teams.
+- While they are away, the pause is paid for with their team's technical
+  timeouts, two per map by default. Once those are spent the match plays on
+  short-handed. A team with nobody connected is waited for at no cost.
 - If they aren't back within 3 minutes, their team gets a 30-second surrender
   vote, and the leave is recorded as an
   [abandoned match](/features/moderation#abandoned-matches). One leave is
