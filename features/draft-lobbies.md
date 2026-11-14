@@ -37,9 +37,10 @@ nobody to draft. Everything else is under **All settings**.
 it that shows the format, the exact pick order, and the rules you've set, and a
 **Create** button that stays in reach.
 
-The form opens on the draft settings you last used on this device: **Draft
-Mode**, **Captain Selection**, **Draft Order**, **Lobby Access**, **Rank Gate**
-and **Require Approval**. Everything else starts from the defaults every time.
+The form opens on the draft settings you last chose on this device: **Draft
+Mode**, **Captain Selection**, **Draft Order**, **Lobby Access**, **Rank Gate
+(optional)** and **Require Approval**. Everything else starts from the defaults
+every time.
 
 ### Draft Mode
 
