@@ -76,10 +76,32 @@ match [requires cameras](/features/player-cameras).
 Check-in has a deadline. With **Match Cancellation** on (the default), the
 match page counts down **Check in within**, red for the last 10 seconds, and if
 everyone required hasn't checked in before it runs out, the match is canceled
-automatically. The time allowed is the instance's **Auto Cancel Duration**, 15
-minutes unless an admin changes it, and a match or tournament can override it.
-Organizers can push it back with **They need more time** (see
-[Fix a Problem](#fix-a-problem)).
+automatically (a tournament match is forfeited instead, see below). The time
+allowed is the instance's **Auto Cancel Duration**, 15 minutes unless an admin
+changes it, and a match or tournament can override it. Organizers can push it
+back with **They need more time** (see [Fix a Problem](#fix-a-problem)).
+
+The veto and the warmup on the server each get the same time. What happens
+when any of the three runs out depends on who is missing:
+
+| At the deadline                   | Match    | Tournament match                                                                                          |
+| --------------------------------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| Someone never showed up           | Canceled | Forfeit to the side that did its part                                                                     |
+| Everyone connected, not all ready | Canceled | Online, the match is started for them. On a LAN it waits, and Tournament Organizers and above are alerted |
+
+A tournament match with nobody to blame, such as a server that never came up
+or a veto no side is holding, is not forfeited: Tournament Organizers and above
+are asked to step in. When both sides are at fault it depends on the
+tournament's **Auto Start**. On, the side with more players on the server wins,
+and a tie, or a check-in neither side made, is settled by a coin toss. Off,
+organizers are asked to step in. Once a map of the series has started, the match
+is never forfeited.
+
+When a match is canceled or forfeited this way, the players who were not
+connected once the server was up are recorded as having
+[abandoned](/features/moderation#abandoned-matches) it. A full lobby that is
+canceled for not readying up costs nobody anything. Apart from that waiting LAN
+tournament match, a LAN follows the same rules as online.
 
 ## Map & region veto
 
@@ -275,6 +297,9 @@ Imported matches can't be brought back.
 - When they reconnect, the match resumes on its own once the whole roster is
   back, counting lineup players only, so a caster or an admin on the server
   can't stand in. A tactical or technical pause is still left to the teams.
+- While they are away, the pause is paid for with their team's technical
+  timeouts, two per map by default. Once those are spent the match plays on
+  short-handed. A team with nobody connected is waited for at no cost.
 - If they aren't back within 3 minutes, their team gets a 30-second surrender
   vote, and the leave is recorded as an
   [abandoned match](/features/moderation#abandoned-matches). One leave is
@@ -282,6 +307,32 @@ Imported matches can't be brought back.
   maps the series has.
 - A player who reconnects onto the wrong side is moved back at the next round
   start.
+
+### On a LAN
+
+On a LAN a dropped player is usually a machine or the network, and someone who
+can fix it is in the room, so a LAN or offline match handles a disconnect
+differently:
+
+| When a player drops            | LAN or offline match                                     | LAN tournament match                                                                       |
+| ------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| The pause                      | Stays until someone resumes it                           | Stays until someone resumes it                                                             |
+| Gone 3 minutes                 | The team gets the surrender vote                         | No vote. Tournament Organizers and above, and the tournament's own organizers, are alerted |
+| Recorded as an abandoned match | Only if the team then surrenders while it is still short | Never                                                                                      |
+| `.surrender`                   | Works                                                    | Refused                                                                                    |
+
+An [offline match](/servers/game-server-nodes/offline-support) has no connection
+to the panel, so nothing is recorded or alerted there.
+
+While the match is paused, type `.check` in chat to see whether everyone is
+back. It tells everyone who the match is still waiting for, or, when the whole
+roster is connected, resumes the match. Only a player in the match can resume it
+this way; anyone else is only told who is missing, or that everyone is
+connected. `.check` works in every match, and only ever ends a disconnect pause:
+a tactical or technical pause is still left to the teams.
+
+A match on a LAN that hangs mid-map is not canceled: Match Organizers and above
+are alerted, or Tournament Organizers and above for a tournament match.
 
 ## When a series is decided
 
@@ -295,7 +346,7 @@ A match won by a forfeit or a surrender keeps that status, **Forfeit** or
 shows its winner, counts toward the leaderboards, and can't be canceled or
 started again.
 
-A match nobody played, such as a forfeit at check-in or a winner set by hand
+A match nobody played, such as a forfeit in warmup or a winner set by hand
 before any map went live, only changes the Elo of its no-shows, the players
 recorded as having [abandoned](/features/moderation#abandoned-matches) it.
 Everyone who turned up, on either side, keeps their rating.
