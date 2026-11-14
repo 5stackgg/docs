@@ -185,6 +185,9 @@ An abandoned-match record can be removed by a moderator if it was recorded
 unfairly. It stays on the record, marked removed, and stops counting toward the
 cooldown. One abandon is only ever counted once.
 
+A leave [on a LAN](/features/matches#on-a-lan) is only recorded once the short
+team surrenders, and never in a LAN tournament match.
+
 ## Steam ban detection
 
 5Stack checks players' Steam accounts for **VAC and game bans** on sign-in,

@@ -81,6 +81,19 @@ minutes unless an admin changes it, and a match or tournament can override it.
 Organizers can push it back with **They need more time** (see
 [Fix a Problem](#fix-a-problem)).
 
+The same deadline covers the veto and the warmup on the server. What happens
+when it runs out depends on who is missing:
+
+| At the deadline                   | Match    | Tournament match                                                                                      |
+| --------------------------------- | -------- | ----------------------------------------------------------------------------------------------------- |
+| Someone never showed up           | Canceled | Forfeit to the side that did its part                                                                 |
+| Everyone connected, not all ready | Canceled | Online, the match is started for them. On a LAN it waits, and the tournament's organizers are alerted |
+
+Players who never connected once the server was up are recorded as having
+[abandoned](/features/moderation#abandoned-matches) the match. A full lobby that
+is canceled for not readying up costs nobody anything. Apart from that waiting
+LAN tournament match, a LAN follows the same rules as online.
+
 ## Map & region veto
 
 - **Map veto**: an interactive pick/ban flow; once a map is chosen, teams pick
@@ -282,6 +295,28 @@ Imported matches can't be brought back.
   maps the series has.
 - A player who reconnects onto the wrong side is moved back at the next round
   start.
+
+### On a LAN
+
+On a LAN a dropped player is usually a machine or the network, and someone who
+can fix it is in the room, so a LAN or offline match handles a disconnect
+differently:
+
+| When a player drops            | LAN or offline match                                     | LAN tournament match                             |
+| ------------------------------ | -------------------------------------------------------- | ------------------------------------------------ |
+| The pause                      | Stays until someone resumes it                           | Stays until someone resumes it                   |
+| Gone 3 minutes                 | The team gets the surrender vote                         | No vote. The tournament's organizers are alerted |
+| Recorded as an abandoned match | Only if the team then surrenders while it is still short | Never                                            |
+| `.surrender`                   | Works                                                    | Refused                                          |
+
+Type `.check` in chat to see whether everyone is back. It lists who the match is
+still waiting for, or, when the whole roster is connected, resumes the match.
+Only a player in the match can resume it this way; anyone else gets the list.
+`.check` works in every match, and only ever ends a disconnect pause: a tactical
+or technical pause is still left to the teams.
+
+A match on a LAN that hangs mid-map alerts its organizers instead of being
+canceled.
 
 ## When a series is decided
 
