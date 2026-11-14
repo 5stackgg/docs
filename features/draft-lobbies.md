@@ -11,8 +11,8 @@ your own.
 
 ## Hosting from the Play page
 
-**Host a room** opens a room in one click. Pick three things and press **Open
-5v5 Room** (the button names the format you picked):
+**Host a room** opens a room in one click, using three choices you can change
+first:
 
 | Choice           | Options                                                 |
 | ---------------- | ------------------------------------------------------- |
@@ -21,16 +21,14 @@ your own.
 | **Who can join** | **Open**, **Friends**, or **Invite**                    |
 
 A quick room uses the same match settings matchmaking uses for that format and
-your preferred regions. A captains draft picks the **Top 2 by Rank** as
-captains and drafts in snake order, and a 1v1 is always auto-split since there
-is nobody to draft. Everything else is under **All settings**.
+your preferred regions. A captains draft picks two random players as captains
+and drafts in snake order, and a 1v1 is always auto-split since there is
+nobody to draft. Everything else is under **All settings**.
 
-- **Re-host last** recreates the last room you hosted on this device, with the
-  same settings.
 - If you already have a room open, the bar takes you **Back to your room**.
 - In a party, only the party leader can host.
 - On a LAN you're asked whether the room plays on the LAN or online, and the
-  button reads **Open 5v5 LAN Room** for a LAN room. See
+  button reads **Host a LAN room** for a LAN room. See
   [LAN or online](/features/quick-play#lan-or-online).
 
 ## Creating a room with every setting
@@ -38,6 +36,11 @@ is nobody to draft. Everything else is under **All settings**.
 **All settings** opens the full form. It is one page, with a live preview beside
 it that shows the format, the exact pick order, and the rules you've set, and a
 **Create** button that stays in reach.
+
+The form opens on the draft settings you last chose on this device: **Draft
+Mode**, **Captain Selection**, **Draft Order**, **Lobby Access**, **Rank Gate
+(optional)** and **Require Approval**. Everything else starts from the defaults
+every time.
 
 ### Draft Mode
 
@@ -63,7 +66,7 @@ Selection**:
 
 - **Top 2 by Rank**
 - **Host & Next Highest** (only when the host is playing)
-- **Random Two**
+- **Random Two** (the default)
 - **Manual**: you pick them in the room
 
 and the **Draft Order**:
@@ -105,7 +108,8 @@ On a phone, your pick is a bar pinned to the bottom of the screen.
 - A **pick track** lays out the whole pick order, numbered, with the team each
   pick belongs to. Picks fill in as they're made.
 - Team 1's captain makes the first pick: with **Top 2 by Rank** that's the
-  higher-rated captain, and with **Host & Next Highest** the host.
+  higher-rated captain, with **Host & Next Highest** the host, and with
+  **Random Two** either captain at random.
 - When a captain runs out of time, the highest-rated player still in the pool
   is picked for them, ties going to whoever joined first. The captain on the
   clock is told who that will be ahead of time, and the pick is marked
