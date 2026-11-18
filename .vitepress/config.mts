@@ -1,4 +1,5 @@
 import { defineConfig } from "vitepress";
+import { writeSearchIndex } from "./search-index";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -8,6 +9,8 @@ export default defineConfig({
     "Your own CS2 platform, on hardware you control. One self-hosted install runs matchmaking, tournaments, stats, replays and broadcast.",
   appearance: "dark",
   cleanUrls: true,
+
+  buildEnd: writeSearchIndex,
 
   // Default Shiki theme leans on bright purples that fight the amber/neutral
   // palette. Vitesse is low-saturation and warm, so code blocks sit inside the
