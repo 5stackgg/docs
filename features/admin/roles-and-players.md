@@ -27,9 +27,10 @@ role hierarchy.
 ## Managing roles
 
 A player's role is changed inline on their profile. Match organizers and above
-can change the role of players at or below their own role, to any role up to
-their own: **User**, **Verified User**, **Streamer**, **Moderator**, **Match
-Organizer**, **Tournament Organizer**, or **Administrator**. Most features are
+can change the role of players at or below their own role, to any role below
+their own. Administrators can grant every role: **User**, **Verified User**,
+**Streamer**, **Moderator**, **Match Organizer**, **Tournament Organizer**, or
+**Administrator**. Most features are
 gated by a **minimum role**, so promoting a player unlocks every feature at or
 below their new role.
 
