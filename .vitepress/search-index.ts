@@ -35,31 +35,56 @@ function slugify(value: string) {
     .toLowerCase();
 }
 
+// Inline code is set aside first so placeholders like `<lan-ip>` survive the
+// tag stripping.
 function inline(value: string) {
+  const code: Array<string> = [];
   return value
+    .replace(/`([^`]+)`/g, (_, text) => `\uE000${code.push(text) - 1}\uE000`)
     .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-    .replace(/<[^>]+>/g, "")
-    .replace(/`([^`]+)`/g, "$1")
+    .replace(/<\/?[A-Za-z][^>]*>/g, "")
     .replace(/\*\*([^*]+)\*\*/g, "$1")
     .replace(/\*([^*]+)\*/g, "$1")
-    .replace(/(^|\W)_([^_]+)_(?=\W|$)/g, "$1$2");
+    .replace(/(^|\W)_([^_]+)_(?=\W|$)/g, "$1$2")
+    .replace(/\uE000(\d+)\uE000/g, (_, index) => code[Number(index)]);
 }
 
+// Prose is cleaned a paragraph at a time, since markup wraps across lines;
+// code is kept as it is written.
 function plain(lines: Array<string>) {
-  return lines
-    .filter((line) => !/^\s*(```|:::)/.test(line))
-    .map((line) =>
-      inline(line)
+  const out: Array<string> = [];
+  let prose: Array<string> = [];
+  let fenced = false;
+  const flush = () => {
+    out.push(inline(prose.join(" ")));
+    prose = [];
+  };
+  for (const line of lines) {
+    if (/^\s*```/.test(line)) {
+      flush();
+      fenced = !fenced;
+      continue;
+    }
+    if (fenced) {
+      out.push(line);
+      continue;
+    }
+    if (/^\s*:::/.test(line)) {
+      flush();
+      continue;
+    }
+    prose.push(
+      line
         .replace(/^\s*[-*+]\s+/, "")
         .replace(/^\s*\d+\.\s+/, "")
         .replace(/^\s*>\s?/, "")
         .replace(/\|/g, " ")
         .replace(/^[\s:-]+$/, ""),
-    )
-    .join(" ")
-    .replace(/\s+/g, " ")
-    .trim();
+    );
+  }
+  flush();
+  return out.join(" ").replace(/\s+/g, " ").trim();
 }
 
 function route(page: string) {
@@ -67,9 +92,17 @@ function route(page: string) {
   return path.endsWith("/index") ? path.slice(0, -"index".length) : path;
 }
 
-// A page's area is the most specific sidebar group it is listed under.
-function areas(sidebar: DefaultTheme.Sidebar | undefined) {
-  const found = new Map<string, { group: string; depth: number }>();
+function sidebarKey(link: string) {
+  return link.replace(/\.md$/, "").replace(/(.)\/$/, "$1");
+}
+
+// A page's area is the most specific sidebar group it is listed under; its
+// sidebar label stands in for a missing title.
+function sidebarPages(sidebar: DefaultTheme.Sidebar | undefined) {
+  const found = new Map<
+    string,
+    { area: string; title: string | null; depth: number }
+  >();
   const walk = (
     items: Array<DefaultTheme.SidebarItem>,
     base: string,
@@ -79,9 +112,14 @@ function areas(sidebar: DefaultTheme.Sidebar | undefined) {
     for (const item of items) {
       const itemBase = item.base ?? base;
       if (item.link && group) {
-        const link = `${itemBase}${item.link}`.replace(/\.md$/, "");
-        if ((found.get(link)?.depth ?? -1) < depth) {
-          found.set(link, { group, depth });
+        const link = sidebarKey(`${itemBase}${item.link}`);
+        const seen = found.get(link);
+        if ((seen?.depth ?? -1) < depth) {
+          found.set(link, {
+            area: group,
+            title: seen?.title ?? item.text ?? null,
+            depth,
+          });
         }
       }
       if (item.items) {
@@ -92,10 +130,14 @@ function areas(sidebar: DefaultTheme.Sidebar | undefined) {
   for (const items of Object.values(sidebar ?? {})) {
     walk(Array.isArray(items) ? items : items.items, "", null, 0);
   }
-  return new Map([...found].map(([link, { group }]) => [link, group]));
+  return found;
 }
 
-function sections(source: string, url: string, area: string): Array<Section> {
+function sections(
+  source: string,
+  url: string,
+  listed: { area: string; title: string | null } | undefined,
+): Array<Section> {
   let body = source;
   let title: string | null = null;
   const front = body.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
@@ -148,7 +190,12 @@ function sections(source: string, url: string, area: string): Array<Section> {
   }
   parts.push(current);
 
-  const page = title ?? url;
+  const page =
+    title ??
+    listed?.title ??
+    parts.find((part) => part.heading)?.heading ??
+    url;
+  const area = listed?.area ?? "Docs";
   let parent: string | null = null;
   return parts.flatMap((part) => {
     if (part.level === 2) {
@@ -172,13 +219,13 @@ function sections(source: string, url: string, area: string): Array<Section> {
 }
 
 export async function writeSearchIndex(config: SiteConfig) {
-  const sidebar = areas(config.site.themeConfig?.sidebar);
+  const sidebar = sidebarPages(config.site.themeConfig?.sidebar);
   const pages = config.pages.filter((page) => page !== "README.md");
   const all = await Promise.all(
     pages.map(async (page) => {
       const url = route(page);
       const source = await readFile(join(config.srcDir, page), "utf8");
-      return sections(source, url, sidebar.get(url) ?? "Docs");
+      return sections(source, url, sidebar.get(sidebarKey(url)));
     }),
   );
   await writeFile(
