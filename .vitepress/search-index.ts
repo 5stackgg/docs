@@ -70,7 +70,7 @@ function plain(lines: Array<string>) {
       out.push(line);
       continue;
     }
-    if (/^\s*:::/.test(line)) {
+    if (!line.trim() || /^\s*:::/.test(line)) {
       flush();
       continue;
     }
