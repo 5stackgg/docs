@@ -143,32 +143,28 @@ Only if you'd rather not paste a token, or for a panel that gets Tailscale later
 with `sudo 5stack config tailscale`:
 
 1. In the Tailscale admin console, open
-   [Access controls](https://login.tailscale.com/admin/acls/file) and add these
-   lines:
+   [Access controls](https://login.tailscale.com/admin/acls/file) and add the
+   tag:
 
    ```json
    "tagOwners": {
      "tag:fivestack": ["autogroup:admin"],
    },
-   "autoApprovers": {
-     "routes": {
-       "10.42.0.0/16": ["tag:fivestack"],
-     },
-   },
-   "grants": [
-     {
-       "src": ["tag:fivestack", "10.42.0.0/16"],
-       "dst": ["tag:fivestack", "10.42.0.0/16"],
-       "ip": ["*"],
-     },
-   ],
    ```
 
 2. Open
    [Trust credentials](https://login.tailscale.com/admin/settings/trust-credentials/add)
-   and add an OAuth client with **Auth Keys** write and **Devices** write
-   (core) access, tagged `tag:fivestack`.
+   and add an OAuth client with **Auth Keys** write, **Devices** write (core)
+   and **Policy File** read access, tagged `tag:fivestack`.
 3. Paste its client ID and secret. Tailscale shows the secret only once.
+4. 5Stack reads your tailnet policy to check that it auto-approves this panel's
+   pod routes. If it doesn't yet, the page shows the exact lines for your panel,
+   with its own address range. Add them in Access controls, then press
+   **Check Again**.
+
+Without those lines, game server nodes join but their routes wait for approval
+in the Tailscale admin console, and the panel can't reach them.
+`sudo 5stack config tailscale` prints the same lines for your panel.
 
 **Skip for Now** leaves Tailscale for later; no game server node can join until
 it's set up. Add it later on the panel server with `sudo 5stack config tailscale`.
