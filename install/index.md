@@ -154,17 +154,19 @@ with `sudo 5stack config tailscale`:
 
 2. Open
    [Trust credentials](https://login.tailscale.com/admin/settings/trust-credentials/add)
-   and add an OAuth client with **Auth Keys** write, **Devices** write (core)
-   and **Policy File** read access, tagged `tag:fivestack`.
+   and add an OAuth client with **Auth Keys**, **Devices** (core) and
+   **Policy File** write access, tagged `tag:fivestack`.
 3. Paste its client ID and secret. Tailscale shows the secret only once.
-4. 5Stack reads your tailnet policy to check that it auto-approves this panel's
-   pod routes. If it doesn't yet, the page shows the exact lines for your panel,
-   with its own address range. Add them in Access controls, then press
-   **Check Again**.
 
-Without those lines, game server nodes join but their routes wait for approval
-in the Tailscale admin console, and the panel can't reach them.
-`sudo 5stack config tailscale` prints the same lines for your panel.
+At install, 5Stack adds the lines game server nodes need to your tailnet
+policy, for this panel's own address range, and keeps the rest as it is.
+`sudo 5stack config tailscale` does the same.
+
+If the client can't edit the policy, or your policy is managed in GitOps, the
+page shows the exact lines for your panel instead. Add them in Access controls,
+then press **Check Again**. Without them, game server nodes join but their
+routes wait for approval in the Tailscale admin console, and the panel can't
+reach them.
 
 **Skip for Now** leaves Tailscale for later; no game server node can join until
 it's set up. Add it later on the panel server with `sudo 5stack config tailscale`.
