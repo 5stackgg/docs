@@ -102,7 +102,7 @@
    with the whole menu, which leaves no room for the full wordmark: show its mark. */
 @media (min-width: 768px) and (max-width: 959px) {
   .VPNavBarTitle .logo {
-    width: 26px;
+    width: 22px; /* ends in the gap between the 5 and the S */
     object-fit: cover;
     object-position: left;
   }
