@@ -4,25 +4,11 @@ By default, every enabled game server node **auto-updates to the latest CS2 buil
 
 Pinning is configured **per node**. There is no global pin, so you can hold one node back while the rest track the latest build.
 
-## Enabling CS2 build pinning
+## How a pinned build installs
 
-Only the latest CS2 build downloads without a Steam account, so to pin CS2 builds you must provide Steam credentials.
+Every build in the **Version** dropdown is one of Steam's public CS2 branches, so pinning needs no Steam account. The node switches its existing install to that branch and downloads only the files that changed, the same way a normal update does.
 
-On the panel server, run this and type the account name and password when it asks. Both are typed hidden:
-
-```bash
-sudo 5stack config set STEAM_USER= STEAM_PASSWORD=
-```
-
-::: danger
-You should use an account dedicated to updating servers, as we are unable to provide two-factor authentication automatically.
-:::
-
-Until credentials are set, the **Version** dropdown in the node inspector's **CS2** section is disabled, with a **Pinning not supported** link beside it (_"Version pinning is not supported on this server."_).
-
-::: tip
-Pinning the **plugin version** does not require Steam credentials, that dropdown works on any install.
-:::
+The node needs free disk space for those changed files, and a big CS2 update can change up to about 20 GB. If it runs out, the update fails with **Not enough disk space** and says how much is free.
 
 ## Pinning a CS2 build
 
