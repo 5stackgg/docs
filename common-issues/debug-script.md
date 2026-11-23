@@ -4,7 +4,7 @@ If 5Stack support asks you to debug the panel, run the debug script on the panel
 server:
 
 ```bash
-sudo 5stack run debug.sh
+sudo 5stack run debug
 ```
 
 Or pick **Diagnostics → Debug bundle** in the

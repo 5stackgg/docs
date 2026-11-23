@@ -22,7 +22,7 @@ Linux install instead.
 
 1. [Create a game server node](#create-the-node) on the machine with the GPU.
 2. [Install the GPU driver](#install-the-gpu-driver) on that node.
-3. [Run `setup-gpu-nodes.sh`](#run-the-setup-script) on the panel server.
+3. [Run `sudo 5stack run setup-gpu-nodes`](#run-the-setup-script) on the panel server.
 4. [Add Steam accounts](#steam-account-pool) to the pool on the **GPU Nodes**
    page.
 
@@ -51,7 +51,7 @@ how fast each one runs CS2.
 On the panel server, run:
 
 ```bash
-sudo 5stack run setup-gpu-nodes.sh
+sudo 5stack run setup-gpu-nodes
 ```
 
 Or pick **GPU node setup** in the [`5stack` menu](/service/command#the-menu).

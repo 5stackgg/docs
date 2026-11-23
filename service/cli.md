@@ -114,27 +114,28 @@ sudo 5stack config set FACEIT_API_KEY=
 installed release, with the panel's config, in your terminal, so its questions
 work as usual. You can also pick each one in the menu.
 
-| Script               | What it does                                                                                                                                 |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `plugin.sh`          | Installs, upgrades, lists or removes a panel plugin. See [One-Command Install](/plugins/installing).                                         |
-| `custom.sh`          | Deploys one of your overlays in `/etc/5stack/custom` onto a node. See [Custom Kubernetes YAML](/advanced/custom-k8s).                        |
-| `setup-gpu-nodes.sh` | Picks the GPU nodes and the Steam account they use, then applies the panel again. See [GPU Nodes](/servers/gpu-nodes/#run-the-setup-script). |
-| `playcast-relay.sh`  | Deploys the Playcast edge relay. See [Playcast Edge Relay](/advanced/playcast-edge-relay).                                                   |
-| `backblaze-proxy.sh` | Deploys the Backblaze B2 worker and points the panel at it. See [Backblaze + Cloudflare](/advanced/s3/backblaze).                            |
-| `fix-ssl.sh`         | Requests new certificates for the ones that aren't valid, then applies the panel again.                                                      |
-| `fix-vault.sh`       | Signs the panel in to Vault again and resyncs every secret, after Vault is unsealed. See [HashiCorp Vault](/advanced/vault).                 |
-| `fix-versions.sh`    | Removes the cached 5Stack images on this server, so they download again.                                                                     |
-| `debug.sh`           | Saves logs, events and certificate status to a file for a bug report. See [Debugging](/common-issues/debug-script).                          |
+| Script            | What it does                                                                                                                                 |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `plugin`          | Installs, upgrades, lists or removes a panel plugin. See [One-Command Install](/plugins/installing).                                         |
+| `custom`          | Deploys one of your overlays in `/etc/5stack/custom` onto a node. See [Custom Kubernetes YAML](/advanced/custom-k8s).                        |
+| `setup-gpu-nodes` | Picks the GPU nodes and the Steam account they use, then applies the panel again. See [GPU Nodes](/servers/gpu-nodes/#run-the-setup-script). |
+| `playcast-relay`  | Deploys the Playcast edge relay. See [Playcast Edge Relay](/advanced/playcast-edge-relay).                                                   |
+| `backblaze-proxy` | Deploys the Backblaze B2 worker and points the panel at it. See [Backblaze + Cloudflare](/advanced/s3/backblaze).                            |
+| `fix-ssl`         | Requests new certificates for the ones that aren't valid, then applies the panel again.                                                      |
+| `fix-vault`       | Signs the panel in to Vault again and resyncs every secret, after Vault is unsealed. See [HashiCorp Vault](/advanced/vault).                 |
+| `fix-versions`    | Removes the cached 5Stack images on this server, so they download again.                                                                     |
+| `debug`           | Saves logs, events and certificate status to a file for a bug report. See [Debugging](/common-issues/debug-script).                          |
 
-`5stack run --list` lists them, without sudo.
+`5stack run --list` lists them, without sudo. A script's name with `.sh`, such
+as `setup-gpu-nodes.sh`, works too.
 
 - **Arguments** after the script name go to the script unchanged:
-  `sudo 5stack run plugin.sh list`.
+  `sudo 5stack run plugin list`.
 - **`--yes`**, before the script name, answers yes for a script that asks:
-  `plugin.sh`, `custom.sh`, `setup-gpu-nodes.sh`, `fix-ssl.sh` and
-  `fix-vault.sh`. The others refuse it.
-- **Live matches.** `plugin.sh`, `custom.sh`, `backblaze-proxy.sh`,
-  `setup-gpu-nodes.sh` and `fix-ssl.sh` change the panel. When that would
+  `plugin`, `custom`, `setup-gpu-nodes`, `fix-ssl` and
+  `fix-vault`. The others refuse it.
+- **Live matches.** `plugin`, `custom`, `backblaze-proxy`,
+  `setup-gpu-nodes` and `fix-ssl` change the panel. When that would
   restart something, they hold new matches and wait for live ones first, like an
   update. `--no-drain` before the script name skips the wait, and live matches
   end. The other scripts refuse it.
@@ -142,7 +143,7 @@ work as usual. You can also pick each one in the menu.
   uninstall, a config change or another script runs on the panel, and none of
   those start while it runs.
 - **What a script changes is kept.** Config a script writes, such as the GPU
-  nodes `setup-gpu-nodes.sh` saves, applies with every update.
+  nodes `setup-gpu-nodes` saves, applies with every update.
 - `update.sh` and `install.sh` aren't run this way. Use `5stack update`, or the
   [installer](/install/).
 
@@ -181,12 +182,12 @@ See [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node)
 
 ## Vault
 
-| Command                        | What it does                                                                                                  |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| `5stack vault status`          | Whether Vault answers and is unsealed, which secrets aren't syncing and why, and when the agent last checked. |
-| `sudo 5stack vault enable`     | Moves the panel's secrets into Vault. Takes `--kubernetes-host <url>` and `--force`.                          |
-| `sudo 5stack vault sync`       | Adds the secrets a new release needs. `--version <version>` prepares for a specific release.                  |
-| `sudo 5stack run fix-vault.sh` | Signs the panel in to Vault again and resyncs every secret.                                                   |
+| Command                     | What it does                                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `5stack vault status`       | Whether Vault answers and is unsealed, which secrets aren't syncing and why, and when the agent last checked. |
+| `sudo 5stack vault enable`  | Moves the panel's secrets into Vault. Takes `--kubernetes-host <url>` and `--force`.                          |
+| `sudo 5stack vault sync`    | Adds the secrets a new release needs. `--version <version>` prepares for a specific release.                  |
+| `sudo 5stack run fix-vault` | Signs the panel in to Vault again and resyncs every secret.                                                   |
 
 See [HashiCorp Vault](/advanced/vault).
 

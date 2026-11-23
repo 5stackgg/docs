@@ -119,7 +119,7 @@ spec:
 Once you have created the files, apply them with:
 
 ```bash
-sudo 5stack run custom.sh mysql
+sudo 5stack run custom mysql
 ```
 
 Without the folder's name, the script asks which overlay to deploy. You can also pick **Custom overlays** in the [`5stack` menu](/service/command#the-menu).

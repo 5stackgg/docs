@@ -14,7 +14,7 @@ following [Adding a GPU node](/servers/gpu-nodes/#adding-a-gpu-node).
 ## Playback domain
 
 The playback domain is where viewers' browsers load streams from. It defaults to
-`hls.<your web domain>`. To change it, run `sudo 5stack run setup-gpu-nodes.sh`
+`hls.<your web domain>`. To change it, run `sudo 5stack run setup-gpu-nodes`
 on the panel server again; it asks for the domain on every run, with the current
 value as the default.
 
