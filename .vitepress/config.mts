@@ -378,6 +378,7 @@ export default defineConfig({
             { text: "Styling", link: "/styling" },
             { text: "Components", link: "/components" },
             { text: "Backend & Auth", link: "/backend" },
+            { text: "Player Badges", link: "/player-badges" },
             { text: "Deploying", link: "/deploying" },
             { text: "One-Command Install", link: "/installing" },
           ],
