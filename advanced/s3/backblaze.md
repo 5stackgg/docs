@@ -18,10 +18,10 @@ The script checks the keys with Backblaze before deploying anything, and asks yo
 On the panel server, run:
 
 ```bash
-sudo 5stack run backblaze-proxy.sh
+sudo 5stack run backblaze-proxy
 ```
 
-Or pick **Backblaze proxy** in the [`5stack` menu](/service/command#the-menu). To give it the worker's hostname up front, add it after the script name: `sudo 5stack run backblaze-proxy.sh cf.example.com`.
+Or pick **Backblaze proxy** in the [`5stack` menu](/service/command#the-menu). To give it the worker's hostname up front, add it after the script name: `sudo 5stack run backblaze-proxy cf.example.com`.
 
 It needs Node.js 22 or newer on the panel server and walks you through the rest:
 
@@ -47,7 +47,7 @@ Go to **Settings → Application → Demos**:
 
 Once the panel signs them, the worker refuses a clip, clip thumbnail or utility lineup file without a signed, unexpired link, and only people who may see a clip get one. Share a clip's page (`/clips/<id>`), not its file link: the page always hands out a fresh link.
 
-- **Re-run `sudo 5stack run backblaze-proxy.sh` after every panel update, every rollback, and every change to `S3_SECRET`.** Each run decides again whether the worker requires signed links; updating or rolling back the panel doesn't touch the worker.
+- **Re-run `sudo 5stack run backblaze-proxy` after every panel update, every rollback, and every change to `S3_SECRET`.** Each run decides again whether the worker requires signed links; updating or rolling back the panel doesn't touch the worker.
 - **One worker, several panels.** All panels on the same Cloudflare account and bucket share the `5stack` worker. Update every one of them before running the script from any of them: once the worker requires signed links, a panel that doesn't sign them loses its clips.
 - **Turning it off** (answering yes when a panel doesn't sign) affects every panel on the worker: their private clips can be downloaded by anyone with the link until the script turns it back on.
 - **Revocation isn't instant.** A clip or lineup made private keeps the links already handed out working until they expire, up to two years for one that was public.
@@ -57,7 +57,7 @@ Once the panel signs them, the worker refuses a clip, clip thumbnail or utility 
 The worker keeps its own copy of `S3_ACCESS_KEY` and `S3_SECRET`. To change them:
 
 1. Run `sudo 5stack config set S3_ACCESS_KEY= S3_SECRET=` and type the new keys. On a [Vault](/advanced/vault) install, change them in Vault, then run `sudo 5stack config apply`.
-2. Run `sudo 5stack run backblaze-proxy.sh`, giving it the same keys.
+2. Run `sudo 5stack run backblaze-proxy`, giving it the same keys.
 
 Until the second step, the worker refuses the clip links the panel signs with the new `S3_SECRET`.
 

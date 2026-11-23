@@ -46,7 +46,7 @@ Reboot after any of these.
 
 ## 2. Run the setup script
 
-[Run `sudo 5stack run setup-gpu-nodes.sh`](/servers/gpu-nodes/#run-the-setup-script)
+[Run `sudo 5stack run setup-gpu-nodes`](/servers/gpu-nodes/#run-the-setup-script)
 on the panel server and pick **AMD**.
 
 ::: warning One vendor per cluster

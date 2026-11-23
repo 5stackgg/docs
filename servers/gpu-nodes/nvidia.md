@@ -2,7 +2,7 @@
 
 A [GPU node](/servers/gpu-nodes/) with an NVIDIA GPU needs the NVIDIA driver
 and the NVIDIA Container Toolkit. Steps 1 to 5 below install them on each GPU
-node. [`setup-gpu-nodes.sh`](/servers/gpu-nodes/#run-the-setup-script) does the
+node. [`setup-gpu-nodes`](/servers/gpu-nodes/#run-the-setup-script) does the
 rest.
 
 Any GeForce GTX 1080 or newer works. See

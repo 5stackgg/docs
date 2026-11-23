@@ -77,7 +77,7 @@ and why. The **Vault** item in the
 If the secrets still don't sync after Vault is unsealed, run:
 
 ```bash
-sudo 5stack run fix-vault.sh
+sudo 5stack run fix-vault
 ```
 
 ## Changing a secret

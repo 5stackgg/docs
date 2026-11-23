@@ -13,7 +13,7 @@ The edge relay is a small Cloudflare Worker that you put on your relay domain. V
 Your relay domain is already in the panel's config (`RELAY_DOMAIN`), so on the panel server, run:
 
 ```bash
-sudo 5stack run playcast-relay.sh
+sudo 5stack run playcast-relay
 ```
 
 Or pick **Playcast relay** in the [`5stack` menu](/service/command#the-menu).

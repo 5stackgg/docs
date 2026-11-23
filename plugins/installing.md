@@ -6,16 +6,17 @@ your plugin so an operator can install it **onto the 5Stack cluster itself**
 with one command, from your repository, without reading your README.
 
 ```sh
-sudo 5stack run plugin.sh https://github.com/5stackgg/5stack-example-plugin
+sudo 5stack run plugin https://github.com/5stackgg/5stack-example-plugin
 ```
 
 The operator runs it on the panel server, or picks **Plugins** in the
 [`5stack` menu](/service/command#the-menu). It also accepts an `owner/repo`
 shorthand, or the absolute path of a local directory while you're developing.
+On an older 5Stack service, the script is `plugin.sh`.
 
 ```sh
-sudo 5stack run plugin.sh list           # what's installed
-sudo 5stack run plugin.sh remove hello   # take it back off the cluster
+sudo 5stack run plugin list           # what's installed
+sudo 5stack run plugin remove hello   # take it back off the cluster
 ```
 
 ## Why it doesn't ask questions
@@ -39,7 +40,7 @@ decides which of your two installs to apply.
 
 Every value can still be overridden: `--domain`, `--node`, `--database-url`,
 `--kubeconfig`, `--tls` / `--no-tls`. `--dry-run` prints the manifests and
-applies nothing. `sudo 5stack run --yes plugin.sh …` takes every default, for
+applies nothing. `sudo 5stack run --yes plugin …` takes every default, for
 unattended installs.
 
 Re-running upgrades in place. The plugin's code is replaced; its `.env` files —
@@ -250,7 +251,7 @@ has both.
 Plugins are installed into the panel's `custom/<slug>/`, which is
 `/etc/5stack/custom/<slug>/` on the panel server and the same place `custom.sh`
 deploys from. Nothing is hidden: an operator can edit the package and re-apply
-it by hand, and `sudo 5stack run plugin.sh custom/<slug>` re-runs the install
+it by hand, and `sudo 5stack run plugin custom/<slug>` re-runs the install
 from what's on disk.
 
 ## A worked example

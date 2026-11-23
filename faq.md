@@ -157,7 +157,7 @@ own data from outside.
 
 Run `5stack status` on the panel server first, and check the
 [5Stack service troubleshooting](/common-issues/5stack-service) page. Then run the
-[debug script](/common-issues/debug-script) with `sudo 5stack run debug.sh`: it
+[debug script](/common-issues/debug-script) with `sudo 5stack run debug`: it
 collects the state that any support conversation is going to ask for anyway. The
 [Troubleshooting](/common-issues/debug-script) section covers the failures that
 come up most: [login problems](/common-issues/unable-to-login),
