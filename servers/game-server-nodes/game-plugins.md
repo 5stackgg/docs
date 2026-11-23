@@ -48,6 +48,14 @@ You always pick the framework, because nothing inside the archive says which
 one it was built for. A plugin added under the wrong one installs but never
 loads.
 
+A native Metamod plugin, one that ships a `.vdf` in `addons/metamod`, loads
+under either framework, so pick the one your servers run. It also needs
+Metamod:Source: a registry entry says so with `requires_metamod`, and a panel
+plugin that installs its own game plugin can say so when it adds the download.
+**Add a plugin** cannot mark one yet, so a Metamod plugin added there does not
+start Metamod on SwiftlyS2. Every server that loads a marked plugin starts
+Metamod ahead of SwiftlyS2; servers that load none never start it.
+
 From there it installs and loads like a directory entry. It is marked **Custom**
 so it is clear nobody reviewed it.
 
@@ -169,6 +177,17 @@ that load the plugin **and nowhere else**.
 ```
 invsim_url "https://inventory.example.gg"
 invsim_apikey "inv_…"
+```
+
+::: v-pre
+`{{match_id}}` anywhere in a plugin's cvars (**Settings** or **Advanced**)
+becomes the id of the match the server is playing, so a plugin can tag what it
+reports with the match. On a server that hosts no match, such as a community
+server, it is left empty. Config files are written as they are.
+:::
+
+```
+zl_match_id "{{match_id}}"
 ```
 
 #### Descriptions and defaults
