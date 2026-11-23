@@ -176,9 +176,10 @@ invsim_apikey "inv_…"
 ```
 
 ::: v-pre
-`{{match_id}}` anywhere in it becomes the id of the match the server is
-playing, so a plugin can tag what it reports with the match. On a server that
-hosts no match, such as a community server, it is left empty.
+`{{match_id}}` anywhere in a plugin's cvars (**Settings** or **Advanced**)
+becomes the id of the match the server is playing, so a plugin can tag what it
+reports with the match. On a server that hosts no match, such as a community
+server, it is left empty. Config files are written as they are.
 :::
 
 ```
