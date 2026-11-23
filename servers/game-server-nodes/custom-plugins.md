@@ -19,6 +19,8 @@ Game Node servers operate independently, so you'll need to copy your plugin file
 ::: danger Pick the directory that matches your runtime
 Plugins are **framework-specific**. A CounterStrikeSharp plugin will not load under SwiftlyS2, and vice versa. Files under the wrong `addons/` directory are copied to the server and then silently ignored.
 
+Native Metamod plugins are the exception: one whose `.vdf` sits in `addons/metamod` loads on both. Placed here by hand, it loads on every server on the node.
+
 Check which runtime you're on first. See [Game Plugin Runtimes](/servers/game-server-nodes/plugin-runtimes). **SwiftlyS2 is the default.**
 :::
 
