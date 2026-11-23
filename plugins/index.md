@@ -63,10 +63,13 @@ itself. See [Routing](/plugins/routing) for what each one carries.
 | The logged-in user (`steam_id`, `name`, `role`) | The host's Apollo/GraphQL client or Hasura session |
 | Role-gated visibility via `requiredRole` | A sandbox, your code runs with full access to the page |
 | The design tokens + Tailwind preset | A ready-made component library (see [Components](/plugins/components)) |
+| A [badge on any player](/plugins/player-badges), set from your backend | |
 
-There is exactly **one** extension point: the whole-page mount. There is no slot
-system. If you need data from 5Stack. You either read it off the `user` prop or
-you call [your own backend](/plugins/backend).
+Your page is the one place your UI mounts, on its own route and, if you ask for
+it, as a [tab on player profiles](/plugins/routing#the-player-profile-tab).
+Beyond that, your backend can put a [badge](/plugins/player-badges) on players.
+There is no other slot system. If you need data from 5Stack, you either read it
+off the `user` prop or you call [your own backend](/plugins/backend).
 
 ::: info No sandbox
 A plugin is loaded into the panel's JavaScript context with no isolation. It can
