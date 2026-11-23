@@ -49,8 +49,11 @@ one it was built for. A plugin added under the wrong one installs but never
 loads.
 
 A native Metamod plugin, one that ships a `.vdf` in `addons/metamod`, loads
-under either framework, so pick the one your servers run. On SwiftlyS2, Metamod
-only loads on a server where such a plugin loads.
+under either framework, so pick the one your servers run. It also needs
+Metamod:Source: a registry entry says so with `requires_metamod`, and a plugin
+that installs itself through the panel can say so when it adds its download.
+Every server that loads it then starts Metamod ahead of SwiftlyS2; servers that
+load no such plugin never start it.
 
 From there it installs and loads like a directory entry. It is marked **Custom**
 so it is clear nobody reviewed it.
