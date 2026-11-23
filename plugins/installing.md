@@ -12,6 +12,7 @@ sudo 5stack run plugin https://github.com/5stackgg/5stack-example-plugin
 The operator runs it on the panel server, or picks **Plugins** in the
 [`5stack` menu](/service/command#the-menu). It also accepts an `owner/repo`
 shorthand, or the absolute path of a local directory while you're developing.
+On an older 5Stack service, the script is `plugin.sh`.
 
 ```sh
 sudo 5stack run plugin list           # what's installed

@@ -127,7 +127,9 @@ work as usual. You can also pick each one in the menu.
 | `debug`           | Saves logs, events and certificate status to a file for a bug report. See [Debugging](/common-issues/debug-script).                          |
 
 `5stack run --list` lists them, without sudo. A script's name with `.sh`, such
-as `setup-gpu-nodes.sh`, works too.
+as `setup-gpu-nodes.sh`, works too. An older 5Stack service only knows the
+`.sh` names: if `5stack run` doesn't know a script, add `.sh`, or update the
+service with `sudo 5stack update --agent`.
 
 - **Arguments** after the script name go to the script unchanged:
   `sudo 5stack run plugin list`.
