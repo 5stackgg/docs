@@ -90,7 +90,7 @@ changes. Each plugin has at most one badge per player.
 | `player_steam_id` | The player's SteamID64. Only players who have signed in to this panel exist; a write for anyone else is refused, so a bulk write fails as a whole if it names one |
 | `label` | What the hover list says, up to 64 characters. It needs something visible, and zero-width or text-direction characters are refused |
 | `tone` | `positive`, `neutral` or `danger`. Colours the icon, and decides which badge wins the slot |
-| `icon` | A [lucide](https://lucide.dev) icon name, such as `shield-check`. Leave it empty to use your plugin's own icon |
+| `icon` | One of the [lucide](https://lucide.dev) icons the panel ships for plugins, such as `shield`, `shield-check`, `shield-alert`, `shield-x`, `ban`, `circle-check` or `circle-alert`. Leave it empty, or name one the panel doesn't have, and your plugin's own icon is used |
 | `link` | Optional. An `https://` address opened, in a new tab, from the hover list |
 
 ## Who sees it
