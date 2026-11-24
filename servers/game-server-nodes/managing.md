@@ -86,6 +86,12 @@ switches:
 - **Practice servers**: whether players can boot
   [practice servers](/features/practice-servers) here, with **Matchmaking** on
   or off.
+- **Load Metamod**: the match and practice servers the node starts load
+  Metamod:Source, for a native Metamod plugin in the node's
+  [custom plugins](/servers/game-server-nodes/custom-plugins) that the catalog
+  doesn't carry. Each server picks it up when it next starts. Dedicated servers
+  have their own [Load Metamod](/servers/dedicated-servers/community-servers#load-metamod)
+  switch.
 
 If no node in a region takes a match type any more, the list warns "No node in
 {region} takes {types}", and region pickers leave out regions that can't host
