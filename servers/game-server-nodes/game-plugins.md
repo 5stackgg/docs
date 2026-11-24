@@ -50,11 +50,11 @@ loads.
 
 A native Metamod plugin, one that ships a `.vdf` in `addons/metamod`, loads
 under either framework, so pick the one your servers run. It also needs
-Metamod:Source: a registry entry says so with `requires_metamod`, and a panel
-plugin that installs its own game plugin can say so when it adds the download.
-**Add a plugin** cannot mark one yet, so a Metamod plugin added there does not
-start Metamod on SwiftlyS2. Every server that loads a marked plugin starts
-Metamod ahead of SwiftlyS2; servers that load none never start it.
+Metamod:Source: turn on **Needs Metamod** when you add it, a registry entry
+says so with `requires_metamod`, and a panel plugin that installs its own game
+plugin can say so when it adds the download. A marked plugin shows a
+**Metamod** chip. Every server that loads a marked plugin starts Metamod ahead
+of SwiftlyS2; servers that load none never start it.
 
 From there it installs and loads like a directory entry. It is marked **Custom**
 so it is clear nobody reviewed it.

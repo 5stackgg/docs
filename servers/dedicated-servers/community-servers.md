@@ -99,6 +99,15 @@ command**. On a game server node it turns GOTV on for the server; on an external
 server it only lists the port, and GOTV itself is turned on in the server's own
 config.
 
+### Load Metamod
+
+The **Load Metamod** switch in **General** starts Metamod:Source on the server
+even when none of its plugins is marked as needing it, so a native Metamod
+plugin the catalog doesn't carry, in the server's own files or the node's
+custom plugins, loads. It is on every dedicated server on a game server node,
+whatever its type. It restarts the server, so it waits until no match is on
+it.
+
 ### Plugins
 
 **Plugins** lists every installed [game plugin](/servers/game-server-nodes/game-plugins)
