@@ -103,9 +103,10 @@ config.
 
 The **Load Metamod** switch in **General** starts Metamod:Source on the server
 even when none of its plugins is marked as needing it, so a native Metamod
-plugin in the server's own files loads. It restarts the server, so it waits
-until no match is on it. Ranked and Practice servers run 5Stack's own plugin
-set and ignore it.
+plugin the catalog doesn't carry, in the server's own files or the node's
+custom plugins, loads. It is on every dedicated server on a game server node,
+whatever its type. It restarts the server, so it waits until no match is on
+it.
 
 ### Plugins
 
