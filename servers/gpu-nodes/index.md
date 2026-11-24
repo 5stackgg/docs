@@ -22,7 +22,7 @@ Linux install instead.
 
 1. [Create a game server node](#create-the-node) on the machine with the GPU.
 2. [Install the GPU driver](#install-the-gpu-driver) on that node.
-3. [Run `sudo 5stack run setup-gpu-nodes`](#run-the-setup-script) on the panel server.
+3. [Turn it on](#turn-it-on) on the panel's **GPU Nodes** page.
 4. [Add Steam accounts](#steam-account-pool) to the pool on the **GPU Nodes**
    page.
 
@@ -46,9 +46,56 @@ runtime. Follow the guide for your GPU:
 To pick a card, see [Supported GPUs](/servers/gpu-nodes/supported-gpus) for
 how fast each one runs CS2.
 
+### Turn it on
+
+On a panel that runs the [5Stack service](/service/), open **GPU Nodes**.
+**Found on your nodes** lists every NVIDIA or AMD graphics card the 5Stack
+service sees on a ready node that isn't a GPU node yet, and the control row
+shows how many it found.
+
+1. Pick **Use for Streaming and Clips** on the card's row, then **Use It** in the
+   confirm.
+   - On an AMD node whose GPU is built into its CPU (an APU), tick **Built into
+     the processor** in the confirm. See [Integrated GPUs](/servers/gpu-nodes/amd#integrated-gpus).
+2. The panel updates to use the node. If that restarts something, new matches
+   wait and live matches finish first, as in an update. The row shows each step.
+3. When the row says it's ready, the card moves to the GPUs list.
+
+What the page tells you:
+
+- **Its driver isn't loaded yet**: the button stays off until the
+  [driver is installed](#install-the-gpu-driver) on that node.
+- **Hasn't reported its cards yet**: the node doesn't run the 5Stack service yet,
+  or hasn't reported since it started. Nodes added with the old install script
+  get the service with `5stack nodes adopt` on the panel server.
+- A panel's GPU nodes are all NVIDIA or all AMD. The confirm says which brand the
+  panel uses and won't add a card of the other brand.
+- If setting a node up doesn't finish, its row under **Found on your nodes** says
+  why, with **Try Again**, and the GPUs list shows **Setup didn't finish**.
+
+To stop using a GPU node, open its **⋯** menu in the GPUs list and pick **Stop
+Using This GPU**. A stream or render already running on it finishes; nothing new
+starts there.
+
+The [5Stack console](/service/console)'s **GPU nodes** page has the same list,
+**Found on Your Nodes**.
+
+### From the terminal
+
+On the panel server:
+
+```bash
+sudo 5stack gpu use <node>                # add a GPU node
+sudo 5stack gpu use <node> --integrated   # an AMD node that renders on its APU
+sudo 5stack gpu stop <node>               # stop using a GPU node
+```
+
+These follow the same rules as the GPU Nodes page.
+
 ### Run the setup script
 
-On the panel server, run:
+To pick everything at once, including the playback domain, run this on the panel
+server:
 
 ```bash
 sudo 5stack run setup-gpu-nodes
@@ -66,6 +113,14 @@ The script will walk you through:
 
 If the panel has to restart something to apply your choices, new matches are
 held and live ones finish first.
+
+::: danger A panel on the 5Stack service never runs a checkout's scripts
+Only a panel installed from a git checkout without the 5Stack service runs
+`./setup-gpu-nodes.sh`, from an up-to-date checkout (`git pull` first). On a panel
+the 5Stack service manages, an old checkout's scripts put back older versions of
+the panel's services, such as the database, and can take the panel down. Use the
+GPU Nodes page or `sudo 5stack run setup-gpu-nodes` instead.
+:::
 
 ::: warning Steam account must NOT have 2FA / Steam Guard
 With Steam Guard or the Steam Mobile Authenticator on, every render gets stuck waiting for a code that nobody can enter.

@@ -176,12 +176,13 @@ install script get **Give Them the Service**.
 
 ![The Nodes page](./console-nodes.webp){.screenshot}
 
-**GPU nodes** finds the graphics cards on your nodes. Switch on the nodes to
-use for streaming and clips, set the Steam account they sign in with and the
-streaming address, then press **Apply Changes**. If it finds no cards,
-**Set Up GPU Nodes** walks you through the brand, the nodes, the Steam account
-and a review. See
-[GPU Nodes](/servers/gpu-nodes/).
+**GPU nodes** lists **Found on Your Nodes**: the graphics cards on your nodes
+that no GPU node uses yet. **Use for Streaming and Clips** turns one on after a
+confirm (tick **Built Into the Processor** for an AMD APU), and **Stop Using**
+turns a GPU node off. The **Steam Account** and **Streaming Address** cards stay
+on the page, with **Apply Changes**. On an older 5Stack service, the page has
+switches per node instead, and **Set Up GPU Nodes** walks you through the brand,
+the nodes, the Steam account and a review. See [GPU Nodes](/servers/gpu-nodes/).
 
 **Updates** shows the release you run and the newest one, and before you update,
 what the update changes: which services restart, which versions change, and

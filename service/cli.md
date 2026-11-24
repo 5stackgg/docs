@@ -182,6 +182,17 @@ See [Console People](/service/console-people).
 
 See [Add a Game Server Node](/servers/game-server-nodes/create-game-server-node).
 
+## GPU nodes
+
+| Command                                   | What it does                                                                                                       |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `sudo 5stack gpu use <node>`              | Makes the node a GPU node, with the brand of the card the 5Stack service sees on it, then applies the panel again. |
+| `sudo 5stack gpu use <node> --integrated` | The same, for an AMD node that renders on the GPU built into its CPU.                                              |
+| `sudo 5stack gpu stop <node>`             | Stops using the node as a GPU node. A stream or render running on it finishes.                                     |
+| `sudo 5stack run setup-gpu-nodes`         | Picks every GPU node, the Steam account and the playback domain in one go.                                         |
+
+See [GPU Nodes](/servers/gpu-nodes/#turn-it-on).
+
 ## Vault
 
 | Command                     | What it does                                                                                                  |
