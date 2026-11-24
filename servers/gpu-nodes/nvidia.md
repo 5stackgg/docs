@@ -2,8 +2,8 @@
 
 A [GPU node](/servers/gpu-nodes/) with an NVIDIA GPU needs the NVIDIA driver
 and the NVIDIA Container Toolkit. Steps 1 to 5 below install them on each GPU
-node. [`setup-gpu-nodes`](/servers/gpu-nodes/#run-the-setup-script) does the
-rest.
+node. Then [turn it on](/servers/gpu-nodes/#turn-it-on) on the panel's **GPU
+Nodes** page.
 
 Any GeForce GTX 1080 or newer works. See
 [Supported GPUs](/servers/gpu-nodes/supported-gpus#nvidia) for how fast each
@@ -104,4 +104,5 @@ Confirm the runtime was detected:
 grep nvidia /var/lib/rancher/k3s/agent/etc/containerd/config.toml
 ```
 
-You can now continue to [run the setup script](/servers/gpu-nodes/#run-the-setup-script).
+Once the driver loads, the card shows under **Found on your nodes** on the
+panel's **GPU Nodes** page. Continue to [turn it on](/servers/gpu-nodes/#turn-it-on).

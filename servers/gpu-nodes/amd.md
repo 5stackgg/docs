@@ -44,23 +44,27 @@ You should see `Kernel driver in use: amdgpu` under your GPU, and a
 
 Reboot after any of these.
 
-## 2. Run the setup script
+## 2. Turn it on
 
-[Run `sudo 5stack run setup-gpu-nodes`](/servers/gpu-nodes/#run-the-setup-script)
-on the panel server and pick **AMD**.
+On the panel's **GPU Nodes** page, pick **Use for Streaming and Clips** on the
+node's card under **Found on your nodes**. See
+[Turn it on](/servers/gpu-nodes/#turn-it-on). From the terminal, run
+`sudo 5stack gpu use <node>`, or
+[`sudo 5stack run setup-gpu-nodes`](/servers/gpu-nodes/#run-the-setup-script)
+and pick **AMD**.
 
-::: warning One vendor per cluster
-The setup script configures every GPU node for the vendor you pick. Selecting an
-NVIDIA node while picking AMD turns it into an AMD node with no GPU, and an
-NVIDIA node you leave unselected stops being a GPU node. Mixing NVIDIA and AMD
-GPU nodes in one cluster isn't supported by the script.
+::: warning One vendor per panel
+A panel's GPU nodes are all NVIDIA or all AMD. The GPU Nodes page and
+`5stack gpu use` refuse a card of the other brand. The setup script configures
+every GPU node for the vendor you pick: selecting an NVIDIA node while picking
+AMD turns it into an AMD node with no GPU.
 :::
 
 ### Integrated GPUs
 
-After the node list, the script asks which of those nodes should render on the
-GPU integrated into their CPU (an APU). Tick a node only when you want it to
-render on its integrated GPU:
+Tick **Built into the processor** on the node's card (`--integrated` with
+`5stack gpu use`, or the integrated question in the setup script) only when the
+node should render on the GPU integrated into its CPU (an APU):
 
 - **A node whose only AMD GPU is integrated** needs the tick, or it reports no GPU.
 - **A node with a discrete Radeon card** should be left unticked, even if its CPU
