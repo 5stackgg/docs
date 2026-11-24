@@ -49,13 +49,14 @@ how fast each one runs CS2.
 ### Turn it on
 
 On a panel that runs the [5Stack service](/service/), open **GPU Nodes**.
-**Found on your nodes** lists every graphics card the 5Stack service sees on a
-ready node that isn't a GPU node yet, and the control row shows how many it
-found.
+**Found on your nodes** lists every NVIDIA or AMD graphics card the 5Stack
+service sees on a ready node that isn't a GPU node yet, and the control row
+shows how many it found.
 
-1. Pick **Use for Streaming and Clips** on the card's row and confirm.
+1. Pick **Use for Streaming and Clips** on the card's row, then **Use It** in the
+   confirm.
    - On an AMD node whose GPU is built into its CPU (an APU), tick **Built into
-     the processor** first. See [Integrated GPUs](/servers/gpu-nodes/amd#integrated-gpus).
+     the processor** in the confirm. See [Integrated GPUs](/servers/gpu-nodes/amd#integrated-gpus).
 2. The panel updates to use the node. If that restarts something, new matches
    wait and live matches finish first, as in an update. The row shows each step.
 3. When the row says it's ready, the card moves to the GPUs list.
@@ -66,16 +67,18 @@ What the page tells you:
   [driver is installed](#install-the-gpu-driver) on that node.
 - **Hasn't reported its cards yet**: the node doesn't run the 5Stack service yet,
   or hasn't reported since it started. Nodes added with the old install script
-  get the service from the panel by themselves, or run `5stack nodes adopt`.
-- **One brand per panel**: a panel's GPU nodes are all NVIDIA or all AMD.
-- **Setup didn't finish**: the reason, with **Try Again**.
+  get the service with `5stack nodes adopt` on the panel server.
+- A panel's GPU nodes are all NVIDIA or all AMD. The confirm says which brand the
+  panel uses and won't add a card of the other brand.
+- If setting a node up doesn't finish, its row under **Found on your nodes** says
+  why, with **Try Again**, and the GPUs list shows **Setup didn't finish**.
 
-To stop using a GPU node, open its **⋮** menu in the GPUs list and pick **Stop
+To stop using a GPU node, open its **⋯** menu in the GPUs list and pick **Stop
 Using This GPU**. A stream or render already running on it finishes; nothing new
 starts there.
 
-The [5Stack console](/service/console)'s **GPU nodes** page offers the same
-**Found on your nodes** list.
+The [5Stack console](/service/console)'s **GPU nodes** page has the same list,
+**Found on Your Nodes**.
 
 ### From the terminal
 

@@ -62,9 +62,10 @@ AMD turns it into an AMD node with no GPU.
 
 ### Integrated GPUs
 
-Tick **Built into the processor** on the node's card (`--integrated` with
-`5stack gpu use`, or the integrated question in the setup script) only when the
-node should render on the GPU integrated into its CPU (an APU):
+In the confirm that **Use for Streaming and Clips** opens, tick **Built into
+the processor** before **Use It** (`--integrated` with `5stack gpu use`, or the
+integrated question in the setup script) only when the node should render on the
+GPU integrated into its CPU (an APU):
 
 - **A node whose only AMD GPU is integrated** needs the tick, or it reports no GPU.
 - **A node with a discrete Radeon card** should be left unticked, even if its CPU
